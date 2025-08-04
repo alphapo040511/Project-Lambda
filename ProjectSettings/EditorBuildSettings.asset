@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: ed1c0f7e47d9cd34fa73cf4aa93a8aab
+  - enabled: 1
+    path: Assets/Scenes/Test_Map.unity
+    guid: 7b533dfe561bc47c8975c955fe4ef3d3
   m_configObjects: {}

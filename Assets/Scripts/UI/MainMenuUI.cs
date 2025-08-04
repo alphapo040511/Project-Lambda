@@ -14,7 +14,7 @@ public class MainMenuUI : MonoBehaviour
         if (startGameButton != null)
         {
             startGameButton.onClick.AddListener(() => {
-                SceneManager.Instance.LoadScene("GameScene");
+                SceneManager.Instance.LoadGameScene();
             });
         }
 

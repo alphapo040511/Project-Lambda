@@ -23,6 +23,7 @@ public class SceneConfig : SingletonMonoBehaviour<SceneConfig>
     protected override void Awake()
     {
         base.Awake();
+        SetupSceneStates();
         GameEvents.OnSceneChanged += OnSceneChanged;
     }
 

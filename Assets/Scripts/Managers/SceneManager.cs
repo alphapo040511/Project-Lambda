@@ -134,6 +134,8 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
         // 페이드 아웃
         yield return StartCoroutine(FadeOut());                         // 페이드 연출은 씬 로드 코루틴에서 함께 적용
 
+        GameEvents.SceneChanged(sceneName);
+
         isLoading = false;
     }
 
@@ -181,6 +183,8 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
             // 로딩 화면 없이 직접 로딩
             yield return StartCoroutine(LoadSceneAsync(sceneName));
         }
+
+        GameEvents.SceneChanged(sceneName);
 
         isLoading = false;
     }
