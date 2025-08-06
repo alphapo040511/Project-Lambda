@@ -104,17 +104,28 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void OnGameStateChanged(GameState newState)
     {
+        // 일단 마우스만 관리 (혹시 몰라서 case 분리)
         switch (newState)
         {
             case GameState.Menu:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 break;
             case GameState.Playing:
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 break;
             case GameState.Paused:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 break;
             case GameState.GameOver:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 break;
             case GameState.Loading:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 break;
         }
     }
@@ -134,7 +145,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         ChangeGameState(GameState.Paused);
         GameEvents.GamePaused();
 
-        //UIManager.Instance?. 일시정지 UI 표시
+        UIManager.Instance.Pause();
     }
 
     public void ResumeGame()
@@ -145,7 +156,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         ChangeGameState(GameState.Playing);
         GameEvents.GameResumed();
 
-        //UIManager.Instance?. 일시정지 UI 숨기기
+        UIManager.Instance.Resume();
     }
 
     public void GameOver()

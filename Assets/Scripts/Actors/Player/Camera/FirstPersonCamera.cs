@@ -11,12 +11,6 @@ public class FirstPersonCamera : Actor
     public float clampAngle = 80f;              // 상하 회전 제한 각도
 
     private float xRotation = 0f;               // 상하 회전 값
-
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;  // 마우스 커서 고정
-        Cursor.visible = false;
-    }
     
     protected override void ActorUpdate()
     {

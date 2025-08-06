@@ -51,12 +51,6 @@ public class CameraBob : Actor
 
     protected override void ActorUpdate() 
     {
-        if(playerController == null)
-        {
-            Debug.LogWarning("PlayerController를 찾을 수 없습니다.");
-            return;
-        }
-
         timer += Time.deltaTime / targetFrequency;
 
         // 흔들림 계산 (삼각 함수 사용으로 진동) 

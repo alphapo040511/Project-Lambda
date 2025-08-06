@@ -275,7 +275,7 @@ public class SettingsUI : MonoBehaviour
     private void OnCloseClicked()
     {
         // 설정 창 닫기
-        gameObject.SetActive(false);
+        GameManager.Instance.ResumeGame();
     }
 
     #endregion
@@ -283,17 +283,17 @@ public class SettingsUI : MonoBehaviour
     // 외부에서 설정 창 열기
     public void ShowSettings()
     {
-        gameObject.SetActive(true);
+        GameManager.Instance.PauseGame();
         RefreshUI();
     }
 
     // ESC 키로 설정 창 닫기
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && gameObject.activeInHierarchy)
-        {
-            OnCloseClicked();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape) && gameObject.activeInHierarchy)
+        //{
+        //    OnCloseClicked();
+        //}
     }
 }
 
