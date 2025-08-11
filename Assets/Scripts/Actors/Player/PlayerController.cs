@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : Actor
 {
     //상태 변화 이벤트 선언
     public event Action<MoveState> OnMoveStateChanged;
+
+    public Posture currentPosture { get; private set; } = Posture.Standing;
 
     private IPlayerState currentState;
 
@@ -14,6 +17,7 @@ public class PlayerController : Actor
     public float walkSpeed = 2f;
     public float runSpeed = 5f;
     public float acceleration = 3f;
+    public float crouchSpeedMultiplier = 0.6f;
     [HideInInspector] public float targetSpeed;
 
     private float currenSpeed;
@@ -21,6 +25,7 @@ public class PlayerController : Actor
 
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public FirstPersonCamera cameraController;
+    [HideInInspector] public CameraHeightController cameraHeightController;
     [HideInInspector] public InteractionFinder interactionFinder;
 
 
@@ -28,6 +33,7 @@ public class PlayerController : Actor
     {
         rb = GetComponent<Rigidbody>();
         cameraController = GetComponentInChildren<FirstPersonCamera>();
+        cameraHeightController = GetComponentInChildren<CameraHeightController>();
         interactionFinder = GetComponentInChildren<InteractionFinder>();
     }
 
@@ -42,6 +48,7 @@ public class PlayerController : Actor
         {
             currentState.HandleUpdate();
             currentState.Update();
+            HandlePostureInput();
         }
     }
 
@@ -71,6 +78,8 @@ public class PlayerController : Actor
         currenSpeed = Mathf.Lerp(currenSpeed, targetSpeed, acceleration * Time.fixedDeltaTime);
 
         Vector3 velocity = moveDirection * currenSpeed;
+        if(currentPosture == Posture.Crouching)
+            velocity *= crouchSpeedMultiplier;
         velocity.y = rb.velocity.y;
 
         if (rb != null)
@@ -101,4 +110,37 @@ public class PlayerController : Actor
     }
 
     public Vector3 GetInputDirection() => moveDirection;
+
+    void HandlePostureInput()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (currentPosture == Posture.Standing)
+            {
+                currentPosture = Posture.Crouching;
+                OnCrouch();                                                     // 카메라 등 상태 변경
+            }
+            else if (currentPosture == Posture.Crouching && CanStandUp())
+            {
+                currentPosture = Posture.Standing;
+                OnStandUp();
+            }
+        }
+    }
+
+    void OnCrouch()
+    {
+        cameraHeightController.PostureChange(Posture.Crouching);
+    }
+    
+    void OnStandUp()
+    {
+        cameraHeightController.PostureChange(Posture.Standing);
+    }
+
+    bool CanStandUp()
+    {
+        // 머리 위에 장애물이 없는지 확인하는 코드
+        return true;
+    }
 }

@@ -82,6 +82,10 @@ public class InteractionFinder : MonoBehaviour
                 bestTarget.GetComponent<Interactable>()?.OnTargeted();              // UI 활성화
                 currentTarget = bestTarget;                                         // 타겟 등록
             }
+            else
+            {
+                currentTarget = null;
+            }
         }
 
 

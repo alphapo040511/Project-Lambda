@@ -17,7 +17,7 @@ public class CameraBob : Actor
 
     [Header("Run Bob Settings")]
     public float runAmplitude = 0.05f;          // 흔들림 정도
-    public float runFrequency = 0.75f;           // 흔들림 간격
+    public float runFrequency = 0.75f;          // 흔들림 간격
 
     [Header("Blend Settings")]
     public float smoothSpeed = 5f;              // 상태 전환 강도

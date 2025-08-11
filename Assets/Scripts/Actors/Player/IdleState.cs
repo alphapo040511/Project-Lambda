@@ -176,7 +176,14 @@ public class InteractState : IPlayerState
 
     public void Update()
     {
-        interactable.OnInteractHold(Time.deltaTime);
+        if (player.CanInteract())
+        {
+            interactable.OnInteractHold(Time.deltaTime);
+        }
+        else
+        {
+            player.SetState(new IdleState(player));
+        }
     }
 
     public void FixedUpdate() { }
