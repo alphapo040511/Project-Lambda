@@ -11,6 +11,11 @@ public class CameraHeightController : Actor
 
     private float targetHeight;
 
+    private void Start()
+    {
+        targetHeight = standingHeight;
+    }
+
     protected override void ActorUpdate()
     {
         Vector3 currentPos = cameraParent.localPosition;
