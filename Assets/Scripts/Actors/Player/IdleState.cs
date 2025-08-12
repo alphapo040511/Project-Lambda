@@ -161,7 +161,7 @@ public class InteractState : IPlayerState
     {
         player.targetSpeed = 0f;
         interactable.OnInteractStart();
-        player.cameraController.enabled = false;        // 카메라 조작 비활성화
+        //player.cameraController.enabled = false;        // 카메라 조작 비활성화
     }
 
     public void HandleUpdate()
@@ -191,7 +191,7 @@ public class InteractState : IPlayerState
     public void Exit()
     {
         interactable.OnInteractEnd();
-        player.cameraController.enabled = true;         // 카메라 활성화
+        //player.cameraController.enabled = true;         // 카메라 활성화
     }
 }
 
