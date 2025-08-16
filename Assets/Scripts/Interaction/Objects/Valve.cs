@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Valve : Interactable
 {
@@ -28,6 +29,11 @@ public class Valve : Interactable
             currentHoldTime -= Time.deltaTime;
             currentHoldTime = Mathf.Max(currentHoldTime, 0f);
         }
+
+        float progress = Mathf.Clamp01(currentHoldTime / interactionHoldTime);          // 0 ~ 1 값으로 설정
+
+        if(targetUI != null)
+            targetUI.OnInteractHold(progress);                                          // 진행도 표시 활성화
     }
 
     protected override void Complete()

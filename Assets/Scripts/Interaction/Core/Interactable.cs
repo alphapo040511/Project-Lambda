@@ -14,7 +14,7 @@ public abstract class Interactable : Actor, IInteractable
     protected bool used = false;
     protected bool interacting = false;
 
-    private InteractionUIView targetUI;
+    protected InteractionUIView targetUI;
 
     // 상호작용 범위 진입
     public void OnActivate()
