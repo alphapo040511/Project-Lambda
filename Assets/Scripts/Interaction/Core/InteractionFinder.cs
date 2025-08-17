@@ -10,6 +10,7 @@ using UnityEditor;
 public class InteractionFinder : MonoBehaviour
 {
     public LayerMask interactionLayer;
+    public LayerMask playerLayer;                       // 장애물 탐지 시 플레이어는 제외하기 위해 설정
 
     [Header("Detection Settings")]
     public float detectionRange = 2f;                   // 탐지 범위
@@ -45,11 +46,17 @@ public class InteractionFinder : MonoBehaviour
 
         foreach (Collider col in targets)
         {
+            if(col.GetComponent<Interactable>() != null && !IsOccluded(col.transform))
+            {
+                // Interactable이 없거나 장애물이 막는 경우 건너뛰기
+                return;
+            }
+
             Transform t = col.transform;                            // 탐지된 오브젝트 저장
             currentTargets.Add(t);
 
             Vector3 dirToTarget = (col.transform.position - transform.position).normalized;
-            float distance = Vector3.Distance(transform.position, col.transform.position);
+            float distance = Vector3.Distance(transform.position, col.ClosestPoint(transform.position));        // 콜라이더의 가장 가까운 표면 기준으로 작동
 
             // 감지 각도 확인
             float dot = Vector3.Dot(transform.forward, dirToTarget);
@@ -121,12 +128,25 @@ public class InteractionFinder : MonoBehaviour
     private bool IsOccluded(Transform target)
     {
         Vector3 dir = target.position - transform.position;
-        if(Physics.Raycast(transform.position, dir, out RaycastHit hit, detectionRange))        // Ray로 막혀있는지 판단
+
+        // Ray 시각화
+        Debug.DrawRay(transform.position, dir, Color.red); // origin, 방향, 색
+
+        if (Physics.Raycast(transform.position, dir, out RaycastHit hit, dir.magnitude, ~playerLayer))    // Ray로 막혀있는지 판단, 플레이어 레이어 제외
         {
-            return hit.transform == target;
+            bool same = target == hit.transform;
+
+            //if (!same)
+            //{
+            //    Debug.LogWarning($"장애물이 막고 있어 상호작용 할수 없습니다. (장애물 : {hit.transform.name})");
+            //}
+
+            Debug.DrawLine(transform.position, hit.point, Color.yellow);
+            return same;
         }
 
-        return true;            // 아무것도 안 막아도 문제 없는것을 처리
+
+        return true;            // 아무것도 안 막으면 문제 없는것으로 처리
     }
     #endregion
 

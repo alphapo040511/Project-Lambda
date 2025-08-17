@@ -9,9 +9,14 @@ public class Valve : Interactable
 
     private float timeRemaining;
 
+    public override void OnInteractStart()
+    {
+        interacting = true;
+    }
+
     public override void OnInteractEnd()
     {
-        base.OnInteractEnd();
+        interacting = false;
         timeRemaining = releaseDelay;
         used = false;                           // 재사용이 가능하도록
     }

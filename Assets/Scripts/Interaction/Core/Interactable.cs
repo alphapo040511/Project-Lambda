@@ -42,7 +42,7 @@ public abstract class Interactable : Actor, IInteractable
     // 대상으로 지정
     public virtual void OnTargeted()
     {
-        if(targetUI != null)
+        if(targetUI != null && !used)
         {
             targetUI.OnSelected();
         }
@@ -61,6 +61,7 @@ public abstract class Interactable : Actor, IInteractable
     public virtual void OnInteractStart() 
     {
         interacting = true;
+        currentHoldTime = 0f;
     }
 
     public virtual void OnInteractHold(float deltaTime)
@@ -83,11 +84,18 @@ public abstract class Interactable : Actor, IInteractable
     public virtual void OnInteractEnd()
     {
         interacting = false;
+        currentHoldTime = 0f;
     }
 
     protected virtual void Complete()
     {
         Debug.Log("상호작용 완료");
         used = true;
+    }
+
+    protected virtual void Reset()
+    {
+        used = false;
+        interactionHoldTime = 0f;
     }
 }
