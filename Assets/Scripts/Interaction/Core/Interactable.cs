@@ -14,6 +14,23 @@ public abstract class Interactable : Actor, IInteractable
     protected bool used = false;
     protected bool interacting = false;
 
+    [Header("UI Setting")]
+    [Tooltip("플로팅 UI를 띄울 위치 Transform (필수 아님)")]
+    public Transform floatingUITransform;
+    public Vector3 FloatingUIPosition                     // UI에서 받아갈 위치
+    {
+        get
+        {
+            if(floatingUITransform != null)
+            {
+                return floatingUITransform.position;  
+            }
+            else
+            {
+                return transform.position;
+            }
+        }
+    }
     protected InteractionUIView targetUI;
 
     // 상호작용 범위 진입

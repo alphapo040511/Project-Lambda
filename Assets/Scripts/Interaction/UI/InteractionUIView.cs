@@ -26,7 +26,7 @@ public class InteractionUIView : MonoBehaviour
 
     public void ActivateInteractionUI()
     {
-        Vector3 pos = targetObject.transform.position;
+        Vector3 pos = targetObject.FloatingUIPosition;
 
         Vector2 screenPos = Camera.main.WorldToScreenPoint(pos);    // 타겟 위치에 지속적으로 플로팅
         transform.position = screenPos;
@@ -36,7 +36,7 @@ public class InteractionUIView : MonoBehaviour
 
     private void Update()
     {
-        Vector3 pos = targetObject.transform.position;
+        Vector3 pos = targetObject.FloatingUIPosition;
 
         Vector3 viewportPos = Camera.main.WorldToViewportPoint(pos);
 

@@ -29,9 +29,10 @@ public class CCTV : Interactable
     {
         base.Complete();
         timeRemaining = releaseDelay;
-        ToastMessageSystem.Instance.EnqueueMessage(new ToastMessege("CCTV 정보를 해킹하여 당시 상황을 재구성합니다.", 2f));
+        ToastMessageSystem.Instance.EnqueueMessage(new ToastMessege("연구실 입구의 CCTV 정보 해킹 완료.", 1.5f));
+        ToastMessageSystem.Instance.EnqueueMessage(new ToastMessege("홀로그램을 통해 당시 상황을 재구성합니다.", 2f));
 
-        foreach(var obj in hologramObjects)
+        foreach (var obj in hologramObjects)
         {
             obj.gameObject.SetActive(true);
         }

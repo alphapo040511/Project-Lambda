@@ -39,6 +39,7 @@ public class Lever : Interactable
 
         isOn = !isOn;                               // 상태 변경
         OnLeverToggled?.Invoke();                   // 이벤트 호출
+        Debug.Log("레버 내림");
     }
 
     protected override void ActorUpdate()
