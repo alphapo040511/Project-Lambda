@@ -96,6 +96,6 @@ public abstract class Interactable : Actor, IInteractable
     protected virtual void Reset()
     {
         used = false;
-        interactionHoldTime = 0f;
+        currentHoldTime = 0f;
     }
 }
