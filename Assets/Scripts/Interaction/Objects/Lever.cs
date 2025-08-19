@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Lever : Interactable
 {
+    public AudioSource source;
+    public AudioClip clip;
+
     [Header("레버 설정")]
     public int leverId;                                         // 각 레버 식별용
     [SerializeField] private bool isOn = false;
@@ -31,6 +34,7 @@ public class Lever : Interactable
     private void Start()
     {
         leverTransform.localRotation = targetRotation;
+        source = GetComponent<AudioSource>();
     }
 
     protected override void Complete()
@@ -40,6 +44,8 @@ public class Lever : Interactable
         isOn = !isOn;                               // 상태 변경
         OnLeverToggled?.Invoke();                   // 이벤트 호출
         Debug.Log("레버 내림");
+
+        source.PlayOneShot(clip);
     }
 
     protected override void ActorUpdate()
