@@ -236,6 +236,8 @@ MonoBehaviour:
     gameState: 0
   - sceneName: Test_Map
     gameState: 1
+  - sceneName: Test_Map 2
+    gameState: 1
 --- !u!4 &50907114
 Transform:
   m_ObjectHideFlags: 0
