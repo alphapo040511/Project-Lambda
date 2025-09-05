@@ -17,6 +17,15 @@ public class InteractionUIView : MonoBehaviour
     public Color selectedColor = new Color(0, 0, 0, 0.8f);
     public Color deselectedColor= new Color(0, 0, 0, 0.3f);
 
+    private void OnEnable()
+    {
+        GameEvents.OnChangeGameState += ChangeGameStats;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnChangeGameState -= ChangeGameStats;
+    }
+
     public void Initialize(Interactable targetObject)
     {
         this.targetObject = targetObject;
@@ -51,6 +60,15 @@ public class InteractionUIView : MonoBehaviour
         {
             Vector2 screenPos = Camera.main.WorldToScreenPoint(pos);    // 타겟 위치에 지속적으로 플로팅
             transform.position = screenPos;
+        }
+    }
+
+    public void ChangeGameStats(GameState gameState)
+    {
+        // 게임이 멈추면 UI 제거
+        if(gameState != GameState.Playing)
+        {
+            targetObject.OnDeactivate();
         }
     }
 

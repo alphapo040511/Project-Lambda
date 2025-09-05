@@ -17,6 +17,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [Header("Game Setting")]
     public GameState currentGameState = GameState.Menu;
+    private CursorLockMode lastCursorMode = CursorLockMode.Locked;
     public bool isGamePaused = false;
 
     [Header("Game Stats")]
@@ -94,6 +95,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if (currentGameState == newState) return;
 
+        if(currentGameState == GameState.Playing)
+        {
+            lastCursorMode = Cursor.lockState;
+        }
+
         previousGameState = currentGameState;
         currentGameState = newState;
 
@@ -112,7 +118,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 Cursor.visible = true;
                 break;
             case GameState.Playing:
-                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.lockState = lastCursorMode;
                 Cursor.visible = false;
                 break;
             case GameState.Paused:
@@ -128,6 +134,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 Cursor.visible = true;
                 break;
         }
+
+        GameEvents.ChangeGameState(newState);
     }
 
     public void StartGame()

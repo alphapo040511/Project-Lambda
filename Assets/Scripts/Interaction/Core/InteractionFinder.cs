@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEditor;
 #endif
 
-public class InteractionFinder : MonoBehaviour
+public class InteractionFinder : Actor
 {
     public LayerMask interactionLayer;
     public LayerMask playerLayer;                       // 장애물 탐지 시 플레이어는 제외하기 위해 설정
@@ -29,7 +29,7 @@ public class InteractionFinder : MonoBehaviour
 
     private List<Transform> previousTargets = new List<Transform>();      // UI 비활성화용 오브젝트 저장
 
-    void Update()
+    protected override void ActorUpdate()
     {
         FindTarget();
     }

@@ -11,6 +11,7 @@ public static class GameEvents
     public static System.Action<int> OnScoreChanged;                // 점수 변경 이벤트
     public static event System.Action OnGamePaused;                 // 게임 정지 이벤트
     public static event System.Action OnGameResumed;                // 게임 재시작 이벤트
+    public static event System.Action<GameState> OnChangeGameState; // 게임 상태 변경 이벤트
 
     // 이벤트 호출 메서드
     public static void SceneChanged(string sceneName) => OnSceneChanged?.Invoke(sceneName);
@@ -18,6 +19,7 @@ public static class GameEvents
     public static void ScoreChanged(int score) => OnScoreChanged?.Invoke(score);
     public static void GamePaused() => OnGamePaused?.Invoke();
     public static void GameResumed() => OnGameResumed?.Invoke();
+    public static void ChangeGameState(GameState gameState) => OnChangeGameState?.Invoke(gameState);
 
     // 설정 관련 이벤트 정의
     public static System.Action<int> OnResolutionChanged;           // 해상도 변경
