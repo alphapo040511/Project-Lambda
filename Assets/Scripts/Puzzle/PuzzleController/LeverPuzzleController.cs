@@ -54,5 +54,6 @@ public class LeverPuzzleController : MonoBehaviour
         {
             receiver.OnInteractionComplete(true);
         }
+
     }
 }

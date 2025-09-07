@@ -4,28 +4,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToastMessege
-{
-    public string text { get; private set; }
-    public float duration { get; private set; }
+//[System.Serializable]
+//public class ToastMessege
+//{
+//    public string text { get; private set; }
+//    public float duration { get; private set; }
 
-    public ToastMessege(string text, float duration)
-    {
-        this.text = text;
-        this.duration = duration;
-    }
-}
+//    public ToastMessege(string text, float duration)
+//    {
+//        this.text = text;
+//        this.duration = duration;
+//    }
+//}
 
 public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
 {
     public ToastMessageView viewPrefab;                 // 초기화를 위한 view prefab (다른 방식으로 변경 가능성 있음)
     private ToastMessageView view;                      // 실사용할 view
-
-    private Queue<ToastMessege> messageQueue = new Queue<ToastMessege> ();           // 대화문을 저장할 큐
-
-    private Coroutine hideRoutine;                      // 표시 시간을 측정할 코루틴
-
-    private bool isShowing = false;                // 현재 대화 표시중인지 확인
 
     protected override void Awake()
     {
@@ -68,39 +63,17 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
         view.Hide();
     }
 
-    // 새로운 메세지 추가
-    public void EnqueueMessage(ToastMessege message)
+    // 새로운 메세지 표시
+    public void ShowMessage(string message)
     {
-        messageQueue.Enqueue(message);
-        if (!isShowing)
-        {
-            StartCoroutine(ProcessQueue());
-        }
+        view.SetText(message);
+        view.Show();
     }
 
+    // 메세지 표시 비활성화
     public void ClearMessage()
     {
-        StopCoroutine(ProcessQueue());
-        messageQueue.Clear();
-        isShowing = false;
+        view.Hide();
     }
 
-    private IEnumerator ProcessQueue()
-    {
-        isShowing = true;
-
-        while (messageQueue.Count > 0)
-        {
-            var message = messageQueue.Dequeue();
-
-            view.SetText(message.text);
-            view.Show();
-
-            yield return new WaitForSeconds(message.duration);
-
-            view.Hide();
-        }
-
-        isShowing = false;
-    }
 }

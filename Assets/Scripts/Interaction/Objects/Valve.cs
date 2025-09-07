@@ -43,7 +43,8 @@ public class Valve : Interactable
 
     protected override void Complete()
     {
-        base.Complete();
-        ToastMessageSystem.Instance.EnqueueMessage(new ToastMessege("밸브 개방이 완료 되었습니다.", 1.5f));
+        Debug.Log("상호작용 완료");
+        used = true;
+        //ToastMessageSystem.Instance.ShowMessage(new ToastMessege("밸브 개방이 완료 되었습니다.", 1.5f));
     }
 }

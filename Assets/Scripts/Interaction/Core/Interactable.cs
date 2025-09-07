@@ -108,6 +108,7 @@ public abstract class Interactable : Actor, IInteractable
     {
         Debug.Log("상호작용 완료");
         used = true;
+        currentHoldTime = 0f;
     }
 
     protected virtual void Reset()

@@ -7,6 +7,15 @@ public class Display : Interactable
 {
     public CinemachineVirtualCamera VirtualCamera;
 
+    private void Start()
+    {
+        if (VirtualCamera != null)
+        {
+            VirtualCamera.Priority = 20;
+            VirtualCamera.enabled = false;
+        }
+    }
+
     protected override void Complete()
     {
         base.Complete();
@@ -15,7 +24,7 @@ public class Display : Interactable
         GameManager.Instance.ChangeGameState(GameState.Menu);               // 임시로 메뉴로 지정
 
         if(VirtualCamera != null)
-            VirtualCamera.Priority = 11;
+            VirtualCamera.enabled = true;
     }
 
     public void ExitDisplay()
@@ -23,6 +32,6 @@ public class Display : Interactable
         GameManager.Instance.ChangeGameState(GameState.Playing);
 
         if (VirtualCamera != null)
-                VirtualCamera.Priority = 9;
+            VirtualCamera.enabled = false;
     }
 }

@@ -33,7 +33,8 @@ public class Door : InteractionReceiver
 
     public void OpenDoor()
     {
-        ToastMessageSystem.Instance.EnqueueMessage(new ToastMessege("연구실 입구의 문 잠금 해제, 문이 열립니다.", 2f));
+        DialogueManager.Instance.StopAllDialog();
+        DialogueManager.Instance.EnqueueDialog("AI_Door_Open");
         targetPosition = openPosition;
         isMoving = true;
     }
