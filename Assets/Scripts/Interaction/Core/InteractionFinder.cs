@@ -75,7 +75,7 @@ public class InteractionFinder : Actor
             }
         }
 
-        if (currentTarget != null)
+        if (currentTarget != null && currentTarget != bestTarget)
         {
             currentTarget.GetComponent<Interactable>()?.OnUntargeted();           // 기존 타겟 지정 해제
         }

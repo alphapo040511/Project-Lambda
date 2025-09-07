@@ -19,11 +19,11 @@ public class test : MonoBehaviour
     {
         if (Input.GetKeyDown(openKey))
         {
-            animator.SetInteger("State", 1);
+            animator.SetInteger("Stats", 1);
         }
         if (Input.GetKeyDown(closeKey))
         {
-            animator.SetInteger("State", 2);
+            animator.SetInteger("Stats", 2);
         }
     }
 }
