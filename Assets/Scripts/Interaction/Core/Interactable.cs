@@ -102,6 +102,10 @@ public abstract class Interactable : Actor, IInteractable
     {
         interacting = false;
         currentHoldTime = 0f;
+
+
+        float progress = Mathf.Clamp01(currentHoldTime / interactionHoldTime);         // 0 ~ 1 값으로 설정
+        targetUI.OnInteractHold(progress);
     }
 
     protected virtual void Complete()
