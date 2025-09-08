@@ -23,6 +23,9 @@ public class SettingsUI : MonoBehaviour
     public TMP_Dropdown qualityDropdown;
     public Toggle vsyncToggle;
 
+    [Header("Language Settings")]
+    public TMP_Dropdown languageDropdown;
+
     [Header("Control Buttons")]
     public Button applyButton;
     public Button resetButton;
@@ -66,6 +69,14 @@ public class SettingsUI : MonoBehaviour
                 SettingsManager.Instance.GetQualityLevelStrings()));
         }
 
+        // 언어 드롭다운 설정
+        if(languageDropdown != null)
+        {
+            languageDropdown.ClearOptions();
+            languageDropdown.AddOptions(new System.Collections.Generic.List<string>(
+                SettingsManager.Instance.GetLanguageStrings()));
+        }
+
         isInitializing = false;
     }
 
@@ -99,6 +110,10 @@ public class SettingsUI : MonoBehaviour
 
         if (vsyncToggle != null)
             vsyncToggle.onValueChanged.AddListener(OnVSyncChanged);
+
+        // 언어 설정
+        if (languageDropdown != null)
+            languageDropdown.onValueChanged.AddListener(OnLanguageChanged);
 
 
         // 버튼 설정
@@ -173,6 +188,19 @@ public class SettingsUI : MonoBehaviour
 
         if (vsyncToggle != null)
             vsyncToggle.isOn = tempSettings.vsyncEnabled;
+
+        // 언어 설정 UI
+
+        if (languageDropdown != null)
+        {
+            int language = tempSettings.language switch
+            {
+                Language.ko => 0,
+                Language.en => 1,
+                _ => 0
+            };
+            languageDropdown.value = language;
+        }
 
         isInitializing = false;
     }
@@ -252,6 +280,20 @@ public class SettingsUI : MonoBehaviour
     {
         if (isInitializing) return;
         tempSettings.vsyncEnabled = value;
+    }
+
+    private void OnLanguageChanged(int value)
+    {
+        if (isInitializing) return;
+
+        Language language = value switch
+        {
+            0 => Language.ko,
+            1 => Language.en,
+            _ => Language.ko
+        };
+
+        tempSettings.language = language;
     }
 
     private void OnApplyClicked()

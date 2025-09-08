@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Localization.Settings;
 
 public class GameSettings
 {
@@ -18,9 +20,12 @@ public class GameSettings
     [Header("UI Setting")]
     public float uiScale = 1f;          // UI 스케일
 
-    [Header("Graphics Setting")]
+    [Header("Graphics Settings")]
     public int qualityLevel = 2;        // 그래픽 품질 레벨
     public bool vsyncEnabled = true;    // 수직동기화 여부
+
+    [Header("Language Setting")]
+    public Language language = Language.ko; // 언어 설정
 }
 
 
@@ -121,6 +126,7 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         ApplyAudioSettings();
         ApplyUISettings();
         ApplyGraphicsSettings();
+        ApplyLanguageSetting();
     }
 
     private void ApplyDisplaySettings()
@@ -176,6 +182,16 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         QualitySettings.SetQualityLevel(currentSettings.qualityLevel);
         QualitySettings.vSyncCount = currentSettings.vsyncEnabled ? 1 : 0;
     }
+
+    private void ApplyLanguageSetting()
+    {
+        GameEvents.LanguageChanged(currentSettings.language);
+
+        LocalizationSettings.SelectedLocale =
+            LocalizationSettings.AvailableLocales.Locales[(int)currentSettings.language];
+    }
+
+
     #endregion
 
     #region Individual Setting Methods (개별 설정 메서드)
@@ -265,6 +281,27 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     public string[] GetQualityLevelStrings()
     {
         return QualitySettings.names;
+    }
+
+    // 언어 설정 문자열 반환
+    public string[] GetLanguageStrings()
+    {
+        Language[] langs = (Language[])Enum.GetValues(typeof(Language));
+
+        string[] names = new string[langs.Length];
+
+       for(int i = 0; i < langs.Length; i++)
+        {
+            string name = langs[i] switch
+            {
+                Language.ko => "한국어",
+                Language.en => "English",
+                _ => null
+            };
+            names[i] = name;
+        }
+
+        return names;
     }
     #endregion
 }

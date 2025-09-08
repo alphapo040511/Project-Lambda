@@ -25,9 +25,11 @@ public static class GameEvents
     public static System.Action<int> OnResolutionChanged;           // 해상도 변경
     public static System.Action<bool> OnFullscreenChanged;          // 전체화면 변경
     public static System.Action<int> OnQualityChanged;              // 그래픽 품질 변경
+    public static System.Action<Language> OnLanguageChanged;        // 언어 설정 변경
 
     // 설정 이벤트 호출 메서드
     public static void ResolutionChanged(int resolutionIndex) => OnResolutionChanged?.Invoke(resolutionIndex);
     public static void FullscreenChanged(bool isFullscreen) => OnFullscreenChanged?.Invoke(isFullscreen);
     public static void QualityChanged(int qualityLevel) => OnQualityChanged?.Invoke(qualityLevel);
+    public static void LanguageChanged(Language language) => OnLanguageChanged?.Invoke(language);
 }
