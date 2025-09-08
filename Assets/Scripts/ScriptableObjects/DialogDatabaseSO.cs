@@ -34,7 +34,10 @@ public class DialogDatabaseSO : ScriptableObject
         {
             return dialogsById[id];
         }
-
-        return null;
+        else
+        {
+            Debug.LogWarning($"ID:{id} DialogSO 파일을 찾을 수 없습니다.");
+            return null;
+        }
     }
 }

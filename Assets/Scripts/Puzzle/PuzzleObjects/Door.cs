@@ -34,7 +34,7 @@ public class Door : InteractionReceiver
     public void OpenDoor()
     {
         DialogueManager.Instance.StopAllDialog();
-        DialogueManager.Instance.EnqueueDialog("AI_Door_Open");
+        DialogueManager.Instance.PlayingDialog("AI_Door_Open");
         targetPosition = openPosition;
         isMoving = true;
     }

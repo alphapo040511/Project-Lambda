@@ -13,11 +13,7 @@ public class TempCutSceneController : MonoBehaviour
     {
         director.Play();
 
-        DialogueManager.Instance.EnqueueDialog("AI_HibernationWake_001");
-        DialogueManager.Instance.EnqueueDialog("AI_HibernationWake_002");
-        DialogueManager.Instance.EnqueueDialog("AI_HibernationWake_003");
-        DialogueManager.Instance.EnqueueDialog("AI_HibernationWake_004");
-        DialogueManager.Instance.EnqueueDialog("AI_HibernationWake_005");
+        DialogueManager.Instance.PlayingDialog("AI_HibernationWake_001");
     }
 
 }

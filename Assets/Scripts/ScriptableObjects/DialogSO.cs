@@ -22,7 +22,7 @@ public class DialogSO : ScriptableObject
             _ => en,
         };
 
-        return en;
+        return text;
     }
 }
 

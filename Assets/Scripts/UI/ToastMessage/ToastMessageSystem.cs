@@ -21,12 +21,23 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
 {
     public ToastMessageView viewPrefab;                 // 초기화를 위한 view prefab (다른 방식으로 변경 가능성 있음)
     private ToastMessageView view;                      // 실사용할 view
+    private DialogSO currentDialog;                     // 현재 사용중인 Dialog
 
     protected override void Awake()
     {
         base.Awake();
         EnsureCanvas();
         InitializeView();
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnLanguageChanged += LanguageChanged;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnLanguageChanged -= LanguageChanged;
     }
 
     // 캔버스가 아닐 경우 캔버스로 변경
@@ -65,9 +76,10 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
     }
 
     // 새로운 메세지 표시
-    public void ShowMessage(string message)
+    public void ShowMessage(DialogSO dialog)
     {
-        view.SetText(message);
+        currentDialog = dialog;
+        view.SetText(GetLocalizedMessage(SettingsManager.Instance.currentSettings.language));
         view.Show();
     }
 
@@ -77,4 +89,18 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
         view.Hide();
     }
 
+    private void LanguageChanged(Language language)
+    {
+        view.SetText(GetLocalizedMessage(language));
+    }
+
+    private string GetLocalizedMessage(Language language)
+    {
+        if (currentDialog != null)
+        {
+            return currentDialog.GetLocalizedText(language);
+        }
+
+        return string.Empty;
+    }
 }

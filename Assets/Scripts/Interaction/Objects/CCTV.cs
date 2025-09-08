@@ -31,7 +31,7 @@ public class CCTV : Interactable
         timeRemaining = releaseDelay;
 
         DialogueManager.Instance.StopAllDialog();
-        DialogueManager.Instance.EnqueueDialog("AI_Hologram_Reconstruct");
+        DialogueManager.Instance.PlayingDialog("AI_Hologram_Reconstruct");
 
         foreach (var obj in hologramObjects)
         {
