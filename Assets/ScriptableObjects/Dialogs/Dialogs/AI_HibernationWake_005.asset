@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37c43b90879afc4f8f3c599bd2deca0, type: 3}
+  m_Name: AI_HibernationWake_005
+  m_EditorClassIdentifier: 
+  id: AI_HibernationWake_005
+  en: Hibernation termination complete. Welcome back.
+  ko: "\uB3D9\uBA74 \uD574\uC81C \uC644\uB8CC. \uD658\uC601\uD569\uB2C8\uB2E4."
+  clip: {fileID: 8300000, guid: b11657e2ec0e29b499421bbcae2e5b83, type: 3}
+  nextId: 

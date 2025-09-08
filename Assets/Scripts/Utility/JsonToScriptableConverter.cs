@@ -25,7 +25,6 @@ public class DialogRowData
 
 public class JsonToScriptableConverter : EditorWindow
 {
-    private string jsonFilePath = "";                                       //JSON 파일 경로 문자열 값
     private string outputFolder = "Assets/ScriptableObjects";               //출력 SO 파일의 경로 값
     private bool createDatabase = true;                                     //데이터 베이스를 사용 할 것인지에 대한 bool 값
     private ConversionType conversionType = ConversionType.Dialog;
@@ -61,15 +60,9 @@ public class JsonToScriptableConverter : EditorWindow
     {
         GUILayout.Label("JSON to Scriptable Object Converter", EditorStyles.boldLabel);
         EditorGUILayout.Space();
-
-        if(GUILayout.Button("Select JSON File"))
-        {
-            jsonFilePath = EditorUtility.OpenFilePanel("Select JSON File", "", "json");
-        }
-
         if (jsonAssets == null || jsonAssets.Length == 0)
         {
-            EditorGUILayout.LabelField("⚠️ Assets/GameData/Json 폴더에 JSON 파일이 없습니다.");
+            EditorGUILayout.LabelField("Assets/GameData/Json 폴더에 JSON 파일이 없습니다.");
             return;
         }
 
@@ -77,7 +70,6 @@ public class JsonToScriptableConverter : EditorWindow
         selectedIndex = EditorGUILayout.Popup("Select JSON", selectedIndex, jsonNames);
         selectedJson = jsonAssets[selectedIndex];
 
-        EditorGUILayout.LabelField("Selected File : ",jsonFilePath);
         EditorGUILayout.Space();
 
         //변환 타입 선택
@@ -99,7 +91,7 @@ public class JsonToScriptableConverter : EditorWindow
 
         if(GUILayout.Button("Convert to Scriptable Objects"))
         {
-            if(string.IsNullOrEmpty(jsonFilePath))
+            if(selectedJson == null)
             {
                 EditorUtility.DisplayDialog("Error", "Plaese select a JSON file firest!", "OK");
                 return;
@@ -215,8 +207,10 @@ public class JsonToScriptableConverter : EditorWindow
             Directory.CreateDirectory(outputFolder);
         }
 
+        if (selectedJson == null) return;
+
         //JSON 파일 읽기
-        string jsonText = File.ReadAllText(jsonFilePath);
+        string jsonText = selectedJson.text;
 
         try
         {
@@ -258,15 +252,22 @@ public class JsonToScriptableConverter : EditorWindow
                 }
             }
 
+            //폴더 생성
+            if (!Directory.Exists($"{outputFolder}/Dialogs"))
+            {
+                Directory.CreateDirectory($"{outputFolder}/Dialogs");
+                AssetDatabase.Refresh();
+            }
+
             //2단계 : 대화 스크립터블 오브젝트 저장
-            foreach(var dialog in createDialogs)
+            foreach (var dialog in createDialogs)
             {
                 //스크립터블 오브젝트 저장 - ID를 4자리 숫자로 포맷팅
-                string assetPath = $"{outputFolder}/Dialog_{dialog.id}.asset";
+                string assetPath = $"{outputFolder}/Dialogs/{dialog.id}.asset";
                 AssetDatabase.CreateAsset(dialog, assetPath);
 
                 //에셋 이름 지정
-                dialog.name = $"Dialog_{dialog.id}";
+                dialog.name = $"{dialog.id}";
 
                 EditorUtility.SetDirty(dialog);
             }
