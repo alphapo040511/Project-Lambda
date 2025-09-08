@@ -48,7 +48,7 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
         {
             canvas = gameObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = 10;
+            canvas.sortingOrder = 5;
 
             CanvasScaler scaler = gameObject.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;        // 비율 유지

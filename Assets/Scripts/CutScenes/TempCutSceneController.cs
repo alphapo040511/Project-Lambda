@@ -16,4 +16,25 @@ public class TempCutSceneController : MonoBehaviour
         DialogueManager.Instance.PlayingDialog("AI_HibernationWake_001");
     }
 
+    private void OnEnable()
+    {
+        GameEvents.OnChangeGameState += ChangedGameState;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnChangeGameState -= ChangedGameState;
+    }
+
+    private void ChangedGameState(GameState state)
+    {
+        if (state == GameState.Paused)
+        {
+            director.Pause();
+        }
+        else
+        {
+            director.Play();
+        }
+    }
 }

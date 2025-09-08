@@ -27,6 +27,16 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
         audioSource.outputAudioMixerGroup = audioMixer;
     }
 
+    private void OnEnable()
+    {
+        GameEvents.OnChangeGameState += ChangedGameState;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnChangeGameState -= ChangedGameState;
+    }
+
 
     // 다이얼로그 목록을 큐애 넣고 재생, 나중에는 대사 묶음을 DB로 관리
     public void PlayingDialog(string index)
@@ -64,26 +74,41 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
             ToastMessageSystem.Instance.ShowMessage(currentDialog);                             // 토스트 메세지 표시
             audioSource.PlayOneShot(currentDialog.clip);
 
-            yield return new WaitForSeconds(currentDialog.clip.length);
+            yield return StartCoroutine(Timer(currentDialog.clip.length));
 
-            if(!string.IsNullOrEmpty(currentDialog.nextId))                                     // 다음 대사가 없을 때 까지 반복
-            {
-                DialogSO dialogSO = databaseSO.GetDialogById(currentDialog.nextId);
+            if (string.IsNullOrEmpty(currentDialog.nextId)) break;                              // 다음 대사가 없을 때 까지 반복
 
-                if(dialogSO == null)                // 다음 대사가 없는경우
-                {
-                    break;
-                }
-
-                currentDialog = dialogSO;
-            }
+            DialogSO dialogSO = databaseSO.GetDialogById(currentDialog.nextId);
+            if (dialogSO == null)
+                break;                                                        // 다음 대사가 없는경우
             else
-            {
-                break;
-            }
+                currentDialog = dialogSO;
         }
 
         ToastMessageSystem.Instance.ClearMessage();
     }
 
+    // 일시정지가 아닌 경우에만 시간이 가도록 설정
+    private IEnumerator Timer(float duration)
+    {
+        float timer = 0f;
+        while (timer < duration)
+        {
+            if (GameManager.Instance.currentGameState != GameState.Paused)
+                timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private void ChangedGameState(GameState state)
+    {
+        if (state == GameState.Paused)
+        {
+            audioSource.Pause();
+        }
+        else
+        {
+            audioSource.UnPause();
+        }
+    }
 }
