@@ -4,6 +4,6 @@ using UnityEngine;
 
 public enum Language
 {
-   ko,
-   en
+    en,
+   ko
 }

@@ -195,8 +195,8 @@ public class SettingsUI : MonoBehaviour
         {
             int language = tempSettings.language switch
             {
-                Language.ko => 0,
-                Language.en => 1,
+                Language.en => 0,
+                Language.ko => 1,
                 _ => 0
             };
             languageDropdown.value = language;
@@ -288,8 +288,8 @@ public class SettingsUI : MonoBehaviour
 
         Language language = value switch
         {
-            0 => Language.ko,
-            1 => Language.en,
+            0 => Language.en,
+            1 => Language.ko,
             _ => Language.ko
         };
 

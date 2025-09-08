@@ -25,7 +25,7 @@ public class GameSettings
     public bool vsyncEnabled = true;    // 수직동기화 여부
 
     [Header("Language Setting")]
-    public Language language = Language.ko; // 언어 설정
+    public Language language = Language.en; // 언어 설정
 }
 
 
@@ -294,8 +294,8 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         {
             string name = langs[i] switch
             {
-                Language.ko => "한국어",
                 Language.en => "English",
+                Language.ko => "한국어",
                 _ => null
             };
             names[i] = name;
