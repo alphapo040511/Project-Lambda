@@ -23,6 +23,8 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
     private ToastMessageView view;                      // 실사용할 view
     private DialogSO currentDialog;                     // 현재 사용중인 Dialog
 
+    public int sortingOrder = 5;
+
     protected override void Awake()
     {
         base.Awake();
@@ -48,7 +50,7 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
         {
             canvas = gameObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = 5;
+            canvas.sortingOrder = sortingOrder;
 
             CanvasScaler scaler = gameObject.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;        // 비율 유지
@@ -70,7 +72,7 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
         viewTransform.anchorMin = new Vector2(0.5f, 0f);                        // 앵커 기준 위치 설정
         viewTransform.anchorMax = new Vector2(0.5f, 0f);
         viewTransform.pivot = new Vector2(0.5f, 0f);
-        viewTransform.anchoredPosition = new Vector2(0f, 100f);
+        viewTransform.anchoredPosition = new Vector2(0f, 50f);
 
         view.Hide();
     }

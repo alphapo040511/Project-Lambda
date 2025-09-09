@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum ScreenType
+public enum ScreenType                      // 겹치는게 불가능한 UI
 {
     None,
     Menu,
@@ -12,12 +12,29 @@ public enum ScreenType
     GameOver
 }
 
+public enum OverlayType                     // 겹치는게 가능한 UI
+{
+    None,
+    Letterbox,
+    Dialog,
+    Popup,
+    Tooltip
+}
+
 [System.Serializable]
 public class UIScreen
 {
     public ScreenType screenType;
     public GameObject screenObject;
 }
+
+[System.Serializable]
+public class UIOverlay
+{
+    public OverlayType screenType;
+    public GameObject screenObject;
+}
+
 
 public class UIManager : SingletonMonoBehaviour<UIManager>
 { 
@@ -33,6 +50,9 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     
     private Dictionary<ScreenType, GameObject> screenDictionary = new Dictionary<ScreenType, GameObject>();
 
+    [SerializeField] private List<UIOverlay> overlays = new List<UIOverlay>();
+
+    private Dictionary<OverlayType, GameObject> overlayDictionary = new Dictionary<OverlayType, GameObject>();
 
     // 현재 활성화된 화면
     public ScreenType CurrentScreen { get; private set; } = ScreenType.None;
@@ -47,7 +67,17 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             screenDictionary[screen.screenType] = screen.screenObject;
             screen.screenObject.SetActive(false);
         }
+
+        overlayDictionary.Clear();
+
+        foreach (UIOverlay overlay in overlays)
+        {
+            overlayDictionary[overlay.screenType] = overlay.screenObject;
+            overlay.screenObject.SetActive(false);
+        }
     }
+
+    #region ScreenUI
 
     public void ShowScreen(ScreenType screenType)
     {
@@ -119,6 +149,35 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         screens.Remove(screen);
         InitializeScreens();
     }
+
+    #endregion
+
+    #region Overlay
+
+    public void ShowOverlay(OverlayType overlayType)
+    {
+        if(overlayDictionary.ContainsKey(overlayType))
+        {
+            overlayDictionary[overlayType].SetActive(true);
+        }
+    }
+
+    public void HideOverlay(OverlayType overlayType)
+    {
+        if (overlayDictionary.ContainsKey(overlayType))
+        {
+            overlayDictionary[overlayType].SetActive(false);
+        }
+    }
+
+    public void HideAllOverlay()
+    {
+        foreach (var overlay in overlayDictionary.Keys)
+        {
+            HideOverlay(overlay);
+        }
+    }
+    #endregion
 
     #region Quick Method
     public void Pause()

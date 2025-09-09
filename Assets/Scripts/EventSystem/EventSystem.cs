@@ -13,7 +13,9 @@ public class EventSystem : SingletonMonoBehaviour<EventSystem>
         if (isEventPlaying) return;                 //이미 이벤트 진행중이면 return
 
         isEventPlaying = true;
-        GameManager.Instance?.PauseGame();          //이벤트가 시작되면 게임 상태 변경
+        GameManager.Instance.ChangeGameState(GameState.Cutscene);          //이벤트가 시작되면 게임 상태 변경
+
+        UIManager.Instance.ShowOverlay(OverlayType.Letterbox);
 
         Debug.Log("이벤트 시작 - 게임 일시정지");
     }
@@ -24,7 +26,9 @@ public class EventSystem : SingletonMonoBehaviour<EventSystem>
         if(!isEventPlaying) return;                 //이벤트가 진행중이 아니라면 return
 
         isEventPlaying = false;
-        GameManager.Instance?.ResumeGame();         //이벤트가 종료되면 게임 재개
+        GameManager.Instance.ChangeGameState(GameState.Playing);         //이벤트가 종료되면 게임 재개
+
+        UIManager.Instance.HideOverlay(OverlayType.Letterbox);
 
         Debug.Log("이벤트 종료 - 게임 재개");
     }
