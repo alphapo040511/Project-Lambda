@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class SettingsUI : MonoBehaviour
+public class SettingsUI : MonoBehaviour, IScreen
 {
     [Header("Display Settings")]
     public TMP_Dropdown resolutionDropdown;
@@ -336,6 +336,16 @@ public class SettingsUI : MonoBehaviour
         //{
         //    OnCloseClicked();
         //}
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }
 

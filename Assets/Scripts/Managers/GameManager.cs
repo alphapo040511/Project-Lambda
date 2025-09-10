@@ -19,7 +19,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [Header("Game Setting")]
     public GameState currentGameState = GameState.Menu;
-    private CursorLockMode lastCursorMode = CursorLockMode.Locked;
+    private CursorLockMode lastCursorMode = CursorLockMode.None;
     public bool isGamePaused = false;
 
     [Header("Game Stats")]

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Device;
 
 
 public enum ScreenType                      // 겹치는게 불가능한 UI
@@ -48,11 +49,11 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
     [SerializeField] private List<UIScreen> screens = new List<UIScreen>();
     
-    private Dictionary<ScreenType, GameObject> screenDictionary = new Dictionary<ScreenType, GameObject>();
+    private Dictionary<ScreenType, IScreen> screenDictionary = new Dictionary<ScreenType, IScreen>();
 
     [SerializeField] private List<UIOverlay> overlays = new List<UIOverlay>();
 
-    private Dictionary<OverlayType, GameObject> overlayDictionary = new Dictionary<OverlayType, GameObject>();
+    private Dictionary<OverlayType, IScreen> overlayDictionary = new Dictionary<OverlayType, IScreen>();
 
     // 현재 활성화된 화면
     public ScreenType CurrentScreen { get; private set; } = ScreenType.None;
@@ -64,16 +65,16 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
         foreach (UIScreen screen in screens)
         {
-            screenDictionary[screen.screenType] = screen.screenObject;
-            screen.screenObject.SetActive(false);
+            screenDictionary[screen.screenType] = screen.screenObject.GetComponent<IScreen>();
+            screenDictionary[screen.screenType].Init();
         }
 
         overlayDictionary.Clear();
 
         foreach (UIOverlay overlay in overlays)
         {
-            overlayDictionary[overlay.screenType] = overlay.screenObject;
-            overlay.screenObject.SetActive(false);
+            overlayDictionary[overlay.screenType] = overlay.screenObject.GetComponent<IScreen>();
+            overlayDictionary[overlay.screenType].Init();
         }
     }
 
@@ -91,12 +92,12 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         //기존 화변 비활성화
         if (CurrentScreen != ScreenType.None && screenDictionary.ContainsKey(CurrentScreen))
         {
-            screenDictionary[CurrentScreen].SetActive(false);
+            screenDictionary[CurrentScreen].Hide();
         }
 
         if (screenDictionary.ContainsKey(screenType))
         {
-            screenDictionary[screenType].SetActive(true);
+            screenDictionary[screenType].Show();
             CurrentScreen = screenType;
         }
         else
@@ -111,7 +112,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         //기존 화변 비활성화
         if (CurrentScreen != ScreenType.None && screenDictionary.ContainsKey(CurrentScreen))
         {
-            screenDictionary[CurrentScreen].SetActive(false);
+            screenDictionary[CurrentScreen].Hide();
             CurrentScreen = ScreenType.None;
         }
     }
@@ -131,7 +132,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         //기존 화변 비활성화
         if (CurrentScreen != ScreenType.None && screenDictionary.ContainsKey(CurrentScreen))
         {
-            screenDictionary[CurrentScreen].SetActive(false);
+            screenDictionary[CurrentScreen].Hide();
             CurrentScreen = ScreenType.None;
         }
 
@@ -158,7 +159,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         if(overlayDictionary.ContainsKey(overlayType))
         {
-            overlayDictionary[overlayType].SetActive(true);
+            overlayDictionary[overlayType].Show();
         }
     }
 
@@ -166,7 +167,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         if (overlayDictionary.ContainsKey(overlayType))
         {
-            overlayDictionary[overlayType].SetActive(false);
+            overlayDictionary[overlayType].Hide();
         }
     }
 
