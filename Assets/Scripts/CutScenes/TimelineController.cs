@@ -61,7 +61,7 @@ public class TimelineController : MonoBehaviour
     {
         if (director == null || played) return;                                 // 이미 플레이 된 경우 무시
 
-        if (state == GameState.Paused || state == GameState.CutscenePause)
+        if (state == GameState.Paused)
         {
             director.Pause();
         }

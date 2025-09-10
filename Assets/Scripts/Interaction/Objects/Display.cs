@@ -21,7 +21,7 @@ public class Display : Interactable
         base.Complete();
         Reset();
 
-        GameManager.Instance.ChangeGameState(GameState.Menu);               // 임시로 메뉴로 지정
+        GameManager.Instance.ChangeGameState(GameState.Display);
 
         if(VirtualCamera != null)
             VirtualCamera.enabled = true;

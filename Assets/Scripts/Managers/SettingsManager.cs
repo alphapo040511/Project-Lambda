@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Localization.Settings;
@@ -52,13 +53,10 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     {
         base.Awake();
         InitializeSettings();           //설정 초기화
-    }
-
-    private void Start()
-    {
         LoadSettings();                 //설정 데이터 로드
         ApplyAllSettings();             //모든 설정 적용
     }
+
     private void InitializeSettings()
     {
         // 사용 가능한 해당도 목록 가져오기
@@ -66,15 +64,11 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
 
         // 현재 해상도를 기본값으로 설정
         Resolution currentRes = Screen.currentResolution;
-        for(int i = 0; i < availableResolutions.Length; i++)
-        {
-            if (availableResolutions[i].width == currentRes.width &&
-                availableResolutions[i].height == currentRes.height)
-            {
-                currentSettings.resolutionIndex = i;                    // 현재 해상도의 인덱스 저장
-                break;
-            }
-        }
+
+        availableResolutions = Screen.resolutions                                                       // 해상도 + 주사율 정보 모두 나옴
+                .GroupBy(r => new { r.width, r.height })   // 해상도만 기준으로 그룹화
+                .Select(g => g.First())                   // 같은 해상도 중 첫 번째만 사용
+    .           ToArray();
 
         // 현재 품질 설정 가져오기
         currentSettings.qualityLevel = QualitySettings.GetQualityLevel();

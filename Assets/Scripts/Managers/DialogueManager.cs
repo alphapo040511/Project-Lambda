@@ -94,7 +94,7 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
         float timer = 0f;
         while (timer < duration)
         {
-            if (GameManager.Instance.currentGameState != GameState.Paused && GameManager.Instance.currentGameState != GameState.CutscenePause)
+            if (GameManager.Instance.currentGameState != GameState.Paused)
                 timer += Time.deltaTime;
             yield return null;
         }
@@ -102,7 +102,7 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
 
     private void ChangedGameState(GameState state)
     {
-        if (state == GameState.Paused || state == GameState.CutscenePause)
+        if (state == GameState.Paused)
         {
             audioSource.Pause();
         }

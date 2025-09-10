@@ -35,6 +35,20 @@ public class SettingsUI : MonoBehaviour, IScreen
     private GameSettings tempSettings;
     private bool isInitializing = false;
 
+    public void Show()
+    {
+        canvas.gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        canvas.gameObject.SetActive(false);
+    }
+
+    public void Init()
+    {
+        canvas.gameObject.SetActive(false);
+    }
 
     private void Start()
     {
@@ -199,7 +213,7 @@ public class SettingsUI : MonoBehaviour, IScreen
             {
                 Language.en => 0,
                 Language.ko => 1,
-                _ => 0
+                _ => 2
             };
             languageDropdown.value = language;
         }
@@ -338,21 +352,6 @@ public class SettingsUI : MonoBehaviour, IScreen
         //{
         //    OnCloseClicked();
         //}
-    }
-
-    public void Show()
-    {
-        canvas.enabled = true;
-    }
-
-    public void Hide()
-    {
-        canvas.enabled = false;
-    }
-
-    public void Init()
-    {
-        canvas.enabled = false;
     }
 }
 
