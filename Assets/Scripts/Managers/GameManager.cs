@@ -12,6 +12,7 @@ public enum GameState
     GameOver,
     Cutscene,
     CutscenePause,
+    Display,
     Loading
 }
 
@@ -19,7 +20,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [Header("Game Setting")]
     public GameState currentGameState = GameState.Menu;
-    private CursorLockMode lastCursorMode = CursorLockMode.None;
     public bool isGamePaused = false;
 
     [Header("Game Stats")]
@@ -97,11 +97,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if (currentGameState == newState) return;
 
-        if(currentGameState == GameState.Playing)
-        {
-            lastCursorMode = Cursor.lockState;
-        }
-
         previousGameState = currentGameState;
         currentGameState = newState;
 
@@ -123,10 +118,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 {
                     newState = GameState.Paused;                            // 일반 Pause 상태로 변경
                 }
-                else
-                {
-                    Cursor.lockState = lastCursorMode;
-                }
+                Cursor.lockState = CursorLockMode.Locked;
                 break;
             case GameState.Paused:
                 Cursor.lockState = CursorLockMode.None;
@@ -142,10 +134,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 {
                     newState = GameState.CutscenePause;                     // CutscenePause 상태로 변경
                 }
-                else
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+            case GameState.Display:
+                Cursor.lockState = CursorLockMode.None;
                 break;
         }
 
@@ -175,7 +167,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         if (currentGameState != GameState.Paused && currentGameState != GameState.CutscenePause) return;
 
         isGamePaused = false;
-        ChangeGameState(currentGameState == GameState.Paused ? GameState.Playing : GameState.Cutscene);                 // 컷씬중 정지 였다면 컷씬으로
+        ChangeGameState(previousGameState);
         GameEvents.GameResumed();
 
         UIManager.Instance.Resume();
