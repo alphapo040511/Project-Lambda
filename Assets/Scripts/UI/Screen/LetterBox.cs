@@ -34,6 +34,13 @@ public class LetterBox : MonoBehaviour, IScreen
         fadeCoroutine = StartCoroutine(HideLetterBox());
     }
 
+    public void Init()
+    {
+        topLetterbox.anchoredPosition = new Vector2(0, 668.5f);
+        bottomLetterbox.anchoredPosition = new Vector2(0, -668.5f);
+        canvas.enabled = false;
+    }
+
     private IEnumerator ShowLetterBox()
     {
         float t = 0f;

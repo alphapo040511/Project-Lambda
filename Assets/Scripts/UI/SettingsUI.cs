@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class SettingsUI : MonoBehaviour, IScreen
 {
+    public Canvas canvas;
     [Header("Display Settings")]
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
@@ -33,6 +34,7 @@ public class SettingsUI : MonoBehaviour, IScreen
 
     private GameSettings tempSettings;
     private bool isInitializing = false;
+
 
     private void Start()
     {
@@ -340,12 +342,17 @@ public class SettingsUI : MonoBehaviour, IScreen
 
     public void Show()
     {
-        gameObject.SetActive(true);
+        canvas.enabled = true;
     }
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        canvas.enabled = false;
+    }
+
+    public void Init()
+    {
+        canvas.enabled = false;
     }
 }
 

@@ -9192,6 +9192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330deef6a387aa64c8c60584873118bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1917664876}
   resolutionDropdown: {fileID: 1261591050}
   fullscreenToggle: {fileID: 687720437}
   frameRateDropdown: {fileID: 130140152}
@@ -9751,9 +9752,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424a47cd34070214ebcffc4dc9ef07b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 2044178890}
   topLetterbox: {fileID: 982517561}
   bottomLetterbox: {fileID: 961062968}
-  fadeDuration: 1.5
+  fadeDuration: 0.5
 --- !u!1 &2083985638
 GameObject:
   m_ObjectHideFlags: 0
