@@ -79,7 +79,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // ESC 키로 게임 일시정지/재개
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentGameState == GameState.Playing)
+            if (currentGameState == GameState.Playing || currentGameState == GameState.Cutscene)
             {
                 PauseGame();
             }
@@ -138,7 +138,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.Cutscene:
-                Cursor.lockState = CursorLockMode.Locked;
+                if (currentGameState == GameState.Paused)                   // Pause 상태에서 컷씬으로 변경 될 때
+                {
+                    newState = GameState.CutscenePause;                     // CutscenePause 상태로 변경
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
                 break;
         }
 
@@ -154,7 +161,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public void PauseGame()
     {
-        if (currentGameState != GameState.Playing) return;
+        if (currentGameState != GameState.Playing && currentGameState != GameState.Cutscene) return;
 
         isGamePaused = true;
         ChangeGameState(GameState.Paused);

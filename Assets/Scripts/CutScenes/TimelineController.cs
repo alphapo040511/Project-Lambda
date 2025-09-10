@@ -9,6 +9,8 @@ public class TimelineController : MonoBehaviour
     public PlayableDirector director;
     public string dialogID = "AI_HibernationWake_001";                  // 사용할 대사 ID
 
+    private bool played = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,17 +46,20 @@ public class TimelineController : MonoBehaviour
 
     public void Stop()
     {
+        played = true;
         EventSystem.Instance.EndEvent();
     }
 
     private void OnTimelineStopped(PlayableDirector director)
     {
+        if (played) return;         // 이미 플레이 된 경우 무시
+
         Stop();
     }
 
     private void ChangedGameState(GameState state)
     {
-        if (director == null) return;
+        if (director == null || played) return;                                 // 이미 플레이 된 경우 무시
 
         if (state == GameState.Paused || state == GameState.CutscenePause)
         {

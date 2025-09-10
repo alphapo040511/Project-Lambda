@@ -551,7 +551,7 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -4689343359155417314, guid: 76497de76f197314484b1818150a280f, type: 2}
-    value: {fileID: 926361054}
+    value: {fileID: 729052742}
   - key: {fileID: -5256991329976903067, guid: 76497de76f197314484b1818150a280f, type: 2}
     value: {fileID: 926361058}
   - key: {fileID: 747736972460335619, guid: 76497de76f197314484b1818150a280f, type: 2}
@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   director: {fileID: 168410483}
+  dialogID: AI_HibernationWake_001
 --- !u!1001 &169296933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3400,7 +3401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &729052743
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5655,6 +5656,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Touch Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446915748072234028, guid: 21994c3eb362f3f48955829ff96bbfce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446915748072234028, guid: 21994c3eb362f3f48955829ff96bbfce,
+        type: 3}
+      propertyPath: m_Priority
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8499722415845651816, guid: 21994c3eb362f3f48955829ff96bbfce,
         type: 3}
@@ -8223,6 +8234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewPrefab: {fileID: 3480508528426212401, guid: 07385917860addf4b9653f7cc9bae25a,
     type: 3}
+  sortingOrder: 5
 --- !u!4 &1683659847
 Transform:
   m_ObjectHideFlags: 0
