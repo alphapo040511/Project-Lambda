@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class Display : Interactable
+public class InteractionFocus : Interactable
 {
     public CinemachineVirtualCamera VirtualCamera;
 
@@ -20,18 +20,24 @@ public class Display : Interactable
     {
         base.Complete();
         Reset();
+        EnterFocus();
+    }
 
+    protected virtual void EnterFocus()
+    {
         GameManager.Instance.ChangeGameState(GameState.Display);
 
-        if(VirtualCamera != null)
+        if (VirtualCamera != null)
             VirtualCamera.enabled = true;
     }
 
-    public void ExitDisplay()
+    public virtual void ExitFocus()
     {
         GameManager.Instance.ChangeGameState(GameState.Playing);
 
         if (VirtualCamera != null)
             VirtualCamera.enabled = false;
     }
+
+
 }
