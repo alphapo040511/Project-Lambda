@@ -753,16 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f2271cd3ef62f4fa9f190a2e592784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogues:
-  - index: AI_Hologram_Reconstruct
-    clip: {fileID: 8300000, guid: ff8286c73f96f6d4ca9b5641e6f7c864, type: 3}
-    text: "\uAC10\uC2DC \uAE30\uB85D\uC744 \uBD84\uC11D \uC911\uC785\uB2C8\uB2E4.
-      \uC2DC\uAC01\uD654\uB41C \uC7A5\uBA74\uC744 \uC7AC\uAD6C\uC131\uD558\uC5EC
-      \uD45C\uC2DC\uD569\uB2C8\uB2E4."
-  - index: AI_Door_Open
-    clip: {fileID: 8300000, guid: 1ee2adb15a4b72f418080baa903d2438, type: 3}
-    text: "\uBCF4\uC548 \uD504\uB85C\uD1A0\uCF5C \uD574\uC81C \uC644\uB8CC. \uBB38\uC774
-      \uC5F4\uB9BD\uB2C8\uB2E4."
+  databaseSO: {fileID: 0}
   audioMixer: {fileID: -1458014019941555398, guid: 05fa863b6ea095d41842411818003e6b,
     type: 2}
 --- !u!4 &101070354
@@ -7707,11 +7698,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 767144509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2ba08e9ab2636e408fecf2c34503a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a0c123984564154f984ef1344f22b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canUpdate: 1
-  cameraParent: {fileID: 933536039}
+  cameraPivot: {fileID: 933536039}
   standingHeight: 0.8
   crouchHeight: 0
   smoothSpeed: 5
@@ -15401,6 +15392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewPrefab: {fileID: 3480508528426212401, guid: 07385917860addf4b9653f7cc9bae25a,
     type: 3}
+  sortingOrder: 5
 --- !u!4 &1683659847
 Transform:
   m_ObjectHideFlags: 0

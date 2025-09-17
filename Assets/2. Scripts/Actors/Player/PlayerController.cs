@@ -25,7 +25,7 @@ public class PlayerController : Actor
 
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public FirstPersonCamera cameraController;
-    [HideInInspector] public CameraHeightController cameraHeightController;
+    [HideInInspector] public PlayerCrouchController cameraHeightController;
     [HideInInspector] public InteractionFinder interactionFinder;
 
 
@@ -33,7 +33,7 @@ public class PlayerController : Actor
     {
         rb = GetComponent<Rigidbody>();
         cameraController = GetComponentInChildren<FirstPersonCamera>();
-        cameraHeightController = GetComponentInChildren<CameraHeightController>();
+        cameraHeightController = GetComponentInChildren<PlayerCrouchController>();
         interactionFinder = GetComponentInChildren<InteractionFinder>();
     }
 

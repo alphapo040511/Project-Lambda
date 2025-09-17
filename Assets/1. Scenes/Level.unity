@@ -12643,31 +12643,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -3.5000005
       objectReference: {fileID: 0}
-    - target: {fileID: 4905483310159821871, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1698243046}
-    - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1698243046}
-    - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_VersionIndex
-      value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 7656680895701861735, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_Name
-      value: Wall_Short
-      objectReference: {fileID: 0}
-    - target: {fileID: 739369347414170428, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.5000005
-      objectReference: {fileID: 0}
     - target: {fileID: 739369347414170428, guid: 09a69360f82f3424fa4780cf13baf8db,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -12713,6 +12688,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4905483310159821871, guid: 09a69360f82f3424fa4780cf13baf8db,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1698243046}
     - target: {fileID: 5251094671197806636, guid: 09a69360f82f3424fa4780cf13baf8db,
         type: 3}
       propertyPath: m_Mesh
@@ -12733,6 +12713,16 @@ PrefabInstance:
       propertyPath: m_UnmodifiedMeshVersion
       value: 44
       objectReference: {fileID: 0}
+    - target: {fileID: 7656680895701861735, guid: 09a69360f82f3424fa4780cf13baf8db,
+        type: 3}
+      propertyPath: m_Name
+      value: Wall_Short
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1698243046}
     - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
         type: 3}
       propertyPath: m_VersionIndex
@@ -29002,11 +28992,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 767144509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2ba08e9ab2636e408fecf2c34503a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a0c123984564154f984ef1344f22b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canUpdate: 1
-  cameraParent: {fileID: 933536039}
+  cameraPivot: {fileID: 933536039}
   standingHeight: 0.8
   crouchHeight: 0
   smoothSpeed: 5
@@ -40087,21 +40077,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1871763282}
     m_Modifications:
-    - target: {fileID: 4905483310159821871, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1934676534}
-    - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1934676534}
-    - target: {fileID: 7656680895701861735, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_Name
-      value: Wall_1
-      objectReference: {fileID: 0}
     - target: {fileID: 739369347414170428, guid: 09a69360f82f3424fa4780cf13baf8db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40152,6 +40127,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4905483310159821871, guid: 09a69360f82f3424fa4780cf13baf8db,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1934676534}
     - target: {fileID: 5251094671197806636, guid: 09a69360f82f3424fa4780cf13baf8db,
         type: 3}
       propertyPath: m_Mesh
@@ -40162,6 +40142,16 @@ PrefabInstance:
       propertyPath: m_UnmodifiedMeshVersion
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 7656680895701861735, guid: 09a69360f82f3424fa4780cf13baf8db,
+        type: 3}
+      propertyPath: m_Name
+      value: Wall_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1934676534}
     - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
         type: 3}
       propertyPath: m_VersionIndex
@@ -63935,31 +63925,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -9.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4905483310159821871, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 709593569}
-    - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 709593569}
-    - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_VersionIndex
-      value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 7656680895701861735, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_Name
-      value: Wall_Short_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 739369347414170428, guid: 09a69360f82f3424fa4780cf13baf8db,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.5
-      objectReference: {fileID: 0}
     - target: {fileID: 739369347414170428, guid: 09a69360f82f3424fa4780cf13baf8db,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -64005,6 +63970,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4905483310159821871, guid: 09a69360f82f3424fa4780cf13baf8db,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 709593569}
     - target: {fileID: 5251094671197806636, guid: 09a69360f82f3424fa4780cf13baf8db,
         type: 3}
       propertyPath: m_Mesh
@@ -64025,6 +63995,16 @@ PrefabInstance:
       propertyPath: m_UnmodifiedMeshVersion
       value: 44
       objectReference: {fileID: 0}
+    - target: {fileID: 7656680895701861735, guid: 09a69360f82f3424fa4780cf13baf8db,
+        type: 3}
+      propertyPath: m_Name
+      value: Wall_Short_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 709593569}
     - target: {fileID: 7763915568051222399, guid: 09a69360f82f3424fa4780cf13baf8db,
         type: 3}
       propertyPath: m_VersionIndex
