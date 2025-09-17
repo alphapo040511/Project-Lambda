@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8298314595369209522}
   - component: {fileID: 4900026168956769929}
   m_Layer: 0
-  m_Name: Doorframe_2
+  m_Name: Doorframe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
