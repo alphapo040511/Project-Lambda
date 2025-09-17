@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class InteractionFocus : Interactable
 {
+    [Header("Focus Settings")]
     public CinemachineVirtualCamera VirtualCamera;
 
     private void Start()

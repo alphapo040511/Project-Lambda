@@ -14,9 +14,10 @@ public class ProgramData
 
 public class ComputerSystem : InteractionFocus
 {
+    [Header("Display Settings")]
     public CanvasGroup displayCanvas;           // 디스플레이 화면
     public Transform bootingMessage;            // 부팅 메세지 화면
-    public Transform home;                      // 바탕 화면
+    public Transform DesktopBackground;         // 바탕 화면
 
     [Header("Program Settings")]
     public List<ProgramData> programList = new List<ProgramData>();
@@ -69,7 +70,7 @@ public class ComputerSystem : InteractionFocus
             if(passwordData.IsUnlocked(passwordInput.text))             // 패스워드가 맞는 경우
             {
                 passwordDisplay.gameObject.SetActive(false);
-                home.gameObject.SetActive(true);                        // 메인 화면 활성화
+                DesktopBackground.gameObject.SetActive(true);                        // 메인 화면 활성화
             }
             else
             {
@@ -100,7 +101,7 @@ public class ComputerSystem : InteractionFocus
 
         if (isUnlocked)                                             // 패스워드가 존재/해제된 경우
         {
-            home.gameObject.SetActive(true);                        // 홈 활성화
+            DesktopBackground.gameObject.SetActive(true);                        // 홈 활성화
         }
         else                                                        // 패스워드가 존재/해제안된 경우
         {
