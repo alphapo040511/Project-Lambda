@@ -19,7 +19,7 @@ public class PlayerCrouchController : Actor
     public float standingSize = 2f;                         // 서 있을 때 사이즈 (2 고정)
     private float targetSize;
 
-    private bool isInterpolating;                           // 보간 진행중인지 확인용
+    private bool isInterpolating = true;                    // 보간 진행중인지 확인용
 
     private void Awake()
     {
@@ -30,6 +30,7 @@ public class PlayerCrouchController : Actor
     private void Start()
     {
         targetHeight = standingHeight;
+        targetSize = standingSize;
     }
 
     protected override void ActorUpdate()
