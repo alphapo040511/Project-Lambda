@@ -27,6 +27,25 @@ public class GameSettings
 
     [Header("Language Setting")]
     public Language language = Language.en; // 언어 설정
+
+
+    // Clone 메서드
+    public GameSettings Clone()
+    {
+        GameSettings clone = new GameSettings();
+        clone.resolutionIndex = this.resolutionIndex;
+        clone.isFullscreen = this.isFullscreen;
+        clone.targetFrameRate = this.targetFrameRate;
+        clone.masterVolume = this.masterVolume;
+        clone.sfxVolume = this.sfxVolume;
+        clone.musicVolume = this.musicVolume;
+        clone.uiScale = this.uiScale;
+        clone.qualityLevel = this.qualityLevel;
+        clone.vsyncEnabled = this.vsyncEnabled;
+        clone.language = this.language;
+
+        return clone;
+    }
 }
 
 
@@ -59,16 +78,17 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
 
     private void InitializeSettings()
     {
-        // 사용 가능한 해당도 목록 가져오기
-        availableResolutions = Screen.resolutions;      // Screen.resolutions 현재 모니터에서 지원하는 해상도 배열을 반환
+        // 사용 가능한 해당도 목록 가져오기(해상도 + 주사율 정보 모두 나옴)
+        //availableResolutions = Screen.resolutions;      // Screen.resolutions 현재 모니터에서 지원하는 해상도 배열을 반환
 
-        // 현재 해상도를 기본값으로 설정
-        Resolution currentRes = Screen.currentResolution;
-
-        availableResolutions = Screen.resolutions                                                       // 해상도 + 주사율 정보 모두 나옴
-                .GroupBy(r => new { r.width, r.height })   // 해상도만 기준으로 그룹화
-                .Select(g => g.First())                   // 같은 해상도 중 첫 번째만 사용
+        availableResolutions = Screen.resolutions           // 해상도 + 주사율 정보 모두 나옴
+                .GroupBy(r => new { r.width, r.height })    // 해상도만 기준으로 그룹화
+                .Select(g => g.First())                     // 같은 해상도 중 첫 번째만 사용
     .           ToArray();
+
+
+        // 현재 해상도를 기본(제일 높은 해상도)로 설정
+        currentSettings.resolutionIndex = availableResolutions.Length - 1;
 
         // 현재 품질 설정 가져오기
         currentSettings.qualityLevel = QualitySettings.GetQualityLevel();
@@ -106,6 +126,7 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     public void ResetToDefault()
     {
         currentSettings = new GameSettings();
+        currentSettings.resolutionIndex = availableResolutions.Length - 1;          // 해상도는 가장 높게 설정
         ApplyAllSettings();
         SaveSettings();
 
@@ -130,6 +151,8 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         {
             Resolution targetRes = availableResolutions[currentSettings.resolutionIndex];
             Screen.SetResolution(targetRes.width, targetRes.height, currentSettings.isFullscreen);
+
+            Debug.LogFormat("index {0} : {1} x {2}", currentSettings.resolutionIndex, targetRes.width, targetRes.height);
         }
 
         // 프레임레이트 설정

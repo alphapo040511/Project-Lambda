@@ -38,6 +38,7 @@ public class SettingsUI : MonoBehaviour, IScreen
     public void Show()
     {
         canvas.gameObject.SetActive(true);
+        RefreshUI();
     }
 
     public void Hide()
@@ -148,7 +149,7 @@ public class SettingsUI : MonoBehaviour, IScreen
         if (SettingsManager.Instance == null) return;
 
         isInitializing = true;
-        tempSettings = SettingsManager.Instance.currentSettings;
+        tempSettings = SettingsManager.Instance.currentSettings.Clone();
 
         // 디스플레이 설정 UI 업데이트
         if (resolutionDropdown != null)
@@ -226,6 +227,7 @@ public class SettingsUI : MonoBehaviour, IScreen
     private void OnResolutionChanged(int value)
     {
         if (isInitializing) return;
+        Debug.Log($"해상도 변경 {value}");
         tempSettings.resolutionIndex = value;
     }
 
