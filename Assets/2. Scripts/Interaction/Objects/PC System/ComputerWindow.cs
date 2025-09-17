@@ -7,33 +7,51 @@ using UnityEngine.UI;
 public class ComputerWindow : MonoBehaviour
 {
     [Header("Tab Settings")]
-    public Canvas tabCavas;
-    public TextMeshProUGUI tabName;
+    public RectTransform windowTransform;
+    public TextMeshProUGUI windowName;
     public Button closeButton;
-    public float fadeSpeed = 3f;
+    public float fadeSpeed = 10f;
 
     private ComputerSystem targetComputer;
     private Coroutine fadeCoroutine;
-    private bool isActive = false;
-    private Vector2 originSize;
+
+    public bool isActive { get; private set; } = false;
+    private Vector3 originSize;
+    private Vector2 lastPos;
 
     private void Awake()
     {
-        originSize = transform.localScale;
+        if(windowTransform == null)
+            windowTransform = GetComponent<RectTransform>();
+
+        originSize = windowTransform.localScale;                        // 초기 크기 저장
+        windowTransform.localScale = Vector3.zero;                      // 최소화
+            
+        lastPos = windowTransform.anchoredPosition;                     // 초기 위치 저장
+        windowTransform.anchoredPosition = new Vector2(lastPos.x, 0);   // 하단으로 이동
+
+        if(closeButton != null )
+            closeButton.onClick.AddListener(() => CloseWindow());
+    }
+
+    private void OnDestroy()
+    {
+        if (closeButton != null)
+            closeButton.onClick.RemoveListener(() => CloseWindow());
     }
 
     public void Initialize(ComputerSystem pc, string name)
     {
         targetComputer = pc;
-        if(tabName != null )
-            tabName.text = name;
+        if(windowName != null )
+            windowName.text = name;
     }
 
     #region Window
     // 창 열기
     public virtual void OpenWindow()
     {
-        if (tabCavas == null || isActive) return;
+        if (windowTransform == null || isActive) return;
 
         if (fadeCoroutine != null)
         {
@@ -47,7 +65,7 @@ public class ComputerWindow : MonoBehaviour
     // 창 닫기
     public virtual void CloseWindow()
     {
-        if (tabCavas == null || !isActive) return;
+        if (windowTransform == null || !isActive) return;
 
         if (fadeCoroutine != null)
         {
@@ -86,31 +104,35 @@ public class ComputerWindow : MonoBehaviour
     // 캔버스 크기 변화 연출
     private IEnumerator ScaleChange(bool scaleIn)
     {
-        Vector2 start = scaleIn ? Vector2.zero : originSize;
-        Vector2 end = scaleIn ? originSize : Vector2.zero;
+        // 크기 조절
+        Vector3 startSize = scaleIn ? Vector3.zero : originSize;
+        Vector3 endSize = scaleIn ? originSize : Vector3.zero;
 
-        tabCavas.transform.localScale = start;                          // 스케일 초기화
+        windowTransform.transform.localScale = startSize;                          // 스케일 초기화
 
-        if (scaleIn)
-        {
-            tabCavas.enabled = true;                                    // 스케일 인이면 활성화
-        }
+        // 위치 조절
+        Vector2 startPos = windowTransform.anchoredPosition;
+        Vector2 endPos = scaleIn ? lastPos : new Vector2(lastPos.x, 0);
+
+        if(!scaleIn)
+            lastPos = startPos;             // 화면 축소의 경우 마지막 위치 기억
+
 
         float t = 0;
 
         while(t < 1)
         {
             t += Time.deltaTime * fadeSpeed;
-            tabCavas.transform.localScale = Vector2.Lerp(start, end, t);
+            windowTransform.localScale = Vector3.Lerp(startSize, endSize, t);
+
+            windowTransform.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
 
             yield return null;
         }
 
-        tabCavas.transform.localScale = end;
+        windowTransform.transform.localScale = endSize;
+        windowTransform.anchoredPosition = endPos;
 
-        if (!scaleIn)
-        {
-            tabCavas.enabled = false;                                   // 스케일 아웃이면 비활성화
-        }
+        isActive = scaleIn;
     }
 }

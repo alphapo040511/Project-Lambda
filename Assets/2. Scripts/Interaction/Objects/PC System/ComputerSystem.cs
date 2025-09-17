@@ -8,7 +8,7 @@ public class ProgramData
 {
     public string programName;
     public Sprite icon;
-    public ComputerWindow tabObject;
+    public ComputerWindow window;
 }
 
 
@@ -37,14 +37,20 @@ public class ComputerSystem : InteractionFocus
     {
         InitializeTab();
         InitPassword();
+
+        if(displayCanvas != null)
+        {
+            displayCanvas.alpha = 0f;
+            displayCanvas.gameObject.SetActive(false);
+        }
     }
 
     private void InitializeTab()
     {
         foreach(var program in programList)
         {
-            program.tabObject.Initialize(this, program.programName);
-            programs.Add(program.programName, program.tabObject);
+            program.window.Initialize(this, program.programName);
+            programs.Add(program.programName, program.window);
         }
     }
 
@@ -81,7 +87,7 @@ public class ComputerSystem : InteractionFocus
 
     public void OpenWindow(string windowName)
     {
-        if(programs.ContainsKey(windowName))
+        if(programs.ContainsKey(windowName) && !programs[windowName].isActive)
         {
             programs[windowName].OpenWindow();
         }
@@ -89,7 +95,7 @@ public class ComputerSystem : InteractionFocus
 
     public void CloseWindow(string windowName)
     {
-        if (programs.ContainsKey(windowName))
+        if (programs.ContainsKey(windowName) && programs[windowName].isActive)
         {
             programs[windowName].CloseWindow();
         }
