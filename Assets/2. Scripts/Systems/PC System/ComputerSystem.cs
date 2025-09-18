@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[System.Serializable]
-public class ProgramData
-{
-    public string programName;
-    public Sprite icon;
-    public ComputerWindow window;
-}
 
 
 public class ComputerSystem : InteractionFocus
@@ -20,8 +13,8 @@ public class ComputerSystem : InteractionFocus
     public Transform DesktopBackground;         // 바탕 화면
 
     [Header("Program Settings")]
-    public List<ProgramData> programList = new List<ProgramData>();
-    private Dictionary<string, ComputerWindow> programs = new Dictionary<string, ComputerWindow>();
+    public List<WindowBase> programList = new List<WindowBase>();
+    private Dictionary<string, WindowBase> programs = new Dictionary<string, WindowBase>();
 
     [Header("Password Settings")]
     public Transform passwordDisplay;           // 패스워드 화면
@@ -30,8 +23,8 @@ public class ComputerSystem : InteractionFocus
     private bool isUnlocked = false;            // 잠금이 해제 되었는지 여부
     private bool isPoweredOn = false;           // 전원이 켜졌는지 여부
 
-    private Stack<ComputerWindow> tabStack = new Stack<ComputerWindow>();
-    private ComputerWindow currentTab;
+    private Stack<WindowBase> tabStack = new Stack<WindowBase>();
+    private WindowBase currentTab;
 
     private void Start()
     {
@@ -49,8 +42,8 @@ public class ComputerSystem : InteractionFocus
     {
         foreach(var program in programList)
         {
-            program.window.Initialize(this, program.programName);
-            programs.Add(program.programName, program.window);
+            program.Initialize(this);
+            programs.Add(program.windowName, program);
         }
     }
 
@@ -107,7 +100,7 @@ public class ComputerSystem : InteractionFocus
 
         if (isUnlocked)                                             // 패스워드가 존재/해제된 경우
         {
-            DesktopBackground.gameObject.SetActive(true);                        // 홈 활성화
+            DesktopBackground.gameObject.SetActive(true);           // 홈 활성화
         }
         else                                                        // 패스워드가 존재/해제안된 경우
         {

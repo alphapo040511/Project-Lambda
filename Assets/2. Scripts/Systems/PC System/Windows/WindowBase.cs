@@ -4,11 +4,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ComputerWindow : MonoBehaviour
+public class WindowBase : MonoBehaviour
 {
-    [Header("Tab Settings")]
+    [Header("Window Settings")]
+    public string windowName;
+    public Sprite windowIcon;
+
+    [Header("Compoenet Settings")]
     public RectTransform windowTransform;
-    public TextMeshProUGUI windowName;
+    public TextMeshProUGUI nameText;
+    public Image iconImage;
     public Button closeButton;
     public float fadeSpeed = 10f;
 
@@ -19,32 +24,39 @@ public class ComputerWindow : MonoBehaviour
     private Vector3 originSize;
     private Vector2 lastPos;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if(windowTransform == null)
             windowTransform = GetComponent<RectTransform>();
-
-        originSize = windowTransform.localScale;                        // 초기 크기 저장
-        windowTransform.localScale = Vector3.zero;                      // 최소화
-            
-        lastPos = windowTransform.anchoredPosition;                     // 초기 위치 저장
-        windowTransform.anchoredPosition = new Vector2(lastPos.x, 0);   // 하단으로 이동
 
         if(closeButton != null )
             closeButton.onClick.AddListener(() => CloseWindow());
     }
 
-    private void OnDestroy()
+
+
+    protected virtual void OnDestroy()
     {
         if (closeButton != null)
             closeButton.onClick.RemoveListener(() => CloseWindow());
     }
 
-    public void Initialize(ComputerSystem pc, string name)
+    public void Initialize(ComputerSystem pc)
     {
         targetComputer = pc;
-        if(windowName != null )
-            windowName.text = name;
+
+        // 탭 크기 설정
+        originSize = windowTransform.localScale;                        // 초기 크기 저장
+        windowTransform.localScale = Vector3.zero;                      // 최소화
+
+        lastPos = windowTransform.anchoredPosition;                     // 초기 위치 저장
+        windowTransform.anchoredPosition = new Vector2(lastPos.x, 0);   // 하단으로 이동
+
+        if (nameText != null)
+            nameText.text = windowName;                                 // 이름 표시 설정
+
+        if (iconImage != null)
+            iconImage.sprite = windowIcon;                              // 아이콘 표시 설정
     }
 
     #region Window
@@ -77,30 +89,6 @@ public class ComputerWindow : MonoBehaviour
 
     #endregion
 
-    #region Tab
-    public void ShowTab(string tabName)
-    {
-        //if (programs.ContainsKey(tabName))
-        //{
-        //    tabStack.Push(currentTab);                      // 기존 탭을 스텍에 푸쉬
-        //    ComputerWindow tab = programs[tabName];
-        //    tab.OpenWindow();
-        //    currentTab = tab;                               // 현재 탭을 변경
-        //}
-    }
-
-    public void CloseTab()
-    {
-        //if (tabStack.Count > 0)
-        //{
-        //    currentTab.CloseWindow();                          // 기존 탭 닫기
-        //    ComputerWindow tab = tabStack.Pop();               // 마지막 탭 팝
-        //    tab.OpenWindow();
-        //    currentTab = tab;                               // 마지막 탭 활성화 및 현재 탭으로 변경
-        //}
-    }
-    #endregion
-
     // 캔버스 크기 변화 연출
     private IEnumerator ScaleChange(bool scaleIn)
     {
@@ -112,7 +100,7 @@ public class ComputerWindow : MonoBehaviour
 
         // 위치 조절
         Vector2 startPos = windowTransform.anchoredPosition;
-        Vector2 endPos = scaleIn ? lastPos : new Vector2(lastPos.x, 0);
+        Vector2 endPos = scaleIn ? lastPos : new Vector2(startPos.x, 0);
 
         if(!scaleIn)
             lastPos = startPos;             // 화면 축소의 경우 마지막 위치 기억
