@@ -8,12 +8,22 @@ public class InteractionFocus : Interactable
     [Header("Focus Settings")]
     public CinemachineVirtualCamera VirtualCamera;
 
+    private bool isFocused = false;
+
     private void Start()
     {
         if (VirtualCamera != null)
         {
             VirtualCamera.Priority = 20;
             VirtualCamera.enabled = false;
+        }
+    }
+
+    protected override void Update()
+    {
+        if(isFocused && Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitFocus();
         }
     }
 
@@ -26,6 +36,8 @@ public class InteractionFocus : Interactable
 
     protected virtual void EnterFocus()
     {
+        isFocused = true;
+
         GameManager.Instance.ChangeGameState(GameState.Display);
 
         if (VirtualCamera != null)
@@ -34,6 +46,8 @@ public class InteractionFocus : Interactable
 
     public virtual void ExitFocus()
     {
+        isFocused = false;
+
         GameManager.Instance.ChangeGameState(GameState.Playing);
 
         if (VirtualCamera != null)

@@ -78,7 +78,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // ESC 키로 게임 일시정지/재개
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentGameState != GameState.Paused)
+            if (currentGameState != GameState.Paused && currentGameState != GameState.Display)
             {
                 PauseGame();
             }

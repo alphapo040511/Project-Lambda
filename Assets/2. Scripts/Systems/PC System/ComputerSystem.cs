@@ -106,6 +106,8 @@ public class ComputerSystem : InteractionFocus
         {
             passwordDisplay.gameObject.SetActive(true);             // 패드워드 화면 활성화
         }
+
+        isPoweredOn = true;
     }
 
     IEnumerator PowerOn()
