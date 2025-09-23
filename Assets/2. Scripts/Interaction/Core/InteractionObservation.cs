@@ -18,6 +18,9 @@ public class InteractionObservation : Interactable
     private Vector3 targetPosition;
     private bool isObserved = false;
 
+    public float focusOffset = 0.5f;
+    private float currentOffset;
+
     private void Start()
     {
         if(mainCamera == null)
@@ -45,6 +48,8 @@ public class InteractionObservation : Interactable
 
         if (isObserved == false) return;                      // 상호작용중이 아니면 return
 
+        targetPosition = mainCamera.transform.position + mainCamera.transform.forward * currentOffset;
+
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5);
 
         if (Input.GetMouseButton(0))
@@ -58,9 +63,19 @@ public class InteractionObservation : Interactable
             transform.Rotate(mainCamera.transform.right, -rotY, Space.World);
         }
 
-        if(Input.GetKeyDown(KeyCode.X))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             ExitObseravtion();
+        }
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (dof != null && Mathf.Abs(scroll) > 0.1f)
+        {
+            currentOffset += scroll * Time.deltaTime * 10f;
+            currentOffset = Mathf.Clamp(currentOffset, 0.2f, 0.8f);
+
+            dof.focusDistance.Override(currentOffset);
         }
     }
 
@@ -77,7 +92,8 @@ public class InteractionObservation : Interactable
 
         if (dof != null)
         {
-            dof.focusDistance.Override(0.5f); // 포커스 거리 변경
+            dof.focusDistance.Override(focusOffset); // 포커스 거리 변경
+            currentOffset = focusOffset;
         }
     }
 
@@ -86,7 +102,7 @@ public class InteractionObservation : Interactable
     {
         originPosition = transform.localPosition;
         originRatation = transform.localRotation;
-        targetPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.5f;
+        targetPosition = mainCamera.transform.position + mainCamera.transform.forward * focusOffset;
     }
 
     public void ExitObseravtion()
@@ -104,6 +120,7 @@ public class InteractionObservation : Interactable
         if (dof != null)
         {
             dof.focusDistance.Override(2f); // 포커스 거리 변경
+            currentOffset = 2f;
         }
     }
 
