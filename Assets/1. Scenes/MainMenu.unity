@@ -328,6 +328,8 @@ MonoBehaviour:
     gameState: 1
   - sceneName: Test_Map 2
     gameState: 1
+  - sceneName: Level
+    gameState: 1
 --- !u!4 &50907114
 Transform:
   m_ObjectHideFlags: 0
@@ -10075,7 +10077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuSceneName: MainMenu
-  gameSceneName: Test_Map
+  gameSceneName: Level
   loadingSceneName: Loading
   minimumLoadingTime: 2
   useLoadingScreen: 1
