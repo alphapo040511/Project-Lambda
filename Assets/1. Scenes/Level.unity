@@ -35352,7 +35352,8 @@ MonoBehaviour:
   maxSize: 2
   itemData:
     itemName: "\uCEE8\uD2B8\uB864 \uD328\uB4DC"
-    desctipntion: "\uD68D\uB4DD \uBD88\uAC00 \uD569\uB2C8\uB2E4."
+    desctipntion: "\uCEE8\uD2B8\uB864 \uD328\uB4DC\uB2E4.\n\uACE0\uC7A5\uC774 \uB09C
+      \uAC83\uC778\uC9C0 \uC804\uC6D0\uC740 \uB4E4\uC5B4\uC624\uC9C0 \uC54A\uB294\uB2E4."
     isCollectible: 0
 --- !u!65 &823280893
 BoxCollider:
@@ -47845,6 +47846,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: -2942807512564239724, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: fe4298b1556539a43a4ca33ac6161422,
         type: 3}
       propertyPath: m_Name
@@ -72591,10 +72598,10 @@ MonoBehaviour:
   maxSize: 2
   itemData:
     itemName: "\uCEE8\uD2B8\uB864 \uD328\uB4DC"
-    desctipntion: "\u201C\uB2E4\uC591\uD55C \uC785\uB825 \uC7A5\uCE58\uC640 \uC778\uD130\uD398\uC774\uC2A4\uAC00
+    desctipntion: "\uB2E4\uC591\uD55C \uC785\uB825 \uC7A5\uCE58\uC640 \uC778\uD130\uD398\uC774\uC2A4\uAC00
       \uACB0\uD569\uB41C \uB2E4\uBAA9\uC801 \uC870\uC791 \uD328\uB110\uC785\uB2C8\uB2E4.
       \uBC84\uD2BC, \uB2E4\uC774\uC5BC, \uD130\uCE58 \uC13C\uC11C \uB4F1\uC744 \uD1B5\uD574
-      \uC2E4\uD5D8\uC801 \uC870\uC791\uACFC \uC124\uC815 \uBCC0\uACBD\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4.\u201D"
+      \uC2E4\uD5D8\uC801 \uC870\uC791\uACFC \uC124\uC815 \uBCC0\uACBD\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
     isCollectible: 1
 --- !u!65 &1844883393
 BoxCollider:
