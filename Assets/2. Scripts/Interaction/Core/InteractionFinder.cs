@@ -99,7 +99,7 @@ public class InteractionFinder : Actor
         // 기존 리스트와 비교해 거리가 멀어져 탐지가 안되는 오브젝트 UI 비활성화
         foreach (var prev in previousTargets)
         {
-            if (!currentTargets.Contains(prev) && prev.GetComponent<Interactable>() != null)
+            if (prev != null && !currentTargets.Contains(prev) && prev.GetComponent<Interactable>() != null)
             {
                 prev.GetComponent<Interactable>().OnDeactivate();       // UI 끄기
             }

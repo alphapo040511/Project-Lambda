@@ -6,6 +6,17 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+
+// 임시 아이템 데이터
+[System.Serializable]
+public class TempItemData
+{ 
+    public string itemName = "itemName";             // 키 값으로 변경
+    [TextArea]public string desctipntion = "Description";
+
+    public bool isCollectible = false;          // 획득 가능한가
+}
+
 public class InteractionObservation : Interactable
 {
     [Header("Camera & Volume Settings")]
@@ -18,6 +29,9 @@ public class InteractionObservation : Interactable
     public float focusDistance = 0.5f;
     public float minSize = 0.5f;
     public float maxSize = 2f;
+
+    [Header("Item Setting")]
+    public TempItemData itemData;
 
     // 위치 저장
     private Vector3 originPosition;
@@ -115,6 +129,8 @@ public class InteractionObservation : Interactable
 
         GameManager.Instance.ChangeGameState(GameState.Menu);
 
+        ShowOverlay();
+
         isObserving = true;
         isInitializing = true;
 
@@ -134,6 +150,26 @@ public class InteractionObservation : Interactable
         }
     }
 
+    void ShowOverlay()
+    {
+        if(itemData.isCollectible)
+        {
+            ObservationUI.Instance.ShowButton("획득하기", itemData.desctipntion, () =>
+            {
+                Debug.Log($"{itemData.itemName} 획득!");
+                Destroy(gameObject);
+                ExitObseravtion();
+            });
+        }
+        else
+        {
+            ObservationUI.Instance.ShowButton("내려놓기", itemData.desctipntion, () =>
+            {
+                ExitObseravtion();
+            });
+        }
+
+    }
 
     public void ExitObseravtion()
     {
@@ -153,6 +189,8 @@ public class InteractionObservation : Interactable
         {
             dof.focusDistance.Override(2f);                 // 포커스 거리 변경
         }
+
+        UIManager.Instance.HideOverlay(OverlayType.Observation);
     }
 
 }

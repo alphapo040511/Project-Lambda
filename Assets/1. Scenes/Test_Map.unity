@@ -3438,6 +3438,9 @@ MonoBehaviour:
   floatingUITransform: {fileID: 0}
   mainCamera: {fileID: 0}
   volume: {fileID: 0}
+  focusDistance: 0.5
+  minSize: 0.5
+  maxSize: 2
 --- !u!1001 &371173955
 PrefabInstance:
   m_ObjectHideFlags: 0

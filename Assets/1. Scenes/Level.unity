@@ -35312,6 +35312,85 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c76d2d3504ddb4847940a815cad04644, type: 3}
+--- !u!1 &823280891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 823280894}
+  - component: {fileID: 823280893}
+  - component: {fileID: 823280892}
+  m_Layer: 6
+  m_Name: Panel_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &823280892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823280891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906ebfb15c3fd0c488a2eea320f2ad34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canUpdate: 1
+  interactionHoldTime: 1
+  floatingUITransform: {fileID: 0}
+  mainCamera: {fileID: 725336804}
+  volume: {fileID: 736799362}
+  focusDistance: 0.5
+  minSize: 0.5
+  maxSize: 2
+  itemData:
+    itemName: "\uCEE8\uD2B8\uB864 \uD328\uB4DC"
+    desctipntion: "\uD68D\uB4DD \uBD88\uAC00 \uD569\uB2C8\uB2E4."
+    isCollectible: 0
+--- !u!65 &823280893
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823280891}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3, y: 0.3, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &823280894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823280891}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.926, y: 1.01, z: 8.191}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1182145296}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1001 &833538803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47708,6 +47787,85 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1182145295
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 823280894}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_Name
+      value: sci_fi_tablet_fbx
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe4298b1556539a43a4ca33ac6161422,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fe4298b1556539a43a4ca33ac6161422, type: 3}
+--- !u!4 &1182145296 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fe4298b1556539a43a4ca33ac6161422,
+    type: 3}
+  m_PrefabInstance: {fileID: 1182145295}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1182908486
 GameObject:
   m_ObjectHideFlags: 0
@@ -72428,7 +72586,16 @@ MonoBehaviour:
   floatingUITransform: {fileID: 0}
   mainCamera: {fileID: 725336804}
   volume: {fileID: 736799362}
-  focusOffset: 0.5
+  focusDistance: 0.5
+  minSize: 0.5
+  maxSize: 2
+  itemData:
+    itemName: "\uCEE8\uD2B8\uB864 \uD328\uB4DC"
+    desctipntion: "\u201C\uB2E4\uC591\uD55C \uC785\uB825 \uC7A5\uCE58\uC640 \uC778\uD130\uD398\uC774\uC2A4\uAC00
+      \uACB0\uD569\uB41C \uB2E4\uBAA9\uC801 \uC870\uC791 \uD328\uB110\uC785\uB2C8\uB2E4.
+      \uBC84\uD2BC, \uB2E4\uC774\uC5BC, \uD130\uCE58 \uC13C\uC11C \uB4F1\uC744 \uD1B5\uD574
+      \uC2E4\uD5D8\uC801 \uC870\uC791\uACFC \uC124\uC815 \uBCC0\uACBD\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4.\u201D"
+    isCollectible: 1
 --- !u!65 &1844883393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85244,6 +85411,7 @@ SceneRoots:
   - {fileID: 794089445}
   - {fileID: 1870470782}
   - {fileID: 1844883394}
+  - {fileID: 823280894}
   - {fileID: 798413234}
   - {fileID: 1436686740}
   - {fileID: 1849035191}

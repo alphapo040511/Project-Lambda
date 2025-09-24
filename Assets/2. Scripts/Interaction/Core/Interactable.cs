@@ -33,6 +33,14 @@ public abstract class Interactable : Actor, IInteractable
     }
     protected InteractionUIView targetUI;
 
+    private void OnDestroy()
+    {
+        if (targetUI != null)
+        {
+            targetUI.gameObject.SetActive(false);
+        }
+    }
+
     // 상호작용 범위 진입
     public void OnActivate()
     {

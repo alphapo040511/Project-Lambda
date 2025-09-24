@@ -19,6 +19,7 @@ public enum OverlayType                     // 겹치는게 가능한 UI
     Letterbox,
     Dialog,
     Popup,
+    Observation,
     Quest,
     Tooltip
 }

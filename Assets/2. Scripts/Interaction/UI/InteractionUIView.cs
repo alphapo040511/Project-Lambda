@@ -34,9 +34,15 @@ public class InteractionUIView : MonoBehaviour
 
     public void ActivateInteractionUI()
     {
+        if (targetObject == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         Vector3 pos = targetObject.FloatingUIPosition;
 
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(pos);    // 타겟 위치에 지속적으로 플로팅
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(pos);
         transform.position = screenPos;
 
         gameObject.SetActive(true);
@@ -44,6 +50,12 @@ public class InteractionUIView : MonoBehaviour
 
     private void Update()
     {
+        if (targetObject == null)               // 오브젝트가 제거된 경우 비활성화
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         Vector3 pos = targetObject.FloatingUIPosition;
 
         Vector3 viewportPos = Camera.main.WorldToViewportPoint(pos);
