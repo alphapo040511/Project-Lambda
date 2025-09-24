@@ -77,20 +77,34 @@ public class InteractionObservation : Interactable
             ExitObseravtion();
         }
 
-        if (isInitializing) SetInitialPosition();               // 초기 위치에 도달할 때까지 이동
+        if (isInitializing) SetInitial();               // 초기 위치에 도달할 때까지 이동
 
         Rotate();
         Zoom();
     }
 
     // 초기 위치 설정
-    void SetInitialPosition()
+    void SetInitial()
     {
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5);  // 초기 위치로 부드럽게 이동
+        // 포커스 거리 변경
+        float focus = Mathf.Lerp(dof.focusDistance.value, focusDistance, Time.deltaTime * 5f);
 
-        if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+        if (dof != null)                 
+        {
+            dof.focusDistance.Override(focus);
+        }
+
+        // 초기 위치로 부드럽게 이동
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5);  
+
+
+        // 초기 위치 및 포커스에 도달 할 경우 종료
+        if (Vector3.Distance(transform.position, targetPosition) < 0.01f
+            && focusDistance - dof.focusDistance.value < 0.01f)
         {
             transform.position = targetPosition;
+            dof.focusDistance.Override(focusDistance);
+
             isInitializing = false;
         }
     }
@@ -143,11 +157,6 @@ public class InteractionObservation : Interactable
         sizeMultiplier = 1f;
 
         targetPosition = mainCamera.transform.position + mainCamera.transform.forward * focusDistance;  // 카메라 앞쪽에 위치
-
-        if (dof != null)
-        {            
-            dof.focusDistance.Override(focusDistance); // 포커스 거리 변경
-        }
     }
 
     void ShowOverlay()
@@ -185,12 +194,12 @@ public class InteractionObservation : Interactable
         transform.localRotation = originRatation;
         transform.localScale = originSize;
 
+        UIManager.Instance.HideOverlay(OverlayType.Observation);
+
         if (dof != null)
         {
-            dof.focusDistance.Override(2f);                 // 포커스 거리 변경
+            dof.focusDistance.Override(2f); // 포커스 거리 변경
         }
-
-        UIManager.Instance.HideOverlay(OverlayType.Observation);
     }
 
 }
