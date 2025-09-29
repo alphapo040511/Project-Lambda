@@ -141,7 +141,7 @@ public class InteractionObservation : Interactable
     {
         base.Complete();
 
-        GameManager.Instance.ChangeGameState(GameState.Menu);
+        GameManager.Instance.ChangeGameState(GameState.Observation);
 
         ShowOverlay();
 

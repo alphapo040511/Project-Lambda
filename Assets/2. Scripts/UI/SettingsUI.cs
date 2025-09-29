@@ -7,6 +7,17 @@ using UnityEngine.UI;
 public class SettingsUI : MonoBehaviour, IScreen
 {
     public Canvas canvas;
+
+    [Header("Tab Settings")]
+    public Button gameplayTabButton;
+    public Button audioTabButton;
+    public Button graphicsTabButton;
+
+    public GameObject gameplayTab;
+    public GameObject audioTab;
+    public GameObject graphicsTab;
+    private GameObject currenTab;
+
     [Header("Display Settings")]
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
@@ -62,6 +73,11 @@ public class SettingsUI : MonoBehaviour, IScreen
     {
         isInitializing = true;
 
+        // 탭 설정
+        OpenTab(gameplayTab);
+        audioTab.SetActive(false);
+        graphicsTab.SetActive(false);
+
         // 해상도 드롭다운 설정
         if (resolutionDropdown != null)
         {
@@ -99,6 +115,17 @@ public class SettingsUI : MonoBehaviour, IScreen
 
     private void SetupEventListeners()
     {
+        // 탭 설정
+        graphicsTabButton.onClick.AddListener(() =>{
+            OpenTab(graphicsTab);
+        });
+        audioTabButton.onClick.AddListener(() =>{
+            OpenTab(audioTab);
+        });
+        gameplayTabButton.onClick.AddListener(() => {
+            OpenTab(gameplayTab);
+        });
+
         // 디스플레이 설정
         if (resolutionDropdown != null)
             resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
@@ -221,6 +248,27 @@ public class SettingsUI : MonoBehaviour, IScreen
 
         isInitializing = false;
     }
+
+    #region Tab Change
+    public void OpenTab(GameObject target)
+    {
+        if (target == null) return;
+
+        CloseCurrentTab();
+        target.SetActive(true);
+        currenTab = target;
+    }
+
+
+    private void CloseCurrentTab()
+    {
+        if(currenTab != null)
+        {
+            currenTab.SetActive(false);
+        }
+    }
+
+    #endregion
 
     #region Event Handlers
 
