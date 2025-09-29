@@ -46,6 +46,23 @@ public class GameSettings
 
         return clone;
     }
+
+    // 변경 여부 확인
+    public bool Equals(GameSettings other)
+    {
+        if (other == null) return false;
+
+        return resolutionIndex == other.resolutionIndex &&
+               isFullscreen == other.isFullscreen &&
+               targetFrameRate == other.targetFrameRate &&
+               //masterVolume == other.masterVolume &&                      // 사운드 같은 경우는 실시간으로 저장 되도록
+               //sfxVolume == other.sfxVolume &&
+               //musicVolume == other.musicVolume &&
+               uiScale == other.uiScale &&
+               qualityLevel == other.qualityLevel &&
+               vsyncEnabled == other.vsyncEnabled &&
+               language == other.language;
+    }
 }
 
 

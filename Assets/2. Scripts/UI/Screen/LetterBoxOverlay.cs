@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LetterBoxOverlay : MonoBehaviour, IScreen
+public class LetterBoxOverlay : ScreenBase
 {
     public CanvasGroup canvasGroup;
     public RectTransform topLetterbox;
@@ -14,7 +14,7 @@ public class LetterBoxOverlay : MonoBehaviour, IScreen
 
     private Coroutine fadeCoroutine;
 
-    public void Show()
+    public override void Show()
     {
         if(fadeCoroutine != null)
         {
@@ -24,7 +24,7 @@ public class LetterBoxOverlay : MonoBehaviour, IScreen
         fadeCoroutine = StartCoroutine(ShowLetterBox());
     }
 
-    public void Hide()
+    public override void Hide()
     {
         if (fadeCoroutine != null)
         {
@@ -34,7 +34,7 @@ public class LetterBoxOverlay : MonoBehaviour, IScreen
         fadeCoroutine = StartCoroutine(HideLetterBox());
     }
 
-    public void Init()
+    public override void Init()
     {
         topLetterbox.anchoredPosition = new Vector2(0, 668.5f);
         bottomLetterbox.anchoredPosition = new Vector2(0, -668.5f);

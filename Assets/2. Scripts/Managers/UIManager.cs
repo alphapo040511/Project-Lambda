@@ -28,14 +28,14 @@ public enum OverlayType                     // 겹치는게 가능한 UI
 public class UIScreen
 {
     public ScreenType screenType;
-    public GameObject screenObject;
+    public ScreenBase screen;
 }
 
 [System.Serializable]
 public class UIOverlay
 {
-    public OverlayType screenType;
-    public GameObject screenObject;
+    public OverlayType overlayType;
+    public ScreenBase overlay;
 }
 
 
@@ -51,11 +51,11 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
     [SerializeField] private List<UIScreen> screens = new List<UIScreen>();
     
-    private Dictionary<ScreenType, IScreen> screenDictionary = new Dictionary<ScreenType, IScreen>();
+    private Dictionary<ScreenType, ScreenBase> screenDictionary = new Dictionary<ScreenType, ScreenBase>();
 
     [SerializeField] private List<UIOverlay> overlays = new List<UIOverlay>();
 
-    private Dictionary<OverlayType, IScreen> overlayDictionary = new Dictionary<OverlayType, IScreen>();
+    private Dictionary<OverlayType, ScreenBase> overlayDictionary = new Dictionary<OverlayType, ScreenBase>();
 
     // 현재 활성화된 화면
     public ScreenType CurrentScreen { get; private set; } = ScreenType.None;
@@ -67,7 +67,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
         foreach (UIScreen screen in screens)
         {
-            screenDictionary[screen.screenType] = screen.screenObject.GetComponent<IScreen>();
+            screenDictionary[screen.screenType] = screen.screen;
             screenDictionary[screen.screenType].Init();
         }
 
@@ -75,8 +75,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
         foreach (UIOverlay overlay in overlays)
         {
-            overlayDictionary[overlay.screenType] = overlay.screenObject.GetComponent<IScreen>();
-            overlayDictionary[overlay.screenType].Init();
+            overlayDictionary[overlay.overlayType] = overlay.overlay;
+            overlayDictionary[overlay.overlayType].Init();
         }
     }
 

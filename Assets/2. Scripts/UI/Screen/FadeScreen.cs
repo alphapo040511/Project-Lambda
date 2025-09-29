@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 단순 페이드만 사용하는 스크린
-public class FadeScreen : MonoBehaviour, IScreen
+public class FadeScreen : ScreenBase
 {
     public CanvasGroup canvasGroup;
     public float fadeDuration = 0.75f;
 
     private Coroutine fadeCoroutine;
 
-    public void Init()
+    public override void Init()
     {
         canvasGroup.alpha = 0;
         canvasGroup.gameObject.SetActive(false);
     }
 
-    public void Hide()
+    public override void Hide()
     {
         if (fadeCoroutine != null)
         {
@@ -26,7 +26,7 @@ public class FadeScreen : MonoBehaviour, IScreen
         fadeCoroutine = StartCoroutine(Fading(false));
     }
 
-    public void Show()
+    public override void Show()
     {
         if (fadeCoroutine != null)
         {

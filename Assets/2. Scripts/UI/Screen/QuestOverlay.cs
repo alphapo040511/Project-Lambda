@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestOverlay : MonoBehaviour, IScreen
+public class QuestOverlay : ScreenBase
 {
-    public void Show()
+    public override void Show()
     {
         
     }
-    public void Hide()
+    public override void Hide()
     {
         
     }
 
-    public void Init()
+    public override void Init()
     {
         
     }
