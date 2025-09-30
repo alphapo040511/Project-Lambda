@@ -70,14 +70,20 @@ public class InteractionObservation : Interactable
     {
         base.Update();
 
-        if (isObserving == false) return;                       // 상호작용중이 아니면 return
+        if (isObserving == false) return;                                               // 상호작용중이 아니면 return
 
-        if (Input.GetKeyDown(KeyCode.Escape))                   // ESC 키로 관찰 종료
+        if (Input.GetKeyDown(KeyCode.Escape) && !itemData.isCollectible)                // ESC 키로 관찰 종료 (획득 불가능한 경우)
         {
             ExitObseravtion();
         }
 
-        if (isInitializing) SetInitial();               // 초기 위치에 도달할 때까지 이동
+        if (Input.GetKeyDown(KeyCode.E) && itemData.isCollectible)                      // E 키로 관찰 획득 (획득 가능한 경우)
+        {
+            Destroy(gameObject);            // 임시로 파괴
+            ExitObseravtion();
+        }
+
+        if (isInitializing) SetInitial();                       // 초기 위치에 도달할 때까지 이동
 
         Rotate();
         Zoom();

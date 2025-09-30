@@ -131,6 +131,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             case GameState.Display:
                 Cursor.lockState = CursorLockMode.None;
                 break;
+            case GameState.Observation:
+                Cursor.lockState = CursorLockMode.None;
+                break;
         }
 
         GameEvents.ChangeGameState(newState);
