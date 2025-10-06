@@ -44,7 +44,7 @@ public abstract class Interactable : Actor, IInteractable
     // 상호작용 범위 진입
     public void OnActivate()
     {
-        if(targetUI != null)
+        if(targetUI != null || !interactable)
         {
             targetUI.ActivateInteractionUI();
         }
@@ -67,7 +67,7 @@ public abstract class Interactable : Actor, IInteractable
     // 대상으로 지정
     public virtual void OnTargeted()
     {
-        if(targetUI != null && !used)
+        if(targetUI != null && !used && interactable)
         {
             targetUI.OnSelected();
         }
@@ -119,7 +119,7 @@ public abstract class Interactable : Actor, IInteractable
     protected virtual void Complete()
     {
         Debug.Log("상호작용 완료");
-        used = true;
+        used = true;                    // 기본적으론 1회용
         currentHoldTime = 0f;
     }
 

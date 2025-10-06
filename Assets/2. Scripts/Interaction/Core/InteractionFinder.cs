@@ -46,10 +46,12 @@ public class InteractionFinder : Actor
 
         foreach (Collider col in targets)
         {
-            if(col.GetComponent<Interactable>() != null && !IsOccluded(col.transform))
+            Interactable interactObj = col.GetComponent<Interactable>();
+
+            if (interactObj == null || interactObj.interactable == false || IsOccluded(col.transform))
             {
-                // Interactable이 없거나 장애물이 막는 경우 건너뛰기
-                return;
+                // Interactable이 없거나 상호작용이 불가, 또는 물체에 가로 막혀있다면 건너뛰기
+                break;
             }
 
             Transform t = col.transform;                            // 탐지된 오브젝트 저장
@@ -64,7 +66,7 @@ public class InteractionFinder : Actor
 
             if (angle <= detectionAngle * 0.5f) // 시야각 안에 있음
             {
-                col.GetComponent<Interactable>()?.OnActivate();             // UI 활성화
+                interactObj.OnActivate();             // UI 활성화
 
                 float score = angle * 0.7f + distance * 0.3f;               // 시야각과 거리에 가중치를 주어 점수로 비교
                 if (score < bestScore)
@@ -142,11 +144,11 @@ public class InteractionFinder : Actor
             //}
 
             Debug.DrawLine(transform.position, hit.point, Color.yellow);
-            return same;
+            return !same;
         }
 
 
-        return true;            // 아무것도 안 막으면 문제 없는것으로 처리
+        return false;            // 아무것도 안 막으면 문제 없는것으로 처리
     }
     #endregion
 

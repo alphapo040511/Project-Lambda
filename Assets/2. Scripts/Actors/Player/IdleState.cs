@@ -162,6 +162,8 @@ public class InteractState : IPlayerState
         player.targetSpeed = 0f;
         interactable.OnInteractStart();
         //player.cameraController.enabled = false;        // 카메라 조작 비활성화
+
+        player.rb.velocity = Vector3.zero;                  // 속도 0으로 설정 (관성을 이용한 움직임 방지)
     }
 
     public void HandleUpdate()
