@@ -25,7 +25,7 @@ public abstract class SettingTabBase : MonoBehaviour, IScreen
         RefreshUI();
     }
 
-    private void Start()
+    private void Awake()
     {
         isInitializing = true;
 
