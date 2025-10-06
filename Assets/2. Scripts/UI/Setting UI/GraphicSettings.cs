@@ -10,7 +10,7 @@ public class GraphicSettings : SettingTabBase
     [Header("Display Settings")]
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
-    public TMP_Dropdown frameRateDropdown;
+    public CustomSelector frameRateSelector;
 
     [Header("Graphics Settings")]
     public TMP_Dropdown qualityDropdown;
@@ -27,11 +27,11 @@ public class GraphicSettings : SettingTabBase
         }
 
         // 프레임레이트 드롭다운 설정
-        if (frameRateDropdown != null)
+        if (frameRateSelector != null)
         {
-            frameRateDropdown.ClearOptions();
-            frameRateDropdown.AddOptions(new System.Collections.Generic.List<string>
-                {"30 FPS", "60 FPS", "120 FPS", "무제한"});
+            frameRateSelector.ClearOptions();
+            frameRateSelector.AddOptions(new System.Collections.Generic.List<string>
+                {"30 FPS", "60 FPS", "120 FPS", "Unlimited"});
         }
 
         // 품질 드롭다운 설정
@@ -52,8 +52,8 @@ public class GraphicSettings : SettingTabBase
         if (fullscreenToggle != null)
             fullscreenToggle.onValueChanged.AddListener(OnFullscreenChanged);
 
-        if (frameRateDropdown != null)
-            frameRateDropdown.onValueChanged.AddListener(OnFrameRateChanged);
+        if (frameRateSelector != null)
+            frameRateSelector.onValueChanged += OnFrameRateChanged;
 
 
         // 그래픽 설정
@@ -73,7 +73,7 @@ public class GraphicSettings : SettingTabBase
         if (fullscreenToggle != null)
             fullscreenToggle.isOn = settingsUI.tempSettings.isFullscreen;
 
-        if (frameRateDropdown != null)
+        if (frameRateSelector != null)
         {
             //          switch문의 간략화
             //          변수 = 값 switch
@@ -89,7 +89,7 @@ public class GraphicSettings : SettingTabBase
                 120 => 2,
                 _ => 3
             };
-            frameRateDropdown.value = frameRateIndex;
+            frameRateSelector.SetOption(frameRateIndex);
         }
 
         // 그래픽 설정 UI 업데이트
