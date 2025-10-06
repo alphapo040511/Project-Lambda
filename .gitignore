@@ -97,3 +97,12 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Auto-generated scenes by play mode tests
+/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# macOS temp files
+.DS_Store
+
+# Google Sheets OAuth secret (local only)
+Assets/6. Resources/Localization/Google Sheets Service.asset
