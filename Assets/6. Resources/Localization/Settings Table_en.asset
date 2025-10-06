@@ -38,6 +38,38 @@ MonoBehaviour:
     m_Localized: Close
     m_Metadata:
       m_Items: []
+  - m_Id: 10189702878453760
+    m_Localized: Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10189702958145536
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10189702958145537
+    m_Localized: High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10189702962339840
+    m_Localized: Very High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10189702962339841
+    m_Localized: Ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10189702962339842
+    m_Localized: Custom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10189702962339843
+    m_Localized: Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10189702962339844
+    m_Localized: On
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

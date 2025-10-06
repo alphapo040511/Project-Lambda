@@ -889,7 +889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &168410482
 Transform:
   m_ObjectHideFlags: 0
@@ -3441,6 +3441,10 @@ MonoBehaviour:
   focusDistance: 0.5
   minSize: 0.5
   maxSize: 2
+  itemData:
+    itemName: itemName
+    desctipntion: Description
+    isCollectible: 0
 --- !u!1001 &371173955
 PrefabInstance:
   m_ObjectHideFlags: 0

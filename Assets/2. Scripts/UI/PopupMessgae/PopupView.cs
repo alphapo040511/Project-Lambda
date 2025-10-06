@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization.Components;  // LocalizeStringEvent
+
 
 public class PopupView : MonoBehaviour
 {
     public TextMeshProUGUI contentText;
-    public TextMeshProUGUI confirmText;
-    public TextMeshProUGUI cancelText;
+    public LocalizeStringEvent confirmText;
+    public LocalizeStringEvent cancelText;
     public Button confirmButton;
     public Button cancelButton;
 
@@ -39,16 +41,22 @@ public class PopupView : MonoBehaviour
         }
     }
 
-    public void Show(string message, string confirmMessage, Action onConfirm, string cancleMessage = null,  Action onCancle = null)
+    public void Show(string message, string confirmMessage, Action onConfirm, string cancleMessage = "Close",  Action onCancle = null)
     {
         // 텍스트 업데이트
         contentText.text = message;
 
-        if(confirmText != null)
-            confirmText.text = confirmMessage;
+        if (confirmText != null)
+        {
+            confirmText.StringReference.TableEntryReference = confirmMessage;
+            confirmText.RefreshString();
+        }
 
         if (cancelText != null)
-            cancelText.text = cancleMessage;
+        {
+            cancelText.StringReference.TableEntryReference = cancleMessage;
+            cancelText.RefreshString();
+        }
 
         // 콜백 저장
         confirmCallback = onConfirm;

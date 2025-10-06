@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: DIalog Table_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 93aa6117bfbaa44f9a3014fa06ed92e9, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1555737600000
+    m_Localized: Security protocol disengaged. Door opening.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794304
+    m_Localized: Activating hibernation module. Running system check.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794305
+    m_Localized: Coolant removed. Blood circulation restored.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794306
+    m_Localized: Heart rate stabilized. Oxygen levels normal.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794307
+    m_Localized: Muscle and neural functions operational.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794308
+    m_Localized: Hibernation termination complete. Welcome back.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794309
+    m_Localized: Analyzing surveillance records. Rebuilding visual sequence for display.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

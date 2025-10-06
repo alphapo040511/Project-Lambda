@@ -34,12 +34,12 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
 
     private void OnEnable()
     {
-        GameEvents.OnLanguageChanged += LanguageChanged;
+        //GameEvents.OnLanguageChanged += LanguageChanged;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnLanguageChanged -= LanguageChanged;
+        //GameEvents.OnLanguageChanged -= LanguageChanged;
     }
 
     // 캔버스가 아닐 경우 캔버스로 변경
@@ -81,7 +81,8 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
     public void ShowMessage(DialogSO dialog)
     {
         currentDialog = dialog;
-        view.SetText(GetLocalizedMessage(SettingsManager.Instance.currentSettings.language));
+        //view.SetText(GetLocalizedMessage(SettingsManager.Instance.currentSettings.language));
+        view.SetText(currentDialog.id);
         view.Show();
     }
 
@@ -93,7 +94,7 @@ public class ToastMessageSystem : SingletonMonoBehaviour<ToastMessageSystem>
 
     private void LanguageChanged(Language language)
     {
-        view.SetText(GetLocalizedMessage(language));
+        //view.SetText(GetLocalizedMessage(language));
     }
 
     private string GetLocalizedMessage(Language language)

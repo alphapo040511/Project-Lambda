@@ -2350,6 +2350,7 @@ GameObject:
   - component: {fileID: 276275504}
   - component: {fileID: 276275506}
   - component: {fileID: 276275505}
+  - component: {fileID: 276275507}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2396,7 +2397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Confirm
+  m_text: Cancle
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac6e124b946176e4798737813e65a270, type: 2}
   m_sharedMaterial: {fileID: 5878889903305558550, guid: ac6e124b946176e4798737813e65a270,
@@ -2474,6 +2475,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276275503}
   m_CullTransparentMesh: 1
+--- !u!114 &276275507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276275503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:9eaa8e852320b6247a34a5040773de5d
+    m_TableEntryReference:
+      m_KeyId: 819877961728
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276275505}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -9526,8 +9567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contentText: {fileID: 120656563}
-  confirmText: {fileID: 1805297193}
-  cancelText: {fileID: 276275505}
+  confirmText: {fileID: 1805297195}
+  cancelText: {fileID: 276275507}
   confirmButton: {fileID: 1915346081}
   cancelButton: {fileID: 1560118498}
 --- !u!1 &1393864590
@@ -11895,6 +11936,7 @@ GameObject:
   - component: {fileID: 1805297192}
   - component: {fileID: 1805297194}
   - component: {fileID: 1805297193}
+  - component: {fileID: 1805297195}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -11941,7 +11983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cancle
+  m_text: Comfirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac6e124b946176e4798737813e65a270, type: 2}
   m_sharedMaterial: {fileID: 5878889903305558550, guid: ac6e124b946176e4798737813e65a270,
@@ -12019,6 +12061,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805297191}
   m_CullTransparentMesh: 1
+--- !u!114 &1805297195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805297191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:9eaa8e852320b6247a34a5040773de5d
+    m_TableEntryReference:
+      m_KeyId: 623379013632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1805297193}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1815208127
 GameObject:
   m_ObjectHideFlags: 0

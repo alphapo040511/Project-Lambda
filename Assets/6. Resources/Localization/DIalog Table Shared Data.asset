@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: DIalog Table Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: DIalog Table
+  m_TableCollectionNameGuidString: 93aa6117bfbaa44f9a3014fa06ed92e9
+  m_Entries:
+  - m_Id: 1555737600000
+    m_Key: AI_Door_Open
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794304
+    m_Key: AI_HibernationWake_001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794305
+    m_Key: AI_HibernationWake_002
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794306
+    m_Key: AI_HibernationWake_003
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794307
+    m_Key: AI_HibernationWake_004
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794308
+    m_Key: AI_HibernationWake_005
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1555741794309
+    m_Key: AI_Hologram_Reconstruct
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 7113329101638467613
+  references:
+    version: 2
+    RefIds:
+    - rid: 7113329101638467613
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1759741935596

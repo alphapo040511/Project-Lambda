@@ -106,13 +106,13 @@ public class SettingsUI : ScreenBase
             popupView.Show(
                 "변경된 설정이 저장되지 않았습니다.\n" +
                 "저장하시겠습니까?",
-                "저장",
+                "Apply",
                 () =>
                 {
                     OnApplyClicked();
                     ChangeTab(target);
                 },
-                "취소",
+                "Close",
                 () => {
                     LoadingSetting();
                     ChangeTab(target);
@@ -174,13 +174,13 @@ public class SettingsUI : ScreenBase
             popupView.Show(
                 "변경된 설정이 저장되지 않았습니다.\n" +
                 "저장하시겠습니까?",
-                "저장",
+                "Apply",
                 () =>
                 {
                     OnApplyClicked();
                     GameManager.Instance.ResumeGame();
                 },
-                "취소",
+                "Close",
                 () => {
                     LoadingSetting();
                     GameManager.Instance.ResumeGame();

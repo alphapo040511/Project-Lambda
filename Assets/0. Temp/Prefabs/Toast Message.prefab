@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6230010234350277817}
   - component: {fileID: 3241905081333770919}
   - component: {fileID: 4425944381259455807}
+  - component: {fileID: 5123442626660528329}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -35,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 112.3, y: -21.72}
+  m_AnchoredPosition: {x: 10, y: -5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6230010234350277817
@@ -66,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Toast Message
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be4d7cfb135af1d4fac867e7ad8eb1e5, type: 2}
   m_sharedMaterial: {fileID: 3386866073407187654, guid: be4d7cfb135af1d4fac867e7ad8eb1e5,
@@ -150,6 +151,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &5123442626660528329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907197043179458269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:93aa6117bfbaa44f9a3014fa06ed92e9
+    m_TableEntryReference:
+      m_KeyId: 1555737600000
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3241905081333770919}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &4180205498841105443
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,4 +322,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6fe094dd3297544ab4ac47e47b8dd74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp: {fileID: 3241905081333770919}
+  tmp: {fileID: 5123442626660528329}

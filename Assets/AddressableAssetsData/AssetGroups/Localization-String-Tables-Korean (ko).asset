@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: e216b9a6316d31d4eb0f8bdd5ef22f53
   m_SerializeEntries:
+  - m_GUID: 48d635e731c0c4c1c92a9348dddc72f3
+    m_Address: DIalog Table_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b792901c3130b0c48ad49db6a8b13a7b
     m_Address: Settings Table_ko
     m_ReadOnly: 1

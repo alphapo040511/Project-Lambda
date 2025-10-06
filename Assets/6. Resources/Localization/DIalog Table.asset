@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
-  m_Name: Settings Table
+  m_Name: DIalog Table
   m_EditorClassIdentifier: 
-  m_SharedTableData: {fileID: 11400000, guid: 9eaa8e852320b6247a34a5040773de5d, type: 2}
+  m_SharedTableData: {fileID: 11400000, guid: 93aa6117bfbaa44f9a3014fa06ed92e9, type: 2}
   m_Tables:
-  - {fileID: 11400000, guid: 23c107fdae529954196572644345feaa, type: 2}
-  - {fileID: 11400000, guid: b792901c3130b0c48ad49db6a8b13a7b, type: 2}
+  - {fileID: 11400000, guid: ab0d535ca2bcd415ea86c8d3f6472751, type: 2}
+  - {fileID: 11400000, guid: 48d635e731c0c4c1c92a9348dddc72f3, type: 2}
   m_Extensions:
-  - rid: 7113329101638467588
+  - rid: 7113329101638467614
   m_Group: String Table
   references:
     version: 2
     RefIds:
-    - rid: 7113329101638467588
+    - rid: 7113329101638467614
       type: {class: GoogleSheetsExtension, ns: UnityEditor.Localization.Plugins.Google,
         asm: Unity.Localization.Editor}
       data:
@@ -30,18 +30,18 @@ MonoBehaviour:
         m_SheetsServiceProvider: {fileID: 11400000, guid: 1866db8c9ee064de9931488f03c2b178,
           type: 2}
         m_SpreadsheetId: 17y5GpRLdeLFMD1m01icr_56yfYLOVMpp2grwGw7uVLg
-        m_SheetId: 1870995219
+        m_SheetId: 1873191230
         m_Columns:
-        - rid: 7113329101638467610
-        - rid: 7113329101638467611
-        - rid: 7113329101638467612
+        - rid: 7113329101638467620
+        - rid: 7113329101638467621
+        - rid: 7113329101638467622
         m_RemoveMissingPulledKeys: 1
-    - rid: 7113329101638467610
+    - rid: 7113329101638467620
       type: {class: KeyColumn, ns: UnityEditor.Localization.Plugins.Google.Columns,
         asm: Unity.Localization.Editor}
       data:
         m_Column: A
-    - rid: 7113329101638467611
+    - rid: 7113329101638467621
       type: {class: LocaleColumn, ns: UnityEditor.Localization.Plugins.Google.Columns,
         asm: Unity.Localization.Editor}
       data:
@@ -49,7 +49,7 @@ MonoBehaviour:
         m_LocaleIdentifier:
           m_Code: ko
         m_IncludeComments: 0
-    - rid: 7113329101638467612
+    - rid: 7113329101638467622
       type: {class: LocaleColumn, ns: UnityEditor.Localization.Plugins.Google.Columns,
         asm: Unity.Localization.Editor}
       data:
