@@ -8,12 +8,6 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
 
-[System.Serializable]
-public class Option
-{
-    public string content;
-    
-}
 
 public class CustomSelector : MonoBehaviour
 {
@@ -53,13 +47,10 @@ public class CustomSelector : MonoBehaviour
     // 옵션 추가
     public void AddOptions(List<string> newOption)
     {
-        for (int i = 0; i < newOption.Count; i++)
-        {
-            int index = options.Count + i;              // 마지막 옵션에 이어서 추가
-            CreatIndicator(index);
-        }
-
         options.AddRange(newOption);                    // 옵션 배열 붙여 넣기
+
+        SetUI();                                        // 버튼 재생생
+
         RefreshUI();
     }
 
@@ -68,13 +59,19 @@ public class CustomSelector : MonoBehaviour
     {
         options.Clear();
 
-        foreach(Button button in indicatorButtons)
+        DestroyButton();
+    }
+
+    void DestroyButton()
+    {
+        foreach (Button button in indicatorButtons)
         {
             Destroy(button.gameObject);
         }
 
         indicatorButtons.Clear();
     }
+
 
     // 다음 옵션
     void ChangeOption(int dir)
@@ -98,7 +95,9 @@ public class CustomSelector : MonoBehaviour
 
     void SetUI()
     {
-        for(int i = 0; i < options.Count; i++)
+        DestroyButton();                        // 기존 버튼 삭제
+
+        for (int i = 0; i < options.Count; i++)
         {
             int index = i;
             CreatIndicator(index);

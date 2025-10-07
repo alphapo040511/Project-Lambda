@@ -35,8 +35,8 @@ public class GraphicSettings : SettingTabBase
         if (frameRateSelector != null)
         {
             frameRateSelector.ClearOptions();
-            frameRateSelector.AddOptions(new System.Collections.Generic.List<string>(
-                SettingsManager.Instance.GetFrameRates()));
+            frameRateSelector.AddOptions(new System.Collections.Generic.List<string>{
+            "24 FPS", "30 FPS", "60 FPS", "120 FPS", "144 FPS", "240 FPS", "Unlimited" });
         }
 
         // 품질 드롭다운 설정
@@ -62,13 +62,14 @@ public class GraphicSettings : SettingTabBase
         if (frameRateSelector != null)
             frameRateSelector.onValueChanged += OnFrameRateChanged;
 
+        if (vsyncToggle != null)
+            vsyncToggle.onValueChanged.AddListener(OnVSyncChanged);
 
         // 그래픽 설정
         if (qualityDropdown != null)
             qualityDropdown.onValueChanged.AddListener(OnQualityChanged);
 
-        if (vsyncToggle != null)
-            vsyncToggle.onValueChanged.AddListener(OnVSyncChanged);
+
 
         // 그림자 설정
         if (shadowQualitySelector != null)
@@ -102,7 +103,19 @@ public class GraphicSettings : SettingTabBase
             //              _ => 기본값
             //          }
 
-            frameRateSelector.SetOption(settingsUI.tempSettings.targetFrameRate);
+            int value = settingsUI.tempSettings.targetFrameRate switch
+            {
+                24 => 0,
+                30 => 1,
+                60 => 2,
+                120 => 3,
+                144 => 4,
+                240 => 5,
+                0 => 6,
+                _ => 2              // 기본값 = 60 프레임
+            };
+
+            frameRateSelector.SetOption(value);
         }
 
         // 그래픽 설정 UI 업데이트
@@ -143,7 +156,19 @@ public class GraphicSettings : SettingTabBase
     private void OnFrameRateChanged(int value)
     {
         if (isInitializing) return;
-        settingsUI.tempSettings.targetFrameRate = value;
+
+        int frameRate = value switch
+        {
+            0 => 24,
+            1 => 30,
+            2 => 60,
+            3 => 120,
+            4 => 144,
+            5 => 240,
+            6 => 0,
+            _ => 60                 // 기본값 = 60 프레임
+        };
+        settingsUI.tempSettings.targetFrameRate = frameRate;
     }
 
 

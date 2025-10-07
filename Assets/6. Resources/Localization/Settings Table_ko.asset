@@ -95,15 +95,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10572232685248523
-    m_Localized: "\uBE60\uB978"
+    m_Localized: "\uBE60\uB974\uAC8C (Hard)"
     m_Metadata:
       m_Items: []
   - m_Id: 10572232685248524
-    m_Localized: "\uBD80\uB4DC\uB7EC\uC6B4"
+    m_Localized: "\uBD80\uB4DC\uB7FD\uAC8C (Soft)"
     m_Metadata:
       m_Items: []
   - m_Id: 10572232685248525
-    m_Localized: "\uD504\uB808\uC784"
+    m_Localized: "\uD504\uB808\uC784 \uB808\uC774\uD2B8"
     m_Metadata:
       m_Items: []
   references:
