@@ -90,6 +90,7 @@ public class CustomSelector : MonoBehaviour
         {
             value = index;
             RefreshUI();
+            onValueChanged?.Invoke(value);
         }
     }
 
