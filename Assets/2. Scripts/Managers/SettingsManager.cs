@@ -5,6 +5,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class GameSettings
 {
@@ -23,12 +25,21 @@ public class GameSettings
     public float uiScale = 1f;          // UI 스케일
 
     [Header("Graphics Settings")]
-    public int qualityLevel = 2;        // 그래픽 품질 레벨
-    public bool vsyncEnabled = true;    // 수직동기화 여부
+    public int qualityLevel = 2;        // 그래픽 품질 레벨 (사용 안)
+
+    //그림자
+    public int shadowQuality = 2;       // 0 꺼짐 / 1 Hard / 2 Soft
+    public int shadowDistance = 100;    // 그림자 거리 ~까지 그림자가 나타남
+    public int shadowCascadeCount = 3;  // 그림자 품질 0 낮음 / 1 중간 / 2 높음 / 3 매우 높음
+    public int shadowResolution = 3;    // 그림자 품질 0 낮음 / 1 중간 / 2 높음 / 3 매우 높음
+
+    public int textureQuality;          // 0~2
+    public int aaLevel;                 // 0, 2, 4, 8
+    public float lodBias;               // 0.5~2.0
+    //public bool postProcessing;       글로벌 볼륨을 건드려야해서 나중에 설정
 
     [Header("Language Setting")]
     public Language language = Language.en; // 언어 설정
-
 
     // Clone 메서드
     public GameSettings Clone()
@@ -37,13 +48,25 @@ public class GameSettings
         clone.resolutionIndex = this.resolutionIndex;
         clone.isFullscreen = this.isFullscreen;
         clone.targetFrameRate = this.targetFrameRate;
+        clone.vsyncEnabled = this.vsyncEnabled;
+
         clone.masterVolume = this.masterVolume;
         clone.sfxVolume = this.sfxVolume;
         clone.musicVolume = this.musicVolume;
+
         clone.uiScale = this.uiScale;
+
+        clone.shadowQuality = this.shadowQuality;
         clone.qualityLevel = this.qualityLevel;
-        clone.vsyncEnabled = this.vsyncEnabled;
+        clone.shadowDistance = this.shadowDistance;
+        clone.shadowCascadeCount = this.shadowCascadeCount;
+        clone.shadowResolution = this.shadowResolution;
+        clone.textureQuality = this.textureQuality;
+        clone.aaLevel = this.aaLevel;
+        clone.lodBias = this.lodBias;
+
         clone.language = this.language;
+
 
         return clone;
     }
@@ -56,12 +79,24 @@ public class GameSettings
         return resolutionIndex == other.resolutionIndex &&
                isFullscreen == other.isFullscreen &&
                targetFrameRate == other.targetFrameRate &&
+                vsyncEnabled == other.vsyncEnabled &&
+
                //masterVolume == other.masterVolume &&                      // 사운드 같은 경우는 실시간으로 저장 되도록
                //sfxVolume == other.sfxVolume &&
                //musicVolume == other.musicVolume &&
+
                uiScale == other.uiScale &&
+
                qualityLevel == other.qualityLevel &&
-               vsyncEnabled == other.vsyncEnabled &&
+
+               shadowQuality == other.shadowQuality &&
+               shadowDistance == other.shadowDistance &&
+               shadowCascadeCount == other.shadowCascadeCount &&
+               shadowResolution == other.shadowResolution &&
+               textureQuality == other.textureQuality &&
+               aaLevel == other.aaLevel &&
+               lodBias == other.lodBias &&
+
                language == other.language;
     }
 }
@@ -87,9 +122,20 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     private const string SFX_VOLUME_PARAM = "SFXVolume";
     private const string MUSIC_VOLUME_PARAM = "MusicVolume";
 
+    // 현재 적용중인 urpAsset;
+    private UniversalRenderPipelineAsset urpAsset;
+
+    // 라이팅 세팅용
+    private LightSettingManager lightSetting;
+
     protected override void Awake()
     {
         base.Awake();
+
+        // 현재 퀄리티 에셋 참조
+        urpAsset = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
+        lightSetting = gameObject.AddComponent<LightSettingManager>();
+
         InitializeSettings();           //설정 초기화
         LoadSettings();                 //설정 데이터 로드
         ApplyAllSettings();             //모든 설정 적용
@@ -166,6 +212,8 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         ApplyUISettings();
         ApplyGraphicsSettings();
         ApplyLanguageSetting();
+
+        lightSetting.LightSetting();        // 라이트는 따로 설정
     }
 
     private void ApplyDisplaySettings()
@@ -181,6 +229,9 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
 
         // 프레임레이트 설정
         Application.targetFrameRate = currentSettings.targetFrameRate;
+
+        // 수직동기화 설정
+        QualitySettings.vSyncCount = currentSettings.vsyncEnabled ? 1 : 0;
     }
 
     private void ApplyAudioSettings()
@@ -221,7 +272,15 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     private void ApplyGraphicsSettings()
     {
         QualitySettings.SetQualityLevel(currentSettings.qualityLevel);
-        QualitySettings.vSyncCount = currentSettings.vsyncEnabled ? 1 : 0;
+
+        // 그림자 거리/카스케이드
+        urpAsset.shadowDistance = (currentSettings.shadowQuality == 0) ? currentSettings.shadowDistance : 0;   // 꺼져있으면 0
+        urpAsset.shadowCascadeCount = currentSettings.shadowCascadeCount + 1;
+        
+        // MSAA
+        urpAsset.msaaSampleCount = currentSettings.aaLevel;
+
+        QualitySettings.lodBias = currentSettings.lodBias;
     }
 
     private void ApplyLanguageSetting()
@@ -235,6 +294,7 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
 
     #endregion
 
+    // 개별 설정은 잘 사용 안할듯 합니다..?
     #region Individual Setting Methods (개별 설정 메서드)
     // 해상도 설정
     public void SetResoultion(int resoultionIndex)
@@ -260,6 +320,13 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
 
         currentSettings.targetFrameRate = frameRateIndex;
         Application.targetFrameRate = availableFrameRates[frameRateIndex];
+    }
+
+    // 수직동기화 설정
+    public void SetVSync(bool ebabled)
+    {
+        currentSettings.vsyncEnabled = ebabled;
+        ApplyGraphicsSettings();
     }
 
     // MasterVolume 설정
@@ -292,12 +359,7 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         ApplyGraphicsSettings();
     }
 
-    // 수직동기화 설정
-    public void SetVSync(bool ebabled)
-    {
-        currentSettings.vsyncEnabled = ebabled;
-        ApplyGraphicsSettings() ;
-    }
+
     #endregion
 
     #region Getters

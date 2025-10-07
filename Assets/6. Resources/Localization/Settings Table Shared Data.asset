@@ -35,44 +35,72 @@ MonoBehaviour:
     m_Key: Close
     m_Metadata:
       m_Items: []
-  - m_Id: 10264643640483840
+  - m_Id: 10572232681054208
     m_Key: Very Low
     m_Metadata:
       m_Items: []
-  - m_Id: 10189702878453760
+  - m_Id: 10572232681054209
     m_Key: Low
     m_Metadata:
       m_Items: []
-  - m_Id: 10189702958145536
+  - m_Id: 10572232681054210
     m_Key: Medium
     m_Metadata:
       m_Items: []
-  - m_Id: 10189702958145537
+  - m_Id: 10572232685248512
     m_Key: High
     m_Metadata:
       m_Items: []
-  - m_Id: 10189702962339840
+  - m_Id: 10572232685248513
     m_Key: Very High
     m_Metadata:
       m_Items: []
-  - m_Id: 10189702962339841
+  - m_Id: 10572232685248514
     m_Key: Ultra
     m_Metadata:
       m_Items: []
-  - m_Id: 10189702962339842
+  - m_Id: 10572232685248515
     m_Key: Custom
     m_Metadata:
       m_Items: []
-  - m_Id: 10189702962339843
+  - m_Id: 10572232685248516
     m_Key: Off
     m_Metadata:
       m_Items: []
-  - m_Id: 10189702962339844
+  - m_Id: 10572232685248517
     m_Key: On
     m_Metadata:
       m_Items: []
-  - m_Id: 10264643653066752
+  - m_Id: 10572232685248518
     m_Key: Unlimited
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10572232685248519
+    m_Key: Shadow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10572232685248520
+    m_Key: Shadow Distance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10572232685248521
+    m_Key: Shadow Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10572570922311680
+    m_Key: Shadow Cascade Count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10572232685248523
+    m_Key: Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10572232685248524
+    m_Key: Soft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10572232685248525
+    m_Key: Frame Rate
     m_Metadata:
       m_Items: []
   m_Metadata:

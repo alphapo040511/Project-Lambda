@@ -115,7 +115,7 @@ public class CustomSelector : MonoBehaviour
 
     void RefreshUI()
     {
-        SetOption(options[value]);                              // 텍스트 적String Table
+        SetOption(options[value]);                              // 텍스트 적용 String Table
 
         leftArrow.interactable = value > 0;                     // 첫번째 옵션이라면 비활성화
         rightArrow.interactable = value < options.Count - 1;    // 마지막 옵션이라면 비활성화

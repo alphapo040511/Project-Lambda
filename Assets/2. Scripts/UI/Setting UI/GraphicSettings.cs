@@ -11,10 +11,15 @@ public class GraphicSettings : SettingTabBase
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
     public CustomSelector frameRateSelector;
+    public Toggle vsyncToggle;
 
     [Header("Graphics Settings")]
     public TMP_Dropdown qualityDropdown;
-    public Toggle vsyncToggle;
+    public CustomSelector shadowQualitySelector;
+    public CustomSelector shadowDistanceSelector;
+    public CustomSelector shadowCascadeCountSelector;
+    public CustomSelector shadowResolutionSelector;
+
 
     protected override void InitializeUI()
     {
@@ -41,6 +46,8 @@ public class GraphicSettings : SettingTabBase
             qualityDropdown.AddOptions(new System.Collections.Generic.List<string>(
                 SettingsManager.Instance.GetQualityLevelStrings()));
         }
+
+
     }
 
     protected override void SetupEventListeners()
@@ -62,6 +69,19 @@ public class GraphicSettings : SettingTabBase
 
         if (vsyncToggle != null)
             vsyncToggle.onValueChanged.AddListener(OnVSyncChanged);
+
+        // 그림자 설정
+        if (shadowQualitySelector != null)
+            shadowQualitySelector.onValueChanged += OnShadowQualityChanged;
+
+        if (shadowDistanceSelector != null)
+            shadowDistanceSelector.onValueChanged += OnShadowDistancehanged;
+
+        if (shadowCascadeCountSelector != null)
+            shadowCascadeCountSelector.onValueChanged += OnShadowCascadeCountChanged;
+
+        if (shadowResolutionSelector != null)
+            shadowResolutionSelector.onValueChanged += OnShadowResolutionhanged;
     }
 
     public override void RefreshUI()
@@ -91,6 +111,19 @@ public class GraphicSettings : SettingTabBase
 
         if (vsyncToggle != null)
             vsyncToggle.isOn = settingsUI.tempSettings.vsyncEnabled;
+
+        // 그림자 설정
+        if (shadowQualitySelector != null)
+            shadowQualitySelector.SetOption(settingsUI.tempSettings.shadowQuality);
+
+        if (shadowDistanceSelector != null)
+            shadowDistanceSelector.SetOption(settingsUI.tempSettings.shadowDistance);
+
+        if (shadowCascadeCountSelector != null)
+            shadowCascadeCountSelector.SetOption(settingsUI.tempSettings.shadowCascadeCount);
+
+        if (shadowResolutionSelector != null)
+            shadowResolutionSelector.SetOption(settingsUI.tempSettings.shadowResolution);
     }
 
     #region Event Handlers
@@ -124,6 +157,46 @@ public class GraphicSettings : SettingTabBase
     {
         if (isInitializing) return;
         settingsUI.tempSettings.vsyncEnabled = value;
+    }
+
+    private void OnShadowQualityChanged(int value)
+    {
+        if (isInitializing) return;
+
+        // 그림자가 꺼져있는 경우 아래의 옵션 가리기
+        shadowDistanceSelector.gameObject.SetActive(value != 0);
+        shadowCascadeCountSelector.gameObject.SetActive(value != 0);
+        shadowResolutionSelector.gameObject.SetActive(value != 0);
+
+        settingsUI.tempSettings.shadowQuality = value;
+    }
+
+    private void OnShadowDistancehanged(int value)
+    {
+        if (isInitializing) return;
+
+        int distance = value switch
+        {
+            0 => 50,
+            1 => 100,
+            2 => 150,
+            3 => 200,
+            _ => 100
+        };
+
+        settingsUI.tempSettings.shadowDistance = distance;
+    }
+
+    private void OnShadowCascadeCountChanged(int value)
+    {
+        if (isInitializing) return;
+        settingsUI.tempSettings.shadowCascadeCount = value;
+    }
+
+    private void OnShadowResolutionhanged(int value)
+    {
+        if (isInitializing) return;
+        settingsUI.tempSettings.shadowResolution = value;
     }
 
     #endregion
