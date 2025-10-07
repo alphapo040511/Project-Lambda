@@ -202,11 +202,11 @@ public class GraphicSettings : SettingTabBase
 
         int distance = value switch
         {
-            0 => 50,
-            1 => 100,
-            2 => 150,
-            3 => 200,
-            _ => 100
+            0 => 10,
+            1 => 20,
+            2 => 50,
+            3 => 100,
+            _ => 20
         };
 
         settingsUI.tempSettings.shadowDistance = distance;
