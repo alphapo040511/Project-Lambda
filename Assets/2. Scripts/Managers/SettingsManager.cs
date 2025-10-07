@@ -274,7 +274,7 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         QualitySettings.SetQualityLevel(currentSettings.qualityLevel);
 
         // 그림자 거리/카스케이드
-        urpAsset.shadowDistance = (currentSettings.shadowQuality == 0) ? currentSettings.shadowDistance : 0;   // 꺼져있으면 0
+        urpAsset.shadowDistance = (currentSettings.shadowQuality == 0) ? 0 : currentSettings.shadowDistance;   // 꺼져있으면 0
         urpAsset.shadowCascadeCount = currentSettings.shadowCascadeCount + 1;
         
         // MSAA
