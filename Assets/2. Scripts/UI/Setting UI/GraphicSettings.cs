@@ -30,8 +30,8 @@ public class GraphicSettings : SettingTabBase
         if (frameRateSelector != null)
         {
             frameRateSelector.ClearOptions();
-            frameRateSelector.AddOptions(new System.Collections.Generic.List<string>
-                {"30 FPS", "60 FPS", "120 FPS", "Unlimited"});
+            frameRateSelector.AddOptions(new System.Collections.Generic.List<string>(
+                SettingsManager.Instance.GetFrameRates()));
         }
 
         // 품질 드롭다운 설정
@@ -82,14 +82,7 @@ public class GraphicSettings : SettingTabBase
             //              _ => 기본값
             //          }
 
-            int frameRateIndex = settingsUI.tempSettings.targetFrameRate switch
-            {
-                30 => 0,
-                60 => 1,
-                120 => 2,
-                _ => 3
-            };
-            frameRateSelector.SetOption(frameRateIndex);
+            frameRateSelector.SetOption(settingsUI.tempSettings.targetFrameRate);
         }
 
         // 그래픽 설정 UI 업데이트
@@ -117,16 +110,7 @@ public class GraphicSettings : SettingTabBase
     private void OnFrameRateChanged(int value)
     {
         if (isInitializing) return;
-
-        int frameRate = value switch
-        {
-            0 => 30,
-            1 => 60,
-            2 => 120,
-            _ => -1
-        };
-
-        settingsUI.tempSettings.targetFrameRate = frameRate;
+        settingsUI.tempSettings.targetFrameRate = value;
     }
 
 

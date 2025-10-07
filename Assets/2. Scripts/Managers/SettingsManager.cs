@@ -11,7 +11,8 @@ public class GameSettings
     [Header("Display Settings")]
     public int resolutionIndex = 0;     // 해상도 인덱스
     public bool isFullscreen = true;    // 전체화면 여부
-    public int targetFrameRate = 60;    // 목표 프레임레이트
+    public int targetFrameRate = 0;    // 목표 프레임 인덱스
+    public bool vsyncEnabled = true;    // 수직동기화 여부
 
     [Header("Audio Settings")]
     public float masterVolume = 1f;     // 마스터 볼륨 (0~1)
@@ -78,6 +79,7 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     public GameSettings currentSettings = new GameSettings();
 
     private Resolution[] availableResolutions;
+    private int[] availableFrameRates;
     private const string SETTINGS_KEY = "GameSettings";
 
     // 오디오 믹서 파라미터 이름
@@ -103,6 +105,11 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
                 .Select(g => g.First())                     // 같은 해상도 중 첫 번째만 사용
     .           ToArray();
 
+        availableFrameRates = Screen.resolutions
+            .Select(f => (int)Math.Round(f.refreshRateRatio.value))     // 주사율만 추출
+            .Distinct()                                                 // 중복 제거
+            .OrderBy(f => f)                                            // 낮은 순 정렬
+            .ToArray();
 
         // 현재 해상도를 기본(제일 높은 해상도)로 설정
         currentSettings.resolutionIndex = availableResolutions.Length - 1;
@@ -247,10 +254,12 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     }
 
     // 프레임레이트 설정
-    public void SetTargetFrameRate(int frameRate)
+    public void SetTargetFrameRate(int frameRateIndex)
     {
-        currentSettings.targetFrameRate = frameRate;
-        Application.targetFrameRate = frameRate;
+        if (frameRateIndex > availableFrameRates.Length) return;        //  범위 밖이면 return
+
+        currentSettings.targetFrameRate = frameRateIndex;
+        Application.targetFrameRate = availableFrameRates[frameRateIndex];
     }
 
     // MasterVolume 설정
@@ -311,6 +320,22 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         return resStrings;
     }
 
+    public string[] GetFrameRates()
+    {
+        if (availableFrameRates == null) return new string[1] { "Unlimited" };
+
+        string[] resStrings = new string[availableFrameRates.Length + 1];
+        for (int i = 0; i < resStrings.Length - 1; i++)
+        {
+            resStrings[i] = $"{availableFrameRates[i]} FPS";
+            Debug.Log(resStrings[i] + "FPS");
+        }
+
+        resStrings[availableFrameRates.Length] = "Unlimited";
+
+        return resStrings;
+    }
+
     // 그래픽 퀄리티 레벨(문자열) 반환
     public string[] GetQualityLevelStrings()
     {
@@ -324,7 +349,7 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
 
         string[] names = new string[langs.Length];
 
-       for(int i = 0; i < langs.Length; i++)
+        for(int i = 0; i < langs.Length; i++)
         {
             string name = langs[i] switch
             {
