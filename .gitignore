@@ -105,4 +105,4 @@ InitTestScene*.unity*
 .DS_Store
 
 # Google Sheets OAuth secret (local only)
-Assets/6. Resources/Localization/Google Sheets Service.asset
+# Assets/6. Resources/Localization/Google Sheets Service.asset
