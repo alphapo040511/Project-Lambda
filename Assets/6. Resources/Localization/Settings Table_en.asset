@@ -106,6 +106,10 @@ MonoBehaviour:
     m_Localized: Frame Rate
     m_Metadata:
       m_Items: []
+  - m_Id: 13176533233143808
+    m_Localized: Exit to Main Menu
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

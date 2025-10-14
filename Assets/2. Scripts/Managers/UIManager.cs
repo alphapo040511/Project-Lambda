@@ -49,6 +49,23 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         InitializeScreens();
     }
 
+    private void OnEnable()
+    {
+        GameEvents.OnChangeGameState += HandleStateChange;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnChangeGameState -= HandleStateChange;
+    }
+
+    private void HandleStateChange(GameState state)
+    {
+        // 메뉴로 돌아가면 모든 UI 끄기
+        if (state == GameState.Menu)
+            DisableAllUI();
+    }
+
     [SerializeField] private List<UIScreen> screens = new List<UIScreen>();
     
     private Dictionary<ScreenType, ScreenBase> screenDictionary = new Dictionary<ScreenType, ScreenBase>();
@@ -141,6 +158,19 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         isWaiting = false;
     }
 
+    // 스크린 비활성화 (초기화)
+    public void DisableScreen()
+    {
+        if (isWaiting) return;
+
+        //기존 화변 비활성화
+        if (CurrentScreen != ScreenType.None && screenDictionary.ContainsKey(CurrentScreen))
+        {
+            screenDictionary[CurrentScreen].Init();
+            CurrentScreen = ScreenType.None;
+        }
+    }
+
     public void AddOnScreen(UIScreen newScreen)
     {
         screens.Add(newScreen);
@@ -180,6 +210,24 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             HideOverlay(overlay);
         }
     }
+
+    // 오버레이 비활성화 (초기화)
+    public void DisableOverlay(OverlayType overlayType)
+    {
+        if (overlayDictionary.ContainsKey(overlayType))
+        {
+            overlayDictionary[overlayType].Init();
+        }
+    }
+
+    public void DisableAllOverlay()
+    {
+        foreach (var overlay in overlayDictionary.Keys)
+        {
+            DisableOverlay(overlay);
+        }
+    }
+
     #endregion
 
     #region Quick Method
@@ -196,5 +244,17 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         }
     }
 
+    public void HideAllUI()
+    {
+        HideScreen();
+        HideAllOverlay();
+    }
+
+    // 모든 UI 비활성화(초기화)
+    public void DisableAllUI()
+    {
+        DisableScreen();
+        DisableAllOverlay();
+    }
     #endregion
 }

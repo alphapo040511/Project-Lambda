@@ -7,6 +7,23 @@ public class EventSystem : SingletonMonoBehaviour<EventSystem>
 {
     public bool isEventPlaying = false;
 
+    private void OnEnable()
+    {
+        GameEvents.OnChangeGameState += HandleStateChange;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnChangeGameState -= HandleStateChange;
+    }
+
+    private void HandleStateChange(GameState state)
+    {
+        // 메뉴로 돌아가면 이벤트 종료
+        if (state == GameState.Menu)
+            EndEvent();
+    }
+
     //이벤트 시작
     public void StartEvent()
     {

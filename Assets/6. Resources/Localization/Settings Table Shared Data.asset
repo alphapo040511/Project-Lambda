@@ -103,6 +103,10 @@ MonoBehaviour:
     m_Key: Frame Rate
     m_Metadata:
       m_Items: []
+  - m_Id: 13176533233143808
+    m_Key: Exit Main
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -29,12 +29,12 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
 
     private void OnEnable()
     {
-        GameEvents.OnChangeGameState += ChangedGameState;
+        GameEvents.OnChangeGameState += HandleStateChange;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnChangeGameState -= ChangedGameState;
+        GameEvents.OnChangeGameState -= HandleStateChange;
     }
 
 
@@ -64,7 +64,9 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
             StopCoroutine(dialogCoroutine);
         }
 
-        audioSource.Stop();
+        audioSource.Stop();                                 // 오디오 정자
+
+        ToastMessageSystem.Instance.ClearMessage();         // 자막 정지
     }
 
     private IEnumerator ShowDialog()
@@ -100,11 +102,15 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
         }
     }
 
-    private void ChangedGameState(GameState state)
+    private void HandleStateChange(GameState state)
     {
         if (state == GameState.Paused)
         {
             audioSource.Pause();
+        }
+        else if(state == GameState.Menu)            // 메뉴로 돌아가면 종료
+        {
+            StopAllDialog();
         }
         else
         {
