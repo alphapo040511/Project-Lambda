@@ -21,7 +21,7 @@ RenderSettings:
   m_FogDensity: 0.05
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.121146254, g: 0.13233648, b: 0.15471691, a: 1}
+  m_AmbientSkyColor: {r: 0.17491637, g: 0.18998313, b: 0.21509439, a: 1}
   m_AmbientEquatorColor: {r: 0.1400303, g: 0.21646784, b: 0.27205884, a: 1}
   m_AmbientGroundColor: {r: 0.048010383, g: 0.112683475, b: 0.17647058, a: 1}
   m_AmbientIntensity: 1
@@ -199966,6 +199966,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BigLight_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780560545046106339, guid: 2f917b86a0b2af841a996596f50c3f95,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
