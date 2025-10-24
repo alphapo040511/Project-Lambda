@@ -6,16 +6,18 @@ using UnityEngine.ProBuilder;
 
 public class WordMatchPuzzle : MonoBehaviour
 {
-    [Header("TMP Reference")]
+    [Header("Componenet Reference")]
+    public InteractionFocus interaction;
     public TextMeshProUGUI textTMP;
     public TextMeshProUGUI markTMP;
     public TextMeshProUGUI countText;
 
     [Header("Word Settings")]
-    public string answer = "WOOD";
-    public List<string> words = new List<string>();
+    public WordPuzzleDataSO puzzleData;
     [Tooltip("랜덤 세그먼트의 길이 (기본은 12)")]
     public int segmentLength = 12;
+    private int remainingCount;
+    private int wordToLine;
 
     [Header("Display Settings")]
     public int lineCount = 10;
@@ -23,66 +25,78 @@ public class WordMatchPuzzle : MonoBehaviour
 
     [Header("Characters")]
     [Tooltip("랜덤 문자열 생성에 사용할 문자들")]
-    [TextArea]
-    public string symbolChars = "#%&*+=-_/<>[](){}^:.?,!@~|;";
+    private string symbolChars = "#%&*+=-_/<>[](){}^:.?,!@~|;";
 
     // 실제 사용할 문자들
-    private List<int> wordIndex = new List<int>();
+    private List<string> randomIndexWords = new List<string>();
     private List<string> wordList = new List<string>();
     private int currentWordIndex = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        InitialLine();
+        segmentLength = 16 - puzzleData.answer.Length;               // 최대 길이인 16에서 단어 길이만큼 제외
+        remainingCount = puzzleData.tryChance;
+        countText.text = $"TargetWord ... \n Likeness _ \n Remaining Count {remainingCount}";
+
+        RandomIndexing();           // 랜덤 단어 목록 정리
+        InitialLine();              // 출력 단어 목록 정리
         ShowText();
-        CheckAnswer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!gameObject.activeSelf) return;
+        if (!gameObject.activeSelf || !interaction.isFocused) return;
 
         if(Input.GetKeyDown(KeyCode.W))
         {
-            currentWordIndex = Math.Clamp(currentWordIndex - lineWidth, 0, wordIndex.Count);
+            currentWordIndex = Math.Clamp(currentWordIndex - wordToLine, 0, wordList.Count);
             ShowText();
-            CheckAnswer();
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            currentWordIndex = Math.Clamp(currentWordIndex - 1, 0, wordIndex.Count);
+            currentWordIndex = Math.Clamp(currentWordIndex - 1, 0, wordList.Count);
             ShowText();
-            CheckAnswer();
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            currentWordIndex = Math.Clamp(currentWordIndex + lineWidth, 0, wordIndex.Count - 1);
+            currentWordIndex = Math.Clamp(currentWordIndex + wordToLine, 0, wordList.Count - 1);
             ShowText();
-            CheckAnswer();
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            currentWordIndex = Math.Clamp(currentWordIndex + 1, 0, wordIndex.Count - 1);
+            currentWordIndex = Math.Clamp(currentWordIndex + 1, 0, wordList.Count - 1);
             ShowText();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space))
+        {
             CheckAnswer();
         }
+
     }
     
     void CheckAnswer()
     {
-        int count = SameWord(words[currentWordIndex]);
-
-        countText.text = $"Likeness = {count}";
+        if (remainingCount <= 0 || wordList[currentWordIndex].Length == 1) return;
+        int count = SameWord(wordList[currentWordIndex]);
+        remainingCount--;
+        countText.text = $"TargetWord {wordList[currentWordIndex]}... \n Likeness {count} \n Remaining Count {remainingCount}";
     }
 
     int SameWord(string word)
     {
+        if (word.Length > puzzleData.answer.Length) return 0;
+
         int count = 0;
+
+        word = word.ToUpper();
+        string answer = puzzleData.answer.ToUpper();
+
         for(int i = 0; i < word.Length; i++)
         {
             if (word[i] == answer[i])
@@ -98,11 +112,10 @@ public class WordMatchPuzzle : MonoBehaviour
     {
         string content = "";
         string mark = "";
-        int index = wordIndex[currentWordIndex];
 
         for (int i = 0; i < wordList.Count; i++)
         {
-            if(i == index)
+            if(i == currentWordIndex)
             {
                 content += $"<color=black>{wordList[i]}</color>";
                 mark += $"<mark=#FFFFFFFF>{wordList[i]}</mark>";
@@ -116,6 +129,20 @@ public class WordMatchPuzzle : MonoBehaviour
 
         textTMP.text = content;
         markTMP.text = mark;
+    }
+
+    void RandomIndexing()
+    {
+        List<string> tempList = new List<string>();
+        tempList.Add(puzzleData.answer);                    // 정답 단어 추가
+        tempList.AddRange(puzzleData.words);                // 표시 단어 목록 추가
+
+        while(tempList.Count > 0)
+        {
+            int index = Random.Range(0, tempList.Count);
+            randomIndexWords.Add(tempList[index]);        // 임시 리스트에서 랜덤으로 추가
+            tempList.RemoveAt(index);
+        }
     }
 
     void InitialLine()
@@ -135,32 +162,33 @@ public class WordMatchPuzzle : MonoBehaviour
         int forward = Random.Range(0, segmentLength) + 1;           // 앞부분 문자열 길이
         if(forward > 0)
         {
-            wordList.Add(GetRandomSymbol(forward));
+            AddRandomSymbol(forward);
         }
 
-        wordList.Add(words[wordCount]);                 // 실제 사용할 단어에 추가
-        wordIndex.Add(wordList.Count - 1);              // 각 단어가 어느 위치에 있는 인덱스 저장
+        wordList.Add(GetRandomWord());                 // 실제 사용할 단어에 추가
 
         if (segmentLength - forward > 0)
         {
-            wordList.Add(GetRandomSymbol(segmentLength - forward)); // 뒷부분 생성
+            AddRandomSymbol(segmentLength - forward); // 뒷부분 생성
         }
 
         if(wordCount % 2 == 1)
         {
-            wordList.Add("\n");
+            wordList[wordList.Count - 1] += "\n";
         }
+
+        wordToLine = wordList.Count / lineCount;
     }
 
-    string GetRandomSymbol(int length)
+    void AddRandomSymbol(int length)
     {
-        string symbol = "";
+
         for(int i = 0; i < length; i++)
         {
+            string symbol = "";
             symbol += symbolChars[Random.Range(0, symbolChars.Length)];
+            wordList.Add(symbol);
         }
-
-        return symbol;
     }
 
     string GetRandomAddress()
@@ -168,5 +196,15 @@ public class WordMatchPuzzle : MonoBehaviour
         int major = Random.Range(0xD0, 0xDF);
         int minor = Random.Range(0x000, 0xFFF);
         return $"   0x{major:X2}{minor:X3}   ";
+    }
+
+    string GetRandomWord()
+    {
+        if (randomIndexWords.Count < 0) return "Null";
+
+        int index = Random.Range(0, randomIndexWords.Count);
+        string word = randomIndexWords[index];
+        randomIndexWords.RemoveAt(index);
+        return word;
     }
 }

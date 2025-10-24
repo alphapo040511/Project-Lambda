@@ -8,7 +8,7 @@ public class InteractionFocus : Interactable
     [Header("Focus Settings")]
     public CinemachineVirtualCamera VirtualCamera;
 
-    private bool isFocused = false;
+    public bool isFocused { get; private set; } = false;
 
     private void Start()
     {
