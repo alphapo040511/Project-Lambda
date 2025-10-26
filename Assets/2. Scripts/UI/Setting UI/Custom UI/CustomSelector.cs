@@ -4,9 +4,6 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Tables;
 
 
 public class CustomSelector : MonoBehaviour
@@ -31,7 +28,7 @@ public class CustomSelector : MonoBehaviour
     // 값 변경 이벤트
     public Action<int> onValueChanged;
 
-    private LocalizedString localizedString = new LocalizedString();
+    private TextLocalizer localizer;
 
     // 테이블 이름 설정 (Inspector 또는 코드)
     [SerializeField] private string tableName = "Settings Table";
@@ -40,6 +37,8 @@ public class CustomSelector : MonoBehaviour
     {
         leftArrow.onClick.AddListener(() => ChangeOption(-1));
         rightArrow.onClick.AddListener(() => ChangeOption(1));
+
+        localizer = new TextLocalizer(optionText, tableName);
 
         SetUI();
     }
@@ -115,7 +114,9 @@ public class CustomSelector : MonoBehaviour
 
     void RefreshUI()
     {
-        SetOption(options[value]);                              // 텍스트 적용 String Table
+        if (localizer == null) localizer = new TextLocalizer(optionText, tableName);
+
+        localizer.SetKey(options[value]);                              // 텍스트 적용 String Table
 
         leftArrow.interactable = value > 0;                     // 첫번째 옵션이라면 비활성화
         rightArrow.interactable = value < options.Count - 1;    // 마지막 옵션이라면 비활성화
@@ -132,33 +133,5 @@ public class CustomSelector : MonoBehaviour
         }
     }
 
-    void SetOption(string keyOrValue)
-    {
-        // 이전 이벤트 제거 (안전하게)
-        localizedString.StringChanged -= UpdateText;
-
-        if (string.IsNullOrEmpty(keyOrValue)) return;
-
-        TableEntry entry = LocalizationSettings.StringDatabase.GetTable(tableName).GetEntry(keyOrValue);
-
-        if(entry != null)
-        {
-            // 키 존재 → LocalizedString 적용
-            localizedString.TableReference = tableName;
-            localizedString.TableEntryReference = keyOrValue;
-            localizedString.StringChanged += UpdateText;
-            localizedString.RefreshString();
-        }
-        else
-        {
-            // 키 없으면 그냥 직접 문자열 적용
-            optionText.text = keyOrValue;
-        }
-    }
-
-    private void UpdateText(string value)
-    {
-        optionText.text = value;
-    }
 
 }
