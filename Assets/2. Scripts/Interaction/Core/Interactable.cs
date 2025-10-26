@@ -128,4 +128,10 @@ public abstract class Interactable : Actor, IInteractable
         used = false;
         currentHoldTime = 0f;
     }
+
+    public void DisableInteraction()
+    {
+        interactable = false;           // 사용 불가 상태로 변경
+        OnDeactivate();                 // 상호작용 UI 비활성화
+    }
 }

@@ -30,7 +30,6 @@ public class InteractionFocus : Interactable
     protected override void Complete()
     {
         base.Complete();
-        Reset();
         EnterFocus();
     }
 
@@ -46,6 +45,8 @@ public class InteractionFocus : Interactable
 
     public virtual void ExitFocus()
     {
+        Reset();
+
         isFocused = false;
 
         GameManager.Instance.ChangeGameState(GameState.Playing);
