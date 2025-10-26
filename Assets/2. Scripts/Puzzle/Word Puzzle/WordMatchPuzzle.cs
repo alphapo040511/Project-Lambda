@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.ProBuilder;
+using UnityEngine.Events;
 
 public class WordMatchPuzzle : MonoBehaviour
 {
@@ -14,14 +15,17 @@ public class WordMatchPuzzle : MonoBehaviour
 
     [Header("Word Settings")]
     public WordPuzzleDataSO puzzleData;
-    [Tooltip("랜덤 세그먼트의 길이 (기본은 12)")]
-    public int segmentLength = 12;
-    private int remainingCount;
+    [Tooltip("랜덤 세그먼트의 길이")]
+    public int segmentLength = 8;
+    private int remainingCount;                 // 남은 시도 횟수
     private int wordToLine;
 
     [Header("Display Settings")]
     public int lineCount = 10;
     public int lineWidth = 2;
+
+    [Header("Event Settings")]
+    public UnityEvent onCleared;
 
     [Header("Characters")]
     [Tooltip("랜덤 문자열 생성에 사용할 문자들")]
@@ -86,6 +90,19 @@ public class WordMatchPuzzle : MonoBehaviour
         int count = SameWord(wordList[currentWordIndex]);
         remainingCount--;
         countText.text = $"TargetWord {wordList[currentWordIndex]}... \n Likeness {count} \n Remaining Count {remainingCount}";
+
+        if(count == puzzleData.answer.Length)
+        {
+            PuzzleCleared();
+        }
+    }
+
+    void PuzzleCleared()
+    {
+        onCleared?.Invoke();
+        interaction.DisableInteraction();       // 상호작용 불가 상태로 변경
+        interaction.ExitFocus();
+        Debug.Log("퍼즐 클리어");
     }
 
     int SameWord(string word)
