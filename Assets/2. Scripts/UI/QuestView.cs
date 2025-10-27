@@ -16,6 +16,8 @@ public class QuestView : MonoBehaviour
     private TextLocalizer title;
     private TextLocalizer description;
 
+    private string descriptionKey;
+
     private void Start()
     {
         title = new TextLocalizer(titleText, tableName);
@@ -24,7 +26,9 @@ public class QuestView : MonoBehaviour
 
     public void Show(string titleKey, string descriptionKey)
     {
-        if(title == null) title = new TextLocalizer(titleText, tableName);
+        this.descriptionKey = descriptionKey;
+
+        if (title == null) title = new TextLocalizer(titleText, tableName);
         title.SetKey(titleKey);
 
         if(description == null) description = new TextLocalizer(descriptionText, tableName);
@@ -33,8 +37,16 @@ public class QuestView : MonoBehaviour
         gameObject.SetActive(true);         // 일단 연출 없이 활성화
     }
 
+    public void UpdateProgress(int target, int current)
+    {
+        if(target != 1)
+        {
+            description.SetKey(descriptionKey, target, current);
+        }
+    }
+
     public void Hide()
     {
-        gameObject.SetActive(false);        // 일단 비활성화
+        UIManager.Instance.HideOverlay(OverlayType.Quest);
     }
 }

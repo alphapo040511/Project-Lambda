@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 881703e89ea9fad45ab836b41765cd87
   m_SerializeEntries:
+  - m_GUID: 15e6487d20e15724aad30149228d11fc
+    m_Address: Quest Table_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 23c107fdae529954196572644345feaa
     m_Address: Settings Table_en
     m_ReadOnly: 1

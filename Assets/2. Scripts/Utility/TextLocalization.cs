@@ -23,7 +23,14 @@ public class TextLocalizer
     // 테이블 이름 설정 (Inspector 또는 코드)
     [SerializeField] private string tableName = "Quest Table";
 
+    
+    // 인자가 없이 키값만 있는 경우
     public void SetKey(string keyOrValue)
+    {
+        SetKey(keyOrValue, null);
+    }
+
+    public void SetKey(string keyOrValue, params object[] args)
     {
         // 이전 이벤트 제거 (안전하게)
         localizedString.StringChanged -= UpdateText;
@@ -37,6 +44,11 @@ public class TextLocalizer
             // 키 존재 → LocalizedString 적용
             localizedString.TableReference = tableName;
             localizedString.TableEntryReference = keyOrValue;
+            
+            // 인자가 있는 경우 설정 "횟수 {0}/{1}" 과 같은 방식으로 사용
+            if (args != null)
+                localizedString.Arguments = args;
+
             localizedString.StringChanged += UpdateText;
             localizedString.RefreshString();
         }

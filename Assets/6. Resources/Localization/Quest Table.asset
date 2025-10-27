@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: Quest Table
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: 20ceeb5d2b0a5b849ab7b50e05b56976, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 15e6487d20e15724aad30149228d11fc, type: 2}
+  - {fileID: 11400000, guid: e732f663fbbf97e439bd48e780346bc5, type: 2}
+  m_Extensions:
+  - rid: 347568325062557699
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds:
+    - rid: 347568325062557699
+      type: {class: GoogleSheetsExtension, ns: UnityEditor.Localization.Plugins.Google,
+        asm: Unity.Localization.Editor}
+      data:
+        m_Collection: {fileID: 11400000}
+        m_SheetsServiceProvider: {fileID: 11400000, guid: 3eafba9e5c301214b818f5b3aa9d7baf,
+          type: 2}
+        m_SpreadsheetId: 17y5GpRLdeLFMD1m01icr_56yfYLOVMpp2grwGw7uVLg
+        m_SheetId: 2033348445
+        m_Columns:
+        - rid: 347568326207078401
+        - rid: 347568326207078402
+        - rid: 347568326207078403
+        m_RemoveMissingPulledKeys: 1
+    - rid: 347568326207078401
+      type: {class: KeyColumn, ns: UnityEditor.Localization.Plugins.Google.Columns,
+        asm: Unity.Localization.Editor}
+      data:
+        m_Column: A
+    - rid: 347568326207078402
+      type: {class: LocaleColumn, ns: UnityEditor.Localization.Plugins.Google.Columns,
+        asm: Unity.Localization.Editor}
+      data:
+        m_Column: B
+        m_LocaleIdentifier:
+          m_Code: ko
+        m_IncludeComments: 0
+    - rid: 347568326207078403
+      type: {class: LocaleColumn, ns: UnityEditor.Localization.Plugins.Google.Columns,
+        asm: Unity.Localization.Editor}
+      data:
+        m_Column: C
+        m_LocaleIdentifier:
+          m_Code: en
+        m_IncludeComments: 0
