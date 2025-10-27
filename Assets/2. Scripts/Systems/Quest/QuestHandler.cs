@@ -15,32 +15,16 @@ public class QuestHandler : MonoBehaviour
     public UnityEvent onCleared;                // 퀘스트가 클리어 될 때
 
 
-    private void OnEnable()
+    private void Awake()
     {
         QuestManager.Instance.onRegistQuest += RegistQuestHandler;
         QuestManager.Instance.onCompleteQuest += CompleteQuestHander;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         QuestManager.Instance.onRegistQuest -= RegistQuestHandler;
         QuestManager.Instance.onCompleteQuest -= CompleteQuestHander;
-    }
-
-    // 퀘스트 등록 시 호출
-    void RegistQuestHandler(string id)
-    {
-        if (id == targetQuest.questId)          // 해당 퀘스트 라면 활성화
-            onActivated?.Invoke();
-        else
-            onDeactivated?.Invoke();            // 아니라면 비활성화 이벤트 호출
-    }
-
-    // 퀘스트 완료시 호출
-    void CompleteQuestHander(string id)
-    {
-        if (id != targetQuest.questId) return;
-        onCleared?.Invoke();
     }
 
     // 외부에서 퀘스트를 등록할 때 호출
@@ -54,5 +38,23 @@ public class QuestHandler : MonoBehaviour
     {
         QuestManager.Instance.ProgressQuest(targetQuest.questId);
         onUsed?.Invoke();       // 사용됨 이벤트 호출
+    }
+
+
+    // 퀘스트 등록 시 호출
+    void RegistQuestHandler(string id)
+    {
+        if (id == targetQuest.questId)          // 해당 퀘스트 라면 활성화
+            onActivated?.Invoke();
+        else
+            onDeactivated?.Invoke();            // 아니라면 비활성화 이벤트 호출
+    }
+
+    // 퀘스트 완료시 호출
+    void CompleteQuestHander(string id)
+    {
+        Debug.Log($"[{targetQuest.questId}] {id} 퀘스트가 완료됨");
+        if (id != targetQuest.questId) return;
+        onCleared?.Invoke();
     }
 }

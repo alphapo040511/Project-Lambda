@@ -27,6 +27,22 @@ MonoBehaviour:
     m_Key: D0002_TestDes
     m_Metadata:
       m_Items: []
+  - m_Id: 170737210548224
+    m_Key: main_find_exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170741400657920
+    m_Key: sub_interact_display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170744890318848
+    m_Key: sub_disable_security
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170975145025536
+    m_Key: sub_check_control_panel
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

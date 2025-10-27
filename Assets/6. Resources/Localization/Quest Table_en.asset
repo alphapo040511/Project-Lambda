@@ -27,7 +27,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2880509284353
-    m_Localized: get {0} puze ({1}/{0})
+    m_Localized: "\uD4E8\uC988 {0}\uAC1C \uD68D\uB4DD ({1}/{0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170737210548224
+    m_Localized: Find a way out of the room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170741400657920
+    m_Localized: Interact with the display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170744890318848
+    m_Localized: Disable the security protocol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170975145025536
+    m_Localized: Check the control panel ({1}/{0})
     m_Metadata:
       m_Items: []
   references:

@@ -12,6 +12,9 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
     [Header("UI References")]
     public QuestView view;
 
+    
+    public string currentQuestId;
+
     // 이벤트
     public event Action<string> onRegistQuest;                  // 새 퀘스트 등록시 실행
     public event Action<string> onCompleteQuest;                // 퀘스트 완료시 실행
@@ -37,7 +40,6 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
     }
     #endregion
 
-    private string currentQuestId;
 
     protected override void Awake()
     {
@@ -48,28 +50,11 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
         else if (_instance != this)
         {
             Destroy(gameObject);
+            return;
         }
 
         QuestIndexing();
         // 세이브 파일이 있는 경우 퀘스트 개수 정리
-    }
-
-    private void Start()
-    {
-        RegistQuest("Quest1");
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.N))
-        {
-            RegistQuest("Quest2");
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            ProgressQuest("Quest2");
-        }
     }
 
     void QuestIndexing()
@@ -96,7 +81,7 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
         if (!questList.ContainsKey(questId))
         {
-            Debug.LogError($"QuestId에 해당하는 퀘스트가 없습니다. (QuestID : {questId})");
+            Debug.LogError($"{questId}에 해당하는 퀘스트가 없습니다.");
             return;
         }
 
@@ -106,11 +91,17 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
         if (questList[currentQuestId].targetCount > 1)
             view.UpdateProgress(questList[currentQuestId].targetCount, questList[currentQuestId].currentCount);
+
+        Debug.Log($"{currentQuestId}를 현재 퀘스트로 등록 했습니다.");
     }
 
     public void ProgressQuest(string questId, int amount = 1)
     {
-        if (currentQuestId != questId || !questList.ContainsKey(questId)) return;
+        if (currentQuestId != questId || !questList.ContainsKey(questId))
+        {
+            Debug.LogWarning($"{questId}에 해당하는 퀘스트가 존재하지 않습니다.");
+            return;
+        }
 
         questList[questId].currentCount += amount;
 
@@ -124,9 +115,8 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
     void Complete()
     {
+        Debug.Log($"{currentQuestId} 퀘스트 완료");
         onCompleteQuest?.Invoke(currentQuestId);
-        currentQuestId = null;
-
         view.Hide();
     }
 }

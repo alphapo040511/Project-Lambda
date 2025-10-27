@@ -27,7 +27,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2880509284353
-    m_Localized: "\uD4E8\uC988 {0}\uAC1C \uD68D\uB4DD ({1}/{0})"
+    m_Localized: get {0} puze ({1}/{0})
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170737210548224
+    m_Localized: "\uBC29\uC5D0\uC11C \uB098\uAC08 \uBC29\uBC95\uC744 \uCC3E\uAE30"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170741400657920
+    m_Localized: "\uB514\uC2A4\uD50C\uB808\uC774\uC640 \uC0C1\uD638\uC791\uC6A9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170744890318848
+    m_Localized: "\uBCF4\uC548 \uD504\uB85C\uD1A0\uCF5C \uD574\uC81C\uD558\uAE30"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170975145025536
+    m_Localized: "\uCEE8\uD2B8\uB864 \uD328\uB110 \uD655\uC778\uD558\uAE30 ({1}/{0})"
     m_Metadata:
       m_Items: []
   references:

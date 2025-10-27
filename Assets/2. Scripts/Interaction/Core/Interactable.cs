@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Interactable : Actor, IInteractable
 {
@@ -10,9 +11,11 @@ public abstract class Interactable : Actor, IInteractable
     protected float currentHoldTime = 0f;
 
     // 상호작용이 가능한지 확인용
-    public bool interactable { get; private set; } = true;
+    public bool interactable = true;
     protected bool used = false;
     protected bool interacting = false;
+
+    public UnityEvent onCompleted;
 
     [Header("UI Setting")]
     [Tooltip("플로팅 UI를 띄울 위치 Transform (필수 아님)")]
@@ -91,7 +94,7 @@ public abstract class Interactable : Actor, IInteractable
 
     public virtual void OnInteractHold(float deltaTime)
     {
-        if (used) return;
+        if (used || !interactable) return;
 
         // 상호작용 홀드 진행
         currentHoldTime += deltaTime;
@@ -121,6 +124,7 @@ public abstract class Interactable : Actor, IInteractable
         Debug.Log("상호작용 완료");
         used = true;                    // 기본적으론 1회용
         currentHoldTime = 0f;
+        onCompleted?.Invoke();
     }
 
     protected virtual void Reset()
@@ -129,6 +133,13 @@ public abstract class Interactable : Actor, IInteractable
         currentHoldTime = 0f;
     }
 
+    // 상호작용 활성화
+    public void EnableInteraction()
+    {
+        interactable = true;           // 사용 가능 상태로 변경
+    }
+
+    // 상호작용 비활성화
     public void DisableInteraction()
     {
         interactable = false;           // 사용 불가 상태로 변경
