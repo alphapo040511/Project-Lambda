@@ -79,7 +79,7 @@ public class WalkState : IPlayerState
             return;
         }
 
-        if (Input.GetKey(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             player.SetState(new ExposureState(player));
             return;
@@ -207,7 +207,7 @@ public class InteractState : IPlayerState
 public class ExposureState : IPlayerState
 {
     private PlayerController player;
-    private float deathDelay = 3f;
+    private float deathDelay = 6f;
     private float timer = 0;
 
     public MoveState stateType => MoveState.Walking;
@@ -223,13 +223,19 @@ public class ExposureState : IPlayerState
 
         timer = 0f;             // 사망 타이머 초기화
 
-        player.vignette.intensity.value = 0.45f;
+        //VolumeManager.Instance.ChangeVignette(0.7f, 3);
+
+        VolumeManager.Instance.Blink(0.35f, 0.5f, 2f);
     }
 
     public void HandleUpdate()
     {
         player.GetInput();              // 상호작용 & 달리기 불가능
-        player.vignette.intensity.value = 0.45f;
+
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            player.SetState(new IdleState(player));
+        }
     }
 
     public void Update()
@@ -253,7 +259,7 @@ public class ExposureState : IPlayerState
 
         // 사운드 종료
         // 비네트 등 효과 종료
-        player.vignette.intensity.value = 0.25f;
+        VolumeManager.Instance.ChangeVignette(0.25f);
     }
 }
 
@@ -271,6 +277,12 @@ public class DeathState : IPlayerState
     public void Enter()
     {
         player.targetSpeed = 0;
+
+        player.rb.velocity = Vector3.zero;                  // 속도 0으로 설정 (관성을 이용한 움직임 방지)
+
+        player.cameraController.enabled = false;            // 카메라 조작 비활성화
+
+        VolumeManager.Instance.ChangeVignette(1f, 1.5f);
     }
 
     public void HandleUpdate() { }      // 인풋 안 받음
@@ -279,5 +291,8 @@ public class DeathState : IPlayerState
 
     public void FixedUpdate() { }       // 움직임 X
 
-    public void Exit() { }
+    public void Exit()
+    {
+        player.cameraController.enabled = true;             // 카메라 조작 비활성화
+    }
 }

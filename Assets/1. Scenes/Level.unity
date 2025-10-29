@@ -77936,6 +77936,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 736799363}
+  - component: {fileID: 736799364}
   - component: {fileID: 736799362}
   m_Layer: 0
   m_Name: ----- [MainVolume]
@@ -77976,6 +77977,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &736799364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736799361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56a32eb1ba164a119a8521745a290cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainVolume: {fileID: 736799362}
+  dof: {fileID: 0}
+  vignette: {fileID: 0}
 --- !u!43 &737542421
 Mesh:
   m_ObjectHideFlags: 0
@@ -82508,7 +82524,7 @@ GameObject:
   - component: {fileID: 767144516}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87355,7 +87371,6 @@ MonoBehaviour:
       m_Calls: []
   floatingUITransform: {fileID: 0}
   mainCamera: {fileID: 725336804}
-  volume: {fileID: 736799362}
   focusDistance: 0.5
   minSize: 0.5
   maxSize: 2
@@ -188340,7 +188355,6 @@ MonoBehaviour:
       m_Calls: []
   floatingUITransform: {fileID: 0}
   mainCamera: {fileID: 725336804}
-  volume: {fileID: 736799362}
   focusDistance: 0.5
   minSize: 0.5
   maxSize: 2
