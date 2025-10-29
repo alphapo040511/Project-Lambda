@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using UnityEngine.Events;
 
 public class TimelineController : MonoBehaviour
 {
     public PlayableDirector director;
     public string dialogID = "AI_HibernationWake_001";                  // 사용할 대사 ID
+
+    public UnityEvent onPlayed;
 
     private bool played = false;
 
@@ -47,6 +50,7 @@ public class TimelineController : MonoBehaviour
     public void Stop()
     {
         played = true;
+        onPlayed?.Invoke();
         EventSystem.Instance.EndEvent();
     }
 

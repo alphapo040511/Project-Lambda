@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Interactable : Actor, IInteractable
+public class Interactable : Actor, IInteractable
 {
     [Header("Interact Settings")]
     public float interactionHoldTime = 3f;                          // 상호작용을 위해 누르고 있어야 하는 시간 (초)

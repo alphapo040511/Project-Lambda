@@ -77,13 +77,19 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
     public void RegistQuest(string questId)
     {
-        UIManager.Instance.ShowOverlay(OverlayType.Quest);
-
         if (!questList.ContainsKey(questId))
         {
             Debug.LogError($"{questId}에 해당하는 퀘스트가 없습니다.");
             return;
         }
+
+        if (questList[questId].IsCompleted)
+        {
+            Debug.Log("이미 완료된 퀘스트 입니다.");
+            return;
+        }
+
+        UIManager.Instance.ShowOverlay(OverlayType.Quest);
 
         currentQuestId = questId;
         onRegistQuest?.Invoke(currentQuestId);

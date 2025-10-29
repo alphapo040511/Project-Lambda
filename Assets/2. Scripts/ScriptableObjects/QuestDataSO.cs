@@ -8,7 +8,7 @@ public class QuestDataSO :ScriptableObject
     public string questId;
     public string titleKey;
     public string descriptionKey;
-    public int targetCount;
+    public int targetCount = 1;
 }
 
 public class QuestData
