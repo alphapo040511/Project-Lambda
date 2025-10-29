@@ -12,7 +12,7 @@ public class PlayerController : Actor
 
     public Posture currentPosture { get; private set; } = Posture.Standing;
 
-    private IPlayerState currentState;
+    public IPlayerState currentState { get; private set; }
 
     [Header("Speed Settings")]
     public float walkSpeed = 2f;
@@ -143,20 +143,5 @@ public class PlayerController : Actor
     {
         // 머리 위에 장애물이 없는지 확인하는 코드
         return true;
-    }
-
-    IEnumerator Blink()
-    {
-        //if (vignette == null) yield break;
-
-        while(true)
-        {
-            yield return StartCoroutine(VignetteFade(0.45f));
-        }
-    }
-
-    IEnumerator VignetteFade(float value, float duration = 0.75f)
-    {
-        yield break;
     }
 }

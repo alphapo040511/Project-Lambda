@@ -82158,7 +82158,7 @@ GameObject:
   - component: {fileID: 767144516}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82274,8 +82274,6 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   cameraHeightController: {fileID: 0}
   interactionFinder: {fileID: 0}
-  volume: {fileID: 0}
-  vignette: {fileID: 0}
 --- !u!54 &767144515
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -87005,7 +87003,6 @@ MonoBehaviour:
       m_Calls: []
   floatingUITransform: {fileID: 0}
   mainCamera: {fileID: 725336804}
-  volume: {fileID: 736799362}
   focusDistance: 0.5
   minSize: 0.5
   maxSize: 2
@@ -187669,7 +187666,6 @@ MonoBehaviour:
       m_Calls: []
   floatingUITransform: {fileID: 0}
   mainCamera: {fileID: 725336804}
-  volume: {fileID: 736799362}
   focusDistance: 0.5
   minSize: 0.5
   maxSize: 2
