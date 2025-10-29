@@ -116,6 +116,8 @@ public class CustomSelector : MonoBehaviour
     {
         if (localizer == null) localizer = new TextLocalizer(optionText, tableName);
 
+        if (options.Count == 0) return;
+
         localizer.SetKey(options[value]);                              // 텍스트 적용 String Table
 
         leftArrow.interactable = value > 0;                     // 첫번째 옵션이라면 비활성화
