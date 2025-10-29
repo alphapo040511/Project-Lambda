@@ -51413,7 +51413,7 @@ PrefabInstance:
     - target: {fileID: 4409753340531154874, guid: e779be2b29a69d744b394860a8edc51e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5160735169241235427, guid: e779be2b29a69d744b394860a8edc51e,
         type: 3}
@@ -83001,7 +83001,7 @@ PrefabInstance:
     - target: {fileID: 4409753340531154874, guid: e779be2b29a69d744b394860a8edc51e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5160735169241235427, guid: e779be2b29a69d744b394860a8edc51e,
         type: 3}
@@ -93886,7 +93886,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3540468950969001590, guid: 44a5d9cc490862542b6f21df2cee444b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 891946702}
   m_SourcePrefab: {fileID: 100100000, guid: 44a5d9cc490862542b6f21df2cee444b, type: 3}
 --- !u!4 &891946700 stripped
 Transform:
@@ -93894,6 +93898,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 891946699}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &891946701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3540468950969001590, guid: 44a5d9cc490862542b6f21df2cee444b,
+    type: 3}
+  m_PrefabInstance: {fileID: 891946699}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &891946702
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891946701}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000005, y: 3.000002, z: 4.000002}
+  m_Center: {x: 0.50000024, y: -1.500001, z: 2.000001}
 --- !u!43 &894212852
 Mesh:
   m_ObjectHideFlags: 0
