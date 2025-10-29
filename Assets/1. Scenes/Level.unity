@@ -77570,6 +77570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 736799363}
+  - component: {fileID: 736799364}
   - component: {fileID: 736799362}
   m_Layer: 0
   m_Name: ----- [MainVolume]
@@ -77610,6 +77611,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &736799364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736799361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56a32eb1ba164a119a8521745a290cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainVolume: {fileID: 736799362}
+  dof: {fileID: 0}
+  vignette: {fileID: 0}
 --- !u!43 &737542421
 Mesh:
   m_ObjectHideFlags: 0
@@ -82258,6 +82274,8 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   cameraHeightController: {fileID: 0}
   interactionFinder: {fileID: 0}
+  volume: {fileID: 0}
+  vignette: {fileID: 0}
 --- !u!54 &767144515
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109766,16 +109784,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2069467918}
     m_Modifications:
-    - target: {fileID: 3771524032464064075, guid: d3374cdb81bee3948aa230aa71fe6cb8,
-        type: 3}
-      propertyPath: m_Name
-      value: Detail04_Floory_Prefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771524032464064075, guid: d3374cdb81bee3948aa230aa71fe6cb8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3771524032463704683, guid: d3374cdb81bee3948aa230aa71fe6cb8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -109825,6 +109833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771524032464064075, guid: d3374cdb81bee3948aa230aa71fe6cb8,
+        type: 3}
+      propertyPath: m_Name
+      value: Detail04_Floory_Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 3771524032464064075, guid: d3374cdb81bee3948aa230aa71fe6cb8,
         type: 3}

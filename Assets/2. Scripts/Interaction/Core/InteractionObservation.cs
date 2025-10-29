@@ -21,9 +21,6 @@ public class InteractionObservation : Interactable
 {
     [Header("Camera & Volume Settings")]
     public Camera mainCamera;
-    public Volume volume;
-    private DepthOfField dof;
-
 
     [Header("Observation Settings")]
     public float focusDistance = 0.5f;
@@ -50,19 +47,6 @@ public class InteractionObservation : Interactable
         if(mainCamera == null)
         {
             mainCamera = Camera.main;
-        }
-
-        if(volume == null)
-        {
-            volume = FindObjectOfType<Volume>();
-        }
-
-        if(volume != null)
-        {
-            if (volume.profile.TryGet<DepthOfField>(out dof))
-            {
-                Debug.Log("Depth of Field 찾음!");
-            }
         }
     }
 
@@ -111,24 +95,16 @@ public class InteractionObservation : Interactable
     // 초기 위치 설정
     void SetInitial()
     {
-        // 포커스 거리 변경
-        float focus = Mathf.Lerp(dof.focusDistance.value, focusDistance, Time.deltaTime * 5f);
-
-        if (dof != null)                 
-        {
-            dof.focusDistance.Override(focus);
-        }
+        VolumeManager.Instance.ChangeFocusDistance(0.5f, 0.2f);
 
         // 초기 위치로 부드럽게 이동
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5);  
 
 
         // 초기 위치 및 포커스에 도달 할 경우 종료
-        if (Vector3.Distance(transform.position, targetPosition) < 0.01f
-            && focusDistance - dof.focusDistance.value < 0.01f)
+        if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
         {
             transform.position = targetPosition;
-            dof.focusDistance.Override(focusDistance);
 
             isInitializing = false;
         }
@@ -221,10 +197,7 @@ public class InteractionObservation : Interactable
 
         UIManager.Instance.HideOverlay(OverlayType.Observation);
 
-        if (dof != null)
-        {
-            dof.focusDistance.Override(2f); // 포커스 거리 변경
-        }
+        VolumeManager.Instance.ChangeFocusDistance(2f, 0.2f);
     }
 
 }
