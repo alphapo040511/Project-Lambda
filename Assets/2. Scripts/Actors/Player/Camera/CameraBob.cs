@@ -69,6 +69,7 @@ public class CameraBob : Actor
         {
             case MoveState.Idle:
             case MoveState.Interacting:
+            case MoveState.Disabled:
                 targetAmplitude = idleAmplitude;
                 targetFrequency = idleFrequency;
                 break;
