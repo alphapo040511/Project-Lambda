@@ -27,8 +27,9 @@ public class SceneConfig : SingletonMonoBehaviour<SceneConfig>
         GameEvents.OnSceneChanged += OnSceneChanged;
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         GameEvents.OnSceneChanged -= OnSceneChanged;
     }
 

@@ -35,4 +35,10 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour  
             Destroy(gameObject);
         }
     }
+
+    protected virtual void OnDestroy()
+    {
+        if (_instance == this)
+            _instance = null;
+    }
 }

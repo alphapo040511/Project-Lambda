@@ -17,8 +17,9 @@ public class ObservationUI : SingletonMonoBehaviour<ObservationUI>
         button.onClick.AddListener(ButtonClick);
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         button.onClick.RemoveListener(ButtonClick);
     }
 
