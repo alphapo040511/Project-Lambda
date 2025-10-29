@@ -79,7 +79,14 @@ public class WalkState : IPlayerState
             return;
         }
 
-        if(Input.GetKey(KeyCode.E) && player.CanInteract())     // E 키다운 & 상호작용이 가능한 경우
+        if (Input.GetKey(KeyCode.V))
+        {
+            player.SetState(new ExposureState(player));
+            return;
+        }
+
+
+        if (Input.GetKey(KeyCode.E) && player.CanInteract())     // E 키다운 & 상호작용이 가능한 경우
         {
             player.SetState(new InteractState(player, player.interactionFinder.GetTarget()));
         }
@@ -197,3 +204,80 @@ public class InteractState : IPlayerState
     }
 }
 
+public class ExposureState : IPlayerState
+{
+    private PlayerController player;
+    private float deathDelay = 3f;
+    private float timer = 0;
+
+    public MoveState stateType => MoveState.Walking;
+
+    public ExposureState(PlayerController player)
+    {
+        this.player = player;
+    }
+
+    public void Enter()
+    {
+        player.targetSpeed = player.walkSpeed;
+
+        timer = 0f;             // 사망 타이머 초기화
+
+        player.vignette.intensity.value = 0.45f;
+    }
+
+    public void HandleUpdate()
+    {
+        player.GetInput();              // 상호작용 & 달리기 불가능
+        player.vignette.intensity.value = 0.45f;
+    }
+
+    public void Update()
+    {
+        timer += Time.deltaTime;
+        if(timer >= deathDelay)
+        {
+            //사망
+            player.SetState(new DeathState(player));
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        player.Move();
+    }
+
+    public void Exit() 
+    {
+        timer = 0f;
+
+        // 사운드 종료
+        // 비네트 등 효과 종료
+        player.vignette.intensity.value = 0.25f;
+    }
+}
+
+public class DeathState : IPlayerState
+{
+    private PlayerController player;
+
+    public MoveState stateType => MoveState.Disabled;
+
+    public DeathState(PlayerController player)
+    {
+        this.player = player;
+    }
+
+    public void Enter()
+    {
+        player.targetSpeed = 0;
+    }
+
+    public void HandleUpdate() { }      // 인풋 안 받음
+
+    public void Update() { }
+
+    public void FixedUpdate() { }       // 움직임 X
+
+    public void Exit() { }
+}

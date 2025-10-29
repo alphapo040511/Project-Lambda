@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : Actor
 {
@@ -27,6 +28,8 @@ public class PlayerController : Actor
     [HideInInspector] public FirstPersonCamera cameraController;
     [HideInInspector] public PlayerCrouchController cameraHeightController;
     [HideInInspector] public InteractionFinder interactionFinder;
+    [HideInInspector] public Volume volume;
+    [HideInInspector] public Vignette vignette;
 
 
     private void Awake()
@@ -39,6 +42,24 @@ public class PlayerController : Actor
 
     void Start()
     {
+        volume = FindObjectOfType<Volume>();
+
+        // Profile에서 Vignette 찾기
+        if (volume != null && volume.profile.TryGet(out vignette))
+        {
+            // 꺼져있다면 활성화
+            vignette.active = true;
+            vignette.intensity.value = 0.25f;           // 0.25 초기값
+        }
+        else
+        {
+            vignette = volume.profile.Add<Vignette>();
+            // 꺼져있다면 활성화
+            vignette.active = true;
+            vignette.intensity.value = 0.25f;           // 0.25 초기값
+            Debug.LogError("볼륨이 없거나, 비네트가 없다네요.");
+        }
+
         SetState(new IdleState(this));
     }
 
@@ -142,5 +163,20 @@ public class PlayerController : Actor
     {
         // 머리 위에 장애물이 없는지 확인하는 코드
         return true;
+    }
+
+    IEnumerator Blink()
+    {
+        if (vignette == null) yield break;
+
+        while(true)
+        {
+            yield return StartCoroutine(VignetteFade(0.45f));
+        }
+    }
+
+    IEnumerator VignetteFade(float value, float duration = 0.75f)
+    {
+        yield break;
     }
 }

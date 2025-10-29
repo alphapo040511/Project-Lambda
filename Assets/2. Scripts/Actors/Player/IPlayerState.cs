@@ -7,6 +7,7 @@ public enum MoveState
     Idle,
     Walking,
     Running,
+    Disabled,
     Interacting
 }
 
