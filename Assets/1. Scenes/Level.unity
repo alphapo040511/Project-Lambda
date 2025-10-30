@@ -14710,8 +14710,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 800}
+  m_AnchoredPosition: {x: -31, y: 0}
+  m_SizeDelta: {x: 2300, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &171790192
 CanvasRenderer:
@@ -14769,8 +14769,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -125926,7 +125926,7 @@ MonoBehaviour:
   markTMP: {fileID: 171790193}
   countText: {fileID: 2099324739}
   puzzleData: {fileID: 11400000, guid: 92af731728c424e32897734e9a3b1d49, type: 2}
-  segmentLength: 12
+  segmentLength: 8
   lineCount: 10
   lineWidth: 2
   onCleared:
@@ -227574,7 +227574,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138625933}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0000046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -227582,8 +227582,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 800}
+  m_AnchoredPosition: {x: -30.999933, y: 0}
+  m_SizeDelta: {x: 2300, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2138625935
 CanvasRenderer:
@@ -227613,7 +227613,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <color=white>TIDY</color>
+  m_text: "   0xD7BF7   _<color=black>read</color><(|<)|-&>!~   0xD2E91   @>;-{@/:>main+-)\n  
+    0xDC4C1   ]#:*long^+<-*:^_   0xD3A02   +[!^}&]head@&-@?\n   0xDBC74   *;?:Rain#:!%@.[&  
+    0xD129D   @[;)%.void[/<:!.\n   0xD9180   },*~;-+WASD<)#(&   0xD2845   {adrs)<||?{{[)!/\n  
+    0xD349E   (!&%_@Draw!(;:#[   0xD20DD   =!/.#|&!}~;Word*\n   0xD948E   <-_<!!*.>post/~,  
+    0xDD050   %*[##)your|:._~.\n   0xD8CAD   [*]:char}*,/|&+@   0xD5EB4   &^)[//-Data[*-}*\n  
+    0xD4929   =~!^>(/<Show[>?<   0xDC096   ;push#^!%:{){=]=\n   0xD4636   <]!<|>[pass<?!{%  
+    0xD4DA1   *;&~.}^@<?>/holy\n   0xD2F9B   >?@.~=byte;=./{;   0xDB506   *+>|)([;+~init=|\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3fc7367a1138a64db75225cb6b3ff17, type: 2}
   m_sharedMaterial: {fileID: 7156387647957737064, guid: d3fc7367a1138a64db75225cb6b3ff17,
@@ -227641,8 +227647,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

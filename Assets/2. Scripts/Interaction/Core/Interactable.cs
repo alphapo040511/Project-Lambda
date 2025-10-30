@@ -47,13 +47,13 @@ public class Interactable : Actor, IInteractable
     // 상호작용 범위 진입
     public void OnActivate()
     {
-        if(targetUI != null || !interactable)
-        {
-            targetUI.ActivateInteractionUI();
-        }
-        else
+        if(targetUI == null)
         {
             targetUI = InteractionUIManager.Instance.CreatingInteractionUI(this);
+        }
+
+        if(interactable)
+        {
             targetUI.ActivateInteractionUI();
         }
     }
