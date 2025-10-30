@@ -15,6 +15,8 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
     
     public string currentQuestId;
 
+    private Queue<string> questQueue = new Queue<string>();
+
     // 이벤트
     public event Action<string> onRegistQuest;                  // 새 퀘스트 등록시 실행
     public event Action<string> onCompleteQuest;                // 퀘스트 완료시 실행
@@ -91,7 +93,12 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
         UIManager.Instance.ShowOverlay(OverlayType.Quest);
 
-        currentQuestId = questId;
+        questQueue.Enqueue(questId);                        // 꼬임 방지를 위해 퀘스트를 큐에 저장
+
+        if (questQueue.Count == 0) return;
+
+        currentQuestId = questQueue.Dequeue();
+
         onRegistQuest?.Invoke(currentQuestId);
         view.Show(questList[currentQuestId].titleKey, questList[currentQuestId].descriptionKey);
 
@@ -115,14 +122,13 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
         if(questList[questId].IsCompleted)
         {
-            Complete();
+            Complete(questId);
         }
     }
 
-    void Complete()
+    void Complete(string questId)
     {
         Debug.Log($"{currentQuestId} 퀘스트 완료");
         onCompleteQuest?.Invoke(currentQuestId);
-        view.Hide();
     }
 }
