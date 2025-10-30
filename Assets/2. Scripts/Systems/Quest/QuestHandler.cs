@@ -53,7 +53,6 @@ public class QuestHandler : MonoBehaviour
     // 퀘스트 완료시 호출
     void CompleteQuestHander(string id)
     {
-        Debug.Log($"[{targetQuest.questId}] {id} 퀘스트가 완료됨");
         if (id != targetQuest.questId) return;
         onCleared?.Invoke();
     }

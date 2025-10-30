@@ -10,14 +10,20 @@ public class FadeScreen : ScreenBase
 
     private Coroutine fadeCoroutine;
 
+    private bool isActive = false;
+
     public override void Init()
     {
+        isActive = false;
         canvasGroup.alpha = 0;
         canvasGroup.gameObject.SetActive(false);
     }
 
     public override void Hide()
     {
+        if (!isActive) return;
+        isActive = false;
+
         if (fadeCoroutine != null)
         {
             StopCoroutine(fadeCoroutine);
@@ -28,6 +34,9 @@ public class FadeScreen : ScreenBase
 
     public override void Show()
     {
+        if (isActive) return;
+        isActive = true;
+
         if (fadeCoroutine != null)
         {
             StopCoroutine(fadeCoroutine);
