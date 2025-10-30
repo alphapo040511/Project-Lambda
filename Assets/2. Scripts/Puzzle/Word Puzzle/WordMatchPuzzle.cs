@@ -36,6 +36,9 @@ public class WordMatchPuzzle : MonoBehaviour
     private List<string> wordList = new List<string>();
     private int currentWordIndex = 0;
 
+    float holdInterval = 0.1f;
+    float timer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,29 +56,42 @@ public class WordMatchPuzzle : MonoBehaviour
     {
         if (!gameObject.activeSelf || !interaction.isFocused) return;
 
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            currentWordIndex = Math.Clamp(currentWordIndex - wordToLine, 0, wordList.Count);
-            ShowText();
-        }
+        Vector2Int dir = Vector2Int.zero;
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if(timer > 0)
         {
-            currentWordIndex = Math.Clamp(currentWordIndex - 1, 0, wordList.Count);
-            ShowText();
+            timer -= Time.deltaTime;
         }
+        else
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                dir += Vector2Int.down * wordToLine;
+            }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            currentWordIndex = Math.Clamp(currentWordIndex + wordToLine, 0, wordList.Count - 1);
-            ShowText();
-        }
+            if (Input.GetKey(KeyCode.A))
+            {
+                dir += Vector2Int.left;
+            }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            currentWordIndex = Math.Clamp(currentWordIndex + 1, 0, wordList.Count - 1);
-            ShowText();
+            if (Input.GetKey(KeyCode.S))
+            {
+                dir += Vector2Int.up * wordToLine;
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                dir += Vector2Int.right;
+            }
+
+            if(dir != Vector2Int.zero)
+            {
+                timer = holdInterval;
+                currentWordIndex = Math.Clamp(currentWordIndex + dir.x + dir.y, 0, wordList.Count - 1);
+                ShowText();
+            }
         }
+        
 
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space))
         {
