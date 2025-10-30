@@ -33,4 +33,4 @@ MonoBehaviour:
   - head
   - long
   - char
-  tryChance: 10
+  tryChance: 20
