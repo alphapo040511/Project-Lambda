@@ -111,12 +111,12 @@ public class SettingsUI : ScreenBase
                 "변경된 설정이 저장되지 않았습니다.\n" +
                 "저장하시겠습니까?",
                 "Apply",
+                "Close",
                 () =>
                 {
                     OnApplyClicked();
                     ChangeTab(target);
                 },
-                "Close",
                 () => {
                     LoadingSetting();
                     ChangeTab(target);
@@ -179,12 +179,12 @@ public class SettingsUI : ScreenBase
                 "변경된 설정이 저장되지 않았습니다.\n" +
                 "저장하시겠습니까?",
                 "Apply",
+                "Close",
                 () =>
                 {
                     OnApplyClicked();
                     GameManager.Instance.ResumeGame();
                 },
-                "Close",
                 () => {
                     LoadingSetting();
                     GameManager.Instance.ResumeGame();

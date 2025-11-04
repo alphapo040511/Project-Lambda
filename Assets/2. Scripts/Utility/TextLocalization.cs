@@ -59,6 +59,13 @@ public class TextLocalizer
         }
     }
 
+    public void ClearKey()
+    {
+        // 이벤트 제거 (안전하게)
+        localizedString.StringChanged -= UpdateText;
+        targetText.text = "";
+    }
+
     private void UpdateText(string value)
     {
         targetText.text = value;

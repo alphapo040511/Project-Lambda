@@ -4,29 +4,41 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Localization.Components;  // LocalizeStringEvent
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization;  // LocalizeStringEvent
 
 
 public class PopupView : MonoBehaviour
 {
-    public TextMeshProUGUI contentText;
-    public LocalizeStringEvent confirmText;
-    public LocalizeStringEvent cancelText;
+    public TextMeshProUGUI messageText;
+    public TextMeshProUGUI confirmText;
+    public TextMeshProUGUI cancelText;
     public Button confirmButton;
     public Button cancelButton;
 
     // 콜백 저장용 이벤트
-    private Action confirmCallback;
-    private Action cancleCallback;
+    public Action OnConfirmClicked;
+    public Action OnCancelClicked;
+
+    private TextLocalizer content;
+    private TextLocalizer confirm;
+    private TextLocalizer cancel;
+
+    private const string tableName = "Settings Table";
 
     private void Start()
     {
+        ButtenEventSetting();
+    }
+
+    void ButtenEventSetting()
+    {
         // 버튼 리스너 등록
-        if (confirmCallback != null)
+        if (OnConfirmClicked != null)
         {
             confirmButton.onClick.AddListener(() =>
             {
-                confirmCallback.Invoke();
+                OnConfirmClicked?.Invoke();
                 gameObject.SetActive(false);
             });
         }
@@ -35,33 +47,68 @@ public class PopupView : MonoBehaviour
         {
             cancelButton.onClick.AddListener(() =>
             {
-                cancleCallback?.Invoke();
+                OnCancelClicked?.Invoke();
                 gameObject.SetActive(false);
             });
         }
     }
 
-    public void Show(string message, string confirmMessage, Action onConfirm, string cancleMessage = "Close",  Action onCancle = null)
+    void LocalizerSetting()
     {
-        // 텍스트 업데이트
-        contentText.text = message;
+        content = new TextLocalizer(messageText, tableName);
+        confirm = new TextLocalizer(confirmText, tableName);
+        cancel = new TextLocalizer(cancelText, tableName);
+    }
 
-        if (confirmText != null)
-        {
-            confirmText.StringReference.TableEntryReference = confirmMessage;
-            confirmText.RefreshString();
-        }
+    public void Show()
+    {
+        GameManager.Instance.ChangeGameState(GameState.Menu);
+        UIManager.Instance.ShowOverlay(OverlayType.Popup);
+    }
 
-        if (cancelText != null)
-        {
-            cancelText.StringReference.TableEntryReference = cancleMessage;
-            cancelText.RefreshString();
-        }
+    public void Hide()
+    {
+        GameManager.Instance.ResumeGame();
+        UIManager.Instance.HideOverlay(OverlayType.Popup);
+    }
 
-        // 콜백 저장
-        confirmCallback = onConfirm;
-        cancleCallback = onCancle;
+    public void SetMessage(string key)
+    {
+        content.SetKey(key);
+    }
 
-        gameObject.SetActive(true);
+    public void SetConfirm(string key)
+    {
+        confirm.SetKey(key);
+    }
+
+    public void SetCancel(string key)
+    {
+        cancel.SetKey(key);
+    }
+
+    #region Visible Settings
+    public void SetConfirmButtonVisible(bool isVisible)
+    {
+        confirmButton.gameObject.SetActive(isVisible);
+    }
+
+    public void SetCancelButtonVisible(bool isVisible)
+    {
+        cancelButton.gameObject.SetActive(isVisible);
+    }
+
+    public void SetButtonsVisible(bool confirmIsVisible, bool cancleIsVisible)
+    {
+        confirmButton.gameObject.SetActive(confirmIsVisible);
+        cancelButton.gameObject.SetActive(cancleIsVisible);
+    }
+    #endregion
+
+    private void OnDestroy()
+    {
+        // 버튼 리스너 제거
+        confirmButton.onClick.RemoveAllListeners();
+        cancelButton.onClick.RemoveAllListeners();
     }
 }
