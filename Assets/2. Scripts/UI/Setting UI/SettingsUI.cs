@@ -107,17 +107,17 @@ public class SettingsUI : ScreenBase
         }
         else
         {
-            popupView.Show(
-                "변경된 설정이 저장되지 않았습니다.\n" +
-                "저장하시겠습니까?",
-                "Apply",
-                "Close",
+            PopupManager.Instance.ShowConfirmPopup(
+                "Popup_Unsaved_Message",
+                "Popup_Save",
+                "Popup_Cancel",
                 () =>
                 {
                     OnApplyClicked();
                     ChangeTab(target);
                 },
-                () => {
+                () =>
+                {
                     LoadingSetting();
                     ChangeTab(target);
                 });
@@ -175,20 +175,21 @@ public class SettingsUI : ScreenBase
         }
         else
         {
-            popupView.Show(
-                "변경된 설정이 저장되지 않았습니다.\n" +
-                "저장하시겠습니까?",
-                "Apply",
-                "Close",
+            PopupManager.Instance.ShowConfirmPopup(
+                "Popup_Unsaved_Message",
+                "Popup_Save",
+                "Popup_Cancel",
                 () =>
                 {
                     OnApplyClicked();
                     GameManager.Instance.ResumeGame();
+                    Debug.Log("SettingUI에서 확인");
                 },
-                () => {
+                () =>
+                {
                     LoadingSetting();
                     GameManager.Instance.ResumeGame();
-                    });
+                });
         }
     }
 

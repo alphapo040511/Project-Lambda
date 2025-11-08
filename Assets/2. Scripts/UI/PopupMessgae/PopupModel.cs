@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopupModel : MonoBehaviour
+public class PopupModel
 {
     public string Message { get; set; }
     public string ConfirmMessage { get; set; }

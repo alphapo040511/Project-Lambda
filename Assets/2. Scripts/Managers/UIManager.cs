@@ -61,7 +61,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
     private void HandleStateChange(GameState state)
     {
-        // 메뉴로 돌아가면 모든 UI 끄기
+        //메뉴로 돌아가면 모든 UI 끄기
         if (state == GameState.Menu)
             DisableAllUI();
     }

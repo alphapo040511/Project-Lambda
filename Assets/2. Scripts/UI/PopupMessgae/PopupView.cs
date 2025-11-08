@@ -26,20 +26,21 @@ public class PopupView : MonoBehaviour
 
     private const string tableName = "Settings Table";
 
-    private void Start()
+    public void Init()
     {
         ButtenEventSetting();
+        LocalizerSetting();
     }
 
     void ButtenEventSetting()
     {
         // 버튼 리스너 등록
-        if (OnConfirmClicked != null)
+        if (confirmButton != null)
         {
             confirmButton.onClick.AddListener(() =>
             {
+                Debug.Log("view 에서 적용 확인");
                 OnConfirmClicked?.Invoke();
-                gameObject.SetActive(false);
             });
         }
 
@@ -47,8 +48,8 @@ public class PopupView : MonoBehaviour
         {
             cancelButton.onClick.AddListener(() =>
             {
+                Debug.Log("view 에서 닫기 확인");
                 OnCancelClicked?.Invoke();
-                gameObject.SetActive(false);
             });
         }
     }
@@ -62,13 +63,13 @@ public class PopupView : MonoBehaviour
 
     public void Show()
     {
-        GameManager.Instance.ChangeGameState(GameState.Menu);
+        //GameManager.Instance.ChangeGameState(GameState.Menu);
         UIManager.Instance.ShowOverlay(OverlayType.Popup);
     }
 
     public void Hide()
     {
-        GameManager.Instance.ResumeGame();
+        //GameManager.Instance.ResumeGame();
         UIManager.Instance.HideOverlay(OverlayType.Popup);
     }
 

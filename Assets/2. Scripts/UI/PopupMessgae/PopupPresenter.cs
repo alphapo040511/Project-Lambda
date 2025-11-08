@@ -65,6 +65,7 @@ public class PopupPresenter
     // 이벤트 핸들러
     private void HandleConfirm()
     {
+        Debug.Log("Presenter 에서 적용 확인");
         onConfirmCallback?.Invoke();
         HidePopup();
     }

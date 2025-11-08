@@ -107,6 +107,22 @@ MonoBehaviour:
     m_Key: Exit Main
     m_Metadata:
       m_Items: []
+  - m_Id: 21773246902644736
+    m_Key: Popup_Unsaved_Message
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21773246944587776
+    m_Key: Popup_Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21773246944587777
+    m_Key: Popup_Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21773246944587778
+    m_Key: Popup_Confirm
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

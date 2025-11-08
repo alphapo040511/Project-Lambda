@@ -110,6 +110,24 @@ MonoBehaviour:
     m_Localized: Exit to Main Menu
     m_Metadata:
       m_Items: []
+  - m_Id: 21773246902644736
+    m_Localized: 'Unsaved changes detected.
+
+      Would you like to save them?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21773246944587776
+    m_Localized: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21773246944587777
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21773246944587778
+    m_Localized: Confrim
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
