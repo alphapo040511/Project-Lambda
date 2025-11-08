@@ -14,7 +14,7 @@ public static class SaveManager
         File.WriteAllText(savaePath, JsonUtility.ToJson(newSave, true));
 
         // Metadata 저장
-        newMeta.saveTime = GetUnixTimestamp(DateTime.UtcNow);
+        newMeta.saveTime = TimeFormatter.GetUnixTimestamp(DateTime.UtcNow);
         File.WriteAllText(metaPath, JsonUtility.ToJson(newMeta, true));
     }
 
@@ -41,20 +41,4 @@ public static class SaveManager
         string json = File.ReadAllText(savaePath);
         return JsonUtility.FromJson<SaveData>(json);
     }
-
-    #region Utility
-
-    public static long GetUnixTimestamp(DateTime dateTime)
-    {
-        return new DateTimeOffset(dateTime).ToUnixTimeSeconds();
-    }
-
-    public static string GetDateTimeToString(long unixTimestamp)
-    {
-        return DateTimeOffset.FromUnixTimeSeconds(unixTimestamp)
-        .ToLocalTime()                                                      // 로컬 시간 적용
-        .ToString("yy.MM.dd HH:mm:ss");
-    }
-
-    #endregion
 }

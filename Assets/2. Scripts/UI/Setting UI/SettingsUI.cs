@@ -50,13 +50,10 @@ public class SettingsUI : ScreenBase
     {
         canvas.gameObject.SetActive(false);
         LoadingSetting();
-    }
-
-    private void Start()
-    {
         SetupEventListeners();
         InitializeTabs();
     }
+
 
     private void InitializeTabs()
     {

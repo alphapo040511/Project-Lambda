@@ -10,7 +10,8 @@ public enum ScreenType                      // 겹치는게 불가능한 UI
     Menu,
     GamePlay,
     Pause,
-    GameOver
+    GameOver,
+    Save
 }
 
 public enum OverlayType                     // 겹치는게 가능한 UI
