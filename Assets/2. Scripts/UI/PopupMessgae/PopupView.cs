@@ -39,7 +39,6 @@ public class PopupView : MonoBehaviour
         {
             confirmButton.onClick.AddListener(() =>
             {
-                Debug.Log("view 에서 적용 확인");
                 OnConfirmClicked?.Invoke();
             });
         }
@@ -48,7 +47,6 @@ public class PopupView : MonoBehaviour
         {
             cancelButton.onClick.AddListener(() =>
             {
-                Debug.Log("view 에서 닫기 확인");
                 OnCancelClicked?.Invoke();
             });
         }
