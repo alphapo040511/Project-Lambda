@@ -111,9 +111,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 21773246902644736
-    m_Localized: 'Unsaved changes detected.
-
-      Would you like to save them?'
+    m_Localized: Unsaved changes detected.\nWould you like to save them?
     m_Metadata:
       m_Items: []
   - m_Id: 21773246944587776
@@ -126,6 +124,44 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 21773246944587778
     m_Localized: Confrim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22512712017588224
+    m_Localized: EMPTY SLOT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22512712059531264
+    m_Localized: SLOT {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22512712059531265
+    m_Localized: AUTOSAVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22520756717826048
+    m_Localized: SAVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22520756755574784
+    m_Localized: LOAD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22520756755574785
+    m_Localized: SAVE DATA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22545872352784384
+    m_Localized: DELETE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22557622183735296
+    m_Localized: '"<color=#FF4444>Warning</color>\nA save file already exists in
+      this slot.\nDo you want to overwrite the existing data?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22557622183735297
+    m_Localized: <color=#FF4444>Warning<</color>\nA save file already exists in this
+      slot.\nDo you want to delete the existing data?
     m_Metadata:
       m_Items: []
   references:

@@ -14,7 +14,7 @@ public static class TimeFormatter
     {
         TimeSpan t = TimeSpan.FromSeconds(playTime);
         int totalHours = (int)t.TotalHours;
-        return string.Format("{0:D2}:{1:D2}:{2:D2}", totalHours, t.Minutes, t.Seconds);
+        return string.Format("{0:D2}:{1:D2}\'{2:D2}\"", totalHours, t.Minutes, t.Seconds);
     }
 
     /// <summary>

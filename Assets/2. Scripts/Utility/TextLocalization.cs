@@ -55,7 +55,7 @@ public class TextLocalizer
         else
         {
             // 키 없으면 그냥 직접 문자열 적용
-            targetText.text = keyOrValue;
+            targetText.text = keyOrValue.Replace("\\n", "\n");
         }
     }
 
@@ -68,6 +68,6 @@ public class TextLocalizer
 
     private void UpdateText(string value)
     {
-        targetText.text = value;
+        targetText.text = value.Replace("\\n", "\n");
     }
 }

@@ -123,6 +123,42 @@ MonoBehaviour:
     m_Key: Popup_Confirm
     m_Metadata:
       m_Items: []
+  - m_Id: 22512712017588224
+    m_Key: Empty Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22512712059531264
+    m_Key: Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22512712059531265
+    m_Key: Auto Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22520756717826048
+    m_Key: Save_Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22520756755574784
+    m_Key: Save_Load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22545872352784384
+    m_Key: Save_Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22520756755574785
+    m_Key: Save Data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22557622183735296
+    m_Key: Save_Overwrite_Warning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22557622183735297
+    m_Key: Save_Delete_Warning
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

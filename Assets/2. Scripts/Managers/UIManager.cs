@@ -85,6 +85,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
         foreach (UIScreen screen in screens)
         {
+            screen.screen.gameObject.SetActive(true);                       // 꺼져 있는 경우 활성화
             screenDictionary[screen.screenType] = screen.screen;
             screenDictionary[screen.screenType].Init();
         }
@@ -93,6 +94,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
         foreach (UIOverlay overlay in overlays)
         {
+            overlay.overlay.gameObject.SetActive(true);                     // 꺼져 있는 경우 활성화
             overlayDictionary[overlay.overlayType] = overlay.overlay;
             overlayDictionary[overlay.overlayType].Init();
         }
