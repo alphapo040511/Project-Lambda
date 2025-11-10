@@ -10,7 +10,7 @@ public class SaveSlotView : MonoBehaviour
     public Button button;
     public Image thumbnailImage;
     public TextMeshProUGUI questTitle;
-    public TextMeshProUGUI locationName;
+    public TextMeshProUGUI description;
     public TextMeshProUGUI saveTime;
     public TextMeshProUGUI slotNumber;
     public TextMeshProUGUI playTime;
@@ -22,7 +22,7 @@ public class SaveSlotView : MonoBehaviour
 
     private int slotIndex;
     private TextLocalizer titleLocalizer;
-    private TextLocalizer locationLocalizer;
+    private TextLocalizer descriptionLocalizer;
     private TextLocalizer slotLocalizer;
 
     public void Init(int slotIndex)
@@ -32,7 +32,7 @@ public class SaveSlotView : MonoBehaviour
         
         // Localizer 생성
         titleLocalizer = new TextLocalizer(questTitle, "Quest Table");
-        locationLocalizer = new TextLocalizer(locationName, "Quest Table");
+        descriptionLocalizer = new TextLocalizer(description, "Quest Table");
         slotLocalizer = new TextLocalizer(slotNumber, "Settings Table");
 
         // 슬롯 표시
@@ -53,10 +53,10 @@ public class SaveSlotView : MonoBehaviour
 
         titleLocalizer.SetKey(QuestManager.Instance.GetQuestTitle(quest));
 
-        if (locationLocalizer != null)              // 로컬라저가 없다면 재할당
-            locationLocalizer = new TextLocalizer(locationName, "Quest Table");
+        if (descriptionLocalizer != null)              // 로컬라저가 없다면 재할당
+            descriptionLocalizer = new TextLocalizer(description, "Quest Table");
 
-        locationLocalizer.SetKey(location);
+        descriptionLocalizer.SetKey(QuestManager.Instance.GetQuestDescriptionKey(quest));
 
         saveTime.text = saveT;
         playTime.text = playT;

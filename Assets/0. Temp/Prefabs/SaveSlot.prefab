@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -44}
+  m_AnchoredPosition: {x: 250, y: -41.2}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1603724966044251980
@@ -451,7 +451,7 @@ MonoBehaviour:
   button: {fileID: 5625380027514063345}
   thumbnailImage: {fileID: 1322248480735961539}
   questTitle: {fileID: 955573642562723910}
-  locationName: {fileID: 2622323843911255027}
+  description: {fileID: 2622323843911255027}
   saveTime: {fileID: 8110791881265842250}
   slotNumber: {fileID: 5445105629574012199}
   playTime: {fileID: 3365399172379012485}
@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 2622323843911255027}
   - component: {fileID: 1905640123264452476}
   m_Layer: 0
-  m_Name: LocationName
+  m_Name: DesctiptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
