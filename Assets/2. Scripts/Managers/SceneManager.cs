@@ -25,6 +25,8 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     private CanvasGroup fadeCanvasGroup;
     private GameObject fadeObject;
 
+    private Coroutine fadeRountine;
+
     // 씬 로딩 진행률 추적
     public float LoadingProgress { get; private set; }
 
@@ -94,7 +96,10 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
 
         if (useFadeEffect)
         {
-            StartCoroutine(LoadSceneWithFade(sceneName));
+            if (fadeRountine != null)               // 기존 연출이 겹칠경우 진행중이던 코루틴 삭제
+                StopCoroutine(fadeRountine);
+
+            fadeRountine = StartCoroutine(LoadSceneWithFade(sceneName));
         }
         else
         {

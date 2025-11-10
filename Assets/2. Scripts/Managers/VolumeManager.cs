@@ -7,18 +7,6 @@ using UnityEngine.Rendering.Universal;
 
 public class VolumeManager : SingletonMonoBehaviour<VolumeManager>
 {
-    protected override void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;                  // this(이 객체)를 T 형식으로 변환
-        }
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public Volume mainVolume;
     [HideInInspector] public DepthOfField dof;
     [HideInInspector] public Vignette vignette;

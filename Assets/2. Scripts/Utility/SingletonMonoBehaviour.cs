@@ -28,7 +28,9 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour  
         if (_instance == null)
         {
             _instance = this as T;                  // this(이 객체)를 T 형식으로 변환
-            DontDestroyOnLoad(gameObject);
+
+            if(transform.parent == null)
+                DontDestroyOnLoad(gameObject);      // 부모 객체가 없는 경우에만 파괴금지 선언
         }
         else if (_instance != this)
         {
