@@ -55,6 +55,7 @@ public class TimelineController : MonoBehaviour
 
     public void Played()
     {
+        Debug.Log("재생 완료");
         played = true;
         director.time = director.duration;
         director.Evaluate();                    // 즉시 반영

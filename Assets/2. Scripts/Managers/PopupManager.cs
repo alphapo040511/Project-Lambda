@@ -32,7 +32,8 @@ public class PopupManager : SingletonMonoBehaviour<PopupManager>
 
     protected override void OnDestroy()
     {
+        if (presenter != null)
+            presenter.Cleanup();
         base.OnDestroy();
-        presenter.Cleanup();
     }
 }

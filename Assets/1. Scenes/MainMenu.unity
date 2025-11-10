@@ -2927,7 +2927,7 @@ GameObject:
   - component: {fileID: 276275505}
   - component: {fileID: 276275507}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CancelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2972,7 +2972,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cancle
+  m_text: "\uCDE8\uC18C(Cancel)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac6e124b946176e4798737813e65a270, type: 2}
   m_sharedMaterial: {fileID: 5878889903305558550, guid: ac6e124b946176e4798737813e65a270,
@@ -3064,9 +3064,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:9eaa8e852320b6247a34a5040773de5d
+      m_TableCollectionName: 
     m_TableEntryReference:
-      m_KeyId: 819877961728
+      m_KeyId: 0
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -3107,7 +3107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &297456938
 Transform:
   m_ObjectHideFlags: 0
@@ -16919,7 +16919,7 @@ GameObject:
   - component: {fileID: 1805297193}
   - component: {fileID: 1805297195}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ConfirmText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16964,7 +16964,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Comfirm
+  m_text: "\uC801\uC6A9(Confirm)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac6e124b946176e4798737813e65a270, type: 2}
   m_sharedMaterial: {fileID: 5878889903305558550, guid: ac6e124b946176e4798737813e65a270,
@@ -17056,9 +17056,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:9eaa8e852320b6247a34a5040773de5d
+      m_TableCollectionName: 
     m_TableEntryReference:
-      m_KeyId: 623379013632
+      m_KeyId: 0
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

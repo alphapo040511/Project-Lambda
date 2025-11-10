@@ -121,73 +121,90 @@ public class SaveSlotPresenter : ScreenBase
     }
 
     // [Test] 클릭시 저장 상태에 기능 분리 필요
-    async void OnClickSaveSlot(int slotIndex)
+    void OnClickSaveSlot(int slotIndex)
     {
         Debug.Log($"[{SaveState.Save}]{slotIndex} 슬롯을 클릭하였습니다.");
 
         if(isSaveState == SaveState.Save && slotIndex != 0)                 // 저장하기 일 때 (0번은 자동저장)
         {
-            SaveMetadata meta = new SaveMetadata();
-            meta.saveLocationName = "menu";
-            meta.playTime = 1234;
-            meta.saveTime = TimeFormatter.GetUnixTimestamp(DateTime.UtcNow);
-            meta.currentQuest = "Main_0001";
-
-            SaveData save = new SaveData();
-
-            if (SaveManager.MetaExists(slotIndex))                          // 이미 파일이 존재하는 경우
-            {
-                PopupManager.Instance.ShowConfirmPopup(
-                    "Save_Overwrite_Warning",
-                    "Save_Save",
-                    "Cancel",
-                    async () => {
-                        await SaveManager.Save(meta, save, slotIndex);
-                        UpdateView();
-                    });
-            }
-            else
-            {
-                await SaveManager.Save(meta, save, slotIndex);         // 임시 세이프 파일 생성
-                UpdateView();
-            }
+            Save(slotIndex);
         }
         else if(isSaveState == SaveState.Delete)
         {
-            if (SaveManager.MetaExists(slotIndex))              // 이미 파일이 존재하는 경우
-            {
-                PopupManager.Instance.ShowConfirmPopup(
-                    "Save_Delete_Warning",
-                    "Save_Delete",
-                    "Cancel",
-                    async () =>{
-                        await SaveManager.DeleteSaveFile(slotIndex);
-                        UpdateView();
-                    }
-                    );
-            }
-            else
-            {
-                await SaveManager.DeleteSaveFile(slotIndex);
-                UpdateView();
-            }
+            Delete(slotIndex);
         }
         else if (isSaveState == SaveState.Load)         // 불러오기 일 때
         {
-            if (SaveManager.MetaExists(slotIndex))      // 데이터가 존재하는 경우
-            {
-                SaveData save = await SaveManager.LoadAsync(slotIndex);
-                SaveObjectLoader.Instance.SetSaveData(save);
-                SceneManager.Instance.LoadSceneWithLoadingScreen(save.saveSceneName);
-            }
-            else
-            {
-                SaveObjectLoader.Instance.SetSaveData(null);
-                SceneManager.Instance.LoadSceneWithLoadingScreen("Level");
-            }
+            Load(slotIndex);
         }
     }
 
+    async void Save(int slotIndex)
+    {
+        SaveMetadata meta = new SaveMetadata();
+        meta.saveLocationName = "장소 이름";
+        meta.playTime = 12345;
+        meta.saveTime = TimeFormatter.GetUnixTimestamp(DateTime.UtcNow);
+        meta.currentQuest = QuestManager.Instance.currentQuestId;
+
+        SaveData save = SaveObjectLoader.Instance.CreateNewSaveData();
+
+        save.questId = QuestManager.Instance.currentQuestId;
+
+        if (SaveManager.MetaExists(slotIndex))                          // 이미 파일이 존재하는 경우
+        {
+            PopupManager.Instance.ShowConfirmPopup(
+                "Save_Overwrite_Warning",
+                "Save_Save",
+                "Popup_Cancel",
+                async () => {
+                    await SaveManager.Save(meta, save, slotIndex);
+                    UpdateView();
+                });
+        }
+        else
+        {
+            await SaveManager.Save(meta, save, slotIndex);
+            UpdateView();
+        }
+    }
+
+    async void Load(int slotIndex)
+    {
+        if (SaveManager.MetaExists(slotIndex))      // 데이터가 존재하는 경우
+        {
+            SaveData save = await SaveManager.LoadAsync(slotIndex);
+            Hide();
+            SaveObjectLoader.Instance.SetSaveData(save);
+            SceneManager.Instance.LoadSceneWithLoadingScreen(save.saveSceneName);
+        }
+        else                                        // 데이터가 없는 경우
+        {
+            Hide();
+            SaveObjectLoader.Instance.SetSaveData(null);                        // 빈 데이터로 시작
+            SceneManager.Instance.LoadSceneWithLoadingScreen("Level");          // Level 씬으로 이동
+        }
+    }
+
+    async void Delete(int slotIndex)
+    {
+        if (SaveManager.MetaExists(slotIndex))              // 이미 파일이 존재하는 경우
+        {
+            PopupManager.Instance.ShowConfirmPopup(
+                "Save_Delete_Warning",
+                "Save_Delete",
+                "Popup_Cancel",
+                async () => {
+                    await SaveManager.DeleteSaveFile(slotIndex);
+                    UpdateView();
+                });
+        }
+        else
+        {
+            await SaveManager.DeleteSaveFile(slotIndex);
+            UpdateView();
+        }
+    }
 
     void ChangeSaveState(SaveState newState)
     {

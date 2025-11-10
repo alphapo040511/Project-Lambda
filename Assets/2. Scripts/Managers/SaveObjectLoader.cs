@@ -8,7 +8,6 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
     private SaveData targetSave;
     private Dictionary<string, ISaveObject> saveObjs = new Dictionary<string, ISaveObject>();
 
-
     private void OnEnable()
     {
         GameEvents.OnSceneChanged += SceneChangeHandler;
@@ -48,6 +47,19 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
                 yield return null;
         }
 
+        
+        PlayerController player = FindObjectOfType<PlayerController>(true);
+        if (player != null)
+        {
+            player.transform.localPosition = targetSave.savePosition;
+            player.transform.localRotation = targetSave.saveRotation;
+            Debug.Log("플레이어 위치 설정 완료");
+        }
+
+        yield return StartCoroutine(QuestManager.Instance.LoadQuestData(targetSave.questDatas));                // 저장된 퀘스트 정보를 불러오기
+        QuestManager.Instance.RegistQuest(targetSave.questId);
+        Debug.Log("퀘스트 설정 완료");
+
         GameEvents.LoadCompleted();
 
         yield return new WaitForSeconds(0.1f);      // 안정화
@@ -63,6 +75,12 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
         SaveObject[] targets = FindObjectsOfType<SaveObject>(true);
         foreach (var target in targets)
         {
+            if(string.IsNullOrEmpty(target.uniqueId))      // 아이디가 없는경우 넘어감
+            {
+                Debug.LogWarning($"{target.gameObject.name}의 Unique ID가 설정되지 않았습니다.");
+                continue;
+            }
+
             tempDatas[target.UniqueId] = target;
         }
 
@@ -70,6 +88,12 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
         Interactable[] interactableTarget = FindObjectsOfType<Interactable>(true);
         foreach (var target in interactableTarget)
         {
+            if (string.IsNullOrEmpty(target.uniqueId))      // 아이디가 없는경우 넘어감
+            {
+                Debug.LogWarning($"{target.gameObject.name}의 Unique ID가 설정되지 않았습니다.");
+                continue;
+            }
+
             tempDatas[target.UniqueId] = target;
         }
 
@@ -96,5 +120,28 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
         }
 
         return objectSaveData;
+    }
+
+    public SaveData CreateNewSaveData()
+    {
+        SaveData save = new SaveData();
+
+        // 씬 저장
+        save.saveSceneName = SceneManager.Instance.GetCurrentSceneName();
+
+        // 플레이어 위치 저장
+        PlayerController player = FindObjectOfType<PlayerController>(true);
+        if (player != null)
+        {
+            save.savePosition = player.transform.localPosition;
+            save.saveRotation = player.transform.localRotation;
+        }
+
+        save.questDatas = QuestManager.Instance.GetQuestDatas();
+
+        // 오브젝트 상태 저장
+        save.objectDatas = GetObjectDatas();
+
+        return save;
     }
 }

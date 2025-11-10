@@ -167,7 +167,8 @@ public class InteractionObservation : Interactable
             ObservationUI.Instance.ShowButton("획득하기", itemData.desctipntion, () =>
             {
                 Debug.Log($"{itemData.itemName} 획득!");
-                Destroy(gameObject);
+                state = ObjectState.Destroyed;
+                gameObject.SetActive(false);
                 ExitObseravtion();
             });
         }
@@ -176,6 +177,7 @@ public class InteractionObservation : Interactable
             ObservationUI.Instance.ShowButton("내려놓기", itemData.desctipntion, () =>
             {
                 ExitObseravtion();
+                Reset();
             });
         }
 
@@ -183,8 +185,6 @@ public class InteractionObservation : Interactable
 
     public void ExitObseravtion()
     {
-        base.Reset();
-
         GameManager.Instance.ChangeGameState(GameState.Playing);
 
         isObserving = false;

@@ -471,7 +471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3961422
 Transform:
   m_ObjectHideFlags: 0
@@ -5602,6 +5602,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 71916367}
+        m_TargetAssemblyTypeName: SaveObject, Assembly-CSharp
+        m_MethodName: ChagneObjectState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   playOnAwake: 0
 --- !u!320 &71916365
 PlayableDirector:
@@ -5623,13 +5635,15 @@ PlayableDirector:
   - key: {fileID: -5256991329976903067, guid: 76497de76f197314484b1818150a280f, type: 2}
     value: {fileID: 1010122146}
   - key: {fileID: 7184996164623854031, guid: 76497de76f197314484b1818150a280f, type: 2}
-    value: {fileID: 767144509}
+    value: {fileID: 1687225340}
   - key: {fileID: -5019980542316250163, guid: 76497de76f197314484b1818150a280f, type: 2}
     value: {fileID: 3961423}
   - key: {fileID: 2463967000415759746, guid: 76497de76f197314484b1818150a280f, type: 2}
     value: {fileID: 933891344}
   - key: {fileID: 6278141455454806192, guid: 76497de76f197314484b1818150a280f, type: 2}
     value: {fileID: 1001924123}
+  - key: {fileID: -824413868301918763, guid: 76497de76f197314484b1818150a280f, type: 2}
+    value: {fileID: 3961421}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &71916366
@@ -5669,6 +5683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bfc0af0f1472440af42e9f36b6299b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniqueId: WakeUp
   stateEvents:
     defaultState:
       m_PersistentCalls:
@@ -15646,6 +15661,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingUITransform: {fileID: 2109647217}
+  uniqueId: c3a97024-1678-49f8-bd6e-70b7ae37a6ca
   source: {fileID: 0}
   clip: {fileID: 8300000, guid: 6f881575d9f37204a854739a9ffa7021, type: 3}
   leverId: 0
@@ -43773,6 +43789,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 439484260}
+    - targetCorrespondingSourceObject: {fileID: 2358184746870708367, guid: eab38faaad9faf64b94ce796fdc2af65,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 439484261}
   m_SourcePrefab: {fileID: 100100000, guid: eab38faaad9faf64b94ce796fdc2af65, type: 3}
 --- !u!4 &439484258 stripped
 Transform:
@@ -43802,6 +43822,59 @@ MonoBehaviour:
   openPosition: {x: -3.05, y: 0, z: -3}
   closePosition: {x: -3.05, y: 0, z: -1.5}
   moveSpeed: 2
+--- !u!114 &439484261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439484259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bfc0af0f1472440af42e9f36b6299b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: Level_Door_003
+  stateEvents:
+    defaultState:
+      m_PersistentCalls:
+        m_Calls: []
+    offState:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 439484260}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: CloseDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onState:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 439484260}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: OpenDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    usedState:
+      m_PersistentCalls:
+        m_Calls: []
+    disableState:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &441103879
 GameObject:
   m_ObjectHideFlags: 0
@@ -57668,6 +57741,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingUITransform: {fileID: 82777235}
+  uniqueId: 72d8a2c3-f7ad-4c54-9f22-dabbd2e7eab7
   source: {fileID: 0}
   clip: {fileID: 8300000, guid: 6f881575d9f37204a854739a9ffa7021, type: 3}
   leverId: 0
@@ -80124,12 +80198,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725336800}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.489, y: 1.8, z: 8.057}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.000000059604645, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 933536039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &725336808
 MonoBehaviour:
@@ -92096,6 +92170,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 831987970}
+    - targetCorrespondingSourceObject: {fileID: 2358184746870708367, guid: eab38faaad9faf64b94ce796fdc2af65,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 831987971}
   m_SourcePrefab: {fileID: 100100000, guid: eab38faaad9faf64b94ce796fdc2af65, type: 3}
 --- !u!4 &831987968 stripped
 Transform:
@@ -92125,6 +92203,59 @@ MonoBehaviour:
   openPosition: {x: -3.55, y: 0, z: 0}
   closePosition: {x: -3.55, y: 0, z: -1.5}
   moveSpeed: 2
+--- !u!114 &831987971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831987969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bfc0af0f1472440af42e9f36b6299b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: Level_Door_002
+  stateEvents:
+    defaultState:
+      m_PersistentCalls:
+        m_Calls: []
+    offState:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 831987970}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: CloseDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onState:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 831987970}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: OpenDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    usedState:
+      m_PersistentCalls:
+        m_Calls: []
+    disableState:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!43 &832132961
 Mesh:
   m_ObjectHideFlags: 0
@@ -101402,6 +101533,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 725336805}
   - {fileID: 1687225341}
   m_Father: {fileID: 767144513}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -101587,7 +101719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &933891345
 Transform:
   m_ObjectHideFlags: 0
@@ -101611,7 +101743,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933891344}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 619a8db534c6f87468a5116a1f663835, type: 3}
   m_Name: 
@@ -113612,6 +113744,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingUITransform: {fileID: 166613111}
+  uniqueId: 5b45e947-4ca7-4a26-be09-5142a85c7974
   source: {fileID: 0}
   clip: {fileID: 8300000, guid: 6f881575d9f37204a854739a9ffa7021, type: 3}
   leverId: 0
@@ -126583,6 +126716,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1443255605}
+        m_TargetAssemblyTypeName: SaveObject, Assembly-CSharp
+        m_MethodName: ChagneObjectState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 831987971}
+        m_TargetAssemblyTypeName: SaveObject, Assembly-CSharp
+        m_MethodName: ChagneObjectState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 439484261}
+        m_TargetAssemblyTypeName: SaveObject, Assembly-CSharp
+        m_MethodName: ChagneObjectState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911266657}
+        m_TargetAssemblyTypeName: SaveObject, Assembly-CSharp
+        m_MethodName: ChagneObjectState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1190948616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129708,6 +129889,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   floatingUITransform: {fileID: 1089152301}
+  uniqueId: Level_PC_001
   VirtualCamera: {fileID: 386115055}
   displayCanvas: {fileID: 1213738136}
   bootingMessage: {fileID: 1124775282}
@@ -129746,6 +129928,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1230935348}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: ChagneObjectState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -153303,6 +153497,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1443255604}
+    - targetCorrespondingSourceObject: {fileID: 2358184746870708367, guid: eab38faaad9faf64b94ce796fdc2af65,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1443255605}
   m_SourcePrefab: {fileID: 100100000, guid: eab38faaad9faf64b94ce796fdc2af65, type: 3}
 --- !u!4 &1443255602 stripped
 Transform:
@@ -153332,6 +153530,59 @@ MonoBehaviour:
   openPosition: {x: -3.05, y: 0, z: 0}
   closePosition: {x: -3.05, y: 0, z: -1.5}
   moveSpeed: 2
+--- !u!114 &1443255605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443255603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bfc0af0f1472440af42e9f36b6299b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: Level_Door_001
+  stateEvents:
+    defaultState:
+      m_PersistentCalls:
+        m_Calls: []
+    offState:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1443255604}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: CloseDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onState:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1443255604}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: OpenDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    usedState:
+      m_PersistentCalls:
+        m_Calls: []
+    disableState:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1443412966
 GameObject:
   m_ObjectHideFlags: 0
@@ -161004,6 +161255,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingUITransform: {fileID: 988340540}
+  uniqueId: 0b32ea3d-287d-44db-a3d1-44a80ee71fd9
   source: {fileID: 0}
   clip: {fileID: 8300000, guid: 6f881575d9f37204a854739a9ffa7021, type: 3}
   leverId: 0
@@ -167839,6 +168091,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingUITransform: {fileID: 0}
+  uniqueId: 259a555c-f54e-4b1b-b46c-810687652369
   releaseDelay: 2
 --- !u!65 &1573076209
 BoxCollider:
@@ -197810,6 +198063,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   floatingUITransform: {fileID: 0}
+  uniqueId: Level_Controller_001
 --- !u!114 &1843602265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197825,7 +198079,19 @@ MonoBehaviour:
   targetQuest: {fileID: 11400000, guid: 01be6aa021375134bb4d58763480a6e1, type: 2}
   onActivated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1843602264}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: ChagneObjectState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDeactivated:
     m_PersistentCalls:
       m_Calls: []
@@ -197994,6 +198260,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   floatingUITransform: {fileID: 0}
+  uniqueId: Level_Panel_001
   mainCamera: {fileID: 725336804}
   focusDistance: 0.5
   minSize: 0.5
@@ -198066,6 +198333,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1844883392}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: ChagneObjectState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -198557,6 +198836,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingUITransform: {fileID: 560309734}
+  uniqueId: Level_PC_002
   VirtualCamera: {fileID: 342620762}
   displayCanvas: {fileID: 365423827}
   bootingMessage: {fileID: 117588729}
@@ -204128,6 +204408,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1911266656}
+    - targetCorrespondingSourceObject: {fileID: 2358184746870708367, guid: eab38faaad9faf64b94ce796fdc2af65,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1911266657}
   m_SourcePrefab: {fileID: 100100000, guid: eab38faaad9faf64b94ce796fdc2af65, type: 3}
 --- !u!4 &1911266654 stripped
 Transform:
@@ -204157,6 +204441,59 @@ MonoBehaviour:
   openPosition: {x: -3.55, y: 0, z: -3}
   closePosition: {x: -3.55, y: 0, z: -1.5}
   moveSpeed: 2
+--- !u!114 &1911266657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911266655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bfc0af0f1472440af42e9f36b6299b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: Level_Door_004
+  stateEvents:
+    defaultState:
+      m_PersistentCalls:
+        m_Calls: []
+    offState:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1911266656}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: CloseDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onState:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1911266656}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: OpenDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    usedState:
+      m_PersistentCalls:
+        m_Calls: []
+    disableState:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1912177535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216671,6 +217008,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingUITransform: {fileID: 0}
+  uniqueId: 772bf0f2-4304-414a-9c8c-d1fa3edee1ed
   releaseDelay: 2
 --- !u!4 &2011062870 stripped
 Transform:
@@ -222823,6 +223161,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingUITransform: {fileID: 910579552}
+  uniqueId: f2a387f7-ef9f-4133-b92d-762a90c3451d
   hologramObjects:
   - {fileID: 296580978}
   - {fileID: 189125083}
@@ -228847,6 +229186,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingUITransform: {fileID: 210950231}
+  uniqueId: adef7675-995c-476c-bc94-064fc744ba31
   source: {fileID: 0}
   clip: {fileID: 8300000, guid: 6f881575d9f37204a854739a9ffa7021, type: 3}
   leverId: 0
@@ -230082,6 +230422,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 651576978}
     m_Modifications:
+    - target: {fileID: 3235283754144375802, guid: 21994c3eb362f3f48955829ff96bbfce,
+        type: 3}
+      propertyPath: uniqueId
+      value: Level_Touch_002
+      objectReference: {fileID: 0}
     - target: {fileID: 3705254150990699143, guid: 21994c3eb362f3f48955829ff96bbfce,
         type: 3}
       propertyPath: m_Name
@@ -231112,7 +231457,6 @@ SceneRoots:
   - {fileID: 144861840}
   - {fileID: 736799363}
   - {fileID: 1136410508}
-  - {fileID: 725336805}
   - {fileID: 767144513}
   - {fileID: 1945725810}
   - {fileID: 1683659847}

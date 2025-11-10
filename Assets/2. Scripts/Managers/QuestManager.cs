@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Threading.Tasks;
 
 public class QuestManager : SingletonMonoBehaviour<QuestManager>
 {
@@ -45,22 +46,15 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
     protected override void Awake()
     {
-        if (_instance == null)
-        {
-            _instance = this;                  // this(이 객체)를 T 형식으로 변환
-        }
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        base.Awake();
         QuestIndexing();
         // 세이브 파일이 있는 경우 퀘스트 개수 정리
     }
 
     void QuestIndexing()
     {
+        questList.Clear();
+
         int count = 0;
         foreach(QuestDataSO quest in questDatas)
         {
@@ -130,5 +124,33 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
     {
         Debug.Log($"{currentQuestId} 퀘스트 완료");
         onCompleteQuest?.Invoke(currentQuestId);
+    }
+
+    public IEnumerator LoadQuestData(List<QuestSaveData> datas)
+    {
+        foreach (QuestSaveData data in datas)
+        {
+            if(questList.ContainsKey(data.questId))
+            {
+                questList[data.questId].currentCount = data.currentProgress;
+            }
+
+            yield return null;
+        }
+    }
+
+    public List<QuestSaveData> GetQuestDatas()
+    {
+        List<QuestSaveData> list = new List<QuestSaveData>();
+
+        foreach(var quest in questList.Values)
+        {
+            QuestSaveData data = new QuestSaveData();
+            data.questId = quest.questId;
+            data.currentProgress = quest.currentCount;
+            list.Add(data);
+        }
+
+        return list;
     }
 }
