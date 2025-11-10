@@ -51,7 +51,7 @@ public class SaveSlotView : MonoBehaviour
         if(titleLocalizer != null)                  // 로컬라저가 없다면 재할당
             titleLocalizer = new TextLocalizer(questTitle, "Quest Table");
 
-        titleLocalizer.SetKey(quest);
+        titleLocalizer.SetKey(QuestManager.Instance.GetQuestTitle(quest));
 
         if (locationLocalizer != null)              // 로컬라저가 없다면 재할당
             locationLocalizer = new TextLocalizer(locationName, "Quest Table");

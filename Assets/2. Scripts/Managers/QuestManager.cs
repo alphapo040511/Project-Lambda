@@ -153,4 +153,14 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
         return list;
     }
+
+    public string GetQuestTitle(string questId)
+    {
+        if(questList.ContainsKey(questId))
+        {
+            return questList[questId].titleKey;
+        }
+
+        return null;
+    }
 }
