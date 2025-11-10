@@ -23,18 +23,6 @@ public class ObservationUI : SingletonMonoBehaviour<ObservationUI>
         button.onClick.RemoveListener(ButtonClick);
     }
 
-    protected override void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-        }
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public void ShowButton(string content, string description, Action callback)
     {
         button.GetComponentInChildren<TextMeshProUGUI>().text = content;

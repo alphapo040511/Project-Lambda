@@ -5,6 +5,7 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.Events;
 
+
 public class TimelineController : MonoBehaviour
 {
     public PlayableDirector director;
@@ -12,13 +13,10 @@ public class TimelineController : MonoBehaviour
 
     public UnityEvent onPlayed;
 
+    public bool playOnAwake = false;
     private bool played = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Invoke(nameof(Play), 0.5f);
-    }
+
 
     private void OnEnable()
     {
@@ -26,6 +24,7 @@ public class TimelineController : MonoBehaviour
             director.stopped += OnTimelineStopped;
 
         GameEvents.OnChangeGameState += ChangedGameState;
+        GameEvents.OnLoadCompleted += LoadCompletedHandler;         // 데이터 로드 완료 이벤트
     }
 
     private void OnDisable()
@@ -34,6 +33,13 @@ public class TimelineController : MonoBehaviour
             director.stopped -= OnTimelineStopped;
 
         GameEvents.OnChangeGameState -= ChangedGameState;
+        GameEvents.OnLoadCompleted -= LoadCompletedHandler;         // 데이터 로드 완료 이벤트
+    }
+
+    void LoadCompletedHandler()
+    {
+        if (playOnAwake && !played)
+            Play();
     }
 
     public void Play()
@@ -47,9 +53,17 @@ public class TimelineController : MonoBehaviour
         EventSystem.Instance.StartEvent();
     }
 
-    public void Stop()
+    public void Played()
     {
         played = true;
+        director.time = director.duration;
+        director.Evaluate();                    // 즉시 반영
+    }
+
+
+    public void Stop()
+    {
+        Played();
         onPlayed?.Invoke();
         EventSystem.Instance.EndEvent();
     }
@@ -74,5 +88,4 @@ public class TimelineController : MonoBehaviour
             director.Play();
         }
     }
-
 }

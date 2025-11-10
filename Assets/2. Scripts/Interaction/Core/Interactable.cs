@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Interactable : Actor, IInteractable
+public class Interactable : Actor, IInteractable, ISaveObject
 {
     [Header("Interact Settings")]
     public float interactionHoldTime = 3f;                          // 상호작용을 위해 누르고 있어야 하는 시간 (초)
@@ -34,7 +34,45 @@ public class Interactable : Actor, IInteractable
             }
         }
     }
+
     protected InteractionUIView targetUI;
+
+    #region 저장 관련 인터페이스 구현
+
+    protected string uniqueId;
+    public string UniqueId => uniqueId;
+
+    protected ObjectState state = ObjectState.Default;
+    public ObjectState State => state;
+
+
+
+    #if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (!Application.isPlaying)
+        {
+            // 프리팹 에셋에는 ID 생성 금지
+            if (PrefabUtility.IsPartOfPrefabAsset(this))
+                return;
+
+            if (string.IsNullOrEmpty(uniqueId))
+            {
+                uniqueId = Guid.NewGuid().ToString();               // 새로운 아이디 생성
+                EditorUtility.SetDirty(this);                       // id 에디터에 반영
+            }
+        }
+    }
+    #endif
+
+    public virtual void SetObjectState(string id, ObjectState state)
+    {
+        if (UniqueId != id) return;
+
+        Debug.Log($"{gameObject.name} 상태 : {state}로 설정");
+    }
+
+    #endregion
 
     private void OnDestroy()
     {
@@ -43,6 +81,8 @@ public class Interactable : Actor, IInteractable
             targetUI.gameObject.SetActive(false);
         }
     }
+
+    #region 상호작용 탐색
 
     // 상호작용 범위 진입
     public void OnActivate()
@@ -85,6 +125,10 @@ public class Interactable : Actor, IInteractable
         }
     }
 
+    #endregion
+
+
+    #region 상호작용 진행
     // 상호작용 시작 (키 다운)
     public virtual void OnInteractStart() 
     {
@@ -119,10 +163,13 @@ public class Interactable : Actor, IInteractable
         targetUI.OnInteractHold(progress);
     }
 
+    #endregion
+
     protected virtual void Complete()
     {
         Debug.Log("상호작용 완료");
         used = true;                    // 기본적으론 1회용
+        state = ObjectState.Used;
         currentHoldTime = 0f;
         onCompleted?.Invoke();
     }
@@ -130,6 +177,7 @@ public class Interactable : Actor, IInteractable
     protected virtual void Reset()
     {
         used = false;
+        state = ObjectState.Default;
         currentHoldTime = 0f;
     }
 
@@ -142,7 +190,10 @@ public class Interactable : Actor, IInteractable
     // 상호작용 비활성화
     public void DisableInteraction()
     {
-        interactable = false;           // 사용 불가 상태로 변경
-        OnDeactivate();                 // 상호작용 UI 비활성화
+        interactable = false;                   // 사용 불가 상태로 변경
+        state = ObjectState.Disable;
+        OnDeactivate();                         // 상호작용 UI 비활성화
     }
+
+
 }

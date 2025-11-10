@@ -30,7 +30,7 @@ public class MainMenuUI : MonoBehaviour
         if(levelSceneButton != null)
         {
             levelSceneButton.onClick.AddListener(() => {
-                SceneManager.Instance.LoadScene("Level");
+                SceneManager.Instance.LoadSceneWithLoadingScreen("Level");
             });
         }
 

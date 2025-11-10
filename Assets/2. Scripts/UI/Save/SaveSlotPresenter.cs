@@ -172,6 +172,20 @@ public class SaveSlotPresenter : ScreenBase
                 UpdateView();
             }
         }
+        else if (isSaveState == SaveState.Load)         // 불러오기 일 때
+        {
+            if (SaveManager.MetaExists(slotIndex))      // 데이터가 존재하는 경우
+            {
+                SaveData save = await SaveManager.LoadAsync(slotIndex);
+                SaveObjectLoader.Instance.SetSaveData(save);
+                SceneManager.Instance.LoadSceneWithLoadingScreen(save.saveSceneName);
+            }
+            else
+            {
+                SaveObjectLoader.Instance.SetSaveData(null);
+                SceneManager.Instance.LoadSceneWithLoadingScreen("Level");
+            }
+        }
     }
 
 

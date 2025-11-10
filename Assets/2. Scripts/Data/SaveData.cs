@@ -21,7 +21,7 @@ public class SaveData
     public Vector3 savePosition;
     public Quaternion saveRotation;
     public List<QuestSaveData> questDatas;
-    public List<InteractionSaveData> interactionDatas;
+    public List<ObjectSaveData> objectDatas;
 }
 
 // 퀘스트 상태 저장
@@ -35,16 +35,17 @@ public class QuestSaveData
 
 // 상호작용 (또는 퍼즐) 저장 상태
 [System.Serializable]
-public class InteractionSaveData
+public class ObjectSaveData
 {
-    // 나중에 구조를 생각해볼게요..ㅠ
-    public string interactionId;
-    public InteractionState interactionState;
+    public string uniqueId;
+    public ObjectState objectState;
 }
 
-public enum InteractionState
+public enum ObjectState
 { 
     Default,
-    Used,           // 사용된
-    Disable         // 비활성화(또는 획득)
+    Off,            // 꺼짐 (스위치나 문 같은 오브젝트)
+    On,             // 켜짐
+    Used,           // 사용된 (재사용 불가)
+    Disable         // 비활성화
 }
