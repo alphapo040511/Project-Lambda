@@ -27,7 +27,7 @@ MonoBehaviour:
         asm: Unity.Localization.Editor}
       data:
         m_Collection: {fileID: 11400000}
-        m_SheetsServiceProvider: {fileID: 11400000, guid: 3eafba9e5c301214b818f5b3aa9d7baf,
+        m_SheetsServiceProvider: {fileID: 11400000, guid: 1866db8c9ee064de9931488f03c2b178,
           type: 2}
         m_SpreadsheetId: 17y5GpRLdeLFMD1m01icr_56yfYLOVMpp2grwGw7uVLg
         m_SheetId: 1870995219

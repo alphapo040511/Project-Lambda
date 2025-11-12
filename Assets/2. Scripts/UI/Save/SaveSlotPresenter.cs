@@ -158,7 +158,8 @@ public class SaveSlotPresenter : ScreenBase
                 "Save_Save",
                 "Popup_Cancel",
                 async () => {
-                    await SaveManager.Save(meta, save, slotIndex);
+                    // 팝업 알림 띄우기
+                    PopupManager.Instance.ShowConfirmPopup(await SaveManager.Save(meta, save, slotIndex), "Popup_Confirm");
                     UpdateView();
                 });
         }
@@ -186,7 +187,7 @@ public class SaveSlotPresenter : ScreenBase
         }
     }
 
-    async void Delete(int slotIndex)
+    void Delete(int slotIndex)
     {
         if (SaveManager.MetaExists(slotIndex))              // 이미 파일이 존재하는 경우
         {
@@ -195,14 +196,14 @@ public class SaveSlotPresenter : ScreenBase
                 "Save_Delete",
                 "Popup_Cancel",
                 async () => {
-                    await SaveManager.DeleteSaveFile(slotIndex);
+                    // 팝업 메세지 띄우기 (성공, 실패)
+                    PopupManager.Instance.ShowConfirmPopup(await SaveManager.DeleteSaveFile(slotIndex), "Popup_Confirm");
                     UpdateView();
                 });
         }
         else
         {
-            await SaveManager.DeleteSaveFile(slotIndex);
-            UpdateView();
+            Debug.LogWarning("삭제할 데이터가 없습니다.");
         }
     }
 

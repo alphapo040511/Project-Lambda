@@ -6,26 +6,47 @@ using UnityEngine;
 
 public static class SaveManager
 {
-    public static async Task Save(SaveMetadata newMeta, SaveData newSave, int slotIndex)
+    static bool isSaving = false;
+
+    public static async Task<string> Save(SaveMetadata newMeta, SaveData newSave, int slotIndex)
     {
-        string forderPath = SavePathHelper.GetSlotFolder(slotIndex);
-        string savaePath = SavePathHelper.GetSaveDataPath(slotIndex);
-        string metaPath = SavePathHelper.GetMetaPath(slotIndex);
+        if (isSaving) return "Save_InProgress";       // 중복 호출 방지 (팝업에 띄울 메세지 키 값 보내기)
+        isSaving = true;
 
-        // ✅ 경로가 존재하지 않으면 자동 생성
-        if (!Directory.Exists(forderPath))
-            Directory.CreateDirectory(forderPath);
+        try
+        {
+            string forderPath = SavePathHelper.GetSlotFolder(slotIndex);
+            string savaePath = SavePathHelper.GetSaveDataPath(slotIndex);
+            string metaPath = SavePathHelper.GetMetaPath(slotIndex);
 
-        // SaveData 저장
-        await File.WriteAllTextAsync(savaePath, JsonUtility.ToJson(newSave, true));
+            // ✅ 경로가 존재하지 않으면 자동 생성
+            if (!Directory.Exists(forderPath))
+                Directory.CreateDirectory(forderPath);
 
-        // Metadata 저장
-        newMeta.saveTime = TimeFormatter.GetUnixTimestamp(DateTime.UtcNow);
-        await File.WriteAllTextAsync(metaPath, JsonUtility.ToJson(newMeta, true));
+            // SaveData 저장
+            await File.WriteAllTextAsync(savaePath, JsonUtility.ToJson(newSave, true));
+
+            // Metadata 저장
+            newMeta.saveTime = TimeFormatter.GetUnixTimestamp(DateTime.UtcNow);
+            await File.WriteAllTextAsync(metaPath, JsonUtility.ToJson(newMeta, true));
+            return "Save_Success";
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[SaveManager] Save failed: {e}");
+            return "Save_Failed";
+        }
+        finally                     //  에러가 생기더라도 무조건 실행
+        {
+            isSaving = false;       // 저장 상태 취소
+        }
     }
 
     public static async Task<SaveMetadata> MetaLoad(int slotIndex)
     {
+        while (isSaving)
+            await Task.Yield();         // 저장중이면 대기
+
         string metaPath = SavePathHelper.GetMetaPath(slotIndex);
 
         if (!File.Exists(metaPath)) return null;            // 파일이 있는지 확인
@@ -36,6 +57,9 @@ public static class SaveManager
 
     public static async Task<SaveData> LoadAsync(int slotIndex)
     {
+        while (isSaving)
+            await Task.Yield();         // 저장중이면 대기
+
         string savePath = SavePathHelper.GetSaveDataPath(slotIndex);
 
         if (!File.Exists(savePath))            // 파일이 있는지 확인
@@ -48,8 +72,14 @@ public static class SaveManager
         return JsonUtility.FromJson<SaveData>(json);
     }
 
-    public static async Task DeleteSaveFile(int slotIndex)
+    public static async Task<string> DeleteSaveFile(int slotIndex)
     {
+        if (isSaving)
+        {
+            Debug.LogWarning("현재 저장 중입니다. 삭제를 잠시 후에 시도하세요.");
+            return "Save_InProgress";           // 세이브 시도중 메세지 키값 전달
+        }
+
         string metaPath = SavePathHelper.GetMetaPath(slotIndex);
         string savePath = SavePathHelper.GetSaveDataPath(slotIndex);
 
@@ -61,11 +91,11 @@ public static class SaveManager
                 File.Delete(metaPath);
                 });
 
-            Debug.Log("세이브 파일이 삭제되었습니다.");
+            return "Delete_Success";
         }
         else
         {
-            Debug.LogWarning("삭제할 세이브 파일이 없습니다.");
+            return "Save_Empty";
         }
     }
 
