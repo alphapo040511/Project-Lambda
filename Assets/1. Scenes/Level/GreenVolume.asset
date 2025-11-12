@@ -66,8 +66,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 20
   blueOutRedIn:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -10
   blueOutGreenIn:
     m_OverrideState: 1
     m_Value: -20
