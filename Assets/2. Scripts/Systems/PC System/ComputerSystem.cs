@@ -47,6 +47,23 @@ public class ComputerSystem : InteractionFocus
         }
     }
 
+    public void SetObjectState(string id, ObjectState state)
+    {
+        if (UniqueId != id) return;
+        this.state = state;
+
+        if(state == ObjectState.On)
+        {
+            isUnlocked = true;
+            StartCoroutine(SetupDisplay());
+        }
+
+        if (state == ObjectState.Used)
+        {
+            StartCoroutine(SetupDisplay());
+        }
+    }
+
     private void InitPassword()
     {
         if (passwordData.password == "")
@@ -56,7 +73,6 @@ public class ComputerSystem : InteractionFocus
     protected override void EnterFocus()
     {
         base.EnterFocus();
-
         if (!isPoweredOn)
             StartCoroutine(SetupDisplay());                         // 처음 1회만 전원 키기
     }
@@ -68,14 +84,20 @@ public class ComputerSystem : InteractionFocus
         {
             if(passwordData.IsUnlocked(passwordInput.text))             // 패스워드가 맞는 경우
             {
-                passwordDisplay.gameObject.SetActive(false);
-                DesktopBackground.gameObject.SetActive(true);                        // 메인 화면 활성화
+                CorrectPassword();
             }
             else
             {
                 passwordInput.text = "Error";
             }
         }
+    }
+
+    void CorrectPassword()
+    {
+        state = ObjectState.On;                                             // 정답이 맞는 경우 On으로
+        passwordDisplay.gameObject.SetActive(false);
+        DesktopBackground.gameObject.SetActive(true);                        // 메인 화면 활성화
     }
 
     public void OpenWindow(string windowName)

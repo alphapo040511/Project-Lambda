@@ -142,6 +142,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
         GameEvents.SceneChanged(sceneName);
 
         isLoading = false;
+        currentSceneName = sceneName;
     }
 
     /// <summary>
@@ -180,6 +181,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
                     }
                 }
 
+                currentSceneName = sceneName;
                 yield return null;
             }
         }
@@ -208,6 +210,8 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
         }
 
         LoadingProgress = 1f;
+        if(sceneName != "Loading")
+            currentSceneName = sceneName;
     }
 
     #endregion

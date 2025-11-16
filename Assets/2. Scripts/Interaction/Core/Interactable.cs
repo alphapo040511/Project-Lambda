@@ -39,37 +39,37 @@ public class Interactable : Actor, IInteractable, ISaveObject
 
     #region 저장 관련 인터페이스 구현
 
-    protected string uniqueId;
+    public string uniqueId;
     public string UniqueId => uniqueId;
 
     protected ObjectState state = ObjectState.Default;
     public ObjectState State => state;
 
-
-
-    #if UNITY_EDITOR
-    private void OnValidate()
+    public void ChagneObjectState(int index)
     {
-        if (!Application.isPlaying)
-        {
-            // 프리팹 에셋에는 ID 생성 금지
-            if (PrefabUtility.IsPartOfPrefabAsset(this))
-                return;
-
-            if (string.IsNullOrEmpty(uniqueId))
-            {
-                uniqueId = Guid.NewGuid().ToString();               // 새로운 아이디 생성
-                EditorUtility.SetDirty(this);                       // id 에디터에 반영
-            }
-        }
+        this.state = (ObjectState)index;
     }
-    #endif
 
     public virtual void SetObjectState(string id, ObjectState state)
     {
         if (UniqueId != id) return;
+        this.state = state;
 
-        Debug.Log($"{gameObject.name} 상태 : {state}로 설정");
+        switch (state)
+        {
+            case ObjectState.Off:
+                EnableInteraction();
+                break;
+            case ObjectState.Used:          // 일단 사용 완료만 표시
+                Complete();
+                break;
+            case ObjectState.Disable:
+                DisableInteraction();
+                break;
+            case ObjectState.Destroyed:
+                gameObject.SetActive(false);
+                break;
+        }
     }
 
     #endregion
@@ -168,7 +168,7 @@ public class Interactable : Actor, IInteractable, ISaveObject
     protected virtual void Complete()
     {
         Debug.Log("상호작용 완료");
-        used = true;                    // 기본적으론 1회용
+        //used = true;                    // 기본적으론 1회용
         state = ObjectState.Used;
         currentHoldTime = 0f;
         onCompleted?.Invoke();
@@ -176,9 +176,9 @@ public class Interactable : Actor, IInteractable, ISaveObject
 
     protected virtual void Reset()
     {
-        used = false;
-        state = ObjectState.Default;
-        currentHoldTime = 0f;
+        //used = false;
+        //state = ObjectState.Default;
+        //currentHoldTime = 0f;
     }
 
     // 상호작용 활성화

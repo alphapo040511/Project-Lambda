@@ -159,6 +159,26 @@ MonoBehaviour:
     m_Key: Save_Delete_Warning
     m_Metadata:
       m_Items: []
+  - m_Id: 23495424366075904
+    m_Key: Save_InProgress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23498120162697216
+    m_Key: Save_Success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23498181303066624
+    m_Key: Save_Failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23498277574926336
+    m_Key: Delete_Success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23498429056409600
+    m_Key: Save_Empty
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

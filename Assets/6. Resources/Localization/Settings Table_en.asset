@@ -155,13 +155,33 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 22557622183735296
-    m_Localized: '"<color=#FF4444>Warning</color>\nA save file already exists in
-      this slot.\nDo you want to overwrite the existing data?"'
+    m_Localized: <color=#FF4444>Warning</color>\nA save file already exists in this
+      slot.\nDo you want to overwrite the existing data?"
     m_Metadata:
       m_Items: []
   - m_Id: 22557622183735297
-    m_Localized: <color=#FF4444>Warning<</color>\nA save file already exists in this
+    m_Localized: <color=#FF4444>Warning</color>\nA save file already exists in this
       slot.\nDo you want to delete the existing data?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23495424366075904
+    m_Localized: Saving is in progress.\nPlease try again later.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23498120162697216
+    m_Localized: Save completed successfully.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23498181303066624
+    m_Localized: <color=#FFD966>Error</color>\nSave failed.\nPlease try again later.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23498277574926336
+    m_Localized: Data deleted successfully.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23498429056409600
+    m_Localized: <color=#FFD966>No saved data found.
     m_Metadata:
       m_Items: []
   references:

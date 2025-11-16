@@ -57,7 +57,7 @@ public class PopupPresenter
             view.SetConfirm(model.ConfirmMessage);
 
         if(model.HasCancelButton)
-            view.SetConfirm(model.CancelMessage);
+            view.SetCancel(model.CancelMessage);
 
         view.SetButtonsVisible(model.HasConfirmButton, model.HasCancelButton);
     }

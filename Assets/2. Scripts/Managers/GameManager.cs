@@ -88,6 +88,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 ResumeGame();
             }
         }
+        if(Input.GetKey(KeyCode.LeftShift) &&Input.GetKeyDown(KeyCode.S))
+        {
+            ChangeGameState(GameState.Paused);
+            UIManager.Instance.ShowScreen(ScreenType.Save);
+        }
     }
 
     //게임 상태 관리 영역

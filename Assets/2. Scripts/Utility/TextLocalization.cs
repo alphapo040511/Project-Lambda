@@ -5,6 +5,8 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
 using TMPro;
+using UnityEngine.Localization.Components;
+using Unity.VisualScripting;
 
 
 // 텍스트 언어 변경 기능
@@ -14,14 +16,20 @@ public class TextLocalizer
     public TextLocalizer(TextMeshProUGUI tmp, string tableName)
     {
         targetText = tmp;
+
+        LocalizeStringEvent stringEvent = tmp.GetComponent<LocalizeStringEvent>();
+        if(stringEvent == null)
+            stringEvent = tmp.AddComponent<LocalizeStringEvent>();
+        localizedString = stringEvent.StringReference;
+
         this.tableName = tableName;
     }
 
     private TextMeshProUGUI targetText;
-    private LocalizedString localizedString = new LocalizedString();
+    private LocalizedString localizedString;
 
     // 테이블 이름 설정 (Inspector 또는 코드)
-    [SerializeField] private string tableName = "Quest Table";
+    [SerializeField] private string tableName = "";
 
     
     // 인자가 없이 키값만 있는 경우
@@ -33,9 +41,12 @@ public class TextLocalizer
     public void SetKey(string keyOrValue, params object[] args)
     {
         // 이전 이벤트 제거 (안전하게)
-        localizedString.StringChanged -= UpdateText;
+        if (localizedString != null)
+            localizedString.StringChanged -= UpdateText;
 
         if (string.IsNullOrEmpty(keyOrValue)) return;
+
+        localizedString = new LocalizedString(tableName, keyOrValue);
 
         TableEntry entry = LocalizationSettings.StringDatabase.GetTable(tableName).GetEntry(keyOrValue);
 
@@ -62,7 +73,9 @@ public class TextLocalizer
     public void ClearKey()
     {
         // 이벤트 제거 (안전하게)
-        localizedString.StringChanged -= UpdateText;
+        if (localizedString != null)
+            localizedString.StringChanged -= UpdateText;
+
         targetText.text = "";
     }
 

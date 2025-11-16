@@ -48,11 +48,13 @@ public class InteractionFocus : Interactable
         Reset();
 
         isFocused = false;
-
+        
         GameManager.Instance.ChangeGameState(GameState.Playing);
 
         if (VirtualCamera != null)
             VirtualCamera.enabled = false;
+
+        state = ObjectState.Off;
     }
 
 

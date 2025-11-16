@@ -20,6 +20,7 @@ public class SaveData
     public string saveSceneName;
     public Vector3 savePosition;
     public Quaternion saveRotation;
+    public string questId;
     public List<QuestSaveData> questDatas;
     public List<ObjectSaveData> objectDatas;
 }
@@ -47,5 +48,6 @@ public enum ObjectState
     Off,            // 꺼짐 (스위치나 문 같은 오브젝트)
     On,             // 켜짐
     Used,           // 사용된 (재사용 불가)
-    Disable         // 비활성화
+    Disable,        // 비활성화
+    Destroyed       // 파괴된 (사라진)
 }
