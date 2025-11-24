@@ -19,7 +19,7 @@ public class InteractionFocus : Interactable
         }
     }
 
-    protected override void ActorUpdate()
+    protected override void Update()
     {
         if(isFocused && Input.GetKeyDown(KeyCode.Escape))
         {
