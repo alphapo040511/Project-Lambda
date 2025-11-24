@@ -25,7 +25,7 @@ public class PowerPuzzleController : InteractionFocus
     private float needleStartAngle = -50;
 
     public bool isMoving = false;
-    private float timer = 0;
+    public float timer = 0;
 
     void Start()
     {
@@ -37,7 +37,9 @@ public class PowerPuzzleController : InteractionFocus
     protected override void Update()
     {
         base.Update();
-        MoveNeedle();
+
+        if(isMoving) MoveNeedle();
+
 
         if (timer > 0)
             timer -= Time.deltaTime;
