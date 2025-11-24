@@ -24,7 +24,7 @@ public class PowerPuzzleController : InteractionFocus
     public float needleRotateSpeed = 10;
     private float needleStartAngle = -50;
 
-    private bool isMoving = false;
+    public bool isMoving = false;
     private float timer = 0;
 
     void Start()

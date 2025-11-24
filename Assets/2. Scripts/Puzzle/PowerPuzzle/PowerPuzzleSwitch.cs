@@ -43,7 +43,7 @@ public class PowerPuzzleSwitch : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (controller == null || !controller.isFocused || isMoving) return;        // 포커싱 되어 있지 않거나, 움직이는 중 일때
+        if (controller == null || !controller.isFocused || isMoving || controller.isMoving) return;        // 포커싱 되어 있지 않거나, 움직이는 중(스위치 또는 바늘이) 일때
 
         SetupSwitch(!isPowered);
     }
