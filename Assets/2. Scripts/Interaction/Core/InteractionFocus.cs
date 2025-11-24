@@ -19,7 +19,7 @@ public class InteractionFocus : Interactable
         }
     }
 
-    protected override void Update()
+    protected override void ActorUpdate()
     {
         if(isFocused && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -37,7 +37,7 @@ public class InteractionFocus : Interactable
     {
         isFocused = true;
 
-        GameManager.Instance.ChangeGameState(GameState.Display);
+        GameManager.Instance.ChangeGameState(GameState.Focus);
 
         if (VirtualCamera != null)
             VirtualCamera.enabled = true;
