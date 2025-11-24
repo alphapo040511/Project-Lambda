@@ -52,5 +52,10 @@ public class PowerPuzzleSwitch : MonoBehaviour, IPointerClickHandler
     {
         isPowered = isPower;
         isMoving = true;
+
+        if(controller != null)
+        {
+            controller.OnChangeSwitchState(isPowered, switchIndex);
+        }
     }
 }

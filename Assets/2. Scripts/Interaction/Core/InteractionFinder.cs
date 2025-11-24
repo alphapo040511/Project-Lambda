@@ -136,7 +136,7 @@ public class InteractionFinder : Actor
 
         if (Physics.Raycast(transform.position, dir, out RaycastHit hit, dir.magnitude, ~playerLayer))    // Ray로 막혀있는지 판단, 플레이어 레이어 제외
         {
-            bool same = target == hit.transform;
+            bool same = hit.transform.IsChildOf(target);        // 가리고 있는 오브젝트가 타겟의 자식인지 확인
 
             //if (!same)
             //{
