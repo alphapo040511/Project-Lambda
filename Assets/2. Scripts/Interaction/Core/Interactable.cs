@@ -42,7 +42,7 @@ public class Interactable : Actor, IInteractable, ISaveObject
     public string uniqueId;
     public string UniqueId => uniqueId;
 
-    protected ObjectState state = ObjectState.Default;
+    public ObjectState state = ObjectState.Default;
     public ObjectState State => state;
 
     public void ChagneObjectState(int index)

@@ -9,11 +9,14 @@ public class MemotyPuzzleMonitor : MonoBehaviour, IPointerClickHandler
     public int monitorIndex;
     public SpriteRenderer iconRenderer;
 
+    private bool used = false;
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (controller == null || !controller.isFocused || !controller.CanInteractMonitor()) return;        // 포커싱 되어 있지 않거나, 모니터 상호작용이 불가능 하면
+        if (controller == null || !controller.isFocused || !controller.CanInteractMonitor() || used) return;        // 포커싱 되어 있지 않거나, 모니터 상호작용이 불가능 하면
 
         // 해당 모니터 선택
+        controller.SelectDisplay(monitorIndex);
     }
 
     public void SetIcon(Sprite icon)
@@ -25,5 +28,9 @@ public class MemotyPuzzleMonitor : MonoBehaviour, IPointerClickHandler
     public void SetColor(Color color)
     {
         iconRenderer.color = color;
+        if (color == Color.white)
+            used = false;
+        else
+            used = true;
     }
 }
