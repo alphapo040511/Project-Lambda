@@ -70,6 +70,30 @@ MonoBehaviour:
     m_Localized: Explore the hallway
     m_Metadata:
       m_Items: []
+  - m_Id: 10770664381636608
+    m_Localized: Power Supply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10770901678579712
+    m_Localized: Open the fuse box
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10771052350562304
+    m_Localized: Replacing the fuse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10771131874566144
+    m_Localized: "\rPowering the facility"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10771305883656192
+    m_Localized: Escape Plan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10771429246525440
+    m_Localized: Head to the lobby
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

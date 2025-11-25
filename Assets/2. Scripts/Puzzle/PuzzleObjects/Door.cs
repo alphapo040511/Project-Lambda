@@ -19,8 +19,14 @@ public class Door : InteractionReceiver
     public bool isOpened = false;
 
     private bool isMoving = false;
+    private bool isPermissionDoor = false;
     private Vector3 targetPosition;
 
+    private void Start()
+    {
+        if (gameObject.name.Contains("PermissionDoor"))
+            isPermissionDoor = true;
+    }
 
     protected override void ActorUpdate()
     {
@@ -32,6 +38,12 @@ public class Door : InteractionReceiver
 
     public void OnTriggerEnter(Collider collider)
     {
+        if (isPermissionDoor)
+        {
+            //DialogueManager.Instance.StopAllDialog();
+            //DialogueManager.Instance.PlayingDialog("AI_Door_Open");
+        }
+
         if (collider.CompareTag("Player"))
         {
             OpenDoor();
@@ -41,6 +53,8 @@ public class Door : InteractionReceiver
 
     public void OnTriggerExit(Collider collider)
     {
+        if (isPermissionDoor) return;
+
         if (isOpened == true && collider.CompareTag("Player"))
         {
             CloseDoor();
@@ -50,8 +64,8 @@ public class Door : InteractionReceiver
 
     public void OpenDoor()
     {
-        DialogueManager.Instance.StopAllDialog();
-        DialogueManager.Instance.PlayingDialog("AI_Door_Open");
+        //DialogueManager.Instance.StopAllDialog();
+        //DialogueManager.Instance.PlayingDialog("AI_Door_Open");
 
         foreach (var panel in doorPanels)
         {
