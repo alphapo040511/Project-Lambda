@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 379f82e0bc3b047608bfe7a96d7c2cc2, type: 3}
-  m_Name: Quest_00002
+  m_Name: Quest_1002
   m_EditorClassIdentifier: 
-  questId: Quest_00002
-  titleKey: Main_0001
-  descriptionKey: Sub_0002
+  questId: Quest_1002
+  titleKey: Main_1000
+  descriptionKey: Sub_1002
   targetCount: 1
