@@ -8,9 +8,6 @@ public class Door : InteractionReceiver
     [Header("문 오브젝트")]
     public List<DoorPanel> doorPanels = new List<DoorPanel>();
 
-    [Header("자동문 콜라이더")]
-    public GameObject doorOpenCollider;
-
     [Header("문 설정")]
     public Vector3 openPosition;
     public Vector3 closePosition;
@@ -33,18 +30,18 @@ public class Door : InteractionReceiver
         }
     }
 
-    public void OnTriggerEnter(Collider doorOpenCollider)
+    public void OnTriggerEnter(Collider collider)
     {
-        if (doorOpenCollider.CompareTag("Player"))
+        if (collider.CompareTag("Player"))
         {
             OpenDoor();
             isOpened = true;
         }
     }
 
-    public void OnTriggerExit(Collider doorOpenCollider)
+    public void OnTriggerExit(Collider collider)
     {
-        if (isOpened == true && doorOpenCollider.CompareTag("Player"))
+        if (isOpened == true && collider.CompareTag("Player"))
         {
             CloseDoor();
             isOpened = false;
