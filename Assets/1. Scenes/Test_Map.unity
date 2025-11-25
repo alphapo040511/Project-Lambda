@@ -705,7 +705,7 @@ MonoBehaviour:
     powerValue: -20
   - switchState: 0
     powerValue: 30
-  controllButtonCooldown: 3
+  controllButtonCooldown: 1
   currentAngle: 0
   targetAngle: 0
   controlNeedle: {fileID: 525653935}

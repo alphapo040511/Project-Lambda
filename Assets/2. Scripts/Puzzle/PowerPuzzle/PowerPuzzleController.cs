@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PowerSwitchData
 {
-    public bool switchState = false;       // 나중에 초기값 선언시에도 사용
+    [HideInInspector]public bool switchState = false;       // 나중에 초기값 선언시에도 사용
     public int powerValue;
 }
 
@@ -14,7 +14,7 @@ public class PowerPuzzleController : InteractionFocus
     [Header("Puzzle Settings")]
     public int answerValue = 85;
     public List<PowerSwitchData> switchDatas = new List<PowerSwitchData>();
-    public float controllButtonCooldown = 3f;
+    public float controllButtonCooldown = 1.0f;        // 너무 길어서 줄였어오..
     [SerializeField]private float currentAngle = 0;
     [SerializeField]private float targetAngle = 0;
 
@@ -27,10 +27,13 @@ public class PowerPuzzleController : InteractionFocus
     public bool isMoving = false;
     public float timer = 0;
 
+    private int currentAnswer = -100;
+
     void Start()
     {
-        currentAngle = controlNeedle.transform.localEulerAngles.z;
+        currentAngle = needleStartAngle + GetTotalValue();
         targetAngle = needleStartAngle;
+        controlNeedle.transform.localEulerAngles = new Vector3(0, 0, currentAngle);
         answerPoint.transform.localEulerAngles = new Vector3(0, 90, needleStartAngle + answerValue);
     }
 
@@ -54,7 +57,10 @@ public class PowerPuzzleController : InteractionFocus
 
     public void AnswerButtonPressed()
     {
-        if (isMoving) return;
+        if (isMoving || timer > 0) return;
+
+        // 비교할 값 저장
+        currentAnswer = GetTotalValue();
 
         // 목표 위치 값 저장
         targetAngle = needleStartAngle + GetTotalValue();       
@@ -66,10 +72,11 @@ public class PowerPuzzleController : InteractionFocus
 
     void AnswerCheck()
     {
-        if (GetTotalValue() == answerValue)
+        if (currentAnswer == answerValue)
         {
             ExitFocus();
             interactable = false;
+            Debug.Log("정답!");
         }
     }
 
@@ -95,10 +102,5 @@ public class PowerPuzzleController : InteractionFocus
                 total += data.powerValue;
         }
         return total;
-    }
-
-    public bool CanPressAnswerButton()
-    {
-        return (isMoving == false && timer <= 0);
     }
 }
