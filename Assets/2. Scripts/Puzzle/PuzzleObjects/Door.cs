@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Door : InteractionReceiver
 {
+    [Header("문 오브젝트")]
+    public List<DoorPanel> doorPanels = new List<DoorPanel>();
+
+    [Header("자동문 콜라이더")]
+    public GameObject doorOpenCollider;
+
     [Header("문 설정")]
     public Vector3 openPosition;
     public Vector3 closePosition;
@@ -12,22 +18,36 @@ public class Door : InteractionReceiver
     [Header("임시 애니메이션 설정")]
     public float moveSpeed = 2f;
 
+    [Header("문 열림 확인")]
+    public bool isOpened = false;
+
     private bool isMoving = false;
     private Vector3 targetPosition;
 
+
     protected override void ActorUpdate()
     {
-        if (!isMoving) return;
-
-
-        if(Vector3.Distance(transform.localPosition, targetPosition) > 0.01f)
+        foreach (var panel in doorPanels)
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * moveSpeed);
+            panel.UpdateMovement(moveSpeed);
         }
-        else
+    }
+
+    public void OnTriggerEnter(Collider doorOpenCollider)
+    {
+        if (doorOpenCollider.CompareTag("Player"))
         {
-            transform.localPosition = targetPosition;
-            isMoving = false;
+            OpenDoor();
+            isOpened = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider doorOpenCollider)
+    {
+        if (isOpened == true && doorOpenCollider.CompareTag("Player"))
+        {
+            CloseDoor();
+            isOpened = false;
         }
     }
 
@@ -35,14 +55,19 @@ public class Door : InteractionReceiver
     {
         DialogueManager.Instance.StopAllDialog();
         DialogueManager.Instance.PlayingDialog("AI_Door_Open");
-        targetPosition = openPosition;
-        isMoving = true;
+
+        foreach (var panel in doorPanels)
+        {
+            panel.StartMove(true);
+        }
     }
 
     public void CloseDoor()
     {
-        targetPosition = closePosition;
-        isMoving = true;
+        foreach (var panel in doorPanels)
+        {
+            panel.StartMove(false);
+        }
     }
 
     public override void OnInteractionComplete(bool shouldActivate)
@@ -54,6 +79,39 @@ public class Door : InteractionReceiver
         else
         {
             CloseDoor();
+        }
+    }
+
+    [System.Serializable]
+    public class DoorPanel
+    {
+        public Transform doorTransform;
+        public Vector3 openPosition;
+        public Vector3 closePosition;
+
+        private Vector3 targetPosition;
+        private bool isMoving = false;
+
+        public void StartMove(bool open)
+        {
+            targetPosition = open ? openPosition : closePosition;
+            isMoving = true;
+        }
+
+        public void UpdateMovement(float speed)
+        {
+            if (!isMoving) return;
+
+            if (Vector3.Distance(doorTransform.localPosition, targetPosition) > 0.01f)
+            {
+                doorTransform.localPosition =
+                    Vector3.Lerp(doorTransform.localPosition, targetPosition, Time.deltaTime * speed);
+            }
+            else
+            {
+                doorTransform.localPosition = targetPosition;
+                isMoving = false;
+            }
         }
     }
 
