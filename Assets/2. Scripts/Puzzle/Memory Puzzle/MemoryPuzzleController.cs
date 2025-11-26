@@ -142,17 +142,27 @@ public class MemoryPuzzleController : InteractionFocus
 
         yield return new WaitForSeconds(1f);
 
-        for(int i = 0; i < answerLength[level]; i++)
+        for(int i = 0; i < 9; i++)
         {
-            answerQueue.Enqueue(puzzleAnswer[i]);           // 정답 비교용 큐에 삽입
-            monitors[puzzleAnswer[i]].SetIcon(icons[i]);
-            monitors[puzzleAnswer[i]].SetColor(Color.white);
+            if (i < answerLength[level])        // 문제 횟수 이내라면
+            {
+                answerQueue.Enqueue(puzzleAnswer[i]);           // 정답 비교용 큐에 삽입
+                monitors[puzzleAnswer[i]].SetIcon(icons[i]);
+                monitors[puzzleAnswer[i]].SetColor(Color.white);
 
-            yield return new WaitForSeconds(interval);
+                yield return new WaitForSeconds(interval);
 
-            monitors[puzzleAnswer[i]].SetColor(Color.clear);
+                monitors[puzzleAnswer[i]].SetColor(Color.clear);
 
-            yield return new WaitForSeconds(interval * 0.5f);
+                yield return new WaitForSeconds(interval * 0.5f);
+            }
+            else
+            {
+                // 일반 아이콘
+                monitors[puzzleAnswer[i]].SetIcon(icons[i]);
+                monitors[puzzleAnswer[i]].SetColor(Color.clear);
+            }
+
         }
 
         AllIconsSetColor(Color.white);
