@@ -47,31 +47,51 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 935290428166144
-    m_Localized: Awakening
+    m_Localized: Unexpected Awakening
     m_Metadata:
       m_Items: []
   - m_Id: 935290461720576
-    m_Localized: Reactivate the cryosleep unit.
+    m_Localized: Reactivate the cryosleep unit
     m_Metadata:
       m_Items: []
   - m_Id: 935290461720577
-    m_Localized: Obtain the AI console
+    m_Localized: Take a look around
     m_Metadata:
       m_Items: []
   - m_Id: 935290461720578
-    m_Localized: Activate Door Control Display
+    m_Localized: Get out of the hibernation room
     m_Metadata:
       m_Items: []
   - m_Id: 935290461720579
-    m_Localized: Scan the area and assess the current conditions.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 935290461720580
-    m_Localized: Disable the security protocol
+    m_Localized: Understand the Situation
     m_Metadata:
       m_Items: []
   - m_Id: 947464835928064
     m_Localized: Explore the hallway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10770664381636608
+    m_Localized: Power Supply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10770901678579712
+    m_Localized: Open the fuse box
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10771052350562304
+    m_Localized: Replacing the fuse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10771131874566144
+    m_Localized: "\rPowering the facility"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10771305883656192
+    m_Localized: Escape Plan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10771429246525440
+    m_Localized: Head to the lobby
     m_Metadata:
       m_Items: []
   references:

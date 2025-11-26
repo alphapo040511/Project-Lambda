@@ -6333,7 +6333,7 @@ GameObject:
   - component: {fileID: 599958315}
   - component: {fileID: 599958314}
   m_Layer: 0
-  m_Name: SaveLoader
+  m_Name: SaveObjectLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

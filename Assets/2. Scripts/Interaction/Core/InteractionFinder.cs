@@ -25,7 +25,7 @@ public class InteractionFinder : Actor
     public Color interactionColor = Color.green;
     public int segments = 16;                           // 원뿔 꼭짓점 개수
 
-    public Transform currentTarget;
+    public Interactable currentTarget;
 
     private List<Transform> previousTargets = new List<Transform>();      // UI 비활성화용 오브젝트 저장
 
@@ -41,14 +41,14 @@ public class InteractionFinder : Actor
         Collider[] targets = Physics.OverlapSphere(transform.position, detectionRange, interactionLayer);
         List<Transform> currentTargets = new List<Transform>();     // 이전 목록과 비교용 리스트
 
-        Transform bestTarget = null;
+        Interactable bestTarget = null;
         float bestScore = Mathf.Infinity;
 
         foreach (Collider col in targets)
         {
             Interactable interactObj = col.GetComponent<Interactable>();
 
-            if (interactObj == null || interactObj.interactable == false || IsOccluded(col.transform))
+            if (interactObj == null || interactObj.interactable == false || IsOccluded(interactObj))
             {
                 // Interactable이 없거나 상호작용이 불가, 또는 물체에 가로 막혀있다면 건너뛰기
                 break;
@@ -57,8 +57,8 @@ public class InteractionFinder : Actor
             Transform t = col.transform;                            // 탐지된 오브젝트 저장
             currentTargets.Add(t);
 
-            Vector3 dirToTarget = (col.transform.position - transform.position).normalized;
-            float distance = Vector3.Distance(transform.position, col.ClosestPoint(transform.position));        // 콜라이더의 가장 가까운 표면 기준으로 작동
+            Vector3 dirToTarget = (interactObj.FloatingUIPosition - transform.position).normalized;             // 플로팅 UI가 있다면 UI 기준으로 탐지
+            float distance = Vector3.Distance(transform.position, interactObj.FloatingUIPosition);              // UI 기준으로 작동
 
             // 감지 각도 확인
             float dot = Vector3.Dot(transform.forward, dirToTarget);
@@ -72,7 +72,7 @@ public class InteractionFinder : Actor
                 if (score < bestScore)
                 {
                     bestScore = score;
-                    bestTarget = col.transform;
+                    bestTarget = interactObj;
                 }
             }
         }
@@ -88,7 +88,7 @@ public class InteractionFinder : Actor
             bool canInteract = IsInInteractionRange(bestTarget);                    // 상호작용 범위 이내에 있는지 확인
             if (canInteract)                                                        // 상호작용 가능 하다면
             {
-                bestTarget.GetComponent<Interactable>()?.OnTargeted();              // UI 활성화
+                bestTarget.OnTargeted();              // UI 활성화
                 currentTarget = bestTarget;                                         // 타겟 등록
             }
             else
@@ -114,12 +114,12 @@ public class InteractionFinder : Actor
 
     #region Validation
     // 인터렉션 가능 범위 안에 있는지 확인
-    private bool IsInInteractionRange(Transform target)
+    private bool IsInInteractionRange(Interactable target)
     {
-        float distance = Vector3.Distance(transform.position, target.position);
+        float distance = Vector3.Distance(transform.position, target.FloatingUIPosition);
         if (distance > interactionRange) return false;
 
-        Vector3 dirToTarget = (target.position - transform.position).normalized;
+        Vector3 dirToTarget = (target.FloatingUIPosition - transform.position).normalized;
         float dot = Vector3.Dot(transform.forward, dirToTarget);
         float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
@@ -127,16 +127,16 @@ public class InteractionFinder : Actor
     }
 
     // 물체가 무언가에 가려져 있는지 확인
-    private bool IsOccluded(Transform target)
+    private bool IsOccluded(Interactable target)
     {
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = target.FloatingUIPosition - transform.position;       // 플로팅 UI가 있다면 해당 UI 기준으로 확인
 
         // Ray 시각화
         Debug.DrawRay(transform.position, dir, Color.red); // origin, 방향, 색
 
         if (Physics.Raycast(transform.position, dir, out RaycastHit hit, dir.magnitude, ~playerLayer))    // Ray로 막혀있는지 판단, 플레이어 레이어 제외
         {
-            bool same = target == hit.transform;
+            bool same = hit.transform.IsChildOf(target.transform);        // 가리고 있는 오브젝트가 타겟의 자식인지 확인
 
             //if (!same)
             //{
@@ -155,13 +155,13 @@ public class InteractionFinder : Actor
     #region Getter
     public bool CanInteract()
     {
-        return currentTarget != null && currentTarget.GetComponent<Interactable>() != null;
+        return currentTarget != null;
         // 타겟이 있고, interactable 컴포넌트가 있는 경우
     }
 
     public Interactable GetTarget()
     {
-        return currentTarget.GetComponent<Interactable>();
+        return currentTarget;
     }
     #endregion
 

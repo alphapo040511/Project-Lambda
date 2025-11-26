@@ -11,7 +11,7 @@ public enum GameState
     Paused,
     GameOver,
     Cutscene,
-    Display,
+    Focus,
     Observation,
     Loading
 }
@@ -79,7 +79,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // ESC 키로 게임 일시정지/재개
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentGameState != GameState.Paused && currentGameState != GameState.Display && currentGameState != GameState.Observation)
+            if (currentGameState != GameState.Paused && currentGameState != GameState.Focus && currentGameState != GameState.Observation)
             {
                 PauseGame();
             }
@@ -133,7 +133,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             case GameState.Cutscene:
                 Cursor.lockState = CursorLockMode.Locked;
                 break;
-            case GameState.Display:
+            case GameState.Focus:
                 Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.Observation:

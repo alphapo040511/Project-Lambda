@@ -37,7 +37,7 @@ public class InteractionFocus : Interactable
     {
         isFocused = true;
 
-        GameManager.Instance.ChangeGameState(GameState.Display);
+        GameManager.Instance.ChangeGameState(GameState.Focus);
 
         if (VirtualCamera != null)
             VirtualCamera.enabled = true;

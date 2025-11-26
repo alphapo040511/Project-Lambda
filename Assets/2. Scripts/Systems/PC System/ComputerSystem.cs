@@ -47,7 +47,7 @@ public class ComputerSystem : InteractionFocus
         }
     }
 
-    public void SetObjectState(string id, ObjectState state)
+    public override void SetObjectState(string id, ObjectState state)
     {
         if (UniqueId != id) return;
         this.state = state;

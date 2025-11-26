@@ -23,6 +23,7 @@ public class SaveData
     public string questId;
     public List<QuestSaveData> questDatas;
     public List<ObjectSaveData> objectDatas;
+    public List<ItemSaveData> inventoryDatas;
 }
 
 // 퀘스트 상태 저장
@@ -50,4 +51,11 @@ public enum ObjectState
     Used,           // 사용된 (재사용 불가)
     Disable,        // 비활성화
     Destroyed       // 파괴된 (사라진)
+}
+
+[System.Serializable]
+public class ItemSaveData
+{
+    public string itemId;
+    public int quatity;
 }
