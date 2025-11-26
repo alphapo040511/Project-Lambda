@@ -1,11 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class DangerZone : MonoBehaviour
 {
     [Header("즉시 사망 여부")]
     public bool isInstantDeath;
+
+    [Header("카메라 설정")]
+    public Camera mainCamera;
+    public Camera deathCamera;
+
+    [Header("사망 오디오 연출")]
+    public AudioSource deathAudioSource;
+    public AudioClip deathClip;
+    public AudioMixerGroup SFX;
+
+    [Header("사망 시 페이드 이미지")]
+    public Image deathFadeImage;
+
+    public static DangerZone Instance;      // IdleState에 접근하기 위한 싱글톤
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
