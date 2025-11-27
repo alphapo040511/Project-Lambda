@@ -266,68 +266,16 @@ public class ExposureState : IPlayerState
 
 public class DeathState : IPlayerState
 {
-    private Camera mainCamera = DangerZone.Instance.mainCamera;
-    private Camera deathCamera = DangerZone.Instance.deathCamera;
-
-    private AudioSource deathAudioSource = DangerZone.Instance.deathAudioSource;
-    private AudioClip deathClip = DangerZone.Instance.deathClip;
     private PlayerController player;
 
-    private Image deathFadeImage = DangerZone.Instance.deathFadeImage;
-
     public MoveState stateType => MoveState.Disabled;
-
-   
 
     public DeathState(PlayerController player)
     {
         this.player = player;
     }
 
-    public IEnumerator FadeIn(float duration)
-    {
-        float time = 0f;
-        Color color = DangerZone.Instance.deathFadeImage.color;
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            color.a = Mathf.Lerp(0f, 1f, time / duration);
-            DangerZone.Instance.deathFadeImage.color = color;
-            yield return null;
-        }
-    }
-    public IEnumerator FadeOut(float duration)
-    {
-        float time = 0f;
-        Color color = DangerZone.Instance.deathFadeImage.color;
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            color.a = Mathf.Lerp(1f, 0f, time / duration);
-            DangerZone.Instance.deathFadeImage.color = color;
-            yield return null;
-        }
-    }
-
-    private IEnumerator DeathDirection()
-    {
-        Debug.Log("페이드 인");
-        CoroutineRunner.Instance.Run(FadeIn(0.1f));
-
-        Debug.Log("소리 재생");
-        deathAudioSource.PlayOneShot(deathClip);            // 음산한 소리 재생 (3초)
-
-        yield return new WaitForSeconds(deathClip.length + 1f);     // 소리 끝날때 + 1초까지 대기
-
-        Debug.Log("카메라 활성/비활성");
-        mainCamera.gameObject.SetActive(false);             // 메인 카메라 비활성화
-        deathCamera.gameObject.SetActive(true);             // 데스존 카메라 활성화
-
-        Debug.Log("페이드 아웃");
-        CoroutineRunner.Instance.Run(FadeOut(1f));
-    }
+   
 
     public void Enter()
     {
@@ -337,8 +285,7 @@ public class DeathState : IPlayerState
 
         player.cameraController.enabled = false;            // 카메라 조작 비활성화
 
-        CoroutineRunner.Instance.Run(DeathDirection());
-
+        GameManager.Instance.ChangeGameState(GameState.GameOver);
         
         //VolumeManager.Instance.ChangeVignette(1f, 1.5f);
     }
