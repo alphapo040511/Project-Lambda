@@ -10,6 +10,7 @@ public class VolumeManager : SingletonMonoBehaviour<VolumeManager>
     public Volume mainVolume;
     [HideInInspector] public DepthOfField dof;
     [HideInInspector] public Vignette vignette;
+    [HideInInspector] public FilmGrain filmGrain;
 
     // 코루틴 저장
     Coroutine focusCor;
@@ -42,6 +43,11 @@ public class VolumeManager : SingletonMonoBehaviour<VolumeManager>
         if (!mainVolume.profile.TryGet(out vignette))
         {
             Debug.LogError("Vignette를 찾을 수 없습니다.");
+        }
+
+        if (!mainVolume.profile.TryGet(out filmGrain))
+        {
+            Debug.LogError("FilmGrain를 찾을 수 없습니다.");
         }
     }
 

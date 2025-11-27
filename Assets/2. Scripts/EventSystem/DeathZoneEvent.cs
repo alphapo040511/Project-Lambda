@@ -12,6 +12,7 @@ public class DeathZoneEvent : MonoBehaviour
     [Header("사망 오디오 연출")]
     public AudioSource deathAudioSource;
     public AudioClip deathClip;
+    public AudioClip deathAfterClip;
     public AudioMixerGroup SFX;
 
     [Header("사망 시 페이드 이미지")]
@@ -92,20 +93,18 @@ public class DeathZoneEvent : MonoBehaviour
 
     private IEnumerator DeathDirection()
     {
-        Debug.Log("페이드 인");
-        CoroutineRunner.Instance.Run(FadeIn(0.1f));
+        CoroutineRunner.Instance.Run(FadeIn(0.1f));         // 페이드 인
 
-        Debug.Log("소리 재생");
-        deathAudioSource.PlayOneShot(deathClip);            // 음산한 소리 재생 (3초)
+        deathAudioSource.PlayOneShot(deathClip);            // 음산한 효과음 재생
 
-        yield return new WaitForSeconds(deathClip.length + 1f);     // 소리 끝날때 + 1초까지 대기
+        yield return new WaitForSeconds(deathClip.length + 1f);     //효과음 끝날때 + n초까지 대기
 
-        Debug.Log("카메라 활성/비활성");
         Camera.main.gameObject.SetActive(false);             // 메인 카메라 비활성화
         deathCamera.gameObject.SetActive(true);             // 데스존 카메라 활성화
 
-        Debug.Log("페이드 아웃");
-        CoroutineRunner.Instance.Run(FadeOut(1f));
+        VolumeManager.Instance.filmGrain.intensity.value = 0.275f;      // 필름그레인 값 증가
+        CoroutineRunner.Instance.Run(FadeOut(1f));          // 페이드 아웃
+        deathAudioSource.PlayOneShot(deathAfterClip);       // 사망 이후 효과음
 
         deathRoutine = null;
     }

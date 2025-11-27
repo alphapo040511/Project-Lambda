@@ -46125,7 +46125,7 @@ GameObject:
   - component: {fileID: 613199975}
   - component: {fileID: 613199974}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DeathFadeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57181,6 +57181,7 @@ MonoBehaviour:
   mainVolume: {fileID: 736799362}
   dof: {fileID: 0}
   vignette: {fileID: 0}
+  filmGrain: {fileID: 0}
 --- !u!1001 &737581036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152527,26 +152528,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3988978758691012120, guid: 781d87df0f30baa4396689b13cf5b059,
         type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3988978758691012120, guid: 781d87df0f30baa4396689b13cf5b059,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.000000014901161
-      objectReference: {fileID: 0}
-    - target: {fileID: 7932483282088844972, guid: 781d87df0f30baa4396689b13cf5b059,
-        type: 3}
-      propertyPath: m_Name
-      value: dec_dust_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3988978758691012120, guid: 781d87df0f30baa4396689b13cf5b059,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3988978758691012120, guid: 781d87df0f30baa4396689b13cf5b059,
-        type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.1000001
       objectReference: {fileID: 0}
@@ -152589,6 +152570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932483282088844972, guid: 781d87df0f30baa4396689b13cf5b059,
+        type: 3}
+      propertyPath: m_Name
+      value: dec_dust_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -157954,6 +157940,7 @@ GameObject:
   - component: {fileID: 2118805473}
   - component: {fileID: 2118805472}
   - component: {fileID: 2118805475}
+  - component: {fileID: 2118805476}
   m_Layer: 0
   m_Name: deathZone
   m_TagString: Untagged
@@ -157974,12 +157961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInstantDeath: 0
-  mainCamera: {fileID: 725336804}
-  deathCamera: {fileID: 1732310162}
-  deathAudioSource: {fileID: 2118805475}
-  deathClip: {fileID: 8300000, guid: f744a0e107f26924f9d73e590a202c62, type: 3}
-  SFX: {fileID: -3579302047829624296, guid: 05fa863b6ea095d41842411818003e6b, type: 2}
-  deathFadeImage: {fileID: 613199974}
 --- !u!65 &2118805473
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158112,6 +158093,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2118805476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118805471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7529b745cfb079241bbcd2b1cebd3ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathCamera: {fileID: 1732310162}
+  deathAudioSource: {fileID: 2118805475}
+  deathClip: {fileID: 8300000, guid: c07a56737d544af4f85a741e9bd8662a, type: 3}
+  deathAfterClip: {fileID: 8300000, guid: 35b69b076a162bb4f8b356e268383f7c, type: 3}
+  SFX: {fileID: -3579302047829624296, guid: 05fa863b6ea095d41842411818003e6b, type: 2}
+  deathFadeImage: {fileID: 613199974}
 --- !u!43 &2120136429
 Mesh:
   m_ObjectHideFlags: 0
