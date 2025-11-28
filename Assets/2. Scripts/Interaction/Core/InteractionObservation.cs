@@ -11,7 +11,7 @@ using UnityEngine.Rendering.Universal;
 [System.Serializable]
 public class TempItemData
 { 
-    public string itemName = "itemName";             // 키 값으로 변경
+    public string uniqueID = "itemName";             // 키 값으로 변경
     [TextArea]public string desctipntion = "Description";
 
     public bool isCollectible = false;          // 획득 가능한가
@@ -27,8 +27,8 @@ public class InteractionObservation : Interactable
     public float minSize = 0.5f;
     public float maxSize = 2f;
 
-    [Header("Item Setting")]
-    public TempItemData itemData;
+    [Header(",Item Data")]
+    public ItemDataSO itemData;
 
     // 위치 저장
     private Vector3 originPosition;
@@ -62,12 +62,12 @@ public class InteractionObservation : Interactable
         }
         else    // 초기 위치까지 이동한 후 키 입력 가능
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !itemData.isCollectible)                // ESC 키로 관찰 종료 (획득 불가능한 경우)
+            if (Input.GetKeyDown(KeyCode.Escape) && !itemData.isCollectable)                // ESC 키로 관찰 종료 (획득 불가능한 경우)
             {
                 ExitObseravtion();
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && itemData.isCollectible)                      // E 키로 관찰 획득 (획득 가능한 경우)
+            if (Input.GetKeyDown(KeyCode.E) && itemData.isCollectable)                      // E 키로 관찰 획득 (획득 가능한 경우)
             {
                 Destroy(gameObject);            // 임시로 파괴
                 ExitObseravtion();
@@ -162,19 +162,21 @@ public class InteractionObservation : Interactable
 
     void ShowOverlay()
     {
-        if(itemData.isCollectible)
+        if(itemData.isCollectable)
         {
-            ObservationUI.Instance.ShowButton("획득하기", itemData.desctipntion, () =>
+            ObservationUI.Instance.ShowButton("획득하기", itemData.descriptionKey, () =>
             {
-                Debug.Log($"{itemData.itemName} 획득!");
+                Debug.Log($"{itemData.uniqueID} 획득!");
                 state = ObjectState.Destroyed;
                 gameObject.SetActive(false);
+                InventoryManager.GetItems(itemData.uniqueID);
+
                 ExitObseravtion();
             });
         }
         else
         {
-            ObservationUI.Instance.ShowButton("내려놓기", itemData.desctipntion, () =>
+            ObservationUI.Instance.ShowButton("내려놓기", itemData.descriptionKey, () =>
             {
                 ExitObseravtion();
                 Reset();

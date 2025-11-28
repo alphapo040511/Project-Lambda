@@ -8,9 +8,9 @@ public class Door : InteractionReceiver
     [Header("문 오브젝트")]
     public List<DoorPanel> doorPanels = new List<DoorPanel>();
 
-    [Header("문 설정")]
-    public Vector3 openPosition;
-    public Vector3 closePosition;
+    //[Header("문 설정")]
+    [HideInInspector] public Vector3 openPosition;
+    [HideInInspector] public Vector3 closePosition;
 
     [Header("임시 애니메이션 설정")]
     public float moveSpeed = 2f;
@@ -21,6 +21,9 @@ public class Door : InteractionReceiver
     private bool isMoving = false;
     private bool isPermissionDoor = false;
     private Vector3 targetPosition;
+
+    [Header("문을 열기 위한 아이템")]
+    public ItemDataSO needItem;
 
     private void Start()
     {
@@ -46,8 +49,11 @@ public class Door : InteractionReceiver
 
         if (collider.CompareTag("Player"))
         {
-            OpenDoor();
-            isOpened = true;
+            if(needItem != null && InventoryManager.ContainItem(needItem.uniqueID))
+            {
+                OpenDoor();
+                isOpened = true;
+            }
         }
     }
 
@@ -138,5 +144,7 @@ public class Door : InteractionReceiver
     {
         closePosition = transform.localPosition;
     }
+
+
     #endregion
 }
