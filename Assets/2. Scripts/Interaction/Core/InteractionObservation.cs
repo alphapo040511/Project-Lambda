@@ -69,8 +69,7 @@ public class InteractionObservation : Interactable
 
             if (Input.GetKeyDown(KeyCode.E) && itemData.isCollectable)                      // E 키로 관찰 획득 (획득 가능한 경우)
             {
-                Destroy(gameObject);            // 임시로 파괴
-                ExitObseravtion();
+                GetItem();
             }
         }
 
@@ -166,12 +165,7 @@ public class InteractionObservation : Interactable
         {
             ObservationUI.Instance.ShowButton("획득하기", itemData.descriptionKey, () =>
             {
-                Debug.Log($"{itemData.uniqueID} 획득!");
-                state = ObjectState.Destroyed;
-                gameObject.SetActive(false);
-                InventoryManager.GetItems(itemData.uniqueID);
-
-                ExitObseravtion();
+                GetItem();
             });
         }
         else
@@ -185,6 +179,14 @@ public class InteractionObservation : Interactable
 
     }
 
+    void GetItem()
+    {
+        Debug.Log($"{itemData.uniqueID} 획득!");
+        state = ObjectState.Destroyed;
+        gameObject.SetActive(false);
+        InventoryManager.GetItems(itemData.uniqueID);
+        ExitObseravtion();
+    }
     public void ExitObseravtion()
     {
         GameManager.Instance.ChangeGameState(GameState.Playing);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
@@ -113,6 +114,9 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
         foreach(var data in tempDatas.Values)
         {
             ObjectSaveData objData = new ObjectSaveData();      // id와 state 값을 전달
+
+            if (string.IsNullOrEmpty(data.UniqueId)) continue;  // id 가 없는 경우 무시
+
             objData.uniqueId = data.UniqueId;
             objData.objectState = data.State;
 

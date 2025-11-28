@@ -39,6 +39,7 @@ public class Interactable : Actor, IInteractable, ISaveObject
 
     #region 저장 관련 인터페이스 구현
 
+    [Header("저장 관련 인터페이스")]
     public string uniqueId;
     public string UniqueId => uniqueId;
 
