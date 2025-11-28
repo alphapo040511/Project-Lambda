@@ -211,6 +211,8 @@ public class ExposureState : IPlayerState
     private float deathDelay = 6f;
     private float timer = 0;
 
+    private Material screenGlitchShader;
+
     public MoveState stateType => MoveState.Walking;
 
     public ExposureState(PlayerController player)
@@ -224,9 +226,9 @@ public class ExposureState : IPlayerState
 
         timer = 0f;             // 사망 타이머 초기화
 
-        //VolumeManager.Instance.ChangeVignette(0.7f, 3);
-
-        VolumeManager.Instance.Blink(0.35f, 0.5f, 2f);
+        //VolumeManager.Instance.Blink(0.35f, 0.5f, 2f);
+        VolumeManager.Instance.ChangeVignette(0.7f, 7);
+        DirectionManager.Instance.EnterDangerZone();
     }
 
     public void HandleUpdate()
@@ -261,6 +263,7 @@ public class ExposureState : IPlayerState
         // 사운드 종료
         // 비네트 등 효과 종료
         VolumeManager.Instance.ChangeVignette(0.25f);
+        DirectionManager.Instance.ExitDangerZone();
     }
 }
 
