@@ -40,6 +40,8 @@ public class FuseBox : Interactable
         {
             Debug.Log("모든 퓨즈 장착 완료");
             secondFuseMounted?.Invoke();                // 1개 아니면 2개니까 이렇게 구분 해놓겠습니다.
+            interactable = false;
+            state = ObjectState.Used;
         }
         else
         {
