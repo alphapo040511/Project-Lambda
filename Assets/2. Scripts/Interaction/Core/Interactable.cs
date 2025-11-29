@@ -139,7 +139,7 @@ public class Interactable : Actor, IInteractable, ISaveObject
 
     public virtual void OnInteractHold(float deltaTime)
     {
-        if (used || !interactable) return;
+        if (used || !interactable || !interacting) return;
 
         // 상호작용 홀드 진행
         currentHoldTime += deltaTime;
@@ -171,7 +171,7 @@ public class Interactable : Actor, IInteractable, ISaveObject
         Debug.Log("상호작용 완료");
         //used = true;                    // 기본적으론 1회용
         state = ObjectState.Used;
-        currentHoldTime = 0f;
+        interacting = false;
         onCompleted?.Invoke();
     }
 

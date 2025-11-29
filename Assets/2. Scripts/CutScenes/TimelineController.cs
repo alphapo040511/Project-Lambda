@@ -16,8 +16,6 @@ public class TimelineController : MonoBehaviour
     public bool playOnAwake = false;
     private bool played = false;
 
-
-
     private void OnEnable()
     {
         if (director != null)
