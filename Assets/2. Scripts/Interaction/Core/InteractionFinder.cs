@@ -51,7 +51,7 @@ public class InteractionFinder : Actor
             if (interactObj == null || interactObj.interactable == false || IsOccluded(interactObj))
             {
                 // Interactable이 없거나 상호작용이 불가, 또는 물체에 가로 막혀있다면 건너뛰기
-                break;
+                continue;
             }
 
             Transform t = col.transform;                            // 탐지된 오브젝트 저장
