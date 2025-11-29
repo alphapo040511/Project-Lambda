@@ -36,6 +36,8 @@ public class TimelineController : MonoBehaviour
 
     void LoadCompletedHandler()
     {
+        Debug.Log("데이터 로딩 완료");
+
         if (playOnAwake && !played)
             Play();
     }

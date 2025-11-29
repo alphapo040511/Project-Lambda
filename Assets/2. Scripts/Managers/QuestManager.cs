@@ -51,6 +51,12 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
         // 세이브 파일이 있는 경우 퀘스트 개수 정리
     }
 
+    public void ResetQuest()
+    {
+        view.Hide();
+        QuestIndexing();
+    }
+
     void QuestIndexing()
     {
         questList.Clear();

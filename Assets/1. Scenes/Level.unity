@@ -3907,7 +3907,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playOnAwake: 0
+  playOnAwake: 1
 --- !u!320 &71916365
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -3918,7 +3918,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 76497de76f197314484b1818150a280f, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
