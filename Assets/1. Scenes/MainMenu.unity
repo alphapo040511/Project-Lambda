@@ -21386,6 +21386,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PipePuzzleTest
       objectReference: {fileID: 0}
+    - target: {fileID: 8421677156807575411, guid: 59c179fc17542e640af90f9d86b79930,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

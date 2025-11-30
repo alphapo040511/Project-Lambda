@@ -120,7 +120,6 @@ public class CornerPipe : PipeBase
             if(powerDirs.ContainsKey(rotatedDir))                                           // 보정된 방향에 출력값이 있다면
             {
                 neighbor.Value.ReceivePower(neighbor.Key, powerDirs[rotatedDir]);           // 해당 이웃 방향으로 출력 타입을 전달
-                Debug.Log($"{rotatedDir} 방향으로 {powerDirs[rotatedDir]}의 파워 전달");
             }
             yield return new WaitForSeconds(0.1f);
         }
