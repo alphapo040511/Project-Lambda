@@ -89,14 +89,14 @@ public class InteractionUIView : MonoBehaviour
     // 선택되었을 때 색상 변경
     public void OnSelected()
     {
-        keycodeText.enabled = true;
+        //keycodeText.enabled = true;
         groundImage.color = selectedColor;
     }
 
     // 선택 해제되었을 때 색상 원상복귀
     public void OnDeselected()
     {
-        keycodeText.enabled = false;
+        //keycodeText.enabled = false;
         groundImage.color = deselectedColor;
         outlineImage.fillAmount = 0;
     }

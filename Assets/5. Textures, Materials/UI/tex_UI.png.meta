@@ -180,6 +180,153 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Interaction
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1696
+        width: 83
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d26573315f04ef4ba2a049d2cc0edf2
+      internalID: -912996244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interaction_Fill
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 1696
+        width: 83
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 993bf73ca87cb9445867ccb5c4f21615
+      internalID: 2110044802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Key_W
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1564
+        width: 77
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3018d6ed9888de4d8915fc01b1f195c
+      internalID: 377322170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Key_A
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 1564
+        width: 77
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02272e550141797459b9e6ab2dad7a4d
+      internalID: -1189118349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Key_S
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 1564
+        width: 77
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7e3394268a55c4093c0597698b7a6f
+      internalID: 929046024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Key_D
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 1564
+        width: 77
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f82ad66da24ec40abb8acdab0c003f
+      internalID: -951633249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Key_E
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1457
+        width: 77
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beb06cbe3d7e1bb48942c63c1e9640c9
+      internalID: -1999984667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -194,6 +341,13 @@ TextureImporter:
       Button: -99854224
       Empty: 641270672
       Hover: -873759187
+      Interaction: -912996244
+      Interaction_Fill: 2110044802
+      Key_A: -1189118349
+      Key_D: -951633249
+      Key_E: -1999984667
+      Key_S: 929046024
+      Key_W: 377322170
       Popup: 1699845151
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
