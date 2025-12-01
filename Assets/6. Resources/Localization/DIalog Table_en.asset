@@ -50,6 +50,10 @@ MonoBehaviour:
     m_Localized: Security level not detected. Door cannot be unlocked.
     m_Metadata:
       m_Items: []
+  - m_Id: 20317144889057280
+    m_Localized: ' WARNING: User is mentally unstable. Rest assured.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -29,6 +29,9 @@
         },
         {
             "m_Id": "535344255a984dc89e455735fe8f2f29"
+        },
+        {
+            "m_Id": "e0c1f1b209c943a18f0a0bf49d8cf2f8"
         }
     ],
     "m_Keywords": [],
@@ -194,6 +197,9 @@
         },
         {
             "m_Id": "9a190f15670747b7ba7d9445cf4345fd"
+        },
+        {
+            "m_Id": "86fc5f85993d403f80bdb4fe3637d6cb"
         }
     ],
     "m_GroupDatas": [],
@@ -573,6 +579,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "5347cb71d7d84e7fbcc8fd8d10409093"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "86fc5f85993d403f80bdb4fe3637d6cb"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "2d69f205192b4382a031ec41cad5418b"
                 },
                 "m_SlotId": 1
             }
@@ -1340,6 +1360,27 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "11a514ec9ce640938a67cc3cf61cc590",
+    "m_Id": 0,
+    "m_DisplayName": "TexTiling",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
     "m_ObjectId": "11f2b715719e497e9bdf123ac8bdbfc2",
     "m_Guid": {
@@ -1687,6 +1728,9 @@
         },
         {
             "m_Id": "535344255a984dc89e455735fe8f2f29"
+        },
+        {
+            "m_Id": "e0c1f1b209c943a18f0a0bf49d8cf2f8"
         }
     ]
 }
@@ -4118,6 +4162,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "86fc5f85993d403f80bdb4fe3637d6cb",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -2165.000244140625,
+            "y": 400.0,
+            "width": 125.0001220703125,
+            "height": 34.000030517578128
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "11a514ec9ce640938a67cc3cf61cc590"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "e0c1f1b209c943a18f0a0bf49d8cf2f8"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "876e610d2896439ebe0e4988d970fbca",
     "m_Group": {
@@ -5972,6 +6052,34 @@
     },
     "m_Property": {
         "m_Id": "95935356f26a42a79a9c8c66a6e26a6e"
+    }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
+    "m_ObjectId": "e0c1f1b209c943a18f0a0bf49d8cf2f8",
+    "m_Guid": {
+        "m_GuidSerialized": "04c9805a-f1a2-4600-be73-97c2b78fed21"
+    },
+    "m_Name": "TexTiling",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "TexTiling",
+    "m_DefaultReferenceName": "_TexTiling",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
     }
 }
 

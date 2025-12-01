@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37c43b90879afc4f8f3c599bd2deca0, type: 3}
+  m_Name: AI_LowSanity
+  m_EditorClassIdentifier: 
+  id: AI_LowSanity
+  en: ' WARNING: User is mentally unstable. Rest assured.'
+  ko: "\uACBD\uACE0: \uC0AC\uC6A9\uC790\uC758 \uC815\uC2E0\uC774 \uBD88\uC548\uC815\uD569\uB2C8\uB2E4.
+    \uC548\uC815\uC744 \uCDE8\uD558\uC2ED\uC2DC\uC624."
+  clip: {fileID: 8300000, guid: 31b7bd79078654a4cacd5bf433549cd9, type: 3}
+  nextId: 

@@ -57,6 +57,11 @@ MonoBehaviour:
       \uBB38 \uC7A0\uAE08 \uD574\uC81C \uBD88\uAC00."
     m_Metadata:
       m_Items: []
+  - m_Id: 20317144889057280
+    m_Localized: "\uACBD\uACE0: \uC0AC\uC6A9\uC790\uC758 \uC815\uC2E0\uC774 \uBD88\uC548\uC815\uD569\uB2C8\uB2E4.
+      \uC548\uC815\uC744 \uCDE8\uD558\uC2ED\uC2DC\uC624."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

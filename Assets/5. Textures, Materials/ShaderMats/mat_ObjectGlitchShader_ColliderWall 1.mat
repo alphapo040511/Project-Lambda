@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_ObjectGlitchShader_ColliderWall
+  m_Name: mat_ObjectGlitchShader_ColliderWall 1
   m_Shader: {fileID: -6465566751694194690, guid: f88faf65c42646d45a31a54977a3aabb,
     type: 3}
   m_Parent: {fileID: 0}
@@ -72,4 +72,5 @@ Material:
     - _Range: 5
     m_Colors:
     - _NoisePosition: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _TexTiling: {r: -1, g: -1, b: 0, a: 0}
   m_BuildTextureStacks: []
