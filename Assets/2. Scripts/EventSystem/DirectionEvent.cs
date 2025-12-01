@@ -5,15 +5,16 @@ public class DirectionEvent : MonoBehaviour
 {
     [Header("오디오 소스")]
     public AudioSource directionAudioSource;
-    public AudioSource endAudioSource;
 
     [Header("1번 연출 소스")]
     public AudioClip direction1_noise;
     public AudioClip direction1_scary;
     public AudioClip direction1_end;
 
-    public GameObject normalWalls;
-    public GameObject glitchWalls;
+    public GameObject normalProps;
+    public GameObject glitchProps;
+    public GameObject normalPropsLobby;
+    public GameObject glitchPropsLobby;
 
     private bool firstDirectionTriggered = false;
 
@@ -61,8 +62,10 @@ public class DirectionEvent : MonoBehaviour
            .AppendInterval(0.5f)            //0.5초 동안 유지
            .Append(DirectionManager.Instance.noiseImage.DOFade(0f, 0.1f));
 
-        glitchWalls.SetActive(true);
-        normalWalls.SetActive(false);
+        glitchProps.SetActive(true);
+        normalProps.SetActive(false);
+        glitchPropsLobby.SetActive(true);
+        normalPropsLobby.SetActive(false);
 
         //글리치 셰이더, 비네트 on
         DirectionManager.Instance.screenGlitchShader.DOKill();
@@ -92,8 +95,8 @@ public class DirectionEvent : MonoBehaviour
             DirectionManager.Instance.screenGlitchShader.DOFloat(0f, "_ScanLinesStrength", 0.1f);
             VolumeManager.Instance.ChangeVignette(0.07f, 0.1f);
 
-            glitchWalls.SetActive(false);
-            normalWalls.SetActive(true);
+            glitchProps.SetActive(false);
+            normalProps.SetActive(true);
 
             DOVirtual.DelayedCall(endAudioLength + 2f, () =>
             {

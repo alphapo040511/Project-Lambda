@@ -185,7 +185,7 @@ MonoBehaviour:
   keycodeText: {fileID: 8684461618861130492}
   groundImage: {fileID: 1506851551769835228}
   outlineImage: {fileID: 3107481122402003797}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.8627451}
   deselectedColor: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 0.78039217}
 --- !u!1 &7055879173810174799
 GameObject:

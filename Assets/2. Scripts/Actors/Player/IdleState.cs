@@ -288,6 +288,8 @@ public class DeathState : IPlayerState
 
         player.cameraController.enabled = false;            // 카메라 조작 비활성화
 
+        DirectionManager.Instance.GameOver();
+
         GameManager.Instance.ChangeGameState(GameState.GameOver);
         
         //VolumeManager.Instance.ChangeVignette(1f, 1.5f);

@@ -31,7 +31,7 @@ public class DirectionManager : MonoBehaviour
         screenGlitchShader.DOFloat(25f, "_NoiseAmount", 8f);
         screenGlitchShader.DOFloat(25f, "_GlitchStrength", 8f);
         screenGlitchShader.DOFloat(1f, "_ScanLinesStrength", 8f);
-        screenGlitchShader.DOColor(Color.gray, "_MainColor", 8f);
+        screenGlitchShader.DOColor(Color.gray, "_MainColor", 15f);
     }
 
     public void ExitDangerZone()
@@ -41,6 +41,11 @@ public class DirectionManager : MonoBehaviour
         screenGlitchShader.DOFloat(0f, "_GlitchStrength", 1f);
         screenGlitchShader.DOFloat(0f, "_ScanLinesStrength", 1f);
         screenGlitchShader.DOColor(Color.white, "_MainColor", 1f);
+    }
+
+    public void GameOver()
+    {
+        screenGlitchShader.DOKill();
     }
 
 }
