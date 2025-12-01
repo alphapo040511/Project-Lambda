@@ -8,6 +8,11 @@ public class Door : InteractionReceiver
     [Header("문 오브젝트")]
     public List<DoorPanel> doorPanels = new List<DoorPanel>();
 
+    [Header("문 오디오 설정")]
+    public AudioSource doorAudioSource;
+    public AudioClip doorOpenAudioClip;
+    public AudioClip doorCloseAudioClip;
+
     //[Header("문 설정")]
     [HideInInspector] public Vector3 openPosition;
     [HideInInspector] public Vector3 closePosition;
@@ -25,6 +30,9 @@ public class Door : InteractionReceiver
     [Header("문을 열기 위한 아이템")]
     public ItemDataSO needItem;
 
+    private bool canPlayDialog = true; //대사 재생 가능 여부
+    public float dialogCooldown;  //쿨타임
+
     private void Start()
     {
         if (gameObject.name.Contains("PermissionDoor"))
@@ -37,6 +45,25 @@ public class Door : InteractionReceiver
         {
             panel.UpdateMovement(moveSpeed);
         }
+    }
+    private void TryPlayNoPermissionDialog()
+    {
+        if (!canPlayDialog)
+        {
+            return;
+        }
+
+        canPlayDialog = false;
+        DialogueManager.Instance.StopAllDialog();
+        DialogueManager.Instance.PlayingDialog("AI_Door_NoPermission");
+
+        StartCoroutine(DialogCooldown());
+    }
+
+    private IEnumerator DialogCooldown()
+    {
+        yield return new WaitForSeconds(dialogCooldown);
+        canPlayDialog = true;
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -54,12 +81,20 @@ public class Door : InteractionReceiver
                 OpenDoor();
                 isOpened = true;
             }
+            else
+            {
+                DialogueManager.Instance.StopAllDialog();
+                TryPlayNoPermissionDialog();
+            }
         }
     }
 
     public void OnTriggerExit(Collider collider)
     {
-        if (isPermissionDoor) return;
+        if (isPermissionDoor)
+        {
+            return;
+        }
 
         if (isOpened == true && collider.CompareTag("Player"))
         {
@@ -68,15 +103,26 @@ public class Door : InteractionReceiver
         }
     }
 
+    private bool hasPlayedDoorOpen = false;
+
     public void OpenDoor()
     {
-        //DialogueManager.Instance.StopAllDialog();
-        //DialogueManager.Instance.PlayingDialog("AI_Door_Open");
-
         foreach (var panel in doorPanels)
         {
             panel.StartMove(true);
         }
+
+        doorAudioSource.PlayOneShot(doorOpenAudioClip);
+
+        if (hasPlayedDoorOpen)
+        {
+            return;
+        }
+
+        hasPlayedDoorOpen = true;
+
+        DialogueManager.Instance.StopAllDialog();
+        DialogueManager.Instance.PlayingDialog("AI_Door_Open");
     }
 
     public void CloseDoor()
@@ -84,6 +130,7 @@ public class Door : InteractionReceiver
         foreach (var panel in doorPanels)
         {
             panel.StartMove(false);
+            doorAudioSource.PlayOneShot(doorCloseAudioClip);
         }
     }
 

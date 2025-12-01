@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: DialogDatabase
   m_EditorClassIdentifier: 
   dialogs:
-  - {fileID: 11400000, guid: d97fdb4bbe7316b4890e2aa0669027ed, type: 2}
   - {fileID: 11400000, guid: cc635ce364a37304c91b43413a2d6944, type: 2}
   - {fileID: 11400000, guid: 376cec9790e23cf4e907e7f6ad34148b, type: 2}
   - {fileID: 11400000, guid: 35df9b905305f8349b6288e3f7b719f6, type: 2}
   - {fileID: 11400000, guid: a8432dce2db7d614cb1fe2ae32147907, type: 2}
   - {fileID: 11400000, guid: 3d995c4667aae5749bdd04a4b51d3935, type: 2}
   - {fileID: 11400000, guid: 10830a6791fbe21429ce4668c1cf40e9, type: 2}
+  - {fileID: 11400000, guid: a2cf27e2b17c52c45b91f8bef58e50c2, type: 2}
+  - {fileID: 11400000, guid: d97fdb4bbe7316b4890e2aa0669027ed, type: 2}

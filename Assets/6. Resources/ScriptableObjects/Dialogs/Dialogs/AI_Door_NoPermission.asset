@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f37c43b90879afc4f8f3c599bd2deca0, type: 3}
-  m_Name: AI_HibernationWake_004
+  m_Name: AI_Door_NoPermission
   m_EditorClassIdentifier: 
-  id: AI_HibernationWake_004
-  en: Muscle and neural functions operational.
-  ko: "\uADFC\uC721 \uBC0F \uC2E0\uACBD \uC815\uC0C1 \uAE30\uB2A5."
-  clip: {fileID: 8300000, guid: 30c23eabff91add48bad79216de4bf38, type: 3}
-  nextId: AI_HibernationWake_005
+  id: AI_Door_NoPermission
+  en: Security level not detected. Door cannot be unlocked.
+  ko: "\uBCF4\uC548 \uB4F1\uAE09\uC774 \uAC10\uC9C0\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.
+    \uBB38 \uC7A0\uAE08 \uD574\uC81C \uBD88\uAC00."
+  clip: {fileID: 8300000, guid: 9ecb8c771cb551d4485bab9125d6b372, type: 3}
+  nextId: 

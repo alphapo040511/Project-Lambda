@@ -16,5 +16,5 @@ MonoBehaviour:
   en: Activating hibernation module. Running system check.
   ko: "\uB3D9\uBA74 \uBAA8\uB4C8 \uD65C\uC131\uD654. \uC2DC\uC2A4\uD15C \uC810\uAC80
     \uC2DC\uC791."
-  clip: {fileID: 8300000, guid: bbe6313c02bef9e4a8597f30767b5a16, type: 3}
+  clip: {fileID: 8300000, guid: ddb4176ec186e14499e881d4835836f8, type: 3}
   nextId: AI_HibernationWake_002

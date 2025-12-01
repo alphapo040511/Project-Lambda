@@ -15,5 +15,5 @@ MonoBehaviour:
   id: AI_HibernationWake_002
   en: Coolant removed. Blood circulation restored.
   ko: "\uBD80\uB3D9\uC561 \uC81C\uAC70 \uC644\uB8CC. \uD608\uC561 \uC21C\uD658 \uC815\uC0C1\uD654."
-  clip: {fileID: 8300000, guid: 3ab7a933a8d60c0488eb57289a94f42f, type: 3}
+  clip: {fileID: 8300000, guid: c9a3bf3ccec3e5a429ec7f8c06b1bd07, type: 3}
   nextId: AI_HibernationWake_003

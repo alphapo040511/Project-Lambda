@@ -16,5 +16,5 @@ MonoBehaviour:
   en: Security protocol disengaged. Door opening.
   ko: "\uBCF4\uC548 \uD504\uB85C\uD1A0\uCF5C \uD574\uC81C \uC644\uB8CC. \uBB38\uC774
     \uC5F4\uB9BD\uB2C8\uB2E4."
-  clip: {fileID: 8300000, guid: 93ccd6782f8f88140a8dce9eec5c2321, type: 3}
+  clip: {fileID: 8300000, guid: 8614f8ad20249ee418f8ca160554590b, type: 3}
   nextId: 

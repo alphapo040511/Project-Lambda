@@ -15,5 +15,5 @@ MonoBehaviour:
   id: AI_HibernationWake_005
   en: Hibernation termination complete. Welcome back.
   ko: "\uB3D9\uBA74 \uD574\uC81C \uC644\uB8CC. \uD658\uC601\uD569\uB2C8\uB2E4."
-  clip: {fileID: 8300000, guid: b11657e2ec0e29b499421bbcae2e5b83, type: 3}
+  clip: {fileID: 8300000, guid: d6757795f7341274e8b0928e823c2ecc, type: 3}
   nextId: 

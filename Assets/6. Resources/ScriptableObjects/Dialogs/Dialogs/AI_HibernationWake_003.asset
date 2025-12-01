@@ -16,5 +16,5 @@ MonoBehaviour:
   en: Heart rate stabilized. Oxygen levels normal.
   ko: "\uC2EC\uBC15\uC218 \uC548\uC815\uD654 \uC644\uB8CC. \uC0B0\uC18C \uB18D\uB3C4
     \uC815\uC0C1."
-  clip: {fileID: 8300000, guid: 783dc50bd7a85b54f9436dcc8d14044d, type: 3}
+  clip: {fileID: 8300000, guid: e1ad71d5666b55e468c73b2af35678b2, type: 3}
   nextId: AI_HibernationWake_004

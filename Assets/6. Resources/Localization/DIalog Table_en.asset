@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1555737600000
-    m_Localized: Security protocol disengaged. Door opening.
+    m_Localized: "\rSecurity clearance confirmed. Door unlocked."
     m_Metadata:
       m_Items: []
   - m_Id: 1555741794304
@@ -44,6 +44,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1555741794309
     m_Localized: Analyzing surveillance records. Rebuilding visual sequence for display.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20274000088686592
+    m_Localized: Security level not detected. Door cannot be unlocked.
     m_Metadata:
       m_Items: []
   references:

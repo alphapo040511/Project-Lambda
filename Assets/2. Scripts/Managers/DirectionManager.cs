@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class DirectionManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class DirectionManager : MonoBehaviour
 
     [Header("스크린 글리치 셰이더 머테리얼")]
     public Material screenGlitchShader;
+
+    [Header("노이즈 이미지")]
+    public Image noiseImage;
 
     private void Awake()
     {
@@ -18,6 +22,7 @@ public class DirectionManager : MonoBehaviour
             return;
         }
         Instance = this;
+
     }
 
     public void EnterDangerZone()
@@ -37,4 +42,5 @@ public class DirectionManager : MonoBehaviour
         screenGlitchShader.DOFloat(0f, "_ScanLinesStrength", 1f);
         screenGlitchShader.DOColor(Color.white, "_MainColor", 1f);
     }
+
 }

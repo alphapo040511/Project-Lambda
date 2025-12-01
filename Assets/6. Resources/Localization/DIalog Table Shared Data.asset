@@ -43,6 +43,10 @@ MonoBehaviour:
     m_Key: AI_Hologram_Reconstruct
     m_Metadata:
       m_Items: []
+  - m_Id: 20274000088686592
+    m_Key: AI_Door_NoPermission
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
