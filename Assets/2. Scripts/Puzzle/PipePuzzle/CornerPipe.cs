@@ -145,6 +145,7 @@ public class CornerPipe : PipeBase
     public void RotatePipe()
     {
         if (!isRotateble) return;       // 회전이 불가능한 경우 무시
+        if (puzzleController != null && puzzleController.isCleard) return;      // 퍼즐이 클리어 된 경우 조작 멈춤
 
         rotate = (rotate + 1) % 4;      // 회전
         transform.localEulerAngles = new Vector3(0, 0, -rotate * 90);       // 오른쪽 회전을 위해 음수 처리 (일단 보간 없이 회전)

@@ -6,20 +6,49 @@ using UnityEngine.UI;
 public class LinePipe : PipeBase
 {
     [Header("Line PipeSetting")]
-    public Image lineImage;
-    private bool isUsed = false;
+    public Image horizontalLine;
+    public Image verticalLine;
+    public bool horizontal = true;
+    public bool vertical = true;
+
+    private bool horizontalUsed = false;
+    private bool verticalUsed = false;
+
+    void Start()
+    {
+        // 사용하지 않는 방향 비활성화
+        if (!horizontal && horizontalLine != null)
+            horizontalLine.enabled = false;
+
+        if (!vertical && verticalLine != null)
+            verticalLine.enabled = false;
+    }
 
     public override void ReceivePower(Vector2Int dir, PowerType powerType)
     {
-        if (isUsed) return;     // 이미 사용한 통로 파이프는 사용 불가
+        if(dir == Vector2Int.left || dir == Vector2Int.right)       // 좌우로 파워가 이동할 경우
+        {
+            if (horizontalUsed) return;
+                horizontalUsed = true;
 
-        if (powerType != PowerType.None)
-            isUsed = true;                      // 빈 파워가 아닌 경우에만 사용됨으로 변경
+            if (horizontal && horizontalLine != null)
+                horizontalLine.color = GetPipeColor(powerType);
 
-        if (lineImage != null)
-            lineImage.color = GetPipeColor(powerType);
+            // 해당 방향을 사용할 경우
+            if(horizontal)
+                StartCoroutine(SendPowerToNeighbors(-dir, powerType));      // 이웃에게 파워 전달
+        }
+        else
+        {
+            if (verticalUsed) return;
+                verticalUsed = true;
 
-        StartCoroutine(SendPowerToNeighbors(-dir, powerType));      // 이웃에게 파워 전달
+            if (vertical && verticalLine != null)
+                verticalLine.color = GetPipeColor(powerType);
+
+            if (vertical)
+                StartCoroutine(SendPowerToNeighbors(-dir, powerType));      // 이웃에게 파워 전달
+        }
     }
 
     public override IEnumerator SendPowerToNeighbors(Vector2Int input, PowerType powerType)
@@ -27,26 +56,28 @@ public class LinePipe : PipeBase
         yield return new WaitForSeconds(0.1f);
         foreach (var neighbor in neighbors)
         {
-            if (neighbor.Key == input) continue;        // 입력 방향과 동일한 이웃이면 무시
-
-            neighbor.Value.ReceivePower(neighbor.Key, powerType);       // 나머지 이웃에게 파워 전달
-            yield return new WaitForSeconds(0.1f);
+            if (neighbor.Key == -input)
+            {
+                neighbor.Value.ReceivePower(neighbor.Key, powerType);       // 입력 방향 (상하 / 좌우)의 이웃에게만 전달
+                yield return new WaitForSeconds(0.1f);
+            }
         }
     }
 
     protected override void PipeResetHandle()
     {
-        isUsed = false;
+        horizontalUsed = false;
+        verticalUsed = false;
 
-        if (lineImage != null)
-            lineImage.color = GetPipeColor(PowerType.None);
+        if (horizontal && horizontalLine != null)
+            horizontalLine.color = GetPipeColor(PowerType.None);
+
+        if (vertical && verticalLine != null)
+            verticalLine.color = GetPipeColor(PowerType.None);
     }
 
     protected override void PipeUpdatedHandle()
     {
-        isUsed = false;
-
-        if (lineImage != null)
-            lineImage.color = GetPipeColor(PowerType.None);
+        PipeResetHandle();
     }
 }

@@ -14,22 +14,20 @@ public abstract class PipeBase : MonoBehaviour
     [Header("Puzzle Controller")]
     public PipePuzzleController puzzleController;
 
-    [Header("Neighbor Pipes")]
-    public PipeBase rightPipe;
-    public PipeBase leftPipe;
-    public PipeBase upPipe;
-    public PipeBase downPipe;
+    [Header("Grid Setting")]
+    public Vector2Int gridPos;
 
-    protected Dictionary<Vector2Int, PipeBase> neighbors = new Dictionary<Vector2Int, PipeBase>();
+    //[Header("Neighbor Pipes")]
+    //public PipeBase rightPipe;
+    //public PipeBase leftPipe;
+    //public PipeBase upPipe;
+    //public PipeBase downPipe;
+
+    public Dictionary<Vector2Int, PipeBase> neighbors = new Dictionary<Vector2Int, PipeBase>();
 
     void Awake()
     {
-        InitializeNeighbors();
-        if (puzzleController != null)
-        {
-            puzzleController.onPipeUpdated += PipeUpdatedHandle;
-            puzzleController.onPipeReset += PipeResetHandle;
-        }
+        //InitializeNeighbors();
     }
 
     private void OnDestroy()
@@ -41,21 +39,28 @@ public abstract class PipeBase : MonoBehaviour
         }
     }
 
-    // 네 방향의 파이프 또는 이웃 찾기
-    void InitializeNeighbors()
+    public void InitializePipe(PipePuzzleController puzzleController)
     {
-        if (rightPipe != null)
-            neighbors.Add(Vector2Int.right, rightPipe);
-
-        if (leftPipe != null)
-            neighbors.Add(Vector2Int.left, leftPipe);
-
-        if (upPipe != null)
-            neighbors.Add(Vector2Int.up, upPipe);
-
-        if (downPipe != null)
-            neighbors.Add(Vector2Int.down, downPipe);
+        this.puzzleController = puzzleController;
+        puzzleController.onPipeUpdated += PipeUpdatedHandle;
+        puzzleController.onPipeReset += PipeResetHandle;
     }
+
+    // 네 방향의 파이프 또는 이웃 찾기
+    //void InitializeNeighbors()
+    //{
+    //    if (rightPipe != null)
+    //        neighbors.Add(Vector2Int.right, rightPipe);
+
+    //    if (leftPipe != null)
+    //        neighbors.Add(Vector2Int.left, leftPipe);
+
+    //    if (upPipe != null)
+    //        neighbors.Add(Vector2Int.up, upPipe);
+
+    //    if (downPipe != null)
+    //        neighbors.Add(Vector2Int.down, downPipe);
+    //}
 
     public abstract void ReceivePower(Vector2Int dir, PowerType powerType);
 

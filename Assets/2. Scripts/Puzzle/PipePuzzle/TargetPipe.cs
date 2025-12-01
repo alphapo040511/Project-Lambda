@@ -88,6 +88,7 @@ public class TargetPipe : PipeBase
         if (!powerDirs.ContainsKey(-dir) || powerDirs[-dir] != powerType) return;           // 입력 방향의 파워 값이 할당되지 않았거나, 목표 값이랑 다르다면 무시
 
         completeCount++;
+        Debug.Log($"퍼즐 진행도 ({completeCount}/{powerDirs.Count})");
 
         // 원하는 입력 개수 만큼 입력이 들어왔다면
         if(puzzleController != null && completeCount == powerDirs.Count)

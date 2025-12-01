@@ -12,7 +12,7 @@ public class SourcePipe : PipeBase
     private void Start()
     {
         SetColor();
-        StartCoroutine(SendPowerToNeighbors(Vector2Int.zero, PowerType.None));
+        //StartCoroutine(SendPowerToNeighbors(Vector2Int.zero, PowerType.None));
     }
 
     [ContextMenu("색상 적용")]
