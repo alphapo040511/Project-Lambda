@@ -327,6 +327,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Mouse
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 1695
+        width: 99
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f79c3fcfb9b37c4db38ecb5ec542df6
+      internalID: -1115701486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -348,6 +369,7 @@ TextureImporter:
       Key_E: -1999984667
       Key_S: 929046024
       Key_W: 377322170
+      Mouse: -1115701486
       Popup: 1699845151
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
