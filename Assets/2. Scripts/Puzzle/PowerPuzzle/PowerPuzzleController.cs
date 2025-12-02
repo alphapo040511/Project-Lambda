@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using DG.Tweening;
 
 [System.Serializable]
 public class PowerSwitchData
@@ -31,6 +32,12 @@ public class PowerPuzzleController : InteractionFocus
     public bool isMoving = false;
     public float timer = 0;
 
+    [Header("클리어 오디오")]
+    public AudioSource audioSource;
+    public AudioClip afterCompleteClip;
+    public AudioClip completeClip;
+    [HideInInspector] public float fadeDuration = 1f;
+
     private int currentAnswer = -100;
 
     void Start()
@@ -50,6 +57,15 @@ public class PowerPuzzleController : InteractionFocus
 
         if (timer > 0)
             timer -= Time.deltaTime;
+    }
+
+    public void CompleteAudioPlay()
+    {
+        audioSource.volume = 0f;
+        audioSource.loop = true;
+        audioSource.PlayOneShot(afterCompleteClip);
+
+        audioSource.DOFade(1f, fadeDuration);
     }
 
     public void OnChangeSwitchState(bool isPowered, int index)
@@ -82,6 +98,8 @@ public class PowerPuzzleController : InteractionFocus
             interactable = false;
             Debug.Log("정답!");
             onPuzzleCompleted?.Invoke();
+            audioSource.PlayOneShot(completeClip);
+            CompleteAudioPlay();
         }
     }
 

@@ -59805,6 +59805,7 @@ GameObject:
   - component: {fileID: 812861155}
   - component: {fileID: 812861156}
   - component: {fileID: 812861157}
+  - component: {fileID: 812861158}
   m_Layer: 6
   m_Name: Power Puzzle
   m_TagString: Untagged
@@ -59900,6 +59901,10 @@ MonoBehaviour:
   needleRotateSpeed: 5
   isMoving: 0
   timer: 0
+  audioSource: {fileID: 812861158}
+  afterCompleteClip: {fileID: 8300000, guid: 1095c402df74f1548844f3921841984d, type: 3}
+  completeClip: {fileID: 8300000, guid: 461a9ab956b9e824cbb761fd211575e3, type: 3}
+  fadeDuration: 1
 --- !u!65 &812861157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59921,6 +59926,102 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1.09}
   m_Center: {x: -0.09, y: 0.1, z: 0}
+--- !u!82 &812861158
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812861154}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 3
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &816208736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79129,6 +79230,8 @@ MonoBehaviour:
   controller: {fileID: 812861156}
   switchIndex: 3
   rotateSpeed: 30
+  audioSource: {fileID: 812861158}
+  switchClip: {fileID: 8300000, guid: 5c44630ff8ad50a4d890ad4607f351fa, type: 3}
 --- !u!1001 &1104426633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96991,6 +97094,8 @@ MonoBehaviour:
   controller: {fileID: 812861156}
   switchIndex: 2
   rotateSpeed: 30
+  audioSource: {fileID: 812861158}
+  switchClip: {fileID: 8300000, guid: 5c44630ff8ad50a4d890ad4607f351fa, type: 3}
 --- !u!114 &1345494448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97006,6 +97111,8 @@ MonoBehaviour:
   controller: {fileID: 812861156}
   switchIndex: 1
   rotateSpeed: 30
+  audioSource: {fileID: 812861158}
+  switchClip: {fileID: 8300000, guid: 5c44630ff8ad50a4d890ad4607f351fa, type: 3}
 --- !u!114 &1345494449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97021,6 +97128,8 @@ MonoBehaviour:
   controller: {fileID: 812861156}
   switchIndex: 0
   rotateSpeed: 30
+  audioSource: {fileID: 812861158}
+  switchClip: {fileID: 8300000, guid: 5c44630ff8ad50a4d890ad4607f351fa, type: 3}
 --- !u!114 &1345494450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97034,6 +97143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 812861156}
+  audioSource: {fileID: 812861158}
+  buttonClip: {fileID: 8300000, guid: cd709685351d3bc479b4550660e47ca2, type: 3}
 --- !u!1001 &1346024909
 PrefabInstance:
   m_ObjectHideFlags: 0

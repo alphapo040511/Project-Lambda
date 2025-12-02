@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,10 @@ public class PowerPuzzleSwitch : MonoBehaviour, IPointerClickHandler
     public int switchIndex;
     public float rotateSpeed = 5f;
     private bool isPowered = false;
+
+    [Header("전력 퍼즐 오디오")]
+    public AudioSource audioSource;
+    public AudioClip switchClip;
 
     private float targetAngle
     {
@@ -57,6 +62,8 @@ public class PowerPuzzleSwitch : MonoBehaviour, IPointerClickHandler
         if(controller != null)
         {
             controller.OnChangeSwitchState(isPowered, switchIndex);
+            audioSource.PlayOneShot(switchClip);
         }
     }
+
 }
