@@ -9435,7 +9435,7 @@ GameObject:
   - component: {fileID: 161102269}
   - component: {fileID: 161102268}
   m_Layer: 0
-  m_Name: Quest2002Collider
+  m_Name: Quest 3001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15364,6 +15364,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6828999b4ec92a04385efb0bafe8971b,
         type: 2}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 226668804}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RegistQuest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: QuestHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3329438105298989257, guid: a8b1c02aba2877c4dba1690352225831,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15427,7 +15462,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5997450291745975681, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 226668804}
   m_SourcePrefab: {fileID: 100100000, guid: a8b1c02aba2877c4dba1690352225831, type: 3}
 --- !u!4 &226668802 stripped
 Transform:
@@ -15441,6 +15480,31 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 226668801}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &226668804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226668803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a90cecfb627e3a408b2d08b41feaced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetQuest: {fileID: 11400000, guid: 73d142a31f6123e45befd88f54833fa9, type: 2}
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  onCleared:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &227790331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23218,6 +23282,7 @@ GameObject:
   - component: {fileID: 328928680}
   - component: {fileID: 328928682}
   - component: {fileID: 328928683}
+  - component: {fileID: 328928684}
   m_Layer: 6
   m_Name: Handle
   m_TagString: Untagged
@@ -23297,6 +23362,31 @@ MonoBehaviour:
   targetObject: {fileID: 1281902679}
   padlocks:
   - {fileID: 8311681442296719594}
+--- !u!114 &328928684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328928679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a90cecfb627e3a408b2d08b41feaced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetQuest: {fileID: 11400000, guid: 56eec21ae6569494fa543d0722872090, type: 2}
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  onCleared:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!43 &329650333
 Mesh:
   m_ObjectHideFlags: 0
@@ -69703,6 +69793,7 @@ GameObject:
   - component: {fileID: 946249539}
   - component: {fileID: 946249541}
   - component: {fileID: 946249540}
+  - component: {fileID: 946249542}
   m_Layer: 6
   m_Name: FuseBox
   m_TagString: Untagged
@@ -69754,7 +69845,19 @@ MonoBehaviour:
   - {fileID: 991703061}
   firstFuseMounted:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 946249542}
+        m_TargetAssemblyTypeName: QuestHandler, Assembly-CSharp
+        m_MethodName: RegistQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   secondFuseMounted:
     m_PersistentCalls:
       m_Calls: []
@@ -69779,6 +69882,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7, y: 1, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0.1}
+--- !u!114 &946249542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946249538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a90cecfb627e3a408b2d08b41feaced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetQuest: {fileID: 11400000, guid: 47bd61db0e746024fb1189ddbbe4cb66, type: 2}
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  onCleared:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &946350772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151307,6 +151435,7 @@ GameObject:
   - component: {fileID: 2411351082332222955}
   - component: {fileID: 8311681442296719594}
   - component: {fileID: 6752603568652865334}
+  - component: {fileID: 8311681442296719595}
   m_Layer: 6
   m_Name: FBX_padlock
   m_TagString: Untagged
@@ -153307,6 +153436,21 @@ MonoBehaviour:
   keyItem: {fileID: 11400000, guid: 6828999b4ec92a04385efb0bafe8971b, type: 2}
   body: {fileID: 5991341601934823034}
   isLocked: 1
+  onFailed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8311681442296719595}
+        m_TargetAssemblyTypeName: QuestHandler, Assembly-CSharp
+        m_MethodName: RegistQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onUnlocked:
     m_PersistentCalls:
       m_Calls:
@@ -153322,6 +153466,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 328928684}
+        m_TargetAssemblyTypeName: QuestHandler, Assembly-CSharp
+        m_MethodName: RegistQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8311681442296719595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3043597324289453905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a90cecfb627e3a408b2d08b41feaced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetQuest: {fileID: 11400000, guid: 722a8ed344167bd40bc7bd9d0d5536ae, type: 2}
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  onCleared:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8363939982836811163
 GameObject:
   m_ObjectHideFlags: 0
@@ -153685,6 +153866,9 @@ MonoBehaviour:
   keyItem: {fileID: 11400000, guid: c8919251c0d5ef5429bacf5c370653fc, type: 2}
   body: {fileID: 4971599690180958356}
   isLocked: 1
+  onFailed:
+    m_PersistentCalls:
+      m_Calls: []
   onUnlocked:
     m_PersistentCalls:
       m_Calls:

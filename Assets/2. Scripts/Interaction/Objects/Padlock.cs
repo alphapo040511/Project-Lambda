@@ -11,6 +11,7 @@ public class Padlock : Interactable
 
     public bool isLocked = true;
 
+    public UnityEvent onFailed;
     public UnityEvent onUnlocked;
 
     protected override void Complete()
@@ -20,6 +21,10 @@ public class Padlock : Interactable
         if (keyItem != null && InventoryManager.ContainItem(keyItem.uniqueID))
         {
             Unlock();
+        }
+        else
+        {
+            onFailed?.Invoke();
         }
     }
 
