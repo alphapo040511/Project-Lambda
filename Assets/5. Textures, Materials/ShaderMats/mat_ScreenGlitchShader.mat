@@ -42,6 +42,6 @@ Material:
     - _NoiseAmount: 0
     - _ScanLinesStrength: 0
     m_Colors:
-    - _MainColor: {r: 0.67970395, g: 0.67970395, b: 0.67970395, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _ScreenColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
