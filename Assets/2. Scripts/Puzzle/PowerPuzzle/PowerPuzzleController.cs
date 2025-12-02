@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class PowerSwitchData
@@ -11,6 +12,9 @@ public class PowerSwitchData
 
 public class PowerPuzzleController : InteractionFocus
 {
+    [Header("Puzzle Complete Evenet")]
+    public UnityEvent onPuzzleCompleted;
+
     [Header("Puzzle Settings")]
     public int answerValue = 85;
     public List<PowerSwitchData> switchDatas = new List<PowerSwitchData>();
@@ -77,6 +81,7 @@ public class PowerPuzzleController : InteractionFocus
             ExitFocus();
             interactable = false;
             Debug.Log("정답!");
+            onPuzzleCompleted?.Invoke();
         }
     }
 

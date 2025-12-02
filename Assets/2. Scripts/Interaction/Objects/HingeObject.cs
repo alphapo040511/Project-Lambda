@@ -14,7 +14,7 @@ public class HingeObject : MonoBehaviour, IOpenableObject
         }
     }
 
-    public float rotateSpeed = 1.5f;
+    public float rotateSpeed = 2f;
 
     public bool IsMoving => isMoving;
 
