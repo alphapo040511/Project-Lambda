@@ -223,12 +223,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Key_W
+      name: MoveKey
       rect:
         serializedVersion: 2
         x: 66
         y: 1564
-        width: 77
+        width: 353
         height: 87
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -244,70 +244,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Key_A
-      rect:
-        serializedVersion: 2
-        x: 158
-        y: 1564
-        width: 77
-        height: 87
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02272e550141797459b9e6ab2dad7a4d
-      internalID: -1189118349
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Key_S
-      rect:
-        serializedVersion: 2
-        x: 251
-        y: 1564
-        width: 77
-        height: 87
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce7e3394268a55c4093c0597698b7a6f
-      internalID: 929046024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Key_D
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 1564
-        width: 77
-        height: 87
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 79f82ad66da24ec40abb8acdab0c003f
-      internalID: -951633249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Key_E
+      name: InteractionKey
       rect:
         serializedVersion: 2
         x: 66
@@ -336,7 +273,7 @@ TextureImporter:
         width: 99
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -344,6 +281,27 @@ TextureImporter:
       bones: []
       spriteID: 2f79c3fcfb9b37c4db38ecb5ec542df6
       internalID: -1115701486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialPopup
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1095
+        width: 622
+        height: 332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1435ba1122f3184ba46a00d7d0f395a
+      internalID: 1593238043
       vertices: []
       indices: 
       edges: []
@@ -363,14 +321,15 @@ TextureImporter:
       Empty: 641270672
       Hover: -873759187
       Interaction: -912996244
+      InteractionKey: -1999984667
       Interaction_Fill: 2110044802
       Key_A: -1189118349
       Key_D: -951633249
-      Key_E: -1999984667
       Key_S: 929046024
-      Key_W: 377322170
       Mouse: -1115701486
+      MoveKey: 377322170
       Popup: 1699845151
+      TutorialPopup: 1593238043
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

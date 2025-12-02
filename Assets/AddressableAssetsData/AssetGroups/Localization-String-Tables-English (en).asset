@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 372f93fcec81e3547986b24cfc52e2a9
+    m_Address: Tutorial Table_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ab0d535ca2bcd415ea86c8d3f6472751
     m_Address: DIalog Table_en
     m_ReadOnly: 1
