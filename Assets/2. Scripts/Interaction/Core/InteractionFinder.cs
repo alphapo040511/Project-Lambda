@@ -31,6 +31,11 @@ public class InteractionFinder : Actor
 
     protected override void ActorUpdate()
     {
+        if (currentTarget != null && !currentTarget.gameObject.activeSelf)
+        {
+            currentTarget = null;
+        }
+
         FindTarget();
     }
 
@@ -77,7 +82,7 @@ public class InteractionFinder : Actor
             }
         }
 
-        if (currentTarget != null && currentTarget != bestTarget)
+        if (currentTarget != null && (currentTarget != bestTarget || !currentTarget.gameObject.activeSelf))
         {
             currentTarget.GetComponent<Interactable>()?.OnUntargeted();           // 기존 타겟 지정 해제
         }
