@@ -6,6 +6,11 @@ public class LockedStorage : OpenableObject
 {
     public List<Padlock> padlocks = new List<Padlock>();
 
+    private void Start()
+    {
+        CheckAllPadlock();
+    }
+
     public void UnlockPadlock()
     {
         CheckAllPadlock();
@@ -21,7 +26,7 @@ public class LockedStorage : OpenableObject
                 unlock++;
         }
 
-        if(unlock == padlocks.Count)
+        if(unlock >= padlocks.Count)
         {
             interactable = true;
         }

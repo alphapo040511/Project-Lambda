@@ -45,6 +45,8 @@ public class DirectionEvent : MonoBehaviour
 
     void PlayDirection1()
     {
+        EventSystem.Instance.StartEvent();      // 이벤트 시작 (조작 잠김 및 레터박스)
+
         firstDirectionTriggered = true;
         Debug.Log("1번 연출 시작");
 
@@ -104,6 +106,7 @@ public class DirectionEvent : MonoBehaviour
             });
 
             Debug.Log("1번 연출 종료");
+            EventSystem.Instance.EndEvent();
         });
 
     }
