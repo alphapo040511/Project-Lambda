@@ -696,6 +696,9 @@ MonoBehaviour:
   uniqueId: 
   state: 0
   VirtualCamera: {fileID: 431482348}
+  onPuzzleCompleted:
+    m_PersistentCalls:
+      m_Calls: []
   answerValue: 85
   switchDatas:
   - switchState: 0
@@ -714,6 +717,10 @@ MonoBehaviour:
   needleRotateSpeed: 5
   isMoving: 0
   timer: 0
+  audioSource: {fileID: 0}
+  afterCompleteClip: {fileID: 0}
+  completeClip: {fileID: 0}
+  fadeDuration: 1
 --- !u!4 &73407373
 Transform:
   m_ObjectHideFlags: 0
@@ -6509,80 +6516,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422128259}
   m_CullTransparentMesh: 1
---- !u!1001 &425709828
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13.879
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.536
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 18.024
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3302528014882970081, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: itemData
-      value: 
-      objectReference: {fileID: 11400000, guid: c8919251c0d5ef5429bacf5c370653fc,
-        type: 2}
-    - target: {fileID: 3348227363521901866, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_Name
-      value: FBX_padlock_key
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c55bcee076d05684bb86e50a2c9535cc, type: 3}
 --- !u!1001 &426636584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8512,11 +8445,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUpdate: 1
   doorPanels: []
+  doorAudioSource: {fileID: 0}
+  doorOpenAudioClip: {fileID: 0}
+  doorCloseAudioClip: {fileID: 0}
   openPosition: {x: 0, y: 0, z: 2.79}
   closePosition: {x: 0, y: 0, z: 0}
   moveSpeed: 1.5
   isOpened: 0
   needItem: {fileID: 0}
+  dialogCooldown: 0
 --- !u!1001 &549495799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8739,6 +8676,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 73407372}
+  audioSource: {fileID: 0}
+  buttonClip: {fileID: 0}
 --- !u!1001 &564273688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9740,7 +9679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &617467340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10199,6 +10138,8 @@ MonoBehaviour:
   controller: {fileID: 73407372}
   switchIndex: 3
   rotateSpeed: 30
+  audioSource: {fileID: 0}
+  switchClip: {fileID: 0}
 --- !u!114 &628129787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10214,6 +10155,8 @@ MonoBehaviour:
   controller: {fileID: 73407372}
   switchIndex: 2
   rotateSpeed: 30
+  audioSource: {fileID: 0}
+  switchClip: {fileID: 0}
 --- !u!114 &628129788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10229,6 +10172,8 @@ MonoBehaviour:
   controller: {fileID: 73407372}
   switchIndex: 1
   rotateSpeed: 30
+  audioSource: {fileID: 0}
+  switchClip: {fileID: 0}
 --- !u!114 &628129789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10244,6 +10189,8 @@ MonoBehaviour:
   controller: {fileID: 73407372}
   switchIndex: 0
   rotateSpeed: 30
+  audioSource: {fileID: 0}
+  switchClip: {fileID: 0}
 --- !u!43 &633133506
 Mesh:
   m_ObjectHideFlags: 0
@@ -12515,11 +12462,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUpdate: 1
   doorPanels: []
+  doorAudioSource: {fileID: 0}
+  doorOpenAudioClip: {fileID: 0}
+  doorCloseAudioClip: {fileID: 0}
   openPosition: {x: -1.3320007, y: -1.367, z: -9.06}
   closePosition: {x: -1.3320007, y: -1.367, z: -6.315}
   moveSpeed: 1.5
   isOpened: 0
   needItem: {fileID: 0}
+  dialogCooldown: 0
 --- !u!1001 &788822094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17520,11 +17471,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUpdate: 1
   doorPanels: []
+  doorAudioSource: {fileID: 0}
+  doorOpenAudioClip: {fileID: 0}
+  doorCloseAudioClip: {fileID: 0}
   openPosition: {x: -0.33200073, y: -1.367, z: 2.34}
   closePosition: {x: -0.33200073, y: -1.367, z: -0.31500006}
   moveSpeed: 1.5
   isOpened: 0
   needItem: {fileID: 0}
+  dialogCooldown: 0
 --- !u!1 &1136410507
 GameObject:
   m_ObjectHideFlags: 0
@@ -17944,80 +17899,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ac9ba851c9bc7748a97c86e6ad154be, type: 3}
---- !u!1001 &1159788943
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13.335
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.536
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 18.024
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683190592712175504, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3302528014882970081, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: itemData
-      value: 
-      objectReference: {fileID: 11400000, guid: 926357333b0da5b419dc784519fbaf07,
-        type: 2}
-    - target: {fileID: 3348227363521901866, guid: c55bcee076d05684bb86e50a2c9535cc,
-        type: 3}
-      propertyPath: m_Name
-      value: FBX_padlock_key
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c55bcee076d05684bb86e50a2c9535cc, type: 3}
 --- !u!1001 &1171097494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18465,11 +18346,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUpdate: 1
   doorPanels: []
+  doorAudioSource: {fileID: 0}
+  doorOpenAudioClip: {fileID: 0}
+  doorCloseAudioClip: {fileID: 0}
   openPosition: {x: -1, y: 0, z: -8.74}
   closePosition: {x: -1, y: 0, z: -6}
   moveSpeed: 1.5
   isOpened: 0
   needItem: {fileID: 0}
+  dialogCooldown: 0
 --- !u!1001 &1202263497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39066,5 +38951,3 @@ SceneRoots:
   - {fileID: 767365591013629221}
   - {fileID: 617467342}
   - {fileID: 1916565352}
-  - {fileID: 1159788943}
-  - {fileID: 425709828}

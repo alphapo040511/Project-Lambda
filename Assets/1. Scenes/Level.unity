@@ -82290,6 +82290,7 @@ MonoBehaviour:
   - {fileID: 904863574}
   glitchProps:
   - {fileID: 424785403}
+  - {fileID: 2118805471}
   eventCamera: {fileID: 178149580}
 --- !u!1 &1142128240
 GameObject:
@@ -118008,7 +118009,7 @@ GameObject:
   - component: {fileID: 1687225343}
   - component: {fileID: 1687225342}
   m_Layer: 0
-  m_Name: Virtual Camera
+  m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148738,8 +148739,8 @@ Transform:
   m_GameObject: {fileID: 2118805471}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.2, y: 0, z: -1.3000001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -40.27, y: 0, z: -1.3}
+  m_LocalScale: {x: 2.7969408, y: 1, z: 3.9426}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

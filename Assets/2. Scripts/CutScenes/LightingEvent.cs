@@ -29,14 +29,19 @@ public class LightingEvent : MonoBehaviour
 
         // 노이즈 및 오브젝트 전환
         DirectionManager.Instance.EnterDangerZone();
+        yield return new WaitForSeconds(0.5f);
+
         ToggleProps(on);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+
+        // 노이즈 및 오브젝트 전환
+        DirectionManager.Instance.ExitDangerZone();
+        yield return new WaitForSeconds(1.5f);
 
         // 카메라 전환
         if (eventCamera != null)
             eventCamera.enabled = false;
-
 
         // 이벤트 종료
         EventSystem.Instance.EndEvent();
