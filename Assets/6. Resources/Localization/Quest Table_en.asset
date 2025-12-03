@@ -82,10 +82,6 @@ MonoBehaviour:
     m_Localized: Replacing the fuse
     m_Metadata:
       m_Items: []
-  - m_Id: 10771131874566144
-    m_Localized: "\rPowering the facility"
-    m_Metadata:
-      m_Items: []
   - m_Id: 10771305883656192
     m_Localized: Escape Plan
     m_Metadata:
@@ -96,6 +92,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 13327868263895040
     m_Localized: Find the Fuse Box Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13599015008714752
+    m_Localized: Operating the elevator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13599293044932608
+    m_Localized: "\rFind a way to power the elevator"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13599409193598976
+    m_Localized: "\rFind the fuse locker keys in the lobby"
     m_Metadata:
       m_Items: []
   references:

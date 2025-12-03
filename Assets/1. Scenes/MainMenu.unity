@@ -2449,6 +2449,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 722a8ed344167bd40bc7bd9d0d5536ae, type: 2}
   - {fileID: 11400000, guid: 56eec21ae6569494fa543d0722872090, type: 2}
   - {fileID: 11400000, guid: 47bd61db0e746024fb1189ddbbe4cb66, type: 2}
+  - {fileID: 11400000, guid: 695f611f92a24084f86eb80181d566cd, type: 2}
+  - {fileID: 11400000, guid: e4f5aa6cdfbf4ed4fbfbab81c3e54f48, type: 2}
+  - {fileID: 11400000, guid: c50877ab7fb24f041911cda8c997606a, type: 2}
+  - {fileID: 11400000, guid: 0ea30666adc1dd84da20565e9d9d3a65, type: 2}
   view: {fileID: 1184036959}
   currentQuestId: 
 --- !u!114 &243217769
