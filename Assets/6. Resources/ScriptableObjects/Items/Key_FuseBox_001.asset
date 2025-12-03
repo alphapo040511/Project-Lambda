@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Key_FuseBox_001
   m_EditorClassIdentifier: 
   uniqueID: Key_FuseBox_001
-  descriptionKey: Key_Description
+  descriptionKey: "\uD4E8\uC988 \uBC15\uC2A4\uC5D0 \uAC78\uB824 \uC788\uB294 \uC790\uBB3C\uC1E0\uB97C
+    \uC5F4 \uC218 \uC788\uB294 \uC5F4\uC1E0\uC774\uB2E4."
   isCollectable: 1
