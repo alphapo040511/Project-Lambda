@@ -2,23 +2,18 @@ using UnityEngine;
 
 public class OpenableObject : Interactable
 {
-    public GameObject targetObject;
-    private IOpenableObject openable;
+    public OpenableBase openable;
 
     private void Start()
     {
-        if(targetObject != null)
-            openable = targetObject.GetComponent(typeof(IOpenableObject)) as IOpenableObject;
 
-        if (openable == null)
-            Debug.Log("없음");
     }
 
     public override void OnInteractHold(float deltaTime)
     {
         if (openable != null)
         {
-           if(!openable.IsMoving)
+           if(!openable.isMoving)
                 base.OnInteractHold(deltaTime);
         }
         else
@@ -33,7 +28,7 @@ public class OpenableObject : Interactable
         if (openable == null)
             Debug.Log("사라짐");
 
-        if (openable != null && !openable.IsMoving)
+        if (openable != null && !openable.isMoving)
         {
             openable.Move();
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HingeObject : MonoBehaviour, IOpenableObject
+public class HingeObject : OpenableBase
 {
     public Vector3 closeRotation;
     public Vector3 openRotation;
@@ -16,15 +16,15 @@ public class HingeObject : MonoBehaviour, IOpenableObject
 
     public float rotateSpeed = 2f;
 
-    public bool IsMoving => isMoving;
+    public bool isMoving = true;
 
-    private bool isMoving = true;
+
 
     public bool isOpen = false;
 
     private void Update()
     {
-        if(IsMoving)
+        if(isMoving)
         {
             transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * rotateSpeed);
 
@@ -36,7 +36,7 @@ public class HingeObject : MonoBehaviour, IOpenableObject
         }
     }
 
-    public void Move()
+    public override void Move()
     {
         isOpen = !isOpen;
         isMoving = true;

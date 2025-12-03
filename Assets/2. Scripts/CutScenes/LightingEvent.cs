@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class LightingEvent : MonoBehaviour
     public List<GameObject> glitchProps = new List<GameObject>();
 
     [Header("Event Camera")]
-    public Camera eventCamera;
+    public CinemachineVirtualCamera eventCamera;
 
     public void ToggleLight(bool on)
     {
@@ -22,10 +23,7 @@ public class LightingEvent : MonoBehaviour
 
         // 카메라 전환
         if (eventCamera != null)
-            eventCamera.gameObject.SetActive(true);
-
-        if (Camera.main != null)
-            Camera.main.gameObject.SetActive(false);
+            eventCamera.enabled = true;
 
         yield return new WaitForSeconds(0.5f);
 
@@ -36,11 +34,8 @@ public class LightingEvent : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // 카메라 전환
-        if (Camera.main != null)
-            Camera.main.gameObject.SetActive(true);
-
         if (eventCamera != null)
-            eventCamera.gameObject.SetActive(false);
+            eventCamera.enabled = false;
 
 
         // 이벤트 종료

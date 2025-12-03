@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlideObject : MonoBehaviour, IOpenableObject
+public class SlideObject : OpenableBase
 {
     public Vector3 openPosition;
     public Vector3 closePosition;
@@ -18,12 +18,11 @@ public class SlideObject : MonoBehaviour, IOpenableObject
 
     public bool isOpen = false;
 
-    public bool IsMoving => isMoving;
-    private bool isMoving = true;
+    public bool isMoving = true;
 
     private void Update()
     {
-        if(IsMoving)
+        if(isMoving)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * moveSpeed);
             if(Vector3.Distance(transform.localPosition, targetPosition) < 0.01f)
@@ -34,7 +33,7 @@ public class SlideObject : MonoBehaviour, IOpenableObject
         }
     }
 
-    public void Move()
+    public override void Move()
     {
         isOpen = !isOpen;
         isMoving = true;
