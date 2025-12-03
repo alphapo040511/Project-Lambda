@@ -25,6 +25,14 @@ public class DirectionManager : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        screenGlitchShader.SetFloat("_NoiseAmount", 0);
+        screenGlitchShader.SetFloat("_GlitchStrength", 0);
+        screenGlitchShader.SetFloat("_ScanLinesStrength", 0);
+        screenGlitchShader.SetColor("_MainColor", Color.white);
+    }
+
     public void EnterDangerZone()
     {
         screenGlitchShader.DOKill();
