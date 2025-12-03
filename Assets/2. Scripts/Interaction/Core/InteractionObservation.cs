@@ -204,4 +204,9 @@ public class InteractionObservation : Interactable
         VolumeManager.Instance.ChangeFocusDistance(2f, 0.2f);
     }
 
+    // 외부에서 아이템을 보여줄 때 사용
+    public void ShowItem()
+    {
+        Complete();
+    }
 }

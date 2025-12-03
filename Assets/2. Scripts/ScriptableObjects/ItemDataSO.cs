@@ -11,4 +11,10 @@ public class ItemDataSO : ScriptableObject
     public string descriptionKey = "Fuse_Discription";
 
     public bool isCollectable = true;
+
+    public void GetItem()
+    {
+        if(string.IsNullOrEmpty(uniqueID))
+            InventoryManager.GetItems(uniqueID);
+    }
 }

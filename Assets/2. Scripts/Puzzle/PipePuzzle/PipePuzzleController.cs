@@ -54,6 +54,7 @@ public class PipePuzzleController : InteractionFocus
     protected override void Complete()
     {
         base.Complete();
+        floatingUITransform.gameObject.SetActive(true);
         OnPipeReset();
     }
 

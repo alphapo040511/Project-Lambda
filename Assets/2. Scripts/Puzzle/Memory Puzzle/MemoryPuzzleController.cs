@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static Cinemachine.DocumentationSortingAttribute;
 
 public enum MemoryPuzzleState
@@ -15,6 +16,9 @@ public enum MemoryPuzzleState
 
 public class MemoryPuzzleController : InteractionFocus
 {
+    [Header("Puzzle Complete Event")]
+    public UnityEvent onPuzzleComplete;
+
     [Header("Present Settings")]
     public float presentDelay = 1f;
     private float timer = 0;
@@ -125,6 +129,8 @@ public class MemoryPuzzleController : InteractionFocus
 
         ExitFocus();
         interactable = false;
+
+        onPuzzleComplete?.Invoke();
     }
 
     void NextPuzzle(int level = 0)
