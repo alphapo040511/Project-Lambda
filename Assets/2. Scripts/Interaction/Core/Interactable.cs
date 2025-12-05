@@ -58,7 +58,7 @@ public class Interactable : Actor, IInteractable, ISaveObject
 
         switch (state)
         {
-            case ObjectState.Off:
+            case ObjectState.On:
                 EnableInteraction();
                 break;
             case ObjectState.Used:          // 일단 사용 완료만 표시
@@ -186,6 +186,7 @@ public class Interactable : Actor, IInteractable, ISaveObject
     public void EnableInteraction()
     {
         interactable = true;           // 사용 가능 상태로 변경
+        state = ObjectState.On;         // 상호작용 가능 상태
     }
 
     // 상호작용 비활성화

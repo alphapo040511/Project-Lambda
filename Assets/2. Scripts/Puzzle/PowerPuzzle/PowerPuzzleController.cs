@@ -100,6 +100,7 @@ public class PowerPuzzleController : InteractionFocus
             Debug.Log("정답!");
             onPuzzleCompleted?.Invoke();
             audioSource.PlayOneShot(completeClip);
+            state = ObjectState.Disable;                // 사용 불가 상태 저장
             CompleteAudioPlay();
         }
     }

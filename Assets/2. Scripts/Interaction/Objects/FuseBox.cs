@@ -13,6 +13,23 @@ public class FuseBox : Interactable
 
     private int mountedFuseCount = 0;
 
+    public override void SetObjectState(string id, ObjectState state)
+    {
+        if (UniqueId != id) return;
+        this.state = state;
+
+        switch (state)
+        {
+            case ObjectState.On:                // 1개만 장착된 경우
+                fuseObject[0].SetActive(true);
+                break;
+            case ObjectState.Disable:           // 2개 모두 장착된 경우
+                fuseObject[1].SetActive(true);
+                interactable = false;
+                break;
+        }
+    }
+
     protected override void Complete()
     {
         base.Complete();
@@ -38,6 +55,7 @@ public class FuseBox : Interactable
 
         if(mountedFuseCount >= targetFuses.Length)
         {
+            state = ObjectState.Disable;
             Debug.Log("모든 퓨즈 장착 완료");
             secondFuseMounted?.Invoke();                // 1개 아니면 2개니까 이렇게 구분 해놓겠습니다.
             interactable = false;
@@ -45,6 +63,7 @@ public class FuseBox : Interactable
         }
         else
         {
+            state = ObjectState.On;
             firstFuseMounted?.Invoke();
         }
     }

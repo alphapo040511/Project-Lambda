@@ -122,7 +122,7 @@ public class MemoryPuzzleController : InteractionFocus
 
     void PuzzleClear()
     {
-        state = ObjectState.Used;
+        state = ObjectState.Disable;
         currentState = MemoryPuzzleState.Clear;
 
         AllIconsSetColor(Color.green);
