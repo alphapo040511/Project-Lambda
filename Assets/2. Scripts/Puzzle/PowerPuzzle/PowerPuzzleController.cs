@@ -61,9 +61,10 @@ public class PowerPuzzleController : InteractionFocus
 
     public void CompleteAudioPlay()
     {
+        audioSource.clip = afterCompleteClip;
         audioSource.volume = 0f;
         audioSource.loop = true;
-        audioSource.PlayOneShot(afterCompleteClip);
+        audioSource.Play();
 
         audioSource.DOFade(1f, fadeDuration);
     }
