@@ -48,6 +48,22 @@ public class InteractionObservation : Interactable
         {
             mainCamera = Camera.main;
         }
+
+        // 획득 가능한 아이템인 경우, 획득 여부 체크
+        if (itemData != null && itemData.isCollectable)
+            GameEvents.OnLoadCompleted += CheckContainItem;
+    }
+
+    private void OnDestroy()
+    {
+        if (itemData != null && itemData.isCollectable)
+            GameEvents.OnLoadCompleted -= CheckContainItem;
+    }
+
+    void CheckContainItem()
+    {
+         if(InventoryManager.ContainItem(itemData.uniqueID))        // 보유중이면 비활성화
+            gameObject.SetActive(false);
     }
 
     protected override void Update()
