@@ -62,6 +62,34 @@ MonoBehaviour:
     m_Localized: Highest security level confirmed. Calling the elevator.
     m_Metadata:
       m_Items: []
+  - m_Id: 22114927828688896
+    m_Localized: The experiment has ended.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115070774763520
+    m_Localized: What are the results?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115103024766976
+    m_Localized: He tried to escape again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115141964685312
+    m_Localized: ...No matter how hard I try, it's the same.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115170548867072
+    m_Localized: Okay, okay. Let's just twist the perception a little more.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115184914358272
+    m_Localized: Okay, Doctor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115208838668288
+    m_Localized: Well then... Subject 4. Test Case 249 recording complete.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

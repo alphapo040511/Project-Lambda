@@ -59,6 +59,34 @@ MonoBehaviour:
     m_Key: AI_Elevator_Open
     m_Metadata:
       m_Items: []
+  - m_Id: 22114927828688896
+    m_Key: Ending1_Epilog_001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115070774763520
+    m_Key: Ending1_Epilog_002
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115103024766976
+    m_Key: Ending1_Epilog_003
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115141964685312
+    m_Key: Ending1_Epilog_004
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115170548867072
+    m_Key: Ending1_Epilog_005
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115184914358272
+    m_Key: Ending1_Epilog_006
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22115208838668288
+    m_Key: Ending1_Epilog_007
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class ElevatorEndingEvent : MonoBehaviour
 {
@@ -13,11 +14,14 @@ public class ElevatorEndingEvent : MonoBehaviour
 
     [Header("연출 소스")]
     public AudioClip direction_noise;
+    public AudioClip direction_noise_short;
     public AudioClip direction_scary_riser;
-    public AudioClip direction1_end;
+    public AudioClip direction_endingLogo;
     public GameObject normalElevator;
     public GameObject glitchElevator1;
     public GameObject glitchElevator2;
+    public string dialogID = "Ending1_Epilog_001";
+    public Image endingImage;
 
     [Header("Event Camera")]
     public CinemachineVirtualCamera eventCamera;
@@ -34,6 +38,25 @@ public class ElevatorEndingEvent : MonoBehaviour
         elevatorEndingAudioSource.Play();
 
         elevatorEndingAudioSource.DOFade(1f, fadeDuration);
+    }
+    public void PlayEndingLogo()
+    {
+        elevatorEndingAudioSource.PlayOneShot(direction_endingLogo);
+        endingImage.gameObject.SetActive(true);
+
+        endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, 1f);
+        endingImage.transform.localScale = Vector3.one * 0.9f;
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(endingImage.transform.DOScale(1f, 5f))
+           .Append(endingImage.DOFade(0f, 1.5f))
+           .OnComplete(() =>
+           {
+               EventSystem.Instance.EndEvent();
+               endingImage.gameObject.SetActive(false);
+               SceneManager.Instance.LoadScene("MainMenu");
+           });
     }
 
     IEnumerator ElevatorEndingScene()
@@ -107,6 +130,8 @@ public class ElevatorEndingEvent : MonoBehaviour
         glitchElevator1.SetActive(false);
         glitchElevator2.SetActive(true);
 
+        VolumeManager.Instance.ChangeVignette(0.6f, 5f);
+
         yield return new WaitForSeconds(4f);
 
         DirectionManager.Instance.screenGlitchShader.DOKill();
@@ -117,6 +142,20 @@ public class ElevatorEndingEvent : MonoBehaviour
         DirectionManager.Instance.fadeImage.color = fadeImageColor;
 
         elevatorEndingAudioSource.Stop();
+
+        DirectionManager.Instance.screenGlitchShader.SetFloat("_NoiseAmount", 0);
+        DirectionManager.Instance.screenGlitchShader.SetFloat("_GlitchStrength", 0);
+        DirectionManager.Instance.screenGlitchShader.SetFloat("_ScanLinesStrength", 0);
+        DirectionManager.Instance.screenGlitchShader.SetColor("_MainColor", Color.white);
+
+        yield return new WaitForSeconds(4f);
+
+        if (dialogID != null)
+            DialogueManager.Instance.PlayingDialog(dialogID);
+
+        yield return new WaitForSeconds(27f);
+
+        PlayEndingLogo();
 
         yield return null;
     }
