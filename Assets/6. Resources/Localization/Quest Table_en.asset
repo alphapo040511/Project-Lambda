@@ -103,7 +103,24 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13599409193598976
-    m_Localized: "\rFind the fuse locker keys in the lobby"
+    m_Localized: "\rFind the fuse locker keys"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14667979660091392
+    m_Localized: Connecting the second fuse in the power room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14668569052078080
+    m_Localized: Powering the elevator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14668740733329408
+    m_Localized: "\rOperating the elevator"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14668796022644736
+    m_Localized: Obtaining top authority in the laboratory inside the hibernation
+      room
     m_Metadata:
       m_Items: []
   references:
