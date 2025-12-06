@@ -31,6 +31,14 @@ public class MemoryPuzzleController : InteractionFocus
     public float[] interval = new float[3] { 1f, 0.8f, 0.6f };
     public int[] answerLength = new int[3] { 3, 5, 7 };
 
+    [Header("Audio Settings")]
+    public AudioSource memoryPuzzleAudioSource;
+    public AudioClip showClip;
+    public AudioClip correctClip;
+    public AudioClip wrongClip;
+    public AudioClip levelclearClip;
+    public AudioClip allclearClip;
+
     private MemoryPuzzleState currentState = MemoryPuzzleState.Idle;        // 퍼즐 상태
 
     private int puzzleLevel = 0;                                            // 퍼즐의 레벨 
@@ -94,6 +102,7 @@ public class MemoryPuzzleController : InteractionFocus
         if(index == answerQueue.Dequeue())              // 현재 순서에 맞는 인덱스라면
         {
             monitors[index].SetColor(Color.green);
+            memoryPuzzleAudioSource.PlayOneShot(correctClip);
 
             if (answerQueue.Count == 0)                 // 맞는 순서고, 남은 답이 없는 경우
             {
@@ -101,10 +110,12 @@ public class MemoryPuzzleController : InteractionFocus
                 {
                     // 정답처리
                     PuzzleClear();
+                    memoryPuzzleAudioSource.PlayOneShot(allclearClip);
                 }
                 else
                 {
                     AllIconsSetColor(Color.green);
+                    memoryPuzzleAudioSource.PlayOneShot(levelclearClip);
 
                     currentState = MemoryPuzzleState.Success;
                     timer = 1f;
@@ -114,6 +125,7 @@ public class MemoryPuzzleController : InteractionFocus
         else
         {
             AllIconsSetColor(Color.red);
+            memoryPuzzleAudioSource.PlayOneShot(wrongClip);
 
             timer = 1f;
             currentState = MemoryPuzzleState.Error;
@@ -155,12 +167,14 @@ public class MemoryPuzzleController : InteractionFocus
                 answerQueue.Enqueue(puzzleAnswer[i]);           // 정답 비교용 큐에 삽입
                 monitors[puzzleAnswer[i]].SetIcon(icons[i]);
                 monitors[puzzleAnswer[i]].SetColor(Color.white);
+                memoryPuzzleAudioSource.PlayOneShot(showClip);
 
                 yield return new WaitForSeconds(interval);
 
                 monitors[puzzleAnswer[i]].SetColor(Color.clear);
 
                 yield return new WaitForSeconds(interval * 0.5f);
+                memoryPuzzleAudioSource.PlayOneShot(showClip);
             }
             else
             {
