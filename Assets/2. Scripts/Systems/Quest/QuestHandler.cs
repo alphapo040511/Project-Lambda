@@ -44,6 +44,8 @@ public class QuestHandler : MonoBehaviour
     // 퀘스트 등록 시 호출
     void RegistQuestHandler(string id)
     {
+        if (targetQuest == null) return;        // 빈 데이터의 핸들러의 경우 무시
+
         if (id == targetQuest.questId)          // 해당 퀘스트 라면 활성화
             onActivated?.Invoke();
         else
@@ -53,6 +55,8 @@ public class QuestHandler : MonoBehaviour
     // 퀘스트 완료시 호출
     void CompleteQuestHander(string id)
     {
+        if (targetQuest == null) return;        // 빈 데이터의 핸들러의 경우 무시
+
         if (id != targetQuest.questId) return;
         onCleared?.Invoke();
     }
