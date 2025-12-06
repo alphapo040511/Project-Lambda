@@ -85,9 +85,18 @@ public class DirectionEvent : MonoBehaviour
 
             directionAudioSource.PlayOneShot(direction1_end);
 
+            //노이즈 이미지 알파값 설정
+            var noiseImageColor = DirectionManager.Instance.noiseImage.color;
+            noiseImageColor.a = 0f;
+            DirectionManager.Instance.noiseImage.color = noiseImageColor;
+
+            Sequence noiseSeq = DOTween.Sequence();
+
+            directionAudioSource.PlayOneShot(direction1_noise);
+
             //노이즈 이미지 깜빡임
             noiseSeq.Append(DirectionManager.Instance.noiseImage.DOFade(1f, 0.1f))
-               .AppendInterval(1f)            //1초 동안 유지
+               .AppendInterval(0.5f)            //0.5초 동안 유지
                .Append(DirectionManager.Instance.noiseImage.DOFade(0f, 0.1f));
 
             //글리치 셰이더, 비네트 off

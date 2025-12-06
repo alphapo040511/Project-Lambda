@@ -8,6 +8,7 @@ public class ElevatorDoor : InteractionReceiver
     [Header("문 오브젝트")]
     public List<DoorPanel> doorPanels = new List<DoorPanel>();
     public GameObject doorCollider;
+    public GameObject eventCollider;
 
     [Header("문 오디오 설정")]
     public AudioSource elevatorAudioSource;
@@ -36,7 +37,7 @@ public class ElevatorDoor : InteractionReceiver
 
     private void Start()
     {
-        if (gameObject.name.Contains("FBX_elevator"))
+        if (gameObject.name.Contains("NormalElevator"))
             isPermissionDoor = true;
     }
 
@@ -94,9 +95,14 @@ public class ElevatorDoor : InteractionReceiver
         DialogueManager.Instance.PlayingDialog("AI_Elevator_Open");
     }
 
+    public void OnEventCollider()
+    {
+        eventCollider.SetActive(true);
+    }
     public void CloseDoor()
     {
         doorCollider.SetActive(true);
+        Invoke("OnEventCollider", 3f);
         foreach (var panel in doorPanels)
         {
             panel.StartMove(false);

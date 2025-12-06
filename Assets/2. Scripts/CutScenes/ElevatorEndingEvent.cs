@@ -1,138 +1,124 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ElevatorEndingEvent : MonoBehaviour
 {
-    [Header("문 오브젝트")]
-    public List<DoorPanel> doorPanels = new List<DoorPanel>();
+    [Header("오디오 설정")]
+    public AudioSource elevatorEndingAudioSource;
+    public AudioClip elevatorMovingClip;
+    public float fadeDuration = 3f;
 
-    [Header("문 오디오 설정")]
-    public AudioSource doorAudioSource;
-    public AudioClip doorOpenAudioClip;
-    public AudioClip doorCloseAudioClip;
+    [Header("연출 소스")]
+    public AudioClip direction_noise;
+    public AudioClip direction_scary_riser;
+    public AudioClip direction1_end;
+    public GameObject normalElevator;
+    public GameObject glitchElevator1;
+    public GameObject glitchElevator2;
 
-    //[Header("문 설정")]
-    [HideInInspector] public Vector3 openPosition;
-    [HideInInspector] public Vector3 closePosition;
+    [Header("Event Camera")]
+    public CinemachineVirtualCamera eventCamera;
 
-    [Header("임시 애니메이션 설정")]
-    public float moveSpeed = 2f;
-
-    [Header("문 열림 확인")]
-    public bool isOpened = false;
-
-    private bool isMoving = false;
-    private bool isPermissionDoor = false;
-    private Vector3 targetPosition;
-
-    [Header("문을 열기 위한 아이템")]
-    public ItemDataSO needItem;
-
-    private bool canPlayDialog = true; //대사 재생 가능 여부
-    public float dialogCooldown;  //쿨타임
-
-    private void Start()
+    public void OnTriggerEnter(Collider other)
     {
+        StartCoroutine(ElevatorEndingScene());
+    }
+    public void CompleteAudioPlay()
+    {
+        elevatorEndingAudioSource.clip = elevatorMovingClip;
+        elevatorEndingAudioSource.volume = 0f;
+        elevatorEndingAudioSource.loop = true;
+        elevatorEndingAudioSource.Play();
 
+        elevatorEndingAudioSource.DOFade(1f, fadeDuration);
     }
 
-    private void TryPlayNoPermissionDialog()
+    IEnumerator ElevatorEndingScene()
     {
-        if (!canPlayDialog)
-        {
-            return;
-        }
+        EventSystem.Instance.StartEvent();      // 이벤트 상태 시작
 
-        canPlayDialog = false;
-        DialogueManager.Instance.StopAllDialog();
-        DialogueManager.Instance.PlayingDialog("AI_Door_NoPermission");
+        // 카메라 전환
+        if (eventCamera != null)
+            eventCamera.enabled = true;
 
-        StartCoroutine(DialogCooldown());
-    }
+        CompleteAudioPlay();
 
-    private IEnumerator DialogCooldown()
-    {
-        yield return new WaitForSeconds(dialogCooldown);
-        canPlayDialog = true;
-    }
+        eventCamera.transform.DOShakeRotation(
+            duration: 100f,
+            strength: new Vector3(0.25f, 0.25f, 0.25f),
+            vibrato: 2,
+            randomness: 90f
+        );
 
-    public void OnTriggerEnter(Collider collider)
-    {
-        if (isPermissionDoor)
-        {
-            //DialogueManager.Instance.StopAllDialog();
-            //DialogueManager.Instance.PlayingDialog("AI_Door_Open");
-        }
+        yield return new WaitForSeconds(5f);
 
-        if (collider.CompareTag("Player"))
-        {
-            if (needItem != null && InventoryManager.ContainItem(needItem.uniqueID))
-            {
-                OpenDoor();
-                isOpened = true;
-            }
-            else
-            {
-                DialogueManager.Instance.StopAllDialog();
-                TryPlayNoPermissionDialog();
-            }
-        }
-    }
 
-    public void OpenDoor()
-    {
-        foreach (var panel in doorPanels)
-        {
-            panel.StartMove(true);
-        }
+        //노이즈 이미지 알파값 설정
+        var noiseImageColor = DirectionManager.Instance.noiseImage.color;
+        noiseImageColor.a = 0f;
+        DirectionManager.Instance.noiseImage.color = noiseImageColor;
 
-        doorAudioSource.PlayOneShot(doorOpenAudioClip);
+        Sequence noiseSeq = DOTween.Sequence();
 
-        DialogueManager.Instance.StopAllDialog();
-        DialogueManager.Instance.PlayingDialog("AI_Door_Open");
-    }
+        elevatorEndingAudioSource.PlayOneShot(direction_noise);
 
-    public void CloseDoor()
-    {
-        foreach (var panel in doorPanels)
-        {
-            panel.StartMove(false);
-            doorAudioSource.PlayOneShot(doorCloseAudioClip);
-        }
-    }
+        //노이즈 이미지 깜빡임
+        noiseSeq.Append(DirectionManager.Instance.noiseImage.DOFade(1f, 0.1f))
+           .AppendInterval(0.5f)            //0.5초 동안 유지
+           .Append(DirectionManager.Instance.noiseImage.DOFade(0f, 0.1f));
 
-    [System.Serializable]
-    public class DoorPanel
-    {
-        public Transform doorTransform;
-        public Vector3 openPosition;
-        public Vector3 closePosition;
+        elevatorEndingAudioSource.PlayOneShot(direction_scary_riser);
 
-        private Vector3 targetPosition;
-        private bool isMoving = false;
+        //글리치 셰이더, 비네트 on
+        DirectionManager.Instance.screenGlitchShader.DOKill();
+        DirectionManager.Instance.screenGlitchShader.DOFloat(25f, "_NoiseAmount", 10f);
+        DirectionManager.Instance.screenGlitchShader.DOFloat(25f, "_GlitchStrength", 10f);
+        DirectionManager.Instance.screenGlitchShader.DOFloat(1f, "_ScanLinesStrength", 10f);
 
-        public void StartMove(bool open)
-        {
-            targetPosition = open ? openPosition : closePosition;
-            isMoving = true;
-        }
+        VolumeManager.Instance.ChangeVignette(0.4f, 6f);
 
-        public void UpdateMovement(float speed)
-        {
-            if (!isMoving) return;
+        normalElevator.SetActive(false);
+        glitchElevator1.SetActive(true);
 
-            if (Vector3.Distance(doorTransform.localPosition, targetPosition) > 0.01f)
-            {
-                doorTransform.localPosition =
-                    Vector3.Lerp(doorTransform.localPosition, targetPosition, Time.deltaTime * speed);
-            }
-            else
-            {
-                doorTransform.localPosition = targetPosition;
-                isMoving = false;
-            }
-        }
+        yield return new WaitForSeconds(4f);
+
+        //노이즈 이미지 알파값 설정
+        noiseImageColor.a = 0f;
+        DirectionManager.Instance.noiseImage.color = noiseImageColor;
+
+        elevatorEndingAudioSource.PlayOneShot(direction_noise);
+
+        //노이즈 이미지 깜빡임
+        noiseSeq.Append(DirectionManager.Instance.noiseImage.DOFade(1f, 0.1f))
+           .AppendInterval(0.5f)            //0.5초 동안 유지
+           .Append(DirectionManager.Instance.noiseImage.DOFade(0f, 0.1f));
+
+        eventCamera.transform.DOKill();
+        eventCamera.transform.DOShakeRotation(
+            duration: 100f,
+            strength: new Vector3(1f, 1f, 1f),
+            vibrato: 2,
+            randomness: 90f
+        );
+
+        glitchElevator1.SetActive(false);
+        glitchElevator2.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
+
+        DirectionManager.Instance.screenGlitchShader.DOKill();
+        eventCamera.transform.DOKill();
+
+        var fadeImageColor = DirectionManager.Instance.fadeImage.color;
+        fadeImageColor.a = 1f;
+        DirectionManager.Instance.fadeImage.color = fadeImageColor;
+
+        elevatorEndingAudioSource.Stop();
+
+        yield return null;
     }
 
 }

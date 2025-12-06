@@ -14,6 +14,9 @@ public class DirectionManager : MonoBehaviour
     [Header("노이즈 이미지")]
     public Image noiseImage;
 
+    [Header("페이드 이미지")]
+    public Image fadeImage;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
