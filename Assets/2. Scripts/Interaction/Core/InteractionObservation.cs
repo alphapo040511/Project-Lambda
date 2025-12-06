@@ -72,6 +72,8 @@ public class InteractionObservation : Interactable
 
         if (isObserving == false) return;                                                   // 관찰중이 아니면 return
 
+        targetPosition = mainCamera.transform.position + mainCamera.transform.forward * focusDistance;  // 카메라 앞쪽에 위치
+
         if (isInitializing)
         {
             SetInitial();                       // 초기 위치에 도달할 때까지 이동
@@ -171,8 +173,6 @@ public class InteractionObservation : Interactable
 
         // 목표 크기 초기화
         sizeMultiplier = 1f;
-
-        targetPosition = mainCamera.transform.position + mainCamera.transform.forward * focusDistance;  // 카메라 앞쪽에 위치
     }
 
     void ShowOverlay()
