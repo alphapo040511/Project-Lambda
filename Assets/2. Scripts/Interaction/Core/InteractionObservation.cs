@@ -224,5 +224,6 @@ public class InteractionObservation : Interactable
     public void ShowItem()
     {
         Complete();
+        GetItem();
     }
 }

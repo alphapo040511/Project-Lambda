@@ -45,7 +45,7 @@ public class Padlock : Interactable
     {
         state = ObjectState.Used;       // 사용 완료 상태로 변경
 
-        if (!body.isOpen)
+        if (body != null && !body.isOpen)
             body.Move();
 
         isLocked = false;

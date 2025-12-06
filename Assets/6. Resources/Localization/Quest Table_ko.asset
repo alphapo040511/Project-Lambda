@@ -104,7 +104,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13599409193598976
-    m_Localized: "\uD4E8\uC988 \uBCF4\uAD00\uD568 \uC5F4\uC1E0\uB4E4\uC744 \uCC3E\uAE30"
+    m_Localized: "\uD4E8\uC988 \uBCF4\uAD00\uD568 \uC5F4\uC1E0\uB4E4\uC744 \uCC3E\uAE30
+      ({1}/{0})"
     m_Metadata:
       m_Items: []
   - m_Id: 14667979660091392
