@@ -51,6 +51,14 @@ MonoBehaviour:
     m_Key: AI_LowSanity
     m_Metadata:
       m_Items: []
+  - m_Id: 22067017078431744
+    m_Key: AI_Elevator_NoPermission
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22067053745037312
+    m_Key: AI_Elevator_Open
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

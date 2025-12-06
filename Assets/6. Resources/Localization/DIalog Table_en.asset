@@ -54,6 +54,14 @@ MonoBehaviour:
     m_Localized: ' WARNING: User is mentally unstable. Rest assured.'
     m_Metadata:
       m_Items: []
+  - m_Id: 22067017078431744
+    m_Localized: Highest security level not detected. Elevator call not possible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22067053745037312
+    m_Localized: Highest security level confirmed. Calling the elevator.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

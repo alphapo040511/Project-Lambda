@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd0df1e1e93393740a1e14c1ef32ce1e, type: 3}
-  m_Name: Level_2_Panel
+  m_Name: Level_3_Panel
   m_EditorClassIdentifier: 
-  uniqueID: Level_2_Panel
-  descriptionKey: "\uC120\uC784 \uC5F0\uAD6C\uC6D0\uC774 \uC0AC\uC6A9\uD558\uB294
-    \uB2E8\uB9D0\uC774\uB2E4. 2\uB4F1\uAE09 \uAD8C\uD55C\uC774 \uBD80\uC5EC\uB418\uC5B4
+  uniqueID: Level_3_Panel
+  descriptionKey: "\uC218\uC11D \uC5F0\uAD6C\uC6D0\uC774 \uC0AC\uC6A9\uD558\uB294
+    \uB2E8\uB9D0\uC774\uB2E4. \uCD5C\uACE0 \uAD8C\uD55C\uC774 \uBD80\uC5EC\uB418\uC5B4
     \uC788\uB2E4."
   isCollectable: 1

@@ -1,23 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
-public class ElevatorEndingEvent : MonoBehaviour
+public class ElevatorDoor : InteractionReceiver
 {
     [Header("문 오브젝트")]
     public List<DoorPanel> doorPanels = new List<DoorPanel>();
+    public GameObject doorCollider;
 
     [Header("문 오디오 설정")]
-    public AudioSource doorAudioSource;
-    public AudioClip doorOpenAudioClip;
-    public AudioClip doorCloseAudioClip;
+    public AudioSource elevatorAudioSource;
+    public AudioClip elevatorOpenAudioClip;
+    public AudioClip elevatorCloseAudioClip;
 
     //[Header("문 설정")]
     [HideInInspector] public Vector3 openPosition;
     [HideInInspector] public Vector3 closePosition;
 
     [Header("임시 애니메이션 설정")]
-    public float moveSpeed = 2f;
+    public float moveSpeed = 1f;
 
     [Header("문 열림 확인")]
     public bool isOpened = false;
@@ -34,9 +36,17 @@ public class ElevatorEndingEvent : MonoBehaviour
 
     private void Start()
     {
-
+        if (gameObject.name.Contains("FBX_elevator"))
+            isPermissionDoor = true;
     }
 
+    protected override void ActorUpdate()
+    {
+        foreach (var panel in doorPanels)
+        {
+            panel.UpdateMovement(moveSpeed);
+        }
+    }
     private void TryPlayNoPermissionDialog()
     {
         if (!canPlayDialog)
@@ -46,7 +56,7 @@ public class ElevatorEndingEvent : MonoBehaviour
 
         canPlayDialog = false;
         DialogueManager.Instance.StopAllDialog();
-        DialogueManager.Instance.PlayingDialog("AI_Door_NoPermission");
+        DialogueManager.Instance.PlayingDialog("AI_Elevator_NoPermission");
 
         StartCoroutine(DialogCooldown());
     }
@@ -57,26 +67,17 @@ public class ElevatorEndingEvent : MonoBehaviour
         canPlayDialog = true;
     }
 
-    public void OnTriggerEnter(Collider collider)
+    public void CheckPermission()
     {
-        if (isPermissionDoor)
+        if (needItem != null && InventoryManager.ContainItem(needItem.uniqueID))
         {
-            //DialogueManager.Instance.StopAllDialog();
-            //DialogueManager.Instance.PlayingDialog("AI_Door_Open");
+            OpenDoor();
+            isOpened = true;
         }
-
-        if (collider.CompareTag("Player"))
+        else
         {
-            if (needItem != null && InventoryManager.ContainItem(needItem.uniqueID))
-            {
-                OpenDoor();
-                isOpened = true;
-            }
-            else
-            {
-                DialogueManager.Instance.StopAllDialog();
-                TryPlayNoPermissionDialog();
-            }
+            DialogueManager.Instance.StopAllDialog();
+            TryPlayNoPermissionDialog();
         }
     }
 
@@ -87,18 +88,31 @@ public class ElevatorEndingEvent : MonoBehaviour
             panel.StartMove(true);
         }
 
-        doorAudioSource.PlayOneShot(doorOpenAudioClip);
+        elevatorAudioSource.PlayOneShot(elevatorOpenAudioClip);
 
         DialogueManager.Instance.StopAllDialog();
-        DialogueManager.Instance.PlayingDialog("AI_Door_Open");
+        DialogueManager.Instance.PlayingDialog("AI_Elevator_Open");
     }
 
     public void CloseDoor()
     {
+        doorCollider.SetActive(true);
         foreach (var panel in doorPanels)
         {
             panel.StartMove(false);
-            doorAudioSource.PlayOneShot(doorCloseAudioClip);
+            elevatorAudioSource.PlayOneShot(elevatorCloseAudioClip);
+        }
+    }
+
+    public override void OnInteractionComplete(bool shouldActivate)
+    {
+        if(shouldActivate)
+        {
+            OpenDoor();
+        }
+        else
+        {
+            CloseDoor();
         }
     }
 
@@ -135,4 +149,19 @@ public class ElevatorEndingEvent : MonoBehaviour
         }
     }
 
+    #region 인스펙터 기능
+    [ContextMenu("열림 위치 저장")]
+    public void SaveOpenPosition()
+    {
+        openPosition = transform.localPosition;
+    }
+
+    [ContextMenu("닫힘 위치 저장")]
+    public void SaveClosePosition()
+    {
+        closePosition = transform.localPosition;
+    }
+
+
+    #endregion
 }
