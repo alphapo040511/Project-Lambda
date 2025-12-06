@@ -33758,20 +33758,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: pre_Elevator
       objectReference: {fileID: 0}
+    - target: {fileID: 5256071462021211485, guid: 6e8386495b669034f9a9ca866b2ac19e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318349323277574800, guid: 6e8386495b669034f9a9ca866b2ac19e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7625461475181179416, guid: 6e8386495b669034f9a9ca866b2ac19e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.3431426
       objectReference: {fileID: 0}
     - target: {fileID: 7625461475181179416, guid: 6e8386495b669034f9a9ca866b2ac19e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.1015058
       objectReference: {fileID: 0}
     - target: {fileID: 7625461475181179416, guid: 6e8386495b669034f9a9ca866b2ac19e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 16.661278
       objectReference: {fileID: 0}
     - target: {fileID: 7625461475181179416, guid: 6e8386495b669034f9a9ca866b2ac19e,
         type: 3}
