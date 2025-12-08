@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorialView : MonoBehaviour
+public class TutorialView : SingletonMonoBehaviour<TutorialView>
 {
     [Header("UI References")]
     public TextMeshProUGUI moveDescriptionText;
@@ -22,6 +22,23 @@ public class TutorialView : MonoBehaviour
 
     private const string tableName = "Tutorial Table";
 
+    private void OnEnable()
+    {
+        GameEvents.OnChangeGameState += ChangeGameState;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnChangeGameState -= ChangeGameState;
+    }
+
+    void ChangeGameState(GameState state)
+    {
+        // 게임 상태 변경시 자동으로 꺼지도록 설정
+        if (state == GameState.Menu || state == GameState.Loading)
+            Hide();
+    }
+
     public void Init()
     {
         LocalizerSetting();
@@ -35,13 +52,11 @@ public class TutorialView : MonoBehaviour
     }
     public void Show()
     {
-        //GameManager.Instance.ChangeGameState(GameState.Menu);
         UIManager.Instance.ShowOverlay(OverlayType.Tutorial);
     }
 
     public void Hide()
     {
-        //GameManager.Instance.ResumeGame();
         UIManager.Instance.HideOverlay(OverlayType.Tutorial);
     }
 
