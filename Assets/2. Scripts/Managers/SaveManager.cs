@@ -8,6 +8,19 @@ public static class SaveManager
 {
     static bool isSaving = false;
 
+    public static async Task<string> Save(int slotIndex)
+    {
+        SaveMetadata meta = new SaveMetadata();
+        meta.saveLocationName = "장소 이름";
+        meta.playTime = 12345;
+        meta.saveTime = TimeFormatter.GetUnixTimestamp(DateTime.UtcNow);
+        meta.currentQuest = QuestManager.Instance.currentQuestId;
+
+        SaveData save = SaveObjectLoader.Instance.CreateNewSaveData();
+
+        return await Save(meta, save, slotIndex);
+    }
+
     public static async Task<string> Save(SaveMetadata newMeta, SaveData newSave, int slotIndex)
     {
         if (isSaving) return "Save_InProgress";       // 중복 호출 방지 (팝업에 띄울 메세지 키 값 보내기)

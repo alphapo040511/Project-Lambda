@@ -16,7 +16,6 @@ public class SlideObject : OpenableBase
 
     public float moveSpeed = 3f;
 
-    public bool isOpen = false;
 
     private void Update()
     {
@@ -29,11 +28,5 @@ public class SlideObject : OpenableBase
                 transform.localPosition = targetPosition;
             }
         }
-    }
-
-    public override void Move()
-    {
-        isOpen = !isOpen;
-        isMoving = true;
     }
 }

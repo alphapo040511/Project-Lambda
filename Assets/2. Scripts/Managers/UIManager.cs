@@ -23,7 +23,8 @@ public enum OverlayType                     // 겹치는게 가능한 UI
     Tutorial,
     Observation,
     Quest,
-    Tooltip
+    Tooltip,
+    AutoSave
 }
 
 [System.Serializable]

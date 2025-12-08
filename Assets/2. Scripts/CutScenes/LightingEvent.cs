@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightingEvent : MonoBehaviour
+public class LightingEvent : SaveObject
 {
     [Header("조명을 포함한 대상 오브젝트들")]
     public List<GameObject> normalProps = new List<GameObject>();
@@ -11,6 +11,21 @@ public class LightingEvent : MonoBehaviour
 
     [Header("Event Camera")]
     public CinemachineVirtualCamera eventCamera;
+
+    public override void SetObjectState(string id, ObjectState state)
+    {
+        if (UniqueId != id) return;
+        this.state = state;
+
+        if(state == ObjectState.On)
+        {
+            ToggleProps(true);
+        }
+        else if (state == ObjectState.Off)
+        {
+            ToggleProps(false);
+        }
+    }
 
     public void ToggleLight(bool on)
     {
@@ -47,8 +62,10 @@ public class LightingEvent : MonoBehaviour
         EventSystem.Instance.EndEvent();
     }
 
-    void ToggleProps(bool on)
+    public void ToggleProps(bool on)
     {
+        state = on ? ObjectState.On : ObjectState.Off;
+
         for(int i = 0; i < normalProps.Count; i++)
         {
             normalProps[i].SetActive(on);

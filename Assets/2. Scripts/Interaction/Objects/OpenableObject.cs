@@ -4,9 +4,9 @@ public class OpenableObject : Interactable
 {
     public OpenableBase openable;
 
-    private void Start()
+    public override void SetObjectState(string id, ObjectState state)
     {
-
+        this.state = state;
     }
 
     public override void OnInteractHold(float deltaTime)
@@ -23,10 +23,6 @@ public class OpenableObject : Interactable
     protected override void Complete()
     {
         base.Complete();
-
-
-        if (openable == null)
-            Debug.Log("사라짐");
 
         if (openable != null && !openable.isMoving)
         {

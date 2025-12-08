@@ -141,16 +141,6 @@ public class SaveSlotPresenter : ScreenBase
 
     async void Save(int slotIndex)
     {
-        SaveMetadata meta = new SaveMetadata();
-        meta.saveLocationName = "장소 이름";
-        meta.playTime = 12345;
-        meta.saveTime = TimeFormatter.GetUnixTimestamp(DateTime.UtcNow);
-        meta.currentQuest = QuestManager.Instance.currentQuestId;
-
-        SaveData save = SaveObjectLoader.Instance.CreateNewSaveData();
-
-        save.questId = QuestManager.Instance.currentQuestId;
-
         if (SaveManager.MetaExists(slotIndex))                          // 이미 파일이 존재하는 경우
         {
             PopupManager.Instance.ShowConfirmPopup(
@@ -159,13 +149,13 @@ public class SaveSlotPresenter : ScreenBase
                 "Popup_Cancel",
                 async () => {
                     // 팝업 알림 띄우기
-                    PopupManager.Instance.ShowConfirmPopup(await SaveManager.Save(meta, save, slotIndex), "Popup_Confirm");
+                    PopupManager.Instance.ShowConfirmPopup(await SaveManager.Save(slotIndex), "Popup_Confirm");
                     UpdateView();
                 });
         }
         else
         {
-            await SaveManager.Save(meta, save, slotIndex);
+            await SaveManager.Save(slotIndex);
             UpdateView();
         }
     }

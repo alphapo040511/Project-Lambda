@@ -5,15 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ObjFocussingEventTrigger : MonoBehaviour, ISaveObject
+public class ObjFocussingEventTrigger :SaveObject
 {
-    [Header("저장 관련 설정")]
-    public string uniqueId;
-    public string UniqueId => uniqueId;
-
-    public ObjectState state;
-    public ObjectState State => state;
-
     public UnityEvent onStartAction;
     public UnityEvent onEndAction;
 
@@ -26,15 +19,15 @@ public class ObjFocussingEventTrigger : MonoBehaviour, ISaveObject
     public AudioSource audioSource;
     public AudioClip findSound;
 
-    public void SetObjectState(string id, ObjectState state)
+    public override void SetObjectState(string id, ObjectState state)
     {
         if (id != uniqueId) return;
         this.state = state;
 
         switch(state)
         {
-                case ObjectState.Disable:
-                break;
+            case ObjectState.Disable:
+            break;
         }
     }
 

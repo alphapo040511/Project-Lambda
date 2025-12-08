@@ -134,10 +134,6 @@ MonoBehaviour:
     m_Localized: SLOT {0}
     m_Metadata:
       m_Items: []
-  - m_Id: 22512712059531265
-    m_Localized: AUTOSAVE
-    m_Metadata:
-      m_Items: []
   - m_Id: 22520756717826048
     m_Localized: SAVE
     m_Metadata:
@@ -182,6 +178,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 23498429056409600
     m_Localized: <color=#FFD966>No saved data found.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32970809832693760
+    m_Localized: "Auto saving\u2026"
     m_Metadata:
       m_Items: []
   references:

@@ -62,9 +62,7 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
             Debug.Log("플레이어 위치 설정 완료");
         }
 
-        yield return StartCoroutine(QuestManager.Instance.LoadQuestData(targetSave.questDatas));                // 저장된 퀘스트 정보를 불러오기
-        QuestManager.Instance.RegistQuest(targetSave.questId);
-        Debug.Log("퀘스트 설정 완료");
+        QuestManager.Instance.RegistQuest(targetSave.questId);                      // 퀘스트 등록
 
         GameEvents.LoadCompleted();
 
@@ -109,6 +107,10 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
     public void SetSaveData(SaveData save)
     {
         targetSave = save;
+
+        QuestManager.Instance.LoadQuestData(targetSave.questDatas);                 // 저장된 퀘스트 정보를 불러오기
+
+        InventoryManager.LoadInventory(save.inventoryDatas);                        // 인벤토리 등록
     }
 
     public List<ObjectSaveData> GetObjectDatas()
@@ -146,10 +148,14 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
             save.saveRotation = player.transform.localRotation;
         }
 
+        save.questId = QuestManager.Instance.currentQuestId;
+
         save.questDatas = QuestManager.Instance.GetQuestDatas();
 
         // 오브젝트 상태 저장
         save.objectDatas = GetObjectDatas();
+
+        save.inventoryDatas = InventoryManager.GetInventoryData();
 
         return save;
     }

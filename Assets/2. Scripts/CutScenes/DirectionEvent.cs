@@ -1,7 +1,9 @@
 using UnityEngine;
 using DG.Tweening;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
+using UnityEngine.Rendering;
 
-public class DirectionEvent : MonoBehaviour
+public class DirectionEvent : SaveObject
 {
     [Header("오디오 소스")]
     public AudioSource directionAudioSource;
@@ -13,10 +15,19 @@ public class DirectionEvent : MonoBehaviour
 
     public GameObject normalProps;
     public GameObject glitchProps;
-    public GameObject normalPropsLobby;
-    public GameObject glitchPropsLobby;
+    public LightingEvent lightEvent;
 
     private bool firstDirectionTriggered = false;
+
+    public override void SetObjectState(string id, ObjectState state)
+    {
+        this.state = state;
+
+        if (state == ObjectState.Used)              // Used = 1번 사용된 경우로 취급
+        {
+            firstDirectionTriggered = true;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -48,6 +59,7 @@ public class DirectionEvent : MonoBehaviour
         EventSystem.Instance.StartEvent();      // 이벤트 시작 (조작 잠김 및 레터박스)
 
         firstDirectionTriggered = true;
+        state = ObjectState.Used;
         Debug.Log("1번 연출 시작");
 
         //노이즈 이미지 알파값 설정
@@ -66,8 +78,7 @@ public class DirectionEvent : MonoBehaviour
 
         glitchProps.SetActive(true);
         normalProps.SetActive(false);
-        glitchPropsLobby.SetActive(true);
-        normalPropsLobby.SetActive(false);
+        lightEvent.ToggleProps(false);
 
         //글리치 셰이더, 비네트 on
         DirectionManager.Instance.screenGlitchShader.DOKill();

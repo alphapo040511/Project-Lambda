@@ -131,10 +131,6 @@ MonoBehaviour:
     m_Key: Slot
     m_Metadata:
       m_Items: []
-  - m_Id: 22512712059531265
-    m_Key: Auto Save
-    m_Metadata:
-      m_Items: []
   - m_Id: 22520756717826048
     m_Key: Save_Save
     m_Metadata:
@@ -177,6 +173,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 23498429056409600
     m_Key: Save_Empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32970809832693760
+    m_Key: AutoSave
     m_Metadata:
       m_Items: []
   m_Metadata:

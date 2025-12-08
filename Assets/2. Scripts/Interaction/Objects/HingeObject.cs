@@ -16,11 +16,7 @@ public class HingeObject : OpenableBase
 
     public float rotateSpeed = 2f;
 
-    public bool isMoving = true;
 
-
-
-    public bool isOpen = false;
 
     private void Update()
     {
@@ -34,11 +30,5 @@ public class HingeObject : OpenableBase
                 isMoving = false;
             }
         }
-    }
-
-    public override void Move()
-    {
-        isOpen = !isOpen;
-        isMoving = true;
     }
 }

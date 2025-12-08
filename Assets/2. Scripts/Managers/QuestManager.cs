@@ -134,6 +134,8 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
     public IEnumerator LoadQuestData(List<QuestSaveData> datas)
     {
+        QuestIndexing();        // 퀘스트 초기화
+
         foreach (QuestSaveData data in datas)
         {
             if(questList.ContainsKey(data.questId))

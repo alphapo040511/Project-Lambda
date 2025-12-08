@@ -5,6 +5,7 @@ using System;
 
 public class SaveObject : MonoBehaviour, ISaveObject
 {
+    [Header("저장 관련 설정")]
     public string uniqueId;
     public string UniqueId => uniqueId;
 
