@@ -8,5 +8,5 @@ public class OpenableBase : MonoBehaviour
     {
 
     }
-    public bool isMoving { get; }
+    public bool isMoving { get; protected set; } = true;
 }

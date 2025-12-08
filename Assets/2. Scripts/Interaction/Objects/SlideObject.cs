@@ -18,8 +18,6 @@ public class SlideObject : OpenableBase
 
     public bool isOpen = false;
 
-    public bool isMoving = true;
-
     private void Update()
     {
         if(isMoving)
