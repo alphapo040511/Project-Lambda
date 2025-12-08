@@ -36,7 +36,7 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
     private void HandleStateChange(GameState state)
     {
-        if(state == GameState.Cutscene)
+        if(state == GameState.Cutscene || state == GameState.Menu || state == GameState.Loading)
             UIManager.Instance.HideOverlay(OverlayType.Quest);
         else
             UIManager.Instance.ShowOverlay(OverlayType.Quest);
@@ -175,6 +175,16 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
         if (questList.ContainsKey(questId))
         {
             return questList[questId].descriptionKey;
+        }
+
+        return null;
+    }
+
+    public QuestData GetQuestData(string questId)
+    {
+        if (questList.ContainsKey(questId))
+        {
+            return questList[questId];
         }
 
         return null;
