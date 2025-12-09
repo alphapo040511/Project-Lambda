@@ -1,21 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class TutorialStart : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
+    public PlayableDirector wakeUpDirector;
+
+    private void Start()
     {
-        PlayerController player = other.GetComponent<PlayerController>();
-
-        if (!other.CompareTag("Player")) return;
-
+        wakeUpDirector.stopped += OnWakeUpStopped;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnWakeUpStopped(PlayableDirector director)
     {
-        
+        StartCoroutine(ShowTutorial());
     }
+
+
+    IEnumerator ShowTutorial()
+    {
+        yield return new WaitForSeconds(1f);
+        TutorialManager.Instance.Show(TutorialType.Move);
+        TutorialManager.Instance.Show(TutorialType.Look);
+
+        yield return new WaitForSeconds(3f);
+        TutorialManager.Instance.Show(TutorialType.Interaction);
+    }
+
 }

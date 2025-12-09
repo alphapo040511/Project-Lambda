@@ -24,7 +24,7 @@ public class Door : InteractionReceiver
     public bool isOpened = false;
 
     private bool isMoving = false;
-    private bool isPermissionDoor = false;
+    private bool isTutorial = false;
     private Vector3 targetPosition;
 
     [Header("문을 열기 위한 아이템")]
@@ -35,8 +35,8 @@ public class Door : InteractionReceiver
 
     private void Start()
     {
-        if (gameObject.name.Contains("PermissionDoor"))
-            isPermissionDoor = true;
+        if (gameObject.name.Contains("TutorialDoor"))
+            isTutorial = true;
     }
 
     protected override void ActorUpdate()
@@ -68,18 +68,17 @@ public class Door : InteractionReceiver
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (isPermissionDoor)
-        {
-            //DialogueManager.Instance.StopAllDialog();
-            //DialogueManager.Instance.PlayingDialog("AI_Door_Open");
-        }
-
         if (collider.CompareTag("Player"))
         {
             if(needItem != null && InventoryManager.ContainItem(needItem.uniqueID))
             {
                 OpenDoor();
                 isOpened = true;
+                if (isTutorial)
+                {
+                    TutorialManager.Instance.Hide();
+                    isTutorial = false;
+                }
             }
             else
             {
@@ -91,7 +90,7 @@ public class Door : InteractionReceiver
 
     public void OnTriggerExit(Collider collider)
     {
-        if (isPermissionDoor)
+        if (isTutorial)
         {
             return;
         }

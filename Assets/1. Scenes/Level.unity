@@ -4557,6 +4557,7 @@ GameObject:
   - component: {fileID: 71916364}
   - component: {fileID: 71916366}
   - component: {fileID: 71916367}
+  - component: {fileID: 71916368}
   m_Layer: 0
   m_Name: sequence
   m_TagString: Untagged
@@ -4584,6 +4585,7 @@ Transform:
   - {fileID: 194201413}
   - {fileID: 656874892}
   - {fileID: 2061675054}
+  - {fileID: 1412049221}
   m_Father: {fileID: 2039338807}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &71916364
@@ -4741,6 +4743,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &71916368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71916362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c470f57248e714e8f234de6c046435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wakeUpDirector: {fileID: 71916365}
 --- !u!1001 &71936426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105524,6 +105539,59 @@ Transform:
   - {fileID: 728174600461126553}
   m_Father: {fileID: 441103880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1412049220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1412049221}
+  - component: {fileID: 1412049223}
+  m_Layer: 0
+  m_Name: TutorialCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1412049221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412049220}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -9.500001, y: -0.18, z: 1.500001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 71916363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1412049223
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412049220}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.1995628, y: 1, z: 9.435216}
+  m_Center: {x: 1.0997814, y: 0, z: 4.217608}
 --- !u!43 &1413576461
 Mesh:
   m_ObjectHideFlags: 0
@@ -110094,7 +110162,7 @@ MonoBehaviour:
   closePosition: {x: 0, y: 0, z: 0}
   moveSpeed: 2
   isOpened: 0
-  needItem: {fileID: 0}
+  needItem: {fileID: 11400000, guid: a2f59d44bdd8b5c44ba99dbb2a67255d, type: 2}
   dialogCooldown: 2
 --- !u!65 &1494900708
 BoxCollider:
@@ -160329,7 +160397,7 @@ GameObject:
   - component: {fileID: 179178849300908064}
   - component: {fileID: 8179745931167069911}
   m_Layer: 0
-  m_Name: DoorOpenCollider
+  m_Name: TutorialDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
