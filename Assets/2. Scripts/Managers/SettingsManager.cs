@@ -20,6 +20,7 @@ public class GameSettings
     public float masterVolume = 1f;     // 마스터 볼륨 (0~1)
     public float sfxVolume = 1f;        // 효과음 볼륨 (0~1)
     public float musicVolume = 1f;      // 배경음 볼륨 (0~1)
+    public float voiceVolume = 1f;      // 목소리 볼륨 (0~1)
 
     [Header("UI Setting")]
     public float uiScale = 1f;          // UI 스케일
@@ -56,6 +57,7 @@ public class GameSettings
         clone.masterVolume = this.masterVolume;
         clone.sfxVolume = this.sfxVolume;
         clone.musicVolume = this.musicVolume;
+        clone.voiceVolume = this.voiceVolume;
 
         clone.uiScale = this.uiScale;
 
@@ -127,6 +129,7 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     private const string MASTER_VOLUME_PARAM = "MasterVolume";
     private const string SFX_VOLUME_PARAM = "SFXVolume";
     private const string MUSIC_VOLUME_PARAM = "MusicVolume";
+    private const string VOICE_VOLUME_PARAM = "VoiceVolume";
 
     // 현재 적용중인 urpAsset;
     private UniversalRenderPipelineAsset urpAsset;
@@ -252,10 +255,13 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
                 Mathf.Log10(currentSettings.sfxVolume) * 20 : -80f;
             float musicDB = currentSettings.musicVolume > 0 ?
                 Mathf.Log10(currentSettings.musicVolume) * 20 : -80f;
+            float voiceDB = currentSettings.voiceVolume > 0 ?
+                Mathf.Log10(currentSettings.voiceVolume) * 20 : -80f;
 
             masterMixer.SetFloat(MASTER_VOLUME_PARAM, masterDB);
             masterMixer.SetFloat(SFX_VOLUME_PARAM, sfxDB);
             masterMixer.SetFloat(MUSIC_VOLUME_PARAM, musicDB);
+            masterMixer.SetFloat(VOICE_VOLUME_PARAM, voiceDB);
         }
         else
         {

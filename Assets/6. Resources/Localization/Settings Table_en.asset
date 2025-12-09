@@ -253,6 +253,18 @@ MonoBehaviour:
     m_Localized: Language
     m_Metadata:
       m_Items: []
+  - m_Id: 33589142696464384
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33591742489661440
+    m_Localized: Display Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33591856700559360
+    m_Localized: Shadow Settings
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

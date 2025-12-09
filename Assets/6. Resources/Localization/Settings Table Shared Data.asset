@@ -247,6 +247,18 @@ MonoBehaviour:
     m_Key: Language
     m_Metadata:
       m_Items: []
+  - m_Id: 33589142696464384
+    m_Key: Option_Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33591742489661440
+    m_Key: "\rCategory_Display"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33591856700559360
+    m_Key: "\rCategory_Shadow"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

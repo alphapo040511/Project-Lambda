@@ -8,11 +8,13 @@ public class AudioSettings : SettingTabBase
 {
     [Header("Audio Settings")]
     public Slider masterVolumeSlider;
-    public Slider sfxVolumeSlider;
     public Slider musicVolumeSlider;
+    public Slider sfxVolumeSlider;
+    public Slider voiceVolumeSlider;
     public TextMeshProUGUI masterVolumeText;
-    public TextMeshProUGUI sfxVolumeText;
     public TextMeshProUGUI musicVolumeText;
+    public TextMeshProUGUI sfxVolumeText;
+    public TextMeshProUGUI voiceVolumeText;
 
     protected override void InitializeUI() { }  // RefreshUI로 충분
 
@@ -27,6 +29,9 @@ public class AudioSettings : SettingTabBase
 
         if (musicVolumeSlider != null)
             musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
+
+        if (voiceVolumeSlider != null)
+            voiceVolumeSlider.onValueChanged.AddListener(OnVoiceVolumeChanged);
     }
 
     public override void RefreshUI()
@@ -52,6 +57,13 @@ public class AudioSettings : SettingTabBase
             musicVolumeSlider.value = settingsUI.tempSettings.musicVolume;
             if (musicVolumeText != null)
                 musicVolumeText.text = $"{settingsUI.tempSettings.musicVolume * 100:F0}%";
+        }
+
+        if (voiceVolumeSlider != null)
+        {
+            voiceVolumeSlider.value = settingsUI.tempSettings.voiceVolume;
+            if (voiceVolumeText != null)
+                voiceVolumeText.text = $"{settingsUI.tempSettings.voiceVolume * 100:F0}%";
         }
     }
 
@@ -87,6 +99,18 @@ public class AudioSettings : SettingTabBase
         settingsUI.tempSettings.musicVolume = value;
         if (musicVolumeText != null)
             musicVolumeText.text = $"{value * 100:F0}%";
+
+        // 실시간 볼륨 적용
+        SettingsManager.Instance.SetMusicVolume(value);
+    }
+
+    private void OnVoiceVolumeChanged(float value)
+    {
+        if (isInitializing) return;
+
+        settingsUI.tempSettings.voiceVolume = value;
+        if (voiceVolumeText != null)
+            voiceVolumeText.text = $"{value * 100:F0}%";
 
         // 실시간 볼륨 적용
         SettingsManager.Instance.SetMusicVolume(value);

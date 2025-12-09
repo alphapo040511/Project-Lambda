@@ -9,9 +9,9 @@ public class GraphicSettings : SettingTabBase
 {
     [Header("Display Settings")]
     public TMP_Dropdown resolutionDropdown;
-    public Toggle fullscreenToggle;
+    public CustomSelector fullscreenToggle;
     public CustomSelector frameRateSelector;
-    public Toggle vsyncToggle;
+    public CustomSelector vsyncToggle;
 
     [Header("Graphics Settings")]
     public TMP_Dropdown qualityDropdown;
@@ -57,13 +57,13 @@ public class GraphicSettings : SettingTabBase
             resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
 
         if (fullscreenToggle != null)
-            fullscreenToggle.onValueChanged.AddListener(OnFullscreenChanged);
+            fullscreenToggle.onValueChanged += OnFullscreenChanged;
 
         if (frameRateSelector != null)
             frameRateSelector.onValueChanged += OnFrameRateChanged;
 
         if (vsyncToggle != null)
-            vsyncToggle.onValueChanged.AddListener(OnVSyncChanged);
+            vsyncToggle.onValueChanged +=  OnVSyncChanged;
 
         // 그래픽 설정
         if (qualityDropdown != null)
@@ -92,7 +92,7 @@ public class GraphicSettings : SettingTabBase
             resolutionDropdown.value = settingsUI.tempSettings.resolutionIndex;
 
         if (fullscreenToggle != null)
-            fullscreenToggle.isOn = settingsUI.tempSettings.isFullscreen;
+            fullscreenToggle.SetOption(settingsUI.tempSettings.isFullscreen ? 1 : 0);
 
         if (frameRateSelector != null)
         {
@@ -123,7 +123,7 @@ public class GraphicSettings : SettingTabBase
             qualityDropdown.value = settingsUI.tempSettings.qualityLevel;
 
         if (vsyncToggle != null)
-            vsyncToggle.isOn = settingsUI.tempSettings.vsyncEnabled;
+            vsyncToggle.SetOption( settingsUI.tempSettings.vsyncEnabled ? 1 : 0);
 
         // 그림자 설정
         if (shadowQualitySelector != null)
@@ -147,10 +147,10 @@ public class GraphicSettings : SettingTabBase
         settingsUI.tempSettings.resolutionIndex = value;
     }
 
-    private void OnFullscreenChanged(bool value)
+    private void OnFullscreenChanged(int value)
     {
         if (isInitializing) return;
-        settingsUI.tempSettings.isFullscreen = value;
+        settingsUI.tempSettings.isFullscreen = (1 == value);
     }
 
     private void OnFrameRateChanged(int value)
@@ -178,10 +178,10 @@ public class GraphicSettings : SettingTabBase
         settingsUI.tempSettings.qualityLevel = value;
     }
 
-    private void OnVSyncChanged(bool value)
+    private void OnVSyncChanged(int value)
     {
         if (isInitializing) return;
-        settingsUI.tempSettings.vsyncEnabled = value;
+        settingsUI.tempSettings.vsyncEnabled = (1 == value);
     }
 
     private void OnShadowQualityChanged(int value)
