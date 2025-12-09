@@ -54,19 +54,19 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 6fea7b42c5b2d5941979cf09490be13e, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
     mixerGroup: {fileID: -3579302047829624296, guid: 05fa863b6ea095d41842411818003e6b,
       type: 2}
   - clip: {fileID: 8300000, guid: 98311fe6747170444b9bfc0df8503796, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
     mixerGroup: {fileID: -3579302047829624296, guid: 05fa863b6ea095d41842411818003e6b,
       type: 2}
   - clip: {fileID: 8300000, guid: 0b8b13a0fe6baff4e881cc17a26d7be2, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
     mixerGroup: {fileID: -3579302047829624296, guid: 05fa863b6ea095d41842411818003e6b,
       type: 2}
   audioMixer: {fileID: 24100000, guid: 05fa863b6ea095d41842411818003e6b, type: 2}
