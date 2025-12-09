@@ -19,6 +19,7 @@ public class WordMatchPuzzle : SaveObject
     public int maxLength = 8;
     [Tooltip("랜덤 세그먼트의 길이")]
     public int segmentLength = 8;
+    public int maxTryCount = 5;
     private int remainingCount = 5;                 // 남은 시도 횟수
     private int wordToLine;
 
@@ -57,6 +58,8 @@ public class WordMatchPuzzle : SaveObject
         isCreated = true;
 
         if (state == ObjectState.Used) return;          // 사용(클리어)된 경우 새로 생성 X
+
+        remainingCount = maxTryCount;
 
         state = ObjectState.On;
         segmentLength = maxLength - puzzleData.answer.Length;               // 최대 길이에서 단어 길이만큼 제외ingCount = puzzleData.tryChance;
@@ -118,7 +121,13 @@ public class WordMatchPuzzle : SaveObject
     
     void CheckAnswer()
     {
-        if (remainingCount <= 0 || wordList[currentWordIndex].Length == 1) return;
+        if (remainingCount <= 0 || wordList[currentWordIndex].Length == 1)
+        {
+            interaction.ExitFocus();
+            ResetPuzzle();
+            return;
+        }
+
         int count = SameWord(wordList[currentWordIndex]);
         remainingCount--;
         countText.text = $"TargetWord {wordList[currentWordIndex]}... \nLikeness {count}";
@@ -137,6 +146,15 @@ public class WordMatchPuzzle : SaveObject
         interaction.DisableInteraction();       // 상호작용 불가 상태로 변경
         interaction.ExitFocus();
         Debug.Log("퍼즐 클리어");
+    }
+
+    void ResetPuzzle()
+    {
+        randomIndexWords.Clear();
+        wordList.Clear();
+        currentWordIndex = 0;
+        isCreated = false;
+        CreateWordPuzzle();
     }
 
     int SameWord(string word)
