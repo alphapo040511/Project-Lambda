@@ -56975,7 +56975,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -71673,7 +71673,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1034171461}
+      - m_Target: {fileID: 1507171200}
         m_TargetAssemblyTypeName: WordPuzzleActiveEvent, Assembly-CSharp
         m_MethodName: StartEvent
         m_Mode: 1
@@ -77201,6 +77201,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pre_Computer
       objectReference: {fileID: 0}
+    - target: {fileID: 5396175047846136415, guid: 9ce89fe8a0044d7489fef19776bc2261,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5668036911236825892, guid: 9ce89fe8a0044d7489fef19776bc2261,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -77243,6 +77248,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1034171462}
+    - targetCorrespondingSourceObject: {fileID: 5396175047846136415, guid: 9ce89fe8a0044d7489fef19776bc2261,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1034171464}
   m_SourcePrefab: {fileID: 100100000, guid: 9ce89fe8a0044d7489fef19776bc2261, type: 3}
 --- !u!4 &1034171460 stripped
 Transform:
@@ -77331,7 +77340,7 @@ MonoBehaviour:
     disableState:
       m_PersistentCalls:
         m_Calls: []
-  interaction: {fileID: 1230935348}
+  interaction: {fileID: 1034171462}
   textTMP: {fileID: 1016337021}
   markTMP: {fileID: 563640078}
   countText: {fileID: 1509313592}
@@ -77368,6 +77377,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!65 &1034171464
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034171461}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &1036358234
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112011,6 +112041,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1034171463}
         m_TargetAssemblyTypeName: WordMatchPuzzle, Assembly-CSharp
         m_MethodName: CreateWordPuzzle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1034171462}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: EnableInteraction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -153726,10 +153768,34 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d1dbb4699d426834aafb12ca476cc919, type: 2}
+    - target: {fileID: 6321349403084592251, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.0056847
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321349403084592251, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321349403084592251, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 1.3155419
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321349403084592251, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -2.842171e-14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3090426711056282755, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2083375074}
   m_SourcePrefab: {fileID: 100100000, guid: 905254496c1ea964a8521ca3d8b4f4d2, type: 3}
 --- !u!4 &2083375072 stripped
 Transform:
@@ -153737,6 +153803,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2083375071}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2083375073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3090426711056282755, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2083375071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2083375074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083375073}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.005685, y: 4.0000005, z: 0.012974858}
+  m_Center: {x: -1.315542, y: 1.9965556, z: -2.842171e-14}
 --- !u!4 &2087284613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416390, guid: c76d2d3504ddb4847940a815cad04644,
@@ -161647,10 +161740,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: FBX_Wall_door
       objectReference: {fileID: 0}
+    - target: {fileID: 3090426711056282755, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321349403084592251, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.0056847
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321349403084592251, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 1.3155419
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321349403084592251, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -2.842171e-14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3090426711056282755, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6112183802037560996}
   m_SourcePrefab: {fileID: 100100000, guid: 905254496c1ea964a8521ca3d8b4f4d2, type: 3}
 --- !u!4 &6112183802037560994 stripped
 Transform:
@@ -161658,6 +161775,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6112183802037560993}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6112183802037560995 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3090426711056282755, guid: 905254496c1ea964a8521ca3d8b4f4d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6112183802037560993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6112183802037560996
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6112183802037560995}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.005685, y: 4.0000005, z: 0.012974858}
+  m_Center: {x: -1.315542, y: 1.9965556, z: -2.842171e-14}
 --- !u!23 &6130450363813486340
 MeshRenderer:
   m_ObjectHideFlags: 0

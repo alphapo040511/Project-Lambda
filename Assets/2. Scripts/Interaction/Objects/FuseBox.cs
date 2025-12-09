@@ -20,9 +20,13 @@ public class FuseBox : Interactable
 
         switch (state)
         {
-            case ObjectState.On:                // 1개만 장착된 경우
+            case ObjectState.On:                    // 활성화 된 경우
+                interactable = true;
+                break;
+            case ObjectState.Used:                // 1개만 장착된 경우
                 fuseObject[0].SetActive(true);
                 mountedFuseCount = 1;
+                interactable = true;
                 break;
             case ObjectState.Disable:           // 2개 모두 장착된 경우
                 fuseObject[0].SetActive(true);
@@ -67,7 +71,7 @@ public class FuseBox : Interactable
         }
         else
         {
-            state = ObjectState.On;
+            state = ObjectState.Used;
             firstFuseMounted?.Invoke();
         }
     }

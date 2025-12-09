@@ -19,7 +19,7 @@ public class WordMatchPuzzle : SaveObject
     public int maxLength = 8;
     [Tooltip("랜덤 세그먼트의 길이")]
     public int segmentLength = 8;
-    private int remainingCount;                 // 남은 시도 횟수
+    private int remainingCount = 5;                 // 남은 시도 횟수
     private int wordToLine;
 
     [Header("Display Settings")]
@@ -41,10 +41,24 @@ public class WordMatchPuzzle : SaveObject
     float holdInterval = 0.1f;
     float timer = 0;
 
+    bool isCreated = false;
+
+    public override void SetObjectState(string id, ObjectState state)
+    {
+        if (UniqueId != id) return;
+        this.state = state;
+
+        if (state == ObjectState.On)                    // On 상태인 경우 퍼즐 생성
+            CreateWordPuzzle();
+    }
     public void CreateWordPuzzle()
     {
+        if (isCreated) return;                          // 이미 만들어진 경우 일단 무시
+        isCreated = true;
+
         if (state == ObjectState.Used) return;          // 사용(클리어)된 경우 새로 생성 X
 
+        state = ObjectState.On;
         segmentLength = maxLength - puzzleData.answer.Length;               // 최대 길이에서 단어 길이만큼 제외ingCount = puzzleData.tryChance;
         countText.text = $"TargetWord ... \nLikeness _";
         remainingText.text = $"Remaining Count {remainingCount}";
