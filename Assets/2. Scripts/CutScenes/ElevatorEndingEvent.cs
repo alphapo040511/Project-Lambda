@@ -55,7 +55,7 @@ public class ElevatorEndingEvent : MonoBehaviour
            {
                EventSystem.Instance.EndEvent();
                endingImage.gameObject.SetActive(false);
-               SceneManager.Instance.LoadScene("MainMenu");
+               SceneManager.Instance.LoadSceneWithLoadingScreen("MainMenu");
            });
     }
 

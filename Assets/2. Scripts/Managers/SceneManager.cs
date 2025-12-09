@@ -52,6 +52,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     {
         // 페이드용 Canvas 생성
         fadeObject = new GameObject("FadeCanvas");
+        fadeObject.transform.SetParent(transform);
 
         Canvas canvas = fadeObject.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -78,6 +79,22 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     }
 
     #endregion
+
+    private void OnEnable()
+    {
+        GameEvents.OnLoadCompleted += LoadSaveComplete;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnLoadCompleted -= LoadSaveComplete;
+    }
+
+    void LoadSaveComplete()
+    {
+        // 로딩 완료 시 페이드 종료
+        StartCoroutine(FadeOut());
+    }
 
     #region Scene Loading Methods
 
@@ -137,7 +154,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
         yield return StartCoroutine(LoadSceneAsync(sceneName));
 
         // 페이드 아웃
-        yield return StartCoroutine(FadeOut());                         // 페이드 연출은 씬 로드 코루틴에서 함께 적용
+        //yield return StartCoroutine(FadeOut());                         // 페이드 연출은 씬 로드 코루틴에서 함께 적용
 
         GameEvents.SceneChanged(sceneName);
 
@@ -150,6 +167,8 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     /// </summary>
     private IEnumerator LoadSceneWithLoading(string sceneName)
     {
+        yield return StartCoroutine(FadeIn());      // 페이드 인
+
         isLoading = true;
         GameManager.Instance?.ChangeGameState(GameState.Loading);
 
@@ -157,6 +176,8 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
         if (useLoadingScreen && !string.IsNullOrEmpty(loadingSceneName))
         {
             yield return StartCoroutine(LoadSceneAsync(loadingSceneName));
+
+            yield return StartCoroutine(FadeOut());         // 페이드 아웃
 
             // 최소 로딩 시간 대기
             float startTime = Time.time;
@@ -177,6 +198,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
                     // 최소 로딩 시간 체크
                     if (Time.time - startTime >= minimumLoadingTime)
                     {
+                        yield return StartCoroutine(FadeIn());      // 페이드 인
                         asyncLoad.allowSceneActivation = true;
                     }
                 }
@@ -253,17 +275,17 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
 
     public void LoadMainMenu()
     {
-        LoadScene(mainMenuSceneName);
+        LoadSceneWithLoadingScreen(mainMenuSceneName);
     }
 
     public void LoadGameScene()
     {
-        LoadScene(gameSceneName);
+        LoadSceneWithLoadingScreen(gameSceneName);
     }
 
     public void ReloadCurrentScene()
     {
-        LoadScene(currentSceneName);
+        LoadSceneWithLoadingScreen(currentSceneName);
     }
 
     public void LoadNextScene()

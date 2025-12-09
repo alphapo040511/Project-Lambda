@@ -21,11 +21,11 @@ public class SaveObjectLoader : SingletonMonoBehaviour<SaveObjectLoader>
 
     void SceneChangeHandler(string sceneName)
     {
-        if (targetSave == null)
+        if (targetSave == null || sceneName != targetSave.saveSceneName)
         {
             QuestManager.Instance.ResetQuest();
             GameEvents.LoadCompleted();
-            return;      // 타겟이 없거나(기본값 또는 저장 X) 잘못된 씬 인 경우 로딩 안함
+            return;                                         // 타겟이 없거나(기본값 또는 저장 X) 잘못된 씬 인 경우 로딩 안함
         }
         StartCoroutine(ObjectInitialize());
     }
