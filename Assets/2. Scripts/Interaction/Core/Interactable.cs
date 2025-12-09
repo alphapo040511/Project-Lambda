@@ -61,9 +61,9 @@ public class Interactable : Actor, IInteractable, ISaveObject
             case ObjectState.On:
                 EnableInteraction();
                 break;
-            case ObjectState.Used:          // 일단 사용 완료만 표시
-                Complete();
-                break;
+            //case ObjectState.Used:          // 일단 사용 완료만 표시
+            //    Complete();
+            //    break;
             case ObjectState.Disable:
                 DisableInteraction();
                 break;

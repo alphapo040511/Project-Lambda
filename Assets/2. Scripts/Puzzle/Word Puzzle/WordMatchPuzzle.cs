@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.ProBuilder;
 using UnityEngine.Events;
+
 
 public class WordMatchPuzzle : SaveObject
 {
@@ -29,6 +29,12 @@ public class WordMatchPuzzle : SaveObject
 
     [Header("Event Settings")]
     public UnityEvent onCleared;
+
+    [Header("Sound Settings")]
+    public AudioSource audioSource;
+    public AudioClip selectSound;
+    public AudioClip incorrectSound;
+    public AudioClip successSound;
 
     [Header("Characters")]
     [Tooltip("랜덤 문자열 생성에 사용할 문자들")]
@@ -63,8 +69,11 @@ public class WordMatchPuzzle : SaveObject
 
         state = ObjectState.On;
         segmentLength = maxLength - puzzleData.answer.Length;               // 최대 길이에서 단어 길이만큼 제외ingCount = puzzleData.tryChance;
-        countText.text = $"TargetWord ... \nLikeness _";
-        remainingText.text = $"Remaining Count {remainingCount}";
+
+        string testAnswer = puzzleData.words[Random.Range(0, puzzleData.words.Length)];
+
+        countText.text = $"TargetWord {testAnswer}\nLikeness {CheckGuess(testAnswer)}";
+        remainingText.text = $"Remaining Count\n{GetRemaningText()}";
 
         RandomIndexing();           // 랜덤 단어 목록 정리
         InitialLine();              // 출력 단어 목록 정리
@@ -106,7 +115,11 @@ public class WordMatchPuzzle : SaveObject
             if(dir != Vector2Int.zero)
             {
                 timer = holdInterval;
-                currentWordIndex = Math.Clamp(currentWordIndex + dir.x + dir.y, 0, wordList.Count - 1);
+                currentWordIndex = Mathf.Clamp(currentWordIndex + dir.x + dir.y, 0, wordList.Count - 1);
+
+                if (audioSource != null && selectSound != null)
+                    audioSource.PlayOneShot(selectSound);
+
                 ShowText();
             }
         }
@@ -121,30 +134,51 @@ public class WordMatchPuzzle : SaveObject
     
     void CheckAnswer()
     {
-        if (remainingCount <= 0 || wordList[currentWordIndex].Length == 1)
+        if (remainingCount <= 0)
         {
             interaction.ExitFocus();
             ResetPuzzle();
             return;
         }
 
+        if (wordList[currentWordIndex].Length == 1)
+        {
+            countText.text = "Invalid selection";
+            return;
+        }
+
         int count = SameWord(wordList[currentWordIndex]);
         remainingCount--;
-        countText.text = $"TargetWord {wordList[currentWordIndex]}... \nLikeness {count}";
-        remainingText.text = $"Remaining Count {remainingCount}";
+        countText.text = $"TargetWord {wordList[currentWordIndex]}\nLikeness {CheckGuess(wordList[currentWordIndex])}";
+        remainingText.text = $"Remaining Count\n{GetRemaningText()}";
 
         if (count == puzzleData.answer.Length)
         {
             PuzzleCleared();
         }
+        else
+        {
+            if (audioSource != null && incorrectSound != null)
+                audioSource.PlayOneShot(incorrectSound);
+
+            if (remainingCount <= 0)        // 틀리고 횟수도 다 사용한 경우
+            {
+                interaction.ExitFocus();
+                ResetPuzzle();
+                return;
+            }
+        }
     }
 
     void PuzzleCleared()
     {
+        if(audioSource != null && successSound != null)
+            audioSource.PlayOneShot(successSound);
+
         state = ObjectState.Used;
-        onCleared?.Invoke();
         interaction.DisableInteraction();       // 상호작용 불가 상태로 변경
         interaction.ExitFocus();
+        onCleared?.Invoke();
         Debug.Log("퍼즐 클리어");
     }
 
@@ -275,5 +309,58 @@ public class WordMatchPuzzle : SaveObject
         string word = randomIndexWords[index];
         randomIndexWords.RemoveAt(index);
         return word;
+    }
+
+    string CheckGuess(string guess)
+    {
+        if (puzzleData.answer.Length != guess.Length)
+            Debug.Log("문자열 길이가 같아야 합니다.");
+
+        char[] result = new char[guess.Length];
+        bool[] used = new bool[puzzleData.answer.Length];
+
+        // 1단계: 완전 일치 (■)
+        for (int i = 0; i < guess.Length; i++)
+        {
+            if (guess[i] == puzzleData.answer[i])
+            {
+                result[i] = '■';
+                used[i] = true;
+            }
+        }
+
+        // 2단계: 다른 위치에 존재 (▣)
+        for (int i = 0; i < guess.Length; i++)
+        {
+            if (result[i] == '■')
+                continue;
+
+            bool found = false;
+
+            for (int j = 0; j < puzzleData.answer.Length; j++)
+            {
+                if (!used[j] && guess[i] == puzzleData.answer[j])
+                {
+                    found = true;
+                    used[j] = true;
+                    break;
+                }
+            }
+
+            result[i] = found ? '▣' : '□';
+        }
+
+        return new string(result);
+    }
+
+    string GetRemaningText()
+    {
+        string remaingText = "";
+        for(int i = 0; i < maxTryCount; i++)
+        {
+            remaingText += i < remainingCount ? '■' : '□';
+        }
+
+        return remaingText;
     }
 }

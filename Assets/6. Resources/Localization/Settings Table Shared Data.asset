@@ -179,6 +179,42 @@ MonoBehaviour:
     m_Key: AutoSave
     m_Metadata:
       m_Items: []
+  - m_Id: 33486151578521600
+    m_Key: Tab_Gameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33486219677241344
+    m_Key: Tab_Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33486221262688256
+    m_Key: New Entry 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33486222986547200
+    m_Key: Option_MouseSensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33486592060133376
+    m_Key: Option_GraphicsPreset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33486593670746112
+    m_Key: Option_MusicVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33486594891288576
+    m_Key: Option_SFXVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33486697731428352
+    m_Key: Option_MasterVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33486698989719552
+    m_Key: Option_VoiceVolume
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

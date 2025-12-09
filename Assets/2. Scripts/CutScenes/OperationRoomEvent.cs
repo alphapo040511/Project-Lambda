@@ -131,7 +131,7 @@ public class OperationRoomEvent : MonoBehaviour
         if (sphere.isVisible)
         {
             Invoke(nameof(HideMannequin), 2f);
-            audioSource.PlayOneShot(spooky);
+            SoundManager.Instance.PlaySound(spooky.name);
             DirectionManager.Instance.screenGlitchShader.DOKill();
             DirectionManager.Instance.screenGlitchShader.DOFloat(25f, "_NoiseAmount", 1f);
             DirectionManager.Instance.screenGlitchShader.DOFloat(25f, "_GlitchStrength", 1f);
@@ -151,7 +151,7 @@ public class OperationRoomEvent : MonoBehaviour
 
         Sequence noiseSeq = DOTween.Sequence();
 
-        audioSource.PlayOneShot(noise);
+        SoundManager.Instance.PlaySound(noise.name);
 
         //노이즈 이미지 깜빡임
         noiseSeq.Append(DirectionManager.Instance.noiseImage.DOFade(1f, 0.1f))

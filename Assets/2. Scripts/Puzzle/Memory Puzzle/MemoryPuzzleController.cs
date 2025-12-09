@@ -51,7 +51,7 @@ public class MemoryPuzzleController : InteractionFocus
     {
         base.Update();
 
-        if (currentState == MemoryPuzzleState.Idle)            // 포커싱 되지 않았다면
+        if (currentState == MemoryPuzzleState.Idle && state == ObjectState.On)            // 포커싱 되지 않았다면
         {
             if(timer > 0)
             {

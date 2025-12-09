@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class TutorialStart : MonoBehaviour
+public class TutorialStart : SaveObject
 {
     public PlayableDirector wakeUpDirector;
 
@@ -12,9 +12,17 @@ public class TutorialStart : MonoBehaviour
         wakeUpDirector.stopped += OnWakeUpStopped;
     }
 
+    void OnDestroy()
+    {
+        wakeUpDirector.stopped -= OnWakeUpStopped;
+    }
+
     private void OnWakeUpStopped(PlayableDirector director)
     {
+        if (state == ObjectState.Used) return;
+
         StartCoroutine(ShowTutorial());
+        state = ObjectState.Used;
     }
 
 
