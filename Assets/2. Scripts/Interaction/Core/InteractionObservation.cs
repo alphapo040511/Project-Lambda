@@ -34,6 +34,7 @@ public class InteractionObservation : Interactable
     private Vector3 originPosition;
     private Quaternion originRatation;
     private Vector3 targetPosition;
+    private Transform originParent;
 
     // 크기 저장
     private Vector3 originSize;
@@ -72,7 +73,7 @@ public class InteractionObservation : Interactable
 
         if (isObserving == false) return;                                                   // 관찰중이 아니면 return
 
-        targetPosition = mainCamera.transform.position + mainCamera.transform.forward * focusDistance;  // 카메라 앞쪽에 위치
+
 
         if (isInitializing)
         {
@@ -115,13 +116,13 @@ public class InteractionObservation : Interactable
         VolumeManager.Instance.ChangeFocusDistance(0.5f, 0.2f);
 
         // 초기 위치로 부드럽게 이동
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5);  
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * 5);  
 
 
         // 초기 위치 및 포커스에 도달 할 경우 종료
         if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
         {
-            transform.position = targetPosition;
+            transform.localPosition = targetPosition;
 
             isInitializing = false;
         }
@@ -170,6 +171,10 @@ public class InteractionObservation : Interactable
         originPosition = transform.localPosition;
         originRatation = transform.localRotation;
         originSize = transform.localScale;
+        originParent = transform.parent;
+
+        transform.SetParent(mainCamera.transform);
+        targetPosition = Vector3.forward * focusDistance;  // 카메라 앞쪽에 위치
 
         // 목표 크기 초기화
         sizeMultiplier = 1f;
@@ -211,9 +216,11 @@ public class InteractionObservation : Interactable
         isInitializing = false;
 
         // 원래 위치로 복귀    
+        transform.SetParent(originParent);
         transform.localPosition = originPosition;
         transform.localRotation = originRatation;
         transform.localScale = originSize;
+
 
         UIManager.Instance.HideOverlay(OverlayType.Observation);
 
