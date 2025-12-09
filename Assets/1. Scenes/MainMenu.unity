@@ -25627,7 +25627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   databaseSO: {fileID: 11400000, guid: d0b7b995186f81a4bb5307295b910fa4, type: 2}
-  audioMixer: {fileID: 24300002, guid: 05fa863b6ea095d41842411818003e6b, type: 2}
+  audioMixer: {fileID: -1458014019941555398, guid: 05fa863b6ea095d41842411818003e6b,
+    type: 2}
 --- !u!4 &1746491261
 Transform:
   m_ObjectHideFlags: 0
