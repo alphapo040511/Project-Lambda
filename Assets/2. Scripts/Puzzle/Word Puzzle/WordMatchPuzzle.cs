@@ -58,6 +58,7 @@ public class WordMatchPuzzle : SaveObject
         if (state == ObjectState.On)                    // On 상태인 경우 퍼즐 생성
             CreateWordPuzzle();
     }
+
     public void CreateWordPuzzle()
     {
         if (isCreated) return;                          // 이미 만들어진 경우 일단 무시
@@ -146,6 +147,8 @@ public class WordMatchPuzzle : SaveObject
             countText.text = "Invalid selection";
             return;
         }
+
+        TutorialManager.Instance.Hide();
 
         int count = SameWord(wordList[currentWordIndex]);
         remainingCount--;
@@ -362,5 +365,10 @@ public class WordMatchPuzzle : SaveObject
         }
 
         return remaingText;
+    }
+
+    public void ShowTutorial()
+    {
+        TutorialManager.Instance.Show(TutorialType.wordPuzzle);
     }
 }

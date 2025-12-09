@@ -10,7 +10,8 @@ public enum TutorialType
 {
     Move,
     Interaction,
-    Look
+    Look,
+    wordPuzzle
 }
 
 public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
@@ -19,6 +20,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     public GameObject movePanel;
     public GameObject interactionPanel;
     public GameObject lookPanel;
+    public GameObject wordPuzzlePanel;
 
     private void Start()
     {
@@ -97,6 +99,10 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             case TutorialType.Look:
                 lookPanel.SetActive(true);
                 SlideIn(lookPanel);
+                break;
+            case TutorialType.wordPuzzle:
+                wordPuzzlePanel.SetActive(true);
+                SlideIn(wordPuzzlePanel);
                 break;
         }
 

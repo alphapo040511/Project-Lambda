@@ -27,6 +27,14 @@ MonoBehaviour:
     m_Key: Tutorial_Look
     m_Metadata:
       m_Items: []
+  - m_Id: 2670815077961728
+    m_Key: Tutorial_Word_Select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2670817556795392
+    m_Key: Tutorial_Word_Match
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
