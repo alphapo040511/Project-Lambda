@@ -15,6 +15,10 @@ public class UISound : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     [SerializeField]
     private AudioClip startClip;
 
+    private string hoverClipName = "sfx_UIButton_Hover";
+    private string clickClipName = "sfx_UIButton_Click";
+    private string startClipName = "sfx_UIButton_Start";
+
     private void Start()
     {
         if (audioSource == null)
@@ -23,8 +27,10 @@ public class UISound : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (hoverClip != null && audioSource != null)
-            audioSource.PlayOneShot(hoverClip);
+        if (hoverClip != null)
+            SoundManager.Instance.PlaySound(hoverClip.name);
+        else
+            SoundManager.Instance.PlaySound(hoverClipName);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -32,12 +38,16 @@ public class UISound : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         if (gameObject.name == "LevelSceneLoad")
         {
             if (startClip != null)
-                audioSource.PlayOneShot(startClip);
+                SoundManager.Instance.PlaySound(startClip.name);
+            else
+                SoundManager.Instance.PlaySound(startClipName);
             return;
         }
 
         if (clickClip != null)
-            audioSource.PlayOneShot(clickClip);
+            SoundManager.Instance.PlaySound(clickClip.name);
+        else
+            SoundManager.Instance.PlaySound(clickClipName);
     }
 
 }

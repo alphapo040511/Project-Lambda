@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 [System.Serializable]
 public class Sound
 {
-    public string name;                         //사운드의 이름
+    //public string name;                         //사운드의 이름( 클립 이름으로 대체 )
     public AudioClip clip;                      //사운드 클립
 
     [Range(0f, 1f)]
@@ -21,7 +21,6 @@ public class Sound
 
 public class SoundManager : SingletonMonoBehaviour<SoundManager>
 {
-    public static SoundManager instance;                    //싱글톤 인스턴스 (static은 전역 변수로 올려서 어디서든 접근할 수 있게 해준다.)
     public List<Sound> sounds = new List<Sound>();          //사운드 리스트 관리 (List 자료구조 관리)
     public AudioMixer audioMixer;
 
@@ -47,7 +46,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
             source.playOnAwake = false;
             source.outputAudioMixerGroup = sound.mixerGroup;
 
-            soundsList[sound.name] = source;
+            soundsList[sound.clip.name] = source;           // 클립 이름과 동일하게 설정
         }
     }
 
