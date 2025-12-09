@@ -21,6 +21,18 @@ public class PlayerController : Actor
     public float crouchSpeedMultiplier = 0.6f;
     [HideInInspector] public float targetSpeed;
 
+    [Header("Footstep Settings")]
+    public AudioSource footstepSource;
+    public AudioClip[] footstepClips;
+
+    [Tooltip("최소 발소리 간격 (달릴 때)")]
+    public float minStepInterval = 0.25f;
+
+    [Tooltip("최대 발소리 간격 (걸을 때)")]
+    public float maxStepInterval = 0.5f;
+
+    private float stepTimer = 0f;
+
     private float currenSpeed;
     private Vector3 moveDirection;
 
@@ -50,6 +62,9 @@ public class PlayerController : Actor
             currentState.HandleUpdate();
             currentState.Update();
             HandlePostureInput();
+
+            // 사운드 추가
+            HandleFootsteps();
         }
     }
 
@@ -87,6 +102,44 @@ public class PlayerController : Actor
         {
             rb.velocity = velocity;
         }
+    }
+
+    void HandleFootsteps()
+    {
+        // 실제 이동 속도
+        float speed = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
+
+        // 멈춰있으면 카운터 리셋
+        if (speed < 0.1f)
+        {
+            stepTimer = 0f;
+            return;
+        }
+
+        // 속도를 0~1 비율로 정규화
+        float speed01 = Mathf.InverseLerp(0f, runSpeed, speed);
+
+        // 속도에 따라 발소리 간격 변경
+        float currentInterval = Mathf.Lerp(maxStepInterval, minStepInterval, speed01);
+
+        stepTimer += Time.deltaTime;
+
+        if (stepTimer >= currentInterval)
+        {
+            PlayFootstep();
+            stepTimer = 0f;
+        }
+    }
+
+    void PlayFootstep()
+    {
+        if (footstepClips == null || footstepClips.Length == 0) return;
+        if (footstepSource == null) return;
+
+        int index = UnityEngine.Random.Range(0, footstepClips.Length);
+
+        footstepSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f); // 살짝 랜덤 피치
+        footstepSource.PlayOneShot(footstepClips[index]);
     }
 
     public bool CanInteract()
