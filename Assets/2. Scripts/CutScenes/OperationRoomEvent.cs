@@ -40,11 +40,9 @@ public class OperationRoomEvent : MonoBehaviour
     {
         StartCoroutine(FlickerRoutine());
 
-        // camera null일 경우 자동 할당
         if (playerCamera == null)
             playerCamera = Camera.main;
 
-        // 마네킹 카메라 시야 감지 세팅
         cullingGroup = new CullingGroup();
         cullingGroup.targetCamera = playerCamera;
 
@@ -66,10 +64,8 @@ public class OperationRoomEvent : MonoBehaviour
             float waitTime = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(waitTime);
 
-            // 한 번 깜빡임
             yield return StartCoroutine(SingleFlicker());
 
-            // 랜덤 추가 깜빡임
             if (Random.Range(0, 100) < glitchChance)
                 yield return StartCoroutine(QuickFlicker());
 
@@ -90,7 +86,7 @@ public class OperationRoomEvent : MonoBehaviour
 
     private IEnumerator QuickFlicker()
     {
-        int count = Random.Range(2, 4); // 최대 3번 연속
+        int count = Random.Range(2, 4);
 
         for (int i = 0; i < count; i++)
         {
@@ -113,7 +109,6 @@ public class OperationRoomEvent : MonoBehaviour
         }
     }
 
-    // 깜빡임 중단 & 마네킹 활성화
     public void StopFlicker()
     {
         if (flickerStopped) return;
@@ -128,7 +123,6 @@ public class OperationRoomEvent : MonoBehaviour
         mannequin.SetActive(true);
     }
 
-    // 카메라에 보이면 1초 뒤 삭제
     public void OnMannequinSeen(CullingGroupEvent sphere)
     {
         if (!mannequin.activeSelf) return;
