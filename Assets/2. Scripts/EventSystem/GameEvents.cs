@@ -25,14 +25,16 @@ public static class GameEvents
     public static void ChangeGameState(GameState gameState) => OnChangeGameState?.Invoke(gameState);
 
     // 설정 관련 이벤트 정의
-    public static System.Action<int> OnResolutionChanged;           // 해상도 변경
-    public static System.Action<bool> OnFullscreenChanged;          // 전체화면 변경
-    public static System.Action<int> OnQualityChanged;              // 그래픽 품질 변경
-    public static System.Action<Language> OnLanguageChanged;        // 언어 설정 변경
+    public static event System.Action<int> OnResolutionChanged;           // 해상도 변경
+    public static event System.Action<bool> OnFullscreenChanged;          // 전체화면 변경
+    public static event System.Action<int> OnQualityChanged;              // 그래픽 품질 변경
+    public static event System.Action<Language> OnLanguageChanged;        // 언어 설정 변경
+    public static event System.Action<float> OnSensitivityChanged;       // 감도 변경 이벤트
 
     // 설정 이벤트 호출 메서드
     public static void ResolutionChanged(int resolutionIndex) => OnResolutionChanged?.Invoke(resolutionIndex);
     public static void FullscreenChanged(bool isFullscreen) => OnFullscreenChanged?.Invoke(isFullscreen);
     public static void QualityChanged(int qualityLevel) => OnQualityChanged?.Invoke(qualityLevel);
     public static void LanguageChanged(Language language) => OnLanguageChanged?.Invoke(language);
+    public static void SensitivityChanged(float value) => OnSensitivityChanged?.Invoke(value);
 }

@@ -11,7 +11,27 @@ public class FirstPersonCamera : Actor
     public float clampAngle = 80f;              // 상하 회전 제한 각도
 
     private float xRotation = 0f;               // 상하 회전 값
-    
+
+    private void Start()
+    {
+        mouseSensitivity = SettingsManager.Instance.currentSettings.mouseSentivity;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnSensitivityChanged += OnSensitivityChanged;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnSensitivityChanged -= OnSensitivityChanged;
+    }
+
+    void OnSensitivityChanged(float value)
+    {
+        mouseSensitivity = value;
+    }
+
     protected override void ActorUpdate()
     {
         // 마우스 입력

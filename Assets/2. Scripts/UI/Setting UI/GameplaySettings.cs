@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameplaySettings : SettingTabBase
 {
     [Header("Language Settings")]
     public TMP_Dropdown languageDropdown;
+    public Slider mouseSensitivitySlider;
+    public TextMeshProUGUI sensitivityValue;
 
     protected override void InitializeUI()
     {
@@ -19,6 +22,15 @@ public class GameplaySettings : SettingTabBase
                 SettingsManager.Instance.GetLanguageStrings()));
         }
 
+        if(mouseSensitivitySlider != null)
+        {
+            mouseSensitivitySlider.value = settingsUI.tempSettings.mouseSentivity;
+        }
+
+        if (sensitivityValue != null)
+        {
+            sensitivityValue.text = settingsUI.tempSettings.mouseSentivity.ToString("F1");
+        }
     }
 
     protected override void SetupEventListeners()
@@ -27,6 +39,9 @@ public class GameplaySettings : SettingTabBase
         // 언어 설정
         if (languageDropdown != null)
             languageDropdown.onValueChanged.AddListener(OnLanguageChanged);
+
+        if(mouseSensitivitySlider != null)
+            mouseSensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
 
     }
 
@@ -62,6 +77,14 @@ public class GameplaySettings : SettingTabBase
         };
 
         settingsUI.tempSettings.language = language;
+    }
+
+    private void OnSensitivityChanged(float value)
+    {
+        if(sensitivityValue != null)
+            sensitivityValue.text = value.ToString("F1");
+
+        settingsUI.tempSettings.mouseSentivity = value;
     }
     #endregion
 }

@@ -41,6 +41,9 @@ public class GameSettings
     [Header("Language Setting")]
     public Language language = Language.en; // 언어 설정
 
+    [Header("Gameplay Settings")]
+    public float mouseSentivity = 100f;
+
     // Clone 메서드
     public GameSettings Clone()
     {
@@ -67,6 +70,7 @@ public class GameSettings
 
         clone.language = this.language;
 
+        clone.mouseSentivity = this.mouseSentivity;
 
         return clone;
     }
@@ -77,27 +81,29 @@ public class GameSettings
         if (other == null) return false;
 
         return resolutionIndex == other.resolutionIndex &&
-               isFullscreen == other.isFullscreen &&
-               targetFrameRate == other.targetFrameRate &&
+                isFullscreen == other.isFullscreen &&
+                targetFrameRate == other.targetFrameRate &&
                 vsyncEnabled == other.vsyncEnabled &&
 
-               //masterVolume == other.masterVolume &&                      // 사운드 같은 경우는 실시간으로 저장 되도록
-               //sfxVolume == other.sfxVolume &&
-               //musicVolume == other.musicVolume &&
+                //masterVolume == other.masterVolume &&                      // 사운드 같은 경우는 실시간으로 저장 되도록
+                //sfxVolume == other.sfxVolume &&
+                //musicVolume == other.musicVolume &&
 
-               uiScale == other.uiScale &&
+                uiScale == other.uiScale &&
 
-               qualityLevel == other.qualityLevel &&
+                qualityLevel == other.qualityLevel &&
 
-               shadowQuality == other.shadowQuality &&
-               shadowDistance == other.shadowDistance &&
-               shadowCascadeCount == other.shadowCascadeCount &&
-               shadowResolution == other.shadowResolution &&
-               textureQuality == other.textureQuality &&
-               aaLevel == other.aaLevel &&
-               lodBias == other.lodBias &&
+                shadowQuality == other.shadowQuality &&
+                shadowDistance == other.shadowDistance &&
+                shadowCascadeCount == other.shadowCascadeCount &&
+                shadowResolution == other.shadowResolution &&
+                textureQuality == other.textureQuality &&
+                aaLevel == other.aaLevel &&
+                lodBias == other.lodBias &&
 
-               language == other.language;
+                language == other.language &&
+
+                mouseSentivity == other.mouseSentivity;
     }
 }
 
@@ -212,6 +218,7 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         ApplyUISettings();
         ApplyGraphicsSettings();
         ApplyLanguageSetting();
+        ApplyMouseSensitivity();
 
         lightSetting.LightSetting();        // 라이트는 따로 설정
     }
@@ -289,6 +296,11 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
 
         LocalizationSettings.SelectedLocale =
             LocalizationSettings.AvailableLocales.Locales[(int)currentSettings.language];
+    }
+
+    private void ApplyMouseSensitivity()
+    {
+        GameEvents.SensitivityChanged(currentSettings.mouseSentivity);
     }
 
 
