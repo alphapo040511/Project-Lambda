@@ -19697,6 +19697,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.21629143
       objectReference: {fileID: 0}
+    - target: {fileID: 6824523298348460976, guid: fa64f259aacdede4ea590d518089a24f,
+        type: 3}
+      propertyPath: blendDistance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -65699,7 +65704,7 @@ Transform:
   - {fileID: 1905798284}
   - {fileID: 1131118038}
   - {fileID: 285409254}
-  - {fileID: 1624221376}
+  - {fileID: 2091895176156401353}
   m_Father: {fileID: 1436686740}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &884729826
@@ -78571,6 +78576,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pre_BlueVolume
       objectReference: {fileID: 0}
+    - target: {fileID: 4942802789262199338, guid: ae608805122846b418ddfe3d6d569d7a,
+        type: 3}
+      propertyPath: blendDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8519456224115372785, guid: ae608805122846b418ddfe3d6d569d7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -82987,6 +82997,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: -12.317784
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942802789262199338, guid: ae608805122846b418ddfe3d6d569d7a,
+        type: 3}
+      propertyPath: blendDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8519456224115372785, guid: ae608805122846b418ddfe3d6d569d7a,
         type: 3}
@@ -102684,6 +102699,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 3.1827497
       objectReference: {fileID: 0}
+    - target: {fileID: 4942802789262199338, guid: ae608805122846b418ddfe3d6d569d7a,
+        type: 3}
+      propertyPath: blendDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8519456224115372785, guid: ae608805122846b418ddfe3d6d569d7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -118399,17 +118419,27 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -1.6617231
       objectReference: {fileID: 0}
+    - target: {fileID: 6824523298348460976, guid: fa64f259aacdede4ea590d518089a24f,
+        type: 3}
+      propertyPath: weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824523298348460976, guid: fa64f259aacdede4ea590d518089a24f,
+        type: 3}
+      propertyPath: blendDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824523298348460976, guid: fa64f259aacdede4ea590d518089a24f,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: aeee60778633a9541938b7f2e7adc77c,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa64f259aacdede4ea590d518089a24f, type: 3}
---- !u!4 &1624221376 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2091895175632152694, guid: fa64f259aacdede4ea590d518089a24f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1624221375}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1625787800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138690,6 +138720,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.24345398
       objectReference: {fileID: 0}
+    - target: {fileID: 4942802789262199338, guid: ae608805122846b418ddfe3d6d569d7a,
+        type: 3}
+      propertyPath: blendDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8519456224115372785, guid: ae608805122846b418ddfe3d6d569d7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -156838,6 +156873,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &2091895176156401353 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2091895175632152694, guid: fa64f259aacdede4ea590d518089a24f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1624221375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &2138407118478840028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -157494,6 +157535,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824523298348460976, guid: fa64f259aacdede4ea590d518089a24f,
+        type: 3}
+      propertyPath: blendDistance
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
