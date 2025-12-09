@@ -241,10 +241,10 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
             // 볼륨을 dB로 변환 (0~1 범위를 -80dB ~ 80dB로)
             float masterDB = currentSettings.masterVolume > 0 ?
                 Mathf.Log10(currentSettings.masterVolume) * 20 : -80f;
-            float sfxDB = currentSettings.masterVolume > 0 ?
-                Mathf.Log10(currentSettings.masterVolume) * 20 : -80f;
-            float musicDB = currentSettings.masterVolume > 0 ?
-                Mathf.Log10(currentSettings.masterVolume) * 20 : -80f;
+            float sfxDB = currentSettings.sfxVolume > 0 ?
+                Mathf.Log10(currentSettings.sfxVolume) * 20 : -80f;
+            float musicDB = currentSettings.musicVolume > 0 ?
+                Mathf.Log10(currentSettings.musicVolume) * 20 : -80f;
 
             masterMixer.SetFloat(MASTER_VOLUME_PARAM, masterDB);
             masterMixer.SetFloat(SFX_VOLUME_PARAM, sfxDB);
