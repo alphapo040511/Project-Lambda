@@ -113,7 +113,7 @@ public class AudioSettings : SettingTabBase
             voiceVolumeText.text = $"{value * 100:F0}%";
 
         // 실시간 볼륨 적용
-        SettingsManager.Instance.SetMusicVolume(value);
+        SettingsManager.Instance.SetVoiceVolume(value);
     }
     #endregion
 }

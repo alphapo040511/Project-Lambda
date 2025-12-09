@@ -91,6 +91,12 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
             return;
         }
 
+        if(questId == currentQuestId)
+        {
+            Debug.Log("이미 진행중인 퀘스트 입니다.");
+            return;
+        }
+
         UIManager.Instance.ShowOverlay(OverlayType.Quest);
 
         questQueue.Enqueue(questId);                        // 꼬임 방지를 위해 퀘스트를 큐에 저장
@@ -105,6 +111,7 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
         if (questList[currentQuestId].targetCount > 1)
             view.UpdateProgress(questList[currentQuestId].targetCount, questList[currentQuestId].currentCount);
 
+        SoundManager.Instance.PlaySound("sfx_sleepCapsule_denied");     // 퀘스트 등록 사운드
         Debug.Log($"{currentQuestId}를 현재 퀘스트로 등록 했습니다.");
     }
 

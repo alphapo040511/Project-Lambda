@@ -31,7 +31,6 @@ public class QuestHandler : MonoBehaviour
     public void RegistQuest()
     {
         QuestManager.Instance.RegistQuest(targetQuest.questId);
-        SoundManager.Instance.PlaySound("sfx_sleepCapsule_denied");     // 퀘스트 등록 사운드
     }
 
     // 외부에서 퀘스트를 사용할 때 호출

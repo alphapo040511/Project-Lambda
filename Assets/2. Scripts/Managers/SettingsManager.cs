@@ -126,10 +126,10 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     private const string SETTINGS_KEY = "GameSettings";
 
     // 오디오 믹서 파라미터 이름
-    private const string MASTER_VOLUME_PARAM = "MasterVolume";
-    private const string SFX_VOLUME_PARAM = "SFXVolume";
-    private const string MUSIC_VOLUME_PARAM = "MusicVolume";
-    private const string VOICE_VOLUME_PARAM = "VoiceVolume";
+    private const string MASTER_VOLUME_PARAM = "Master";
+    private const string SFX_VOLUME_PARAM = "SFX";
+    private const string MUSIC_VOLUME_PARAM = "BGM";
+    private const string VOICE_VOLUME_PARAM = "Voice";
 
     // 현재 적용중인 urpAsset;
     private UniversalRenderPipelineAsset urpAsset;
@@ -366,6 +366,12 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
     public void SetMusicVolume(float volume)
     {
         currentSettings.masterVolume = Mathf.Clamp01(volume);
+        ApplyAudioSettings();
+    }
+
+    public void SetVoiceVolume(float volume)
+    {
+        currentSettings.voiceVolume = Mathf.Clamp01(volume);
         ApplyAudioSettings();
     }
 
