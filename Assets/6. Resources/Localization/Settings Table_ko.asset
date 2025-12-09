@@ -226,6 +226,35 @@ MonoBehaviour:
     m_Localized: "\uC74C\uC131 \uBCFC\uB968"
     m_Metadata:
       m_Items: []
+  - m_Id: 33537489087729664
+    m_Localized: "\uC0C8\uB85C\uC6B4 \uAC8C\uC784"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33537491516231680
+    m_Localized: "\uBD88\uB7EC\uC624\uAE30"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33537925278568448
+    m_Localized: "\uC124\uC815"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33537959176933376
+    m_Localized: "\uAC8C\uC784 \uC885\uB8CC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33540345240981504
+    m_Localized: "\uAC8C\uC784\uC744 \uC885\uB8CC\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33540681439612928
+    m_Localized: "\uD0C0\uC774\uD2C0\uB85C \uB3CC\uC544\uAC00\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?\\n<color=#FF4444>(\uC800\uC7A5\uD558\uC9C0
+      \uC54A\uC740 \uB370\uC774\uD130\uB294 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4.)</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33561206878605312
+    m_Localized: "\uC790\uB3D9\uC800\uC7A5 \uBD88\uB7EC\uC624\uAE30"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

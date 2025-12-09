@@ -243,7 +243,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
     public void Resume()
     {
-        if (CurrentScreen == ScreenType.Pause)
+        if (CurrentScreen == ScreenType.Pause || CurrentScreen == ScreenType.Save)
         {
             HideScreen();
         }

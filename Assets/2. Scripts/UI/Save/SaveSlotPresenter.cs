@@ -43,8 +43,15 @@ public class SaveSlotPresenter : ScreenBase
 
     public override void Hide()
     {
-        canvas.gameObject.SetActive(false);
-        GameManager.Instance.ResumeGame();
+        if(GameManager.Instance.currentGameState == GameState.GameOver)
+        {   
+            UIManager.Instance.ShowScreen(ScreenType.GameOver);                 // 게임 오버 상태의 경우 해당 UI 표시
+        }
+        else
+        {
+            canvas.gameObject.SetActive(false);
+            GameManager.Instance.ResumeGame();
+        }
     }
 
     public override void Init()

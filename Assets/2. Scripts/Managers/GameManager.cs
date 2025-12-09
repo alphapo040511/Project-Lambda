@@ -87,16 +87,16 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             {
                 PauseGame();
             }
-            else if (currentGameState == GameState.Paused)
+            else if (currentGameState == GameState.Paused || currentGameState == GameState.Save || currentGameState == GameState.Load)
             {
                 ResumeGame();
             }
         }
-        if(Input.GetKey(KeyCode.LeftShift) &&Input.GetKeyDown(KeyCode.S))
-        {
-            ChangeGameState(GameState.Paused);
-            UIManager.Instance.ShowScreen(ScreenType.Save);
-        }
+        //if(Input.GetKey(KeyCode.LeftShift) &&Input.GetKeyDown(KeyCode.S))
+        //{
+        //    ChangeGameState(GameState.Save);
+        //    UIManager.Instance.ShowScreen(ScreenType.Save);
+        //}
     }
 
     //게임 상태 관리 영역
@@ -130,6 +130,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 break;
             case GameState.GameOver:
                 Cursor.lockState = CursorLockMode.None;
+                UIManager.Instance.HideAllOverlay();                // 모든 오버레이 가리기
                 break;
             case GameState.Loading:
                 Cursor.lockState = CursorLockMode.None;

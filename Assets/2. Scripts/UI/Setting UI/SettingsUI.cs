@@ -25,7 +25,7 @@ public class SettingsUI : ScreenBase
     public Button applyButton;
     public Button resetButton;
     public Button closeButton;
-    public Button exitButtton;
+    public Button exitButton;
 
     // 설정 변경 이벤트
     public event Action onRefreshUI;                            // 설정 초기화 등 모든 UI의 새로고침이 필요할 때
@@ -34,6 +34,8 @@ public class SettingsUI : ScreenBase
 
     public override void Show()
     {
+        exitButton.gameObject.SetActive(SceneManager.Instance.GetCurrentSceneName() != "MainMenu");
+
         canvas.gameObject.SetActive(true);
 
         LoadingSetting();
@@ -79,8 +81,8 @@ public class SettingsUI : ScreenBase
         if (closeButton != null)
             closeButton.onClick.AddListener(OnCloseClicked);
 
-        if(exitButtton != null)
-            exitButtton.onClick.AddListener(OnExitClicked);
+        if(exitButton != null)
+            exitButton.onClick.AddListener(OnExitClicked);
     }
 
     private void LoadingSetting()
@@ -192,8 +194,13 @@ public class SettingsUI : ScreenBase
 
     private void OnExitClicked()
     {
-        GameManager.Instance.ChangeGameState(GameState.Menu);
-        SceneManager.Instance.LoadMainMenu();
+        PopupManager.Instance.ShowConfirmPopup(
+            "Popup_ReturnToTitle_Title",
+            "Popup_Confirm",
+            "Popup_Cancel",
+            () => { GameManager.Instance.ChangeGameState(GameState.Menu);
+                SceneManager.Instance.LoadMainMenu();
+            });
     }
 
     #endregion

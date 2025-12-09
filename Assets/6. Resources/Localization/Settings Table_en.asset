@@ -220,6 +220,35 @@ MonoBehaviour:
     m_Localized: Gameplay
     m_Metadata:
       m_Items: []
+  - m_Id: 33537489087729664
+    m_Localized: New Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33537491516231680
+    m_Localized: Load Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33537925278568448
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33537959176933376
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33540345240981504
+    m_Localized: Are you sure you want to quit the game?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33540681439612928
+    m_Localized: Are you sure you want to return to the title?\n<color=#FF4444>(Any
+      unsaved progress will be lost.)</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33561206878605312
+    m_Localized: Load Autosave
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

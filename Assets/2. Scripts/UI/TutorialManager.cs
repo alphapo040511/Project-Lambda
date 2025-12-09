@@ -27,6 +27,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         movePanel.SetActive(false);
         interactionPanel.SetActive(false);
         lookPanel.SetActive(false);
+        wordPuzzlePanel.SetActive(false);
     }
 
     private void OnEnable()

@@ -20,6 +20,8 @@ public class DeathZoneEvent : MonoBehaviour
 
     Coroutine deathRoutine;
 
+    bool isPlayed = false;
+
     private void OnEnable()
     {
         GameEvents.OnChangeGameState += OnChangeState;
@@ -55,7 +57,10 @@ public class DeathZoneEvent : MonoBehaviour
 
     public void PlayerDie()
     {
-        if(deathRoutine != null)
+        if (isPlayed) return;
+        isPlayed = true;
+
+        if (deathRoutine != null)
         {
             Debug.LogWarning("이미 사망 연출이 진행중 입니다.");
             return;
@@ -105,6 +110,8 @@ public class DeathZoneEvent : MonoBehaviour
         VolumeManager.Instance.filmGrain.intensity.value = 0.275f;      // 필름그레인 값 증가
         CoroutineRunner.Instance.Run(FadeOut(1f));          // 페이드 아웃
         deathAudioSource.PlayOneShot(deathAfterClip);       // 사망 이후 효과음
+
+        UIManager.Instance.ShowScreen(ScreenType.GameOver);             // 게임 오버 UI가 보이도록
 
         deathRoutine = null;
     }

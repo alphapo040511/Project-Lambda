@@ -215,6 +215,34 @@ MonoBehaviour:
     m_Key: Option_VoiceVolume
     m_Metadata:
       m_Items: []
+  - m_Id: 33537489087729664
+    m_Key: Title_NewGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33537491516231680
+    m_Key: Title_LoadGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33537925278568448
+    m_Key: Title_Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33537959176933376
+    m_Key: Title_QuitGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33540345240981504
+    m_Key: Popup_QuitGame_Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33540681439612928
+    m_Key: Popup_ReturnToTitle_Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33561206878605312
+    m_Key: ContinueFromLastAutosave
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

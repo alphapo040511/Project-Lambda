@@ -7,6 +7,8 @@ public class MainMenuUI : MonoBehaviour
 {
     public Button levelSceneButton;
     public Button startGameButton;
+    public Button settingButton;
+    public Button gameQuitButton;
     public Button startGameWithLoadingButton;
     public Button saveButton;
 
@@ -39,6 +41,25 @@ public class MainMenuUI : MonoBehaviour
             saveButton.onClick.AddListener(() =>{
                 UIManager.Instance.ShowScreen(ScreenType.Save);
                 GameManager.Instance.ChangeGameState(GameState.Load);   // 로드 상태로 변경
+            });
+        }
+
+        if (settingButton != null)
+        {
+            settingButton.onClick.AddListener(() => {
+                GameManager.Instance.PauseGame();
+            });
+        }
+
+        if (gameQuitButton != null)
+        {
+            gameQuitButton.onClick.AddListener(() => {
+                PopupManager.Instance.ShowConfirmPopup(
+                    "Popup_QuitGame_Title",
+                    "Popup_Confirm",
+                    "Popup_Cancel",
+                    () => Application.Quit()
+                    );
             });
         }
     }
