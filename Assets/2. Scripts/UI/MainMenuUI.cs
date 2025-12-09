@@ -38,6 +38,7 @@ public class MainMenuUI : MonoBehaviour
         {
             saveButton.onClick.AddListener(() =>{
                 UIManager.Instance.ShowScreen(ScreenType.Save);
+                GameManager.Instance.ChangeGameState(GameState.Load);   // 로드 상태로 변경
             });
         }
     }

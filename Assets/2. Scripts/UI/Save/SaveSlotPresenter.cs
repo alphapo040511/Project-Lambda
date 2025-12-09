@@ -17,20 +17,28 @@ public class SaveSlotPresenter : ScreenBase
     public Canvas canvas;
     public List<SaveSlotView> views = new List<SaveSlotView>();
 
-    public SaveState isSaveState = SaveState.Save;
+    public SaveState saveState = SaveState.Save;
 
     public Button saveButton;
     public Button loadButton;
     public Button deleteButton;
     public Button closeButton;
 
+    private void OnEnable()
+    {
+        GameEvents.OnChangeGameState += ChangeGameState;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnChangeGameState -= ChangeGameState;
+    }
 
     public override void Show()
     {
-        ChangeSaveState(isSaveState);
+        ChangeSaveState(saveState);
         UpdateView();
         canvas.gameObject.SetActive(true);
-        GameManager.Instance.ChangeGameState(GameState.Paused);         // 임시로 일시정지 상태로 변경 (상태 부분 정리 필요)
     }
 
     public override void Hide()
@@ -43,7 +51,7 @@ public class SaveSlotPresenter : ScreenBase
     {
         ViewInitialize();
         SetupEventListeners();
-        ChangeSaveState(isSaveState);
+        ChangeSaveState(saveState);
 
         // 닫기 버튼 색상 변경
         var closeColor = closeButton.colors;
@@ -125,15 +133,15 @@ public class SaveSlotPresenter : ScreenBase
     {
         Debug.Log($"[{SaveState.Save}]{slotIndex} 슬롯을 클릭하였습니다.");
 
-        if(isSaveState == SaveState.Save && slotIndex != 0)                 // 저장하기 일 때 (0번은 자동저장)
+        if(saveState == SaveState.Save && slotIndex != 0)                 // 저장하기 일 때 (0번은 자동저장)
         {
             Save(slotIndex);
         }
-        else if(isSaveState == SaveState.Delete)
+        else if(saveState == SaveState.Delete)
         {
             Delete(slotIndex);
         }
-        else if (isSaveState == SaveState.Load)         // 불러오기 일 때
+        else if (saveState == SaveState.Load)         // 불러오기 일 때
         {
             Load(slotIndex);
         }
@@ -167,7 +175,7 @@ public class SaveSlotPresenter : ScreenBase
             SaveData save = await SaveManager.LoadAsync(slotIndex);
             Hide();
             SaveObjectLoader.Instance.SetSaveData(save);
-            SceneManager.Instance.LoadSceneWithLoadingScreen(save.saveSceneName);
+            SceneManager.Instance.LoadScene(save.saveSceneName);
         }
         else                                        // 데이터가 없는 경우
         {
@@ -199,19 +207,42 @@ public class SaveSlotPresenter : ScreenBase
 
     void ChangeSaveState(SaveState newState)
     {
-        isSaveState = newState;
+        saveState = newState;
 
         var saveColor = saveButton.colors;
         var loadColor = loadButton.colors;
         var deleteColor = deleteButton.colors;
 
-        saveColor.normalColor = (isSaveState == SaveState.Save ? Color.white : Color.gray);
-        loadColor.normalColor = (isSaveState == SaveState.Load ? Color.white : Color.gray);
-        deleteColor.normalColor = (isSaveState == SaveState.Delete ? Color.white : Color.gray);
+        saveColor.normalColor = (saveState == SaveState.Save ? Color.white : Color.gray);
+        loadColor.normalColor = (saveState == SaveState.Load ? Color.white : Color.gray);
+        deleteColor.normalColor = (saveState == SaveState.Delete ? Color.white : Color.gray);
 
         saveButton.colors = saveColor;
         loadButton.colors = loadColor;
         deleteButton.colors = deleteColor;
+    }
+
+    // 게임 상태에 따른 버튼 활성화 여부
+    void ChangeGameState(GameState state)
+    {
+        if(state == GameState.Save)
+        {
+            // 현재 상태 저장으로 설정
+            saveState = SaveState.Save;
+
+            // 세이브 버튼 활성화
+            saveButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            // 현재 상태 로드로 설정
+            saveState = SaveState.Load;
+
+            // 세이브 버튼 비활성화
+            saveButton.gameObject.SetActive(false);
+        }
+
+        ChangeSaveState(saveState);
     }
 
     Sprite GetThumbnail(string path)

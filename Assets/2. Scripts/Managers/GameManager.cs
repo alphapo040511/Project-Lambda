@@ -13,7 +13,9 @@ public enum GameState
     Cutscene,
     Focus,
     Observation,
-    Loading
+    Loading,    // 씬 로드
+    Save,       // 저장
+    Load        // 세이브 로드
 }
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
@@ -79,7 +81,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // ESC 키로 게임 일시정지/재개
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentGameState != GameState.Paused && currentGameState != GameState.Focus && currentGameState != GameState.Observation && currentGameState != GameState.GameOver)
+            if (currentGameState != GameState.Paused && currentGameState != GameState.Focus &&
+                currentGameState != GameState.Observation && currentGameState != GameState.GameOver &&
+                currentGameState != GameState.Save && currentGameState != GameState.Load)
             {
                 PauseGame();
             }
@@ -139,6 +143,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             case GameState.Observation:
                 Cursor.lockState = CursorLockMode.None;
                 break;
+            case GameState.Save:
+                Cursor.lockState = CursorLockMode.None;
+                break;
+            case GameState.Load:
+                Cursor.lockState = CursorLockMode.None;
+                break;
         }
 
         GameEvents.ChangeGameState(newState);
@@ -164,12 +174,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public void ResumeGame()
     {
-        if (currentGameState != GameState.Paused) return;
+        //if (currentGameState != GameState.Paused) return;
 
         isGamePaused = false;
         ChangeGameState(previousGameState);
         GameEvents.GameResumed();
-
         UIManager.Instance.Resume();
     }
 
