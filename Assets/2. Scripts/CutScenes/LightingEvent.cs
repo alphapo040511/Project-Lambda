@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class LightingEvent : SaveObject
 {
+    public AudioSource audioSource;
+    public AudioClip noise;
+
     [Header("조명을 포함한 대상 오브젝트들")]
     public List<GameObject> normalProps = new List<GameObject>();
     public List<GameObject> glitchProps = new List<GameObject>();
@@ -46,6 +49,7 @@ public class LightingEvent : SaveObject
         DirectionManager.Instance.EnterDangerZone();
         yield return new WaitForSeconds(0.5f);
 
+        audioSource.PlayOneShot(noise);
         ToggleProps(on);
 
         yield return new WaitForSeconds(1f);
