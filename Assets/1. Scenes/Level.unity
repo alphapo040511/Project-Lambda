@@ -41384,7 +41384,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e7114836905e95d41836317933180c98,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.6357
+      value: -12.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7114836905e95d41836317933180c98,
         type: 3}
@@ -41394,7 +41394,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e7114836905e95d41836317933180c98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.865252
+      value: 12.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7114836905e95d41836317933180c98,
         type: 3}
@@ -60472,7 +60472,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.8
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -63560,7 +63560,7 @@ MonoBehaviour:
   playerCamera: {fileID: 725336804}
   audioSource: {fileID: 847960441}
   noise: {fileID: 8300000, guid: 1bdd083e6ef3a09499e1432329ab92d3, type: 3}
-  spooky: {fileID: 0}
+  spooky: {fileID: 8300000, guid: 802b6b5b30101ef41b44370ba26184f4, type: 3}
   operationVolume: {fileID: 1624221376}
   normalVolume: {fileID: 11400000, guid: bb47f364d33cc6e4b8f97af8e7470fc0, type: 2}
 --- !u!82 &847960441
@@ -69988,7 +69988,7 @@ PrefabInstance:
     - target: {fileID: 1780560545046106339, guid: 2f917b86a0b2af841a996596f50c3f95,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -118674,7 +118674,7 @@ PrefabInstance:
     - target: {fileID: 6197598455434371214, guid: fa64f259aacdede4ea590d518089a24f,
         type: 3}
       propertyPath: m_Size.x
-      value: 9.880423
+      value: 9.461121
       objectReference: {fileID: 0}
     - target: {fileID: 6197598455434371214, guid: fa64f259aacdede4ea590d518089a24f,
         type: 3}
@@ -118684,7 +118684,7 @@ PrefabInstance:
     - target: {fileID: 6197598455434371214, guid: fa64f259aacdede4ea590d518089a24f,
         type: 3}
       propertyPath: m_Center.x
-      value: -1.0734987
+      value: -0.86384773
       objectReference: {fileID: 0}
     - target: {fileID: 6197598455434371214, guid: fa64f259aacdede4ea590d518089a24f,
         type: 3}
@@ -118699,7 +118699,7 @@ PrefabInstance:
     - target: {fileID: 6824523298348460976, guid: fa64f259aacdede4ea590d518089a24f,
         type: 3}
       propertyPath: blendDistance
-      value: 5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6824523298348460976, guid: fa64f259aacdede4ea590d518089a24f,
         type: 3}
@@ -123424,11 +123424,16 @@ PrefabInstance:
     - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
         type: 3}
       propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
         type: 3}
       propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
@@ -123438,7 +123443,17 @@ PrefabInstance:
       objectReference: {fileID: 1698256543}
     - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
         type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 847960440}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
       propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
@@ -123448,12 +123463,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
         type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StopFlicker
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
       propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: QuestHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
         type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: OperationRoomEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
       propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126642675225696767, guid: a8b1c02aba2877c4dba1690352225831,
+        type: 3}
+      propertyPath: onCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3329438105298989257, guid: a8b1c02aba2877c4dba1690352225831,
@@ -138988,7 +139018,7 @@ PrefabInstance:
     - target: {fileID: 4593102237907990687, guid: ae608805122846b418ddfe3d6d569d7a,
         type: 3}
       propertyPath: m_Size.x
-      value: 6.3180447
+      value: 6.9279346
       objectReference: {fileID: 0}
     - target: {fileID: 4593102237907990687, guid: ae608805122846b418ddfe3d6d569d7a,
         type: 3}
@@ -138998,7 +139028,7 @@ PrefabInstance:
     - target: {fileID: 4593102237907990687, guid: ae608805122846b418ddfe3d6d569d7a,
         type: 3}
       propertyPath: m_Center.x
-      value: -18.6012
+      value: -18.296257
       objectReference: {fileID: 0}
     - target: {fileID: 4593102237907990687, guid: ae608805122846b418ddfe3d6d569d7a,
         type: 3}

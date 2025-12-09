@@ -121,8 +121,8 @@ public class OperationRoomEvent : MonoBehaviour
 
         StopAllCoroutines();
 
-        normalLight.SetActive(true);
-        brokenLight.SetActive(false);
+        normalLight.SetActive(false);
+        brokenLight.SetActive(true);
 
         mannequinHidden = false;
         mannequin.SetActive(true);
@@ -131,16 +131,17 @@ public class OperationRoomEvent : MonoBehaviour
     // 카메라에 보이면 1초 뒤 삭제
     public void OnMannequinSeen(CullingGroupEvent sphere)
     {
-        DirectionManager.Instance.screenGlitchShader.DOKill();
-        DirectionManager.Instance.screenGlitchShader.DOFloat(25f, "_NoiseAmount", 1f);
-        DirectionManager.Instance.screenGlitchShader.DOFloat(25f, "_GlitchStrength", 1f);
-        DirectionManager.Instance.screenGlitchShader.DOFloat(1f, "_ScanLinesStrength", 1f);
-
+        if (!mannequin.activeSelf) return;
         if (mannequinHidden) return;
+
         if (sphere.isVisible)
         {
             Invoke(nameof(HideMannequin), 2f);
             audioSource.PlayOneShot(spooky);
+            DirectionManager.Instance.screenGlitchShader.DOKill();
+            DirectionManager.Instance.screenGlitchShader.DOFloat(25f, "_NoiseAmount", 1f);
+            DirectionManager.Instance.screenGlitchShader.DOFloat(25f, "_GlitchStrength", 1f);
+            DirectionManager.Instance.screenGlitchShader.DOFloat(1f, "_ScanLinesStrength", 1f);
         }
 
     }
@@ -172,6 +173,9 @@ public class OperationRoomEvent : MonoBehaviour
 
         mannequinHidden = true;
         mannequin.SetActive(false);
+
+        normalLight.SetActive(true);
+        brokenLight.SetActive(false);
     }
 
     private void OnDisable()
