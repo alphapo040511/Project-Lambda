@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Broken_Fuse
   m_EditorClassIdentifier: 
   uniqueID: Broken_Fuse
-  descriptionKey: "\uB9DD\uAC00\uC9C4 \uD4E8\uC988\uC774\uB2E4. \uC774\uB85C \uC778\uD574
-    \uB85C\uBE44\uC5D0 \uC804\uB825\uC774 \uACF5\uAE09\uB418\uACE0 \uC788\uC9C0 \uC54A\uC558\uB358
-    \uB4EF\uD558\uB2E4."
+  descriptionKey: "\uB9DD\uAC00\uC9C4 \uD4E8\uC988\uC774\uB2E4. \uC5B4\uC9F8\uC11C
+    \uB9DD\uAC00\uC9C4 \uAC83\uC778\uC9C0\uB294 \uC54C \uC218 \uC5C6\uB2E4."
   isCollectable: 1
