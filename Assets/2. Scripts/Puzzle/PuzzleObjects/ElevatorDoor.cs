@@ -14,6 +14,7 @@ public class ElevatorDoor : InteractionReceiver
     public AudioSource elevatorAudioSource;
     public AudioClip elevatorOpenAudioClip;
     public AudioClip elevatorCloseAudioClip;
+    public AudioClip stopBGMClip;
 
     //[Header("문 설정")]
     [HideInInspector] public Vector3 openPosition;
@@ -93,6 +94,7 @@ public class ElevatorDoor : InteractionReceiver
 
         DialogueManager.Instance.StopAllDialog();
         DialogueManager.Instance.PlayingDialog("AI_Elevator_Open");
+        SoundManager.Instance.StopSound(stopBGMClip.name);
     }
 
     public void OnEventCollider()

@@ -5,16 +5,18 @@ using UnityEngine;
 using UnityEngine.ProBuilder;
 using UnityEngine.Events;
 
-public class WordMatchPuzzle : MonoBehaviour
+public class WordMatchPuzzle : SaveObject
 {
     [Header("Componenet Reference")]
     public InteractionFocus interaction;
     public TextMeshProUGUI textTMP;
     public TextMeshProUGUI markTMP;
     public TextMeshProUGUI countText;
+    public TextMeshProUGUI remainingText;
 
     [Header("Word Settings")]
     public WordPuzzleDataSO puzzleData;
+    public int maxLength = 8;
     [Tooltip("랜덤 세그먼트의 길이")]
     public int segmentLength = 8;
     private int remainingCount;                 // 남은 시도 횟수
@@ -39,19 +41,19 @@ public class WordMatchPuzzle : MonoBehaviour
     float holdInterval = 0.1f;
     float timer = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    public void CreateWordPuzzle()
     {
-        segmentLength = 16 - puzzleData.answer.Length;               // 최대 길이인 16에서 단어 길이만큼 제외
-        remainingCount = puzzleData.tryChance;
-        countText.text = $"TargetWord ... \n Likeness _ \n Remaining Count {remainingCount}";
+        if (state == ObjectState.Used) return;          // 사용(클리어)된 경우 새로 생성 X
+
+        segmentLength = maxLength - puzzleData.answer.Length;               // 최대 길이에서 단어 길이만큼 제외ingCount = puzzleData.tryChance;
+        countText.text = $"TargetWord ... \nLikeness _";
+        remainingText.text = $"Remaining Count {remainingCount}";
 
         RandomIndexing();           // 랜덤 단어 목록 정리
         InitialLine();              // 출력 단어 목록 정리
         ShowText();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!gameObject.activeSelf || !interaction.isFocused) return;
@@ -105,9 +107,10 @@ public class WordMatchPuzzle : MonoBehaviour
         if (remainingCount <= 0 || wordList[currentWordIndex].Length == 1) return;
         int count = SameWord(wordList[currentWordIndex]);
         remainingCount--;
-        countText.text = $"TargetWord {wordList[currentWordIndex]}... \n Likeness {count} \n Remaining Count {remainingCount}";
+        countText.text = $"TargetWord {wordList[currentWordIndex]}... \nLikeness {count}";
+        remainingText.text = $"Remaining Count {remainingCount}";
 
-        if(count == puzzleData.answer.Length)
+        if (count == puzzleData.answer.Length)
         {
             PuzzleCleared();
         }
@@ -115,6 +118,7 @@ public class WordMatchPuzzle : MonoBehaviour
 
     void PuzzleCleared()
     {
+        state = ObjectState.Used;
         onCleared?.Invoke();
         interaction.DisableInteraction();       // 상호작용 불가 상태로 변경
         interaction.ExitFocus();
@@ -227,8 +231,8 @@ public class WordMatchPuzzle : MonoBehaviour
     string GetRandomAddress()
     {
         int major = Random.Range(0xD0, 0xDF);
-        int minor = Random.Range(0x000, 0xFFF);
-        return $"   0x{major:X2}{minor:X3}   ";
+        int minor = Random.Range(0x00, 0xFF);
+        return $"  0x{major:X2}{minor:X2}  ";
     }
 
     string GetRandomWord()
