@@ -259,6 +259,18 @@ MonoBehaviour:
     m_Key: "\rCategory_Shadow"
     m_Metadata:
       m_Items: []
+  - m_Id: 33604986599792640
+    m_Key: Option_Button_Gameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33605020208750592
+    m_Key: Option_Button_Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33605022096187392
+    m_Key: Option_Button_Graphic
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
