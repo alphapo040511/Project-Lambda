@@ -114,6 +114,10 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     {
         SlideOut();
         UIManager.Instance.HideOverlay(OverlayType.Tutorial);
+        movePanel.SetActive(false);
+        interactionPanel.SetActive(false);
+        lookPanel.SetActive(false);
+        wordPuzzlePanel.SetActive(false);
     }
 
 }
