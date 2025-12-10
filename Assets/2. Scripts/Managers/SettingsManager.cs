@@ -145,8 +145,12 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
         urpAsset = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
         lightSetting = gameObject.AddComponent<LightSettingManager>();
 
-        InitializeSettings();           //설정 초기화
         LoadSettings();                 //설정 데이터 로드
+    }
+
+    private void Start()
+    {
+        InitializeSettings();           //설정 초기화
         ApplyAllSettings();             //모든 설정 적용
     }
 
