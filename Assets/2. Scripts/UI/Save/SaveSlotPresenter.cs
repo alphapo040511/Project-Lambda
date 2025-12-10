@@ -43,14 +43,18 @@ public class SaveSlotPresenter : ScreenBase
 
     public override void Hide()
     {
-        if(GameManager.Instance.previousGameState == GameState.GameOver)
-        {   
+        canvas.gameObject.SetActive(false);
+    }
+
+    void CloseSaveSlot()
+    {
+        if (GameManager.Instance.previousGameState == GameState.GameOver)
+        {
             UIManager.Instance.ShowScreen(ScreenType.GameOver);                 // 게임 오버 상태의 경우 해당 UI 표시
         }
         else
         {
-            canvas.gameObject.SetActive(false);
-            GameManager.Instance.ResumeGame();
+            Hide();
         }
     }
 
@@ -91,7 +95,7 @@ public class SaveSlotPresenter : ScreenBase
         if (closeButton != null)
             closeButton.onClick.AddListener(() =>
             {
-                Hide();
+                CloseSaveSlot();
             });
     }
 

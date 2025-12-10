@@ -36,7 +36,8 @@ public class QuestManager : SingletonMonoBehaviour<QuestManager>
 
     private void HandleStateChange(GameState state)
     {
-        if(state == GameState.Cutscene || state == GameState.Menu || state == GameState.Loading)
+        if(state == GameState.Cutscene || state == GameState.Menu || state == GameState.Loading
+            || state == GameState.GameOver || state == GameState.Save || state == GameState.Load)
             UIManager.Instance.HideOverlay(OverlayType.Quest);
         else
             UIManager.Instance.ShowOverlay(OverlayType.Quest);

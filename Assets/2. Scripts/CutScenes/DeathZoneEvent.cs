@@ -30,6 +30,10 @@ public class DeathZoneEvent : MonoBehaviour
     private void OnDisable()
     {
         GameEvents.OnChangeGameState -= OnChangeState;
+
+        VolumeManager.Instance.filmGrain.intensity.value = 0.07f;      // 필름그레인 값 복구
+        if (deathFadeImage != null)
+            deathFadeImage.color = Color.clear;
     }
 
     void OnChangeState(GameState gameState)

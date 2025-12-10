@@ -72,5 +72,7 @@ public class FadeScreen : ScreenBase
         {
             canvasGroup.gameObject.SetActive(false);
         }
+
+        fadeCoroutine = null;
     }
 }

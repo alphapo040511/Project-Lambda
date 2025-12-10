@@ -130,7 +130,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 break;
             case GameState.GameOver:
                 Cursor.lockState = CursorLockMode.None;
-                UIManager.Instance.HideOverlay(OverlayType.Quest);      // 퀘스트 UI는 방해되므로 제거
+                UIManager.Instance.HideAllOverlay();                // 모든 오버레이 가리기
                 break;
             case GameState.Loading:
                 Cursor.lockState = CursorLockMode.None;
