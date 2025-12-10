@@ -21,7 +21,7 @@ RenderSettings:
   m_FogDensity: 0.05
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.32529017, g: 0.3415892, b: 0.3660378, a: 1}
+  m_AmbientSkyColor: {r: 0.36547706, g: 0.3815504, b: 0.4056604, a: 1}
   m_AmbientEquatorColor: {r: 0.1400303, g: 0.21646784, b: 0.27205884, a: 1}
   m_AmbientGroundColor: {r: 0.048010383, g: 0.112683475, b: 0.17647058, a: 1}
   m_AmbientIntensity: 1
@@ -169149,7 +169149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 10844700, guid: 530f5ce44fdac4197a29f5bec8818d85, type: 3}
       propertyPath: m_Intensity
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 10844700, guid: 530f5ce44fdac4197a29f5bec8818d85, type: 3}
       propertyPath: m_RenderingLayerMask
@@ -169183,7 +169183,7 @@ PrefabInstance:
     - target: {fileID: 185255469953626395, guid: 530f5ce44fdac4197a29f5bec8818d85,
         type: 3}
       propertyPath: m_RenderingLayerMask
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3613213914304857753, guid: 530f5ce44fdac4197a29f5bec8818d85,
         type: 3}
@@ -169193,7 +169193,7 @@ PrefabInstance:
     - target: {fileID: 5282429598318255846, guid: 530f5ce44fdac4197a29f5bec8818d85,
         type: 3}
       propertyPath: m_RenderingLayers
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7470934677521942190, guid: 530f5ce44fdac4197a29f5bec8818d85,
         type: 3}
