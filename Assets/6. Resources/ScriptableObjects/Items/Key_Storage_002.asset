@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Key_Storage_002
   m_EditorClassIdentifier: 
   uniqueID: Key_Fuse_002
-  descriptionKey: "\uD4E8\uC988 \uBCF4\uAD00\uD568\uC5D0 \uAC78\uB824 \uC788\uB294
-    \uC790\uBB3C\uC1E0 \uC911 \uD558\uB098\uB97C \uC5F4 \uC218 \uC788\uB294 \uC5F4\uC1E0\uC774\uB2E4."
+  descriptionKey: ITEM_DESC_FUSE_STORAGE_KEY
   isCollectable: 1

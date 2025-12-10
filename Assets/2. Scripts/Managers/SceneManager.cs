@@ -56,7 +56,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
 
         Canvas canvas = fadeObject.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = 9999; // 가장 위에 렌더링
+        canvas.sortingOrder = 19; // 가장 위에 렌더링 (설정창 제외)
 
         // CanvasGroup 추가
         fadeCanvasGroup = fadeObject.AddComponent<CanvasGroup>();

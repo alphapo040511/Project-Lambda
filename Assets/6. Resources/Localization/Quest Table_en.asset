@@ -123,6 +123,14 @@ MonoBehaviour:
       room
     m_Metadata:
       m_Items: []
+  - m_Id: 16044108468162560
+    m_Localized: Drop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16044071319212032
+    m_Localized: Pick Up
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

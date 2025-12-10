@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1. Scenes/Loading.unity
     guid: ed1c0f7e47d9cd34fa73cf4aa93a8aab
-  - enabled: 1
+  - enabled: 0
     path: Assets/1. Scenes/Test_Map.unity
     guid: 7b533dfe561bc47c8975c955fe4ef3d3
-  - enabled: 1
+  - enabled: 0
     path: Assets/1. Scenes/Test_Map 2.unity
     guid: 4f7b62b403c66774b99fb7df319a408b
   - enabled: 1

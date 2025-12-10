@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Level_2_Panel
   m_EditorClassIdentifier: 
   uniqueID: Level_2_Panel
-  descriptionKey: "\uD30C\uC774\uD504 \uD37C\uC990\uC744 \uD574\uACB0\uD558\uC5EC
-    2\uB4F1\uAE09 \uAD8C\uD55C\uC774 \uBD80\uC5EC\uB41C \uB2E8\uB9D0\uC774\uB2E4."
+  descriptionKey: ITEM_DESC_LV2_TERMINAL
   isCollectable: 1

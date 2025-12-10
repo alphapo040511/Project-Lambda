@@ -184,14 +184,14 @@ public class InteractionObservation : Interactable
     {
         if(itemData.isCollectable)
         {
-            ObservationUI.Instance.ShowButton("획득하기", itemData.descriptionKey, () =>
+            ObservationUI.Instance.ShowButton("ACTION_PICK_UP", itemData.descriptionKey, () =>
             {
                 GetItem();
             });
         }
         else
         {
-            ObservationUI.Instance.ShowButton("내려놓기", itemData.descriptionKey, () =>
+            ObservationUI.Instance.ShowButton("ACTION_DROP", itemData.descriptionKey, () =>
             {
                 ExitObseravtion();
                 Reset();

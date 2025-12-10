@@ -43,7 +43,7 @@ public class SaveSlotPresenter : ScreenBase
 
     public override void Hide()
     {
-        if(GameManager.Instance.currentGameState == GameState.GameOver)
+        if(GameManager.Instance.previousGameState == GameState.GameOver)
         {   
             UIManager.Instance.ShowScreen(ScreenType.GameOver);                 // 게임 오버 상태의 경우 해당 UI 표시
         }

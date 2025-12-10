@@ -119,6 +119,14 @@ MonoBehaviour:
     m_Key: Sub_4008
     m_Metadata:
       m_Items: []
+  - m_Id: 16044071319212032
+    m_Key: ACTION_PICK_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16044108468162560
+    m_Key: ACTION_DROP
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
