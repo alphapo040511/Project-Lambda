@@ -38,16 +38,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 374374895616
-    m_Localized: A terminal used by general researchers. It has level 1 access authority.
+    m_Localized: A terminal used by general researchers. It has <color=#00E5FF>level
+      1 access authority</color>.
     m_Metadata:
       m_Items: []
   - m_Id: 435020337152
-    m_Localized: A terminal granted the highest level of access by solving the word
-      puzzle. It can control all systems in the facility.
+    m_Localized: A terminal granted the <color=#00E5FF>highest level of access</color>
+      by solving the word puzzle. It can control all systems in the facility.
     m_Metadata:
       m_Items: []
   - m_Id: 433548136448
-    m_Localized: A terminal granted level 2 access by solving the pipe puzzle.
+    m_Localized: A terminal granted <color=#00E5FF>level 2 access</color> by solving
+      the pipe puzzle.
     m_Metadata:
       m_Items: []
   references:

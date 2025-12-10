@@ -47,7 +47,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20274000088686592
-    m_Localized: Security level not detected. Door cannot be unlocked.
+    m_Localized: <color=#00E5FF>Security level</color> not detected. Door cannot
+      be unlocked.
     m_Metadata:
       m_Items: []
   - m_Id: 20317144889057280
@@ -55,11 +56,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 22067017078431744
-    m_Localized: Highest security level not detected. Elevator call not possible.
+    m_Localized: <color=#00E5FF>Highest security level</color> not detected. Elevator
+      call not possible.
     m_Metadata:
       m_Items: []
   - m_Id: 22067053745037312
-    m_Localized: Highest security level confirmed. Calling the elevator.
+    m_Localized: <color=#00E5FF>Highest security level</color> confirmed. Calling
+      the elevator.
     m_Metadata:
       m_Items: []
   - m_Id: 22114927828688896

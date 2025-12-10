@@ -59260,7 +59260,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 36c45121d212009488a7c379b8c0064c, type: 3}
   - {fileID: 8300000, guid: c8190898e7bf4ba4f9d5054b89c31850, type: 3}
   - {fileID: 8300000, guid: 3569800207b02ea43bf792124f228675, type: 3}
-  minStepInterval: 0.25
+  minStepInterval: 0.4
   maxStepInterval: 1
   rb: {fileID: 0}
   cameraController: {fileID: 0}
@@ -59326,7 +59326,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -74483,7 +74483,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 946249542}
+      - m_Target: {fileID: 1507171201}
         m_TargetAssemblyTypeName: QuestHandler, Assembly-CSharp
         m_MethodName: RegistQuest
         m_Mode: 1
@@ -80257,6 +80257,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1034171465}
+    - targetCorrespondingSourceObject: {fileID: 5396175047846136415, guid: 9ce89fe8a0044d7489fef19776bc2261,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1034171466}
   m_SourcePrefab: {fileID: 100100000, guid: 9ce89fe8a0044d7489fef19776bc2261, type: 3}
 --- !u!4 &1034171460 stripped
 Transform:
@@ -80395,7 +80399,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1507171201}
+      - m_Target: {fileID: 1034171466}
         m_TargetAssemblyTypeName: QuestHandler, Assembly-CSharp
         m_MethodName: RegistQuest
         m_Mode: 1
@@ -80528,6 +80532,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1034171466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034171461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a90cecfb627e3a408b2d08b41feaced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetQuest: {fileID: 11400000, guid: 483391ad707dba24fac1f068dcf21b9c, type: 2}
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  onCleared:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1036358234
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110231,14 +110260,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406025679}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.558, y: 0.799, z: 0}
+  m_LocalRotation: {x: -0.68512905, y: -0.029637564, z: 0.7220985, w: 0.09106889}
+  m_LocalPosition: {x: 0.5579996, y: 0.80177355, z: 0.00024801493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 127419693}
   m_Father: {fileID: 1034171460}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -175.297, y: 93.419, z: -9.945984}
 --- !u!114 &1406025683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116676,7 +116705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a90cecfb627e3a408b2d08b41feaced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetQuest: {fileID: 11400000, guid: 483391ad707dba24fac1f068dcf21b9c, type: 2}
+  targetQuest: {fileID: 11400000, guid: edab5bfca12415646ad5342bfc5b95ae, type: 2}
   onActivated:
     m_PersistentCalls:
       m_Calls: []

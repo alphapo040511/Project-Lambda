@@ -350,7 +350,7 @@ public class WordMatchPuzzle : SaveObject
                 }
             }
 
-            result[i] = found ? '▣' : '□';
+            result[i] = found ? '▲' : '□';
         }
 
         return new string(result);
