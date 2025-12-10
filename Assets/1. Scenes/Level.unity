@@ -80272,7 +80272,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   audioSource: {fileID: 1034171465}
-  selectSound: {fileID: 8300000, guid: 1e03f5179fc07b146b0822900f30a184, type: 3}
+  selectSound: {fileID: 8300000, guid: eeaf33ff62355664b970e7ee58c9e8fd, type: 3}
   incorrectSound: {fileID: 8300000, guid: b37e9bda966397f49a139ebcbc711cda, type: 3}
   successSound: {fileID: 8300000, guid: b74431dd8c470a7459e50dbb1e70cee4, type: 3}
 --- !u!65 &1034171464

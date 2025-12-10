@@ -265,6 +265,18 @@ MonoBehaviour:
     m_Localized: Shadow Settings
     m_Metadata:
       m_Items: []
+  - m_Id: 33605022096187392
+    m_Localized: Graphic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33605020208750592
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33604986599792640
+    m_Localized: Gameplay
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
