@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class GraphicSettings : SettingTabBase
 {
@@ -89,10 +90,10 @@ public class GraphicSettings : SettingTabBase
     {
         // 디스플레이 설정 UI 업데이트
         if (resolutionDropdown != null)
-            resolutionDropdown.value = settingsUI.tempSettings.resolutionIndex;
+            resolutionDropdown.SetValueWithoutNotify(settingsUI.tempSettings.resolutionIndex);
 
         if (fullscreenToggle != null)
-            fullscreenToggle.SetOption(settingsUI.tempSettings.isFullscreen ? 1 : 0);
+            fullscreenToggle.SetOptionWithoutNotify(settingsUI.tempSettings.isFullscreen ? 1 : 0);
 
         if (frameRateSelector != null)
         {
@@ -115,28 +116,40 @@ public class GraphicSettings : SettingTabBase
                 _ => 2              // 기본값 = 60 프레임
             };
 
-            frameRateSelector.SetOption(value);
+            frameRateSelector.SetOptionWithoutNotify(value);
         }
 
         // 그래픽 설정 UI 업데이트
         if (qualityDropdown != null)
-            qualityDropdown.value = settingsUI.tempSettings.qualityLevel;
+            qualityDropdown.SetValueWithoutNotify(settingsUI.tempSettings.qualityLevel);
 
         if (vsyncToggle != null)
-            vsyncToggle.SetOption( settingsUI.tempSettings.vsyncEnabled ? 1 : 0);
+            vsyncToggle.SetOptionWithoutNotify( settingsUI.tempSettings.vsyncEnabled ? 1 : 0);
 
         // 그림자 설정
         if (shadowQualitySelector != null)
-            shadowQualitySelector.SetOption(settingsUI.tempSettings.shadowQuality);
+        {
+            shadowQualitySelector.SetOptionWithoutNotify(settingsUI.tempSettings.shadowQuality);
+
+
+            // 그림자 옵션이 꺼져있다면 디테일 패널도 끈다.
+            bool shadowDetail = settingsUI.tempSettings.shadowQuality != 0;
+
+            shadowDistanceSelector.gameObject.SetActive(shadowDetail);
+            shadowCascadeCountSelector.gameObject.SetActive(shadowDetail);
+            shadowResolutionSelector.gameObject.SetActive(shadowDetail);
+        }
+
+
 
         if (shadowDistanceSelector != null)
-            shadowDistanceSelector.SetOption(settingsUI.tempSettings.shadowDistance);
+            shadowDistanceSelector.SetOptionWithoutNotify(settingsUI.tempSettings.shadowDistance);
 
         if (shadowCascadeCountSelector != null)
-            shadowCascadeCountSelector.SetOption(settingsUI.tempSettings.shadowCascadeCount);
+            shadowCascadeCountSelector.SetOptionWithoutNotify(settingsUI.tempSettings.shadowCascadeCount);
 
         if (shadowResolutionSelector != null)
-            shadowResolutionSelector.SetOption(settingsUI.tempSettings.shadowResolution);
+            shadowResolutionSelector.SetOptionWithoutNotify(settingsUI.tempSettings.shadowResolution);
     }
 
     #region Event Handlers

@@ -171,11 +171,11 @@ public class SettingsManager : SingletonMonoBehaviour<SettingsManager>
             .ToArray();
 
         // 현재 해상도를 기본(제일 높은 해상도)로 설정
-        currentSettings.resolutionIndex = availableResolutions.Length - 1;
+        //currentSettings.resolutionIndex = availableResolutions.Length - 1;
 
         // 현재 품질 설정 가져오기
-        currentSettings.qualityLevel = QualitySettings.GetQualityLevel();
-        currentSettings.vsyncEnabled = QualitySettings.vSyncCount > 0;
+        //currentSettings.qualityLevel = QualitySettings.GetQualityLevel();
+        //currentSettings.vsyncEnabled = QualitySettings.vSyncCount > 0;
         // vSyncCount = 0 (없음)/ 1 (1번의 Vertical Blank마다 동기화, 60에 60FPS 고정)/ 2 (2번 마다, 60에 30FPS 고정)
 
         Debug.Log("SettingManager 초기화 완료");

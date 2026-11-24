@@ -93,6 +93,15 @@ public class CustomSelector : MonoBehaviour
         }
     }
 
+    public void SetOptionWithoutNotify(int index)
+    {
+        if (index >= 0 && index < options.Count)
+        {
+            value = index;
+            RefreshUI();
+        }
+    }
+
     void SetUI()
     {
         DestroyButton();                        // 기존 버튼 삭제
