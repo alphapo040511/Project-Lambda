@@ -22,9 +22,14 @@ public class GameplaySettings : SettingTabBase
                 SettingsManager.Instance.GetLanguageStrings()));
         }
 
-        if(mouseSensitivitySlider != null)
+        if (mouseSensitivitySlider != null)
         {
-            mouseSensitivitySlider.value = settingsUI.tempSettings.mouseSentivity;
+            mouseSensitivitySlider.minValue = 0f;
+            mouseSensitivitySlider.maxValue = 20f;
+            mouseSensitivitySlider.wholeNumbers = false;
+
+            mouseSensitivitySlider.SetValueWithoutNotify(
+                settingsUI.tempSettings.mouseSentivity);
         }
 
         if (sensitivityValue != null)

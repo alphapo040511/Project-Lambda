@@ -36,7 +36,7 @@ public class FirstPersonCamera : Actor
 
     void OnSensitivityChanged(float value)
     {
-        mouseSensitivity = value * 0.1f;        // 너무 강해서 임의로 보정
+        mouseSensitivity = 0.1f * Mathf.Pow(100f, value / 20f);
     }
 
     protected override void ActorUpdate()
