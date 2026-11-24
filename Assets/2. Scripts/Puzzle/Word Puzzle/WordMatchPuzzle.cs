@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -83,18 +84,34 @@ public class WordMatchPuzzle : SaveObject
     {
         if (state != ObjectState.On || interaction == null || !interaction.isFocused)
             return;
+        bool isMoved = false;
 
         if (Input.GetKeyDown(KeyCode.W))
+        {
             currentWordIndex -= wordToLine;
+            isMoved = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.S))
+        { 
             currentWordIndex += wordToLine;
+            isMoved = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.A))
+        {
             currentWordIndex--;
+            isMoved = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.D))
+        { 
             currentWordIndex++;
+            isMoved = true;
+        }
+
+        if (isMoved && audioSource != null && selectSound != null)
+            audioSource.PlayOneShot(selectSound);
 
         currentWordIndex = Mathf.Clamp(currentWordIndex, 0, wordList.Count - 1);
 
