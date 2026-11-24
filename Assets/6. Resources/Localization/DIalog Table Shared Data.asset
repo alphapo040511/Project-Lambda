@@ -87,6 +87,46 @@ MonoBehaviour:
     m_Key: Ending1_Epilog_007
     m_Metadata:
       m_Items: []
+  - m_Id: 149927762209771520
+    m_Key: Hibernation_module_fail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149928499157372928
+    m_Key: Hibernation_module_success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149928791441641472
+    m_Key: Secret_Ending_001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149929918744727552
+    m_Key: Secret_Ending_002
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149931353964253184
+    m_Key: Secret_Ending_003
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149931356971569152
+    m_Key: Secret_Ending_004
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149931397404659712
+    m_Key: Secret_Ending_005
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149932317496545280
+    m_Key: Secret_Ending_006
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149932319287513088
+    m_Key: Secret_Ending_007
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149932433817178112
+    m_Key: Secret_Ending_008
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

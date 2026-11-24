@@ -47,8 +47,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20274000088686592
-    m_Localized: <color=#00E5FF>Security level</color> not detected. Door cannot
-      be unlocked.
+    m_Localized: Higher <color=#00E5FF>access privileges</color> required. Door unlock
+      denied.
     m_Metadata:
       m_Items: []
   - m_Id: 20317144889057280
@@ -91,6 +91,48 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 22115208838668288
     m_Localized: Well then... Subject 4. Test Case 249 recording complete.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149927762209771520
+    m_Localized: <color=#00E5FF>Maximum security clearance</color> not detected.
+      Cryogenic chamber activation denied.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149928499157372928
+    m_Localized: <color=#00E5FF>Maximum security clearance</color> verified. Reactivating
+      cryogenic chamber.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149928791441641472
+    m_Localized: Blood removal complete. Initiating antifreeze injection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149929918744727552
+    m_Localized: Consciousness level declining... 50%... 20%... 0%...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149931353964253184
+    m_Localized: The experiment has ended.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149931356971569152
+    m_Localized: What are the results?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149931397404659712
+    m_Localized: Excellent. Everything is proceeding smoothly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149932317496545280
+    m_Localized: We can proceed with the next test subject.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149932319287513088
+    m_Localized: Okay, Doctor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149932433817178112
+    m_Localized: Well then... Subject 39. Test Case 7 recording complete.
     m_Metadata:
       m_Items: []
   references:

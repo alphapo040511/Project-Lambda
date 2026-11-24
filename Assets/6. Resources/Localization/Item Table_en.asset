@@ -43,13 +43,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 435020337152
-    m_Localized: A terminal granted the <color=#00E5FF>highest level of access</color>
-      by solving the word puzzle. It can control all systems in the facility.
+    m_Localized: <color=#00E5FF>Maximum access privileges</color> granted to terminal.
+      All facility systems are now accessible.
     m_Metadata:
       m_Items: []
   - m_Id: 433548136448
-    m_Localized: A terminal granted <color=#00E5FF>level 2 access</color> by solving
-      the pipe puzzle.
+    m_Localized: <color=#00E5FF>Level 2 access</color> granted to terminal.
     m_Metadata:
       m_Items: []
   references:
