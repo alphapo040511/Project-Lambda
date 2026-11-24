@@ -40,28 +40,28 @@ public class AudioSettings : SettingTabBase
         // 오디오 설정 UI 업데이트
         if (masterVolumeSlider != null)
         {
-            masterVolumeSlider.value = settingsUI.tempSettings.masterVolume;
+            masterVolumeSlider.SetValueWithoutNotify(settingsUI.tempSettings.masterVolume);
             if (masterVolumeText != null)
                 masterVolumeText.text = $"{settingsUI.tempSettings.masterVolume * 100:F0}%";
         }
 
         if (sfxVolumeSlider != null)
         {
-            sfxVolumeSlider.value = settingsUI.tempSettings.sfxVolume;
+            sfxVolumeSlider.SetValueWithoutNotify(settingsUI.tempSettings.sfxVolume);
             if (sfxVolumeText != null)
                 sfxVolumeText.text = $"{settingsUI.tempSettings.sfxVolume * 100:F0}%";
         }
 
         if (musicVolumeSlider != null)
         {
-            musicVolumeSlider.value = settingsUI.tempSettings.musicVolume;
+            musicVolumeSlider.SetValueWithoutNotify(settingsUI.tempSettings.musicVolume);
             if (musicVolumeText != null)
                 musicVolumeText.text = $"{settingsUI.tempSettings.musicVolume * 100:F0}%";
         }
 
         if (voiceVolumeSlider != null)
         {
-            voiceVolumeSlider.value = settingsUI.tempSettings.voiceVolume;
+            voiceVolumeSlider.SetValueWithoutNotify(settingsUI.tempSettings.voiceVolume);
             if (voiceVolumeText != null)
                 voiceVolumeText.text = $"{settingsUI.tempSettings.voiceVolume * 100:F0}%";
         }
