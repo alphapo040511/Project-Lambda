@@ -1,9 +1,8 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-
 
 public class WordMatchPuzzle : SaveObject
 {
@@ -15,12 +14,8 @@ public class WordMatchPuzzle : SaveObject
     public TextMeshProUGUI remainingText;
 
     [Header("Word Settings")]
-    public WordPuzzleDataSO puzzleData;
-    public int maxLength = 8;
-    [Tooltip("랜덤 세그먼트의 길이")]
-    public int segmentLength = 8;
     public int maxTryCount = 5;
-    private int remainingCount = 5;                 // 남은 시도 횟수
+    private int remainingCount = 5;
     private int wordToLine;
 
     [Header("Display Settings")]
@@ -38,9 +33,10 @@ public class WordMatchPuzzle : SaveObject
 
     [Header("Characters")]
     [Tooltip("랜덤 문자열 생성에 사용할 문자들")]
-    private string symbolChars = "#%&*+=-_/<>[](){}^:.?,!@~|;";
+    private string symbolChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     // 실제 사용할 문자들
+    private string answer;
     private List<string> randomIndexWords = new List<string>();
     private List<string> wordList = new List<string>();
     private int currentWordIndex = 0;
@@ -50,89 +46,69 @@ public class WordMatchPuzzle : SaveObject
 
     bool isCreated = false;
 
+
     public override void SetObjectState(string id, ObjectState state)
     {
         if (UniqueId != id) return;
+
         this.state = state;
 
-        if (state == ObjectState.On)                    // On 상태인 경우 퍼즐 생성
+        if (state == ObjectState.On)
             CreateWordPuzzle();
     }
 
     public void CreateWordPuzzle()
     {
-        if (isCreated) return;                          // 이미 만들어진 경우 일단 무시
+        if (isCreated) return;
+        if (state == ObjectState.Used) return;
+
         isCreated = true;
 
-        if (state == ObjectState.Used) return;          // 사용(클리어)된 경우 새로 생성 X
-
         remainingCount = maxTryCount;
+        currentWordIndex = 0;
+        timer = 0;
 
         state = ObjectState.On;
-        segmentLength = maxLength - puzzleData.answer.Length;               // 최대 길이에서 단어 길이만큼 제외ingCount = puzzleData.tryChance;
 
-        string testAnswer = puzzleData.words[Random.Range(0, puzzleData.words.Length)];
+        RandomIndexing();
+        InitialLine();
 
-        countText.text = $"TargetWord {testAnswer}\nLikeness {CheckGuess(testAnswer)}";
+        countText.text = "Selected Password -----\nLikeness -";
         remainingText.text = $"Remaining Count\n{GetRemaningText()}";
 
-        RandomIndexing();           // 랜덤 단어 목록 정리
-        InitialLine();              // 출력 단어 목록 정리
         ShowText();
     }
 
-    void Update()
+    private void Update()
     {
-        if (!gameObject.activeSelf || !interaction.isFocused) return;
+        if (state != ObjectState.On || interaction == null || !interaction.isFocused)
+            return;
 
-        Vector2Int dir = Vector2Int.zero;
+        if (Input.GetKeyDown(KeyCode.W))
+            currentWordIndex -= wordToLine;
 
-        if(timer > 0)
-        {
-            timer -= Time.deltaTime;
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                dir += Vector2Int.down * wordToLine;
-            }
+        if (Input.GetKeyDown(KeyCode.S))
+            currentWordIndex += wordToLine;
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                dir += Vector2Int.left;
-            }
+        if (Input.GetKeyDown(KeyCode.A))
+            currentWordIndex--;
 
-            if (Input.GetKey(KeyCode.S))
-            {
-                dir += Vector2Int.up * wordToLine;
-            }
+        if (Input.GetKeyDown(KeyCode.D))
+            currentWordIndex++;
 
-            if (Input.GetKey(KeyCode.D))
-            {
-                dir += Vector2Int.right;
-            }
+        currentWordIndex = Mathf.Clamp(currentWordIndex, 0, wordList.Count - 1);
 
-            if(dir != Vector2Int.zero)
-            {
-                timer = holdInterval;
-                currentWordIndex = Mathf.Clamp(currentWordIndex + dir.x + dir.y, 0, wordList.Count - 1);
-
-                if (audioSource != null && selectSound != null)
-                    audioSource.PlayOneShot(selectSound);
-
-                ShowText();
-            }
-        }
-        
-
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E) ||
+            Input.GetKeyDown(KeyCode.Return) ||
+            Input.GetKeyDown(KeyCode.KeypadEnter) ||
+            Input.GetKeyDown(KeyCode.Space))
         {
             CheckAnswer();
         }
 
+        ShowText();
     }
-    
+
     void CheckAnswer()
     {
         if (remainingCount <= 0)
@@ -142,7 +118,9 @@ public class WordMatchPuzzle : SaveObject
             return;
         }
 
-        if (wordList[currentWordIndex].Length == 1)
+        // 주소 문자열은 선택할 수 없음
+        // wordList 구조: 주소(짝수 인덱스), 암호(홀수 인덱스)
+        if (currentWordIndex % 2 == 0)
         {
             countText.text = "Invalid selection";
             return;
@@ -150,12 +128,18 @@ public class WordMatchPuzzle : SaveObject
 
         TutorialManager.Instance.Hide();
 
-        int count = SameWord(wordList[currentWordIndex]);
+        string selectedWord = wordList[currentWordIndex];
+
+        int count = SameWord(selectedWord);
+
         remainingCount--;
-        countText.text = $"TargetWord {wordList[currentWordIndex]}\nLikeness {CheckGuess(wordList[currentWordIndex])}";
+
+        countText.text =
+            $"Selected {selectedWord}\nLikeness {CheckGuess(selectedWord)}";
+
         remainingText.text = $"Remaining Count\n{GetRemaningText()}";
 
-        if (count == puzzleData.answer.Length)
+        if (count == answer.Length)
         {
             PuzzleCleared();
         }
@@ -164,7 +148,7 @@ public class WordMatchPuzzle : SaveObject
             if (audioSource != null && incorrectSound != null)
                 audioSource.PlayOneShot(incorrectSound);
 
-            if (remainingCount <= 0)        // 틀리고 횟수도 다 사용한 경우
+            if (remainingCount <= 0)
             {
                 interaction.ExitFocus();
                 ResetPuzzle();
@@ -175,13 +159,16 @@ public class WordMatchPuzzle : SaveObject
 
     void PuzzleCleared()
     {
-        if(audioSource != null && successSound != null)
+        if (audioSource != null && successSound != null)
             audioSource.PlayOneShot(successSound);
 
         state = ObjectState.Used;
-        interaction.DisableInteraction();       // 상호작용 불가 상태로 변경
+
+        interaction.DisableInteraction();
         interaction.ExitFocus();
+
         onCleared?.Invoke();
+
         Debug.Log("퍼즐 클리어");
     }
 
@@ -189,26 +176,24 @@ public class WordMatchPuzzle : SaveObject
     {
         randomIndexWords.Clear();
         wordList.Clear();
+
         currentWordIndex = 0;
         isCreated = false;
+
         CreateWordPuzzle();
     }
 
     int SameWord(string word)
     {
-        if (word.Length > puzzleData.answer.Length) return 0;
+        if (word.Length != answer.Length)
+            return 0;
 
         int count = 0;
 
-        word = word.ToUpper();
-        string answer = puzzleData.answer.ToUpper();
-
-        for(int i = 0; i < word.Length; i++)
+        for (int i = 0; i < word.Length; i++)
         {
             if (word[i] == answer[i])
-            {
                 count++;
-            }
         }
 
         return count;
@@ -221,7 +206,7 @@ public class WordMatchPuzzle : SaveObject
 
         for (int i = 0; i < wordList.Count; i++)
         {
-            if(i == currentWordIndex)
+            if (i == currentWordIndex)
             {
                 content += $"<color=black>{wordList[i]}</color>";
                 mark += $"<mark=#FFFFFFFF>{wordList[i]}</mark>";
@@ -231,6 +216,14 @@ public class WordMatchPuzzle : SaveObject
                 content += wordList[i];
                 mark += wordList[i];
             }
+
+            // 두 번째 암호마다 줄바꿈
+            // 실제 wordList 데이터에는 개행 문자를 추가하지 않음
+            if (i % (lineWidth * 2) == lineWidth * 2 - 1)
+            {
+                content += "\n";
+                mark += "\n";
+            }
         }
 
         textTMP.text = content;
@@ -239,110 +232,164 @@ public class WordMatchPuzzle : SaveObject
 
     void RandomIndexing()
     {
-        List<string> tempList = new List<string>();
-        tempList.Add(puzzleData.answer);                    // 정답 단어 추가
-        tempList.AddRange(puzzleData.words);                // 표시 단어 목록 추가
+        randomIndexWords.Clear();
 
-        while(tempList.Count > 0)
+        // 정답 생성
+        answer = GeneratePassword();
+
+        randomIndexWords.Add(answer);
+
+        // 정답을 제외한 후보 생성
+        int targetCount = lineCount * lineWidth;
+
+        while (randomIndexWords.Count < targetCount)
         {
-            int index = Random.Range(0, tempList.Count);
-            randomIndexWords.Add(tempList[index]);        // 임시 리스트에서 랜덤으로 추가
-            tempList.RemoveAt(index);
+            // 정답과 같은 위치에 있는 문자 개수: 0~4
+            int matchCount = Random.Range(0, 5);
+
+            string hint = GenerateHint(answer, matchCount);
+
+            if (!randomIndexWords.Contains(hint))
+                randomIndexWords.Add(hint);
         }
+
+        // 후보 순서 섞기
+        for (int i = 0; i < randomIndexWords.Count; i++)
+        {
+            int index = Random.Range(i, randomIndexWords.Count);
+
+            (randomIndexWords[i], randomIndexWords[index]) =
+                (randomIndexWords[index], randomIndexWords[i]);
+        }
+    }
+
+    string GeneratePassword()
+    {
+        string password = "";
+
+        for (int i = 0; i < 5; i++)
+        {
+            int index = Random.Range(0, symbolChars.Length);
+            password += symbolChars[index];
+        }
+
+        return password;
+    }
+
+    string GenerateHint(string target, int matchCount)
+    {
+        char[] hint = target.ToCharArray();
+
+        List<int> indices = new List<int>();
+
+        for (int i = 0; i < target.Length; i++)
+            indices.Add(i);
+
+        // 위치를 무작위로 섞기
+        for (int i = 0; i < indices.Count; i++)
+        {
+            int randomIndex = Random.Range(i, indices.Count);
+
+            (indices[i], indices[randomIndex]) =
+                (indices[randomIndex], indices[i]);
+        }
+
+        // 지정한 일치 개수만큼 유지하고 나머지 변경
+        for (int i = matchCount; i < indices.Count; i++)
+        {
+            int index = indices[i];
+
+            char newChar;
+
+            do
+            {
+                newChar = symbolChars[
+                    Random.Range(0, symbolChars.Length)
+                ];
+            }
+            while (newChar == target[index]);
+
+            hint[index] = newChar;
+        }
+
+        return new string(hint);
     }
 
     void InitialLine()
     {
-        for(int i = 0; i < lineCount; i++)
+        wordList.Clear();
+
+        for (int i = 0; i < lineCount; i++)
         {
-            for(int w = 0; w < lineWidth; w++)
+            for (int w = 0; w < lineWidth; w++)
             {
                 wordList.Add(GetRandomAddress());
-                CreateWord(i * lineWidth + w);                  // 총 개수
+
+                CreateWord(i * lineWidth + w);
             }
         }
     }
 
     void CreateWord(int wordCount)
     {
-        int forward = Random.Range(0, segmentLength) + 1;           // 앞부분 문자열 길이
-        if(forward > 0)
-        {
-            AddRandomSymbol(forward);
-        }
+        wordList.Add(GetRandomWord());
 
-        wordList.Add(GetRandomWord());                 // 실제 사용할 단어에 추가
-
-        if (segmentLength - forward > 0)
-        {
-            AddRandomSymbol(segmentLength - forward); // 뒷부분 생성
-        }
-
-        if(wordCount % 2 == 1)
-        {
-            wordList[wordList.Count - 1] += "\n";
-        }
-
-        wordToLine = wordList.Count / lineCount;
-    }
-
-    void AddRandomSymbol(int length)
-    {
-
-        for(int i = 0; i < length; i++)
-        {
-            string symbol = "";
-            symbol += symbolChars[Random.Range(0, symbolChars.Length)];
-            wordList.Add(symbol);
-        }
+        // 한 줄에 들어가는 전체 항목 수
+        // 주소 + 암호가 한 묶음
+        wordToLine = lineWidth * 2;
     }
 
     string GetRandomAddress()
     {
         int major = Random.Range(0xD0, 0xDF);
         int minor = Random.Range(0x00, 0xFF);
+
         return $"  0x{major:X2}{minor:X2}  ";
     }
 
     string GetRandomWord()
     {
-        if (randomIndexWords.Count < 0) return "Null";
+        if (randomIndexWords.Count <= 0)
+            return "Null";
 
         int index = Random.Range(0, randomIndexWords.Count);
+
         string word = randomIndexWords[index];
+
         randomIndexWords.RemoveAt(index);
+
         return word;
     }
 
     string CheckGuess(string guess)
     {
-        if (puzzleData.answer.Length != guess.Length)
-            Debug.Log("문자열 길이가 같아야 합니다.");
+        if (guess.Length != answer.Length)
+            return "Invalid";
 
-        char[] result = new char[guess.Length];
-        bool[] used = new bool[puzzleData.answer.Length];
+        string[] result = new string[guess.Length];
+        bool[] used = new bool[answer.Length];
 
-        // 1단계: 완전 일치 (■)
+        // 1단계: 완전 일치
         for (int i = 0; i < guess.Length; i++)
         {
-            if (guess[i] == puzzleData.answer[i])
+            if (guess[i] == answer[i])
             {
-                result[i] = '■';
+                result[i] = "■";
                 used[i] = true;
             }
         }
 
-        // 2단계: 다른 위치에 존재 (▣)
+        // 2단계: 다른 위치에 존재
         for (int i = 0; i < guess.Length; i++)
         {
-            if (result[i] == '■')
+            if (result[i] != null)
                 continue;
 
             bool found = false;
 
-            for (int j = 0; j < puzzleData.answer.Length; j++)
+            for (int j = 0; j < answer.Length; j++)
             {
-                if (!used[j] && guess[i] == puzzleData.answer[j])
+                if (!used[j] && guess[i] == answer[j])
                 {
                     found = true;
                     used[j] = true;
@@ -350,16 +397,19 @@ public class WordMatchPuzzle : SaveObject
                 }
             }
 
-            result[i] = found ? '▲' : '□';
+            result[i] = found
+                ? "<color=#888888>■</color>"
+                : "□";
         }
 
-        return new string(result);
+        return string.Join("", result);
     }
 
     string GetRemaningText()
     {
         string remaingText = "";
-        for(int i = 0; i < maxTryCount; i++)
+
+        for (int i = 0; i < maxTryCount; i++)
         {
             remaingText += i < remainingCount ? '■' : '□';
         }
