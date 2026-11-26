@@ -168988,7 +168988,7 @@ MonoBehaviour:
   - 0.5
   - 0.4
   - 0.3
-  answerLength: 030000000500000007000000
+  answerLength: 030000000400000005000000
   memoryPuzzleAudioSource: {fileID: 1766727594}
   showClip: {fileID: 8300000, guid: 1e03f5179fc07b146b0822900f30a184, type: 3}
   correctClip: {fileID: 8300000, guid: b74431dd8c470a7459e50dbb1e70cee4, type: 3}
