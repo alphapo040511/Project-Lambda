@@ -74,7 +74,7 @@ public class WordMatchPuzzle : SaveObject
         RandomIndexing();
         InitialLine();
 
-        countText.text = "Selected Password -----\nLikeness -";
+        countText.text = "Selected -----\nLikeness □□□□□";
         remainingText.text = $"Remaining Count\n{GetRemaningText()}";
 
         ShowText();
@@ -430,6 +430,8 @@ public class WordMatchPuzzle : SaveObject
         {
             remaingText += i < remainingCount ? '■' : '□';
         }
+
+        remaingText = $"<size=180%>{remaingText}</size>";
 
         return remaingText;
     }
