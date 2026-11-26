@@ -99,7 +99,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13599293044932608
-    m_Localized: "\rFind a way to power the elevator"
+    m_Localized: Elevator Access Granted
     m_Metadata:
       m_Items: []
   - m_Id: 13599409193598976
